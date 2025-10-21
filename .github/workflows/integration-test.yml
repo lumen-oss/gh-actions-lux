@@ -1,0 +1,28 @@
+---
+name: Test this workflow
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  test-lux-action:
+    name: ${{ matrix.job.target }}
+    runs-on: ${{ matrix.job.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        job:
+          - { os: ubuntu-24.04, target: x86_64-linux }
+          - { os: macos-14, target: aarch64-darwin }
+          - { os: windows-2025, target: x86_63-windows-msvc }
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Install Lux
+        uses: ./
+
+      - name: Check Lux availability
+        run: |
+          lx --version

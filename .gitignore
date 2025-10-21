@@ -3,14 +3,4 @@
 # Added by nix
 
 /result*
-
-# Lux project files
-/.lux/*
-/lux.lock
-/spec/
-/.busted
-/*.rock
-/.luarc.json
-/src
-
 .pre-commit-config.yaml
