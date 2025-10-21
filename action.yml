@@ -1,0 +1,14 @@
+---
+name: 'Lux'
+description: 'Install the Lux package manager for Lua'
+author: 'Marc Jakobi'
+branding:
+  color: 'purple'
+  icon: 'moon'
+# inputs:
+runs:
+  using: "composite"
+  steps:
+  - run: |
+      echo "TODO"
+    shell: bash
