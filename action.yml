@@ -7,8 +7,5 @@ branding:
   icon: 'moon'
 # inputs:
 runs:
-  using: "composite"
-  steps:
-  - run: |
-      echo "TODO"
-    shell: bash
+  using: 'node24'
+  main: dist/index.js

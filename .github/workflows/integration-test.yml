@@ -3,7 +3,7 @@ name: Test this workflow
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test-lux-action:
