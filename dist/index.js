@@ -27325,6 +27325,7 @@ async function run(env) {
     try {
         const config = collectConfig(env);
         env.debug(`Parsed inputs: ${JSON.stringify(config)}`);
+        env.debug(`Running on ${env.getArch()}-${env.getSystem()}`);
         env.info(`Installing Lux version: ${config.version}`);
     }
     catch (error) {

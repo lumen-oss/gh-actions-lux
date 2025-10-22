@@ -7,6 +7,7 @@ export async function run(env?: Env): Promise<void> {
   try {
     const config = collectConfig(env)
     env.debug(`Parsed inputs: ${JSON.stringify(config)}`)
+    env.debug(`Running on ${env.getArch()}-${env.getSystem()}`)
     env.info(`Installing Lux version: ${config.version}`)
   } catch (error) {
     if (error instanceof Error) {
