@@ -5,7 +5,12 @@ author: 'Marc Jakobi'
 branding:
   color: 'purple'
   icon: 'moon'
-# inputs:
+inputs:
+  version:
+    description: |
+      Version of Lux to install (e.g. "1.2.3" or "latest")
+    required: false
+    default: 'latest'
 runs:
   using: 'node24'
   main: dist/index.js
