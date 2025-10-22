@@ -1,4 +1,4 @@
-import type { Env } from '../src/ports.ts'
+import type { Arch, Env, System } from '../src/ports.ts'
 
 export class MockEnv implements Env {
   private inputs: Record<string, string | undefined>
@@ -9,7 +9,6 @@ export class MockEnv implements Env {
   constructor(inputs: Record<string, string | undefined> = {}) {
     this.inputs = inputs
   }
-
   getInput(name: string): string | undefined {
     return this.inputs[name]
   }
@@ -21,5 +20,11 @@ export class MockEnv implements Env {
   }
   setFailed(message: string): void {
     this.failed = message
+  }
+  getArch(): Arch {
+    return 'aarch64'
+  }
+  getSystem(): System {
+    return 'linux'
   }
 }
