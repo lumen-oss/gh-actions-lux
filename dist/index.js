@@ -27335,9 +27335,6 @@ async function run(env) {
             env.setFailed(`unexpected error: ${JSON.stringify(error)}`);
         }
     }
-    if (require.main === module) {
-        run();
-    }
 }
 
 /* istanbul ignore next */
