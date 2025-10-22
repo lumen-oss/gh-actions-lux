@@ -47,7 +47,7 @@
           src = self;
           hooks = {
             nixfmt.enable = true;
-            eslint.enable = true;
+            # eslint.enable = true;
             prettier.enable = true;
           };
         };
