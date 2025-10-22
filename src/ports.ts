@@ -31,9 +31,9 @@ export interface Env {
    * @returns the normalized target for the running environment.
    * One of:
    * - 'aarch64-linux'
-   * - 'x86-64-linux'
+   * - 'x86_64-linux'
    * - 'aarch64-macos'
-   * - 'x86-64-windows'
+   * - 'x86_64-windows'
    */
   getTarget(): Target
 }
