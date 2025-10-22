@@ -1,7 +1,17 @@
 // Adapter interfaces for IO
 
-export type System = 'linux' | 'macos' | 'windows'
-export type Arch = 'x86_64' | 'aarch64'
+export type Target =
+  | 'x86_64-linux'
+  | 'aarch64-linux'
+  | 'aarch64-macos'
+  | 'x86_64-windows'
+
+export class UnsupportedTarget extends Error {
+  constructor(message?: string) {
+    super(message)
+    this.name = 'UnsupportedTarget'
+  }
+}
 
 export interface Env {
   /**
@@ -18,14 +28,12 @@ export interface Env {
   setFailed(message: string): void
 
   /**
-   * Detect the running system (normalized).
-   * @returns one of 'linux' | 'macos' | 'windows'.
+   * @returns the normalized target for the running environment.
+   * One of:
+   * - 'aarch64-linux'
+   * - 'x86-64-linux'
+   * - 'aarch64-macos'
+   * - 'x86-64-windows'
    */
-  getSystem(): System
-
-  /**
-   * Detect the running architecture (normalized).
-   * @returns one of 'x86_64' | 'aarch64'.
-   */
-  getArch(): Arch
+  getTarget(): Target
 }

@@ -27268,36 +27268,33 @@ function requireCore () {
 
 var coreExports = requireCore();
 
-function mapPlatformToSystem(platform) {
-    switch (platform) {
-        case 'linux':
-            return 'linux';
-        case 'darwin':
-            return 'macos';
-        case 'win32':
-            return 'windows';
-        default:
-            throw new Error(`Unsupported platform: "${platform}". Supported: linux, darwin (macos), win32 (windows).`);
+// Adapter interfaces for IO
+class UnsupportedTarget extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'UnsupportedTarget';
     }
 }
-function mapArchToArch(arch) {
-    switch (arch) {
-        case 'x64':
-        case 'ia32':
-            return 'x86_64';
-        case 'arm64':
-            return 'aarch64';
-        default:
-            throw new Error(`Unsupported architecture detected: "${arch}". Supported: x64/ia32 (x86_64), arm64 (aarch64).`);
+
+function computeTarget(platform, arch) {
+    if (platform === 'linux' && arch === 'arm64') {
+        return 'aarch64-linux';
     }
+    else if (platform === 'linux' && arch === 'x64') {
+        return 'x86_64-linux';
+    }
+    else if (platform === 'darwin' && arch === 'arm64') {
+        return 'aarch64-macos';
+    }
+    else if (platform === 'win32' && arch === 'x64') {
+        return 'x86_64-windows';
+    }
+    throw new UnsupportedTarget(`Unsupported architecture ${arch} for platform: ${platform}`);
 }
 class GitHubActionsEnv {
-    system;
-    arch;
+    target;
     constructor() {
-        // Compute normalized values once and fail fast on unknown values.
-        this.system = mapPlatformToSystem(process.platform);
-        this.arch = mapArchToArch(process.arch);
+        this.target = computeTarget(process.platform, process.arch);
     }
     getInput(name) {
         const v = coreExports.getInput(name);
@@ -27312,11 +27309,8 @@ class GitHubActionsEnv {
     setFailed(message) {
         coreExports.setFailed(message);
     }
-    getSystem() {
-        return this.system;
-    }
-    getArch() {
-        return this.arch;
+    getTarget() {
+        return this.target;
     }
 }
 
@@ -27325,7 +27319,7 @@ async function run(env) {
     try {
         const config = collectConfig(env);
         env.debug(`Parsed inputs: ${JSON.stringify(config)}`);
-        env.debug(`Running on ${env.getArch()}-${env.getSystem()}`);
+        env.debug(`Running on ${env.getTarget()}`);
         env.info(`Installing Lux version: ${config.version}`);
     }
     catch (error) {

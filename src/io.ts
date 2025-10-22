@@ -1,43 +1,26 @@
 import * as core from '@actions/core'
-import type { Env, System, Arch } from './ports.ts'
+import { UnsupportedTarget, type Env, type Target } from './ports.js'
 
-function mapPlatformToSystem(platform: string): System {
-  switch (platform) {
-    case 'linux':
-      return 'linux'
-    case 'darwin':
-      return 'macos'
-    case 'win32':
-      return 'windows'
-    default:
-      throw new Error(
-        `Unsupported platform: "${platform}". Supported: linux, darwin (macos), win32 (windows).`
-      )
+function computeTarget(platform: string, arch: string): Target {
+  if (platform === 'linux' && arch === 'arm64') {
+    return 'aarch64-linux'
+  } else if (platform === 'linux' && arch === 'x64') {
+    return 'x86_64-linux'
+  } else if (platform === 'darwin' && arch === 'arm64') {
+    return 'aarch64-macos'
+  } else if (platform === 'win32' && arch === 'x64') {
+    return 'x86_64-windows'
   }
-}
-
-function mapArchToArch(arch: string): Arch {
-  switch (arch) {
-    case 'x64':
-    case 'ia32':
-      return 'x86_64'
-    case 'arm64':
-      return 'aarch64'
-    default:
-      throw new Error(
-        `Unsupported architecture detected: "${arch}". Supported: x64/ia32 (x86_64), arm64 (aarch64).`
-      )
-  }
+  throw new UnsupportedTarget(
+    `Unsupported architecture ${arch} for platform: ${platform}`
+  )
 }
 
 export class GitHubActionsEnv implements Env {
-  readonly system: System
-  readonly arch: Arch
+  readonly target: Target
 
   constructor() {
-    // Compute normalized values once and fail fast on unknown values.
-    this.system = mapPlatformToSystem(process.platform)
-    this.arch = mapArchToArch(process.arch)
+    this.target = computeTarget(process.platform, process.arch)
   }
 
   getInput(name: string): string | undefined {
@@ -53,10 +36,7 @@ export class GitHubActionsEnv implements Env {
   setFailed(message: string): void {
     core.setFailed(message)
   }
-  getSystem(): System {
-    return this.system
-  }
-  getArch(): Arch {
-    return this.arch
+  getTarget(): Target {
+    return this.target
   }
 }
