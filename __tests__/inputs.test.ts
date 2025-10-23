@@ -1,5 +1,5 @@
 import { collectConfig } from '../src/inputs.ts'
-import { MockEnv } from './env.ts'
+import { MockEnv } from './mock/env.ts'
 
 describe('parseActionInputs', () => {
   test('collectConfig reads version from env', () => {

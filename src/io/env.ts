@@ -1,5 +1,5 @@
 import * as core from '@actions/core'
-import { UnsupportedTarget, type Env, type Target } from './ports.js'
+import { UnsupportedTargetError, type Env, type Target } from '../ports.js'
 
 function computeTarget(platform: string, arch: string): Target {
   if (platform === 'linux' && arch === 'arm64') {
@@ -11,13 +11,13 @@ function computeTarget(platform: string, arch: string): Target {
   } else if (platform === 'win32' && arch === 'x64') {
     return 'x86_64-windows'
   }
-  throw new UnsupportedTarget(
+  throw new UnsupportedTargetError(
     `Unsupported architecture ${arch} for platform: ${platform}`
   )
 }
 
 export class GitHubActionsEnv implements Env {
-  readonly target: Target
+  private readonly target: Target
 
   constructor() {
     this.target = computeTarget(process.platform, process.arch)

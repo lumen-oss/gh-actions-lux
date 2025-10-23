@@ -27269,10 +27269,16 @@ function requireCore () {
 var coreExports = requireCore();
 
 // Adapter interfaces for IO
-class UnsupportedTarget extends Error {
+class UnsupportedTargetError extends Error {
     constructor(message) {
         super(message);
-        this.name = 'UnsupportedTarget';
+        this.name = 'UnsupportedTargetError';
+    }
+}
+class LuxProviderError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'LuxProviderError';
     }
 }
 
@@ -27289,7 +27295,7 @@ function computeTarget(platform, arch) {
     else if (platform === 'win32' && arch === 'x64') {
         return 'x86_64-windows';
     }
-    throw new UnsupportedTarget(`Unsupported architecture ${arch} for platform: ${platform}`);
+    throw new UnsupportedTargetError(`Unsupported architecture ${arch} for platform: ${platform}`);
 }
 class GitHubActionsEnv {
     target;
@@ -27298,7 +27304,7 @@ class GitHubActionsEnv {
     }
     getInput(name) {
         const v = coreExports.getInput(name);
-        return v === coreExports.getInput(name) ? undefined : v;
+        return v === '' ? undefined : v;
     }
     debug(message) {
         coreExports.debug(message);
@@ -27314,13 +27320,78 @@ class GitHubActionsEnv {
     }
 }
 
-async function run(env) {
-    env = env ?? new GitHubActionsEnv();
+/**
+ * Minimal normalization helper for release tags.
+ * - accepts strings like 'v1.2.3' or '1.2.3' and returns '1.2.3'
+ */
+function normalizeReleaseTag(tag) {
+    if (typeof tag !== 'string') {
+        throw new TypeError(`normalizeReleaseTag: expected string, got ${typeof tag}`);
+    }
+    return tag.trim().replace(/^v/, '');
+}
+class GitHubReleasesLuxProvider {
+    owner = 'lumen-oss';
+    repo = 'lux';
+    token;
+    constructor() {
+        this.token = process.env.GITHUB_TOKEN || undefined;
+    }
+    async latestLuxVersion() {
+        const url = `https://api.github.com/repos/${encodeURIComponent(this.owner)}/${encodeURIComponent(this.repo)}/releases/latest`;
+        const headers = {
+            Accept: 'application/vnd.github+json',
+            'User-Agent': 'gh-actions-lux'
+        };
+        if (this.token) {
+            headers.Authorization = `token ${this.token}`;
+        }
+        const res = await fetch(url, { headers });
+        if (!res.ok) {
+            const body = (await res.text().catch(() => '')).slice(0, 200);
+            throw new LuxProviderError(`failed to fetch ${url}: ${res.status} ${res.statusText} ${body}`);
+        }
+        const json = await res.json().catch(() => {
+            throw new LuxProviderError('invalid JSON response from releases API');
+        });
+        if (typeof json !== 'object' || json === null) {
+            throw new LuxProviderError('unexpected response shape (not an object)');
+        }
+        const release = json;
+        const release_tag = (json && (release.tag_name ?? release.name));
+        if (!release_tag) {
+            throw new LuxProviderError('release object missing tag_name/name');
+        }
+        return normalizeReleaseTag(release_tag);
+    }
+}
+
+class GitHubActionsHandle {
+    env;
+    lux_provider;
+    constructor() {
+        this.env = new GitHubActionsEnv();
+        this.lux_provider = new GitHubReleasesLuxProvider();
+    }
+    getLuxProvider() {
+        return this.lux_provider;
+    }
+    getEnv() {
+        return this.env;
+    }
+}
+
+async function run(handle) {
+    handle = handle ?? new GitHubActionsHandle();
+    const env = handle.getEnv();
+    const lux_provider = handle.getLuxProvider();
     try {
         const config = collectConfig(env);
         env.debug(`Parsed inputs: ${JSON.stringify(config)}`);
         env.debug(`Running on ${env.getTarget()}`);
         env.info(`Installing Lux version: ${config.version}`);
+        const latest_lux_version = lux_provider.latestLuxVersion();
+        env.info(`Latest Lux version: ${latest_lux_version}`);
     }
     catch (error) {
         if (error instanceof Error) {

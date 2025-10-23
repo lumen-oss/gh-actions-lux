@@ -1,15 +1,20 @@
 // Adapter interfaces for IO
 
+export interface Handle {
+  getEnv(): Env
+  getLuxProvider(): LuxProvider
+}
+
 export type Target =
   | 'x86_64-linux'
   | 'aarch64-linux'
   | 'aarch64-macos'
   | 'x86_64-windows'
 
-export class UnsupportedTarget extends Error {
+export class UnsupportedTargetError extends Error {
   constructor(message?: string) {
     super(message)
-    this.name = 'UnsupportedTarget'
+    this.name = 'UnsupportedTargetError'
   }
 }
 
@@ -36,4 +41,18 @@ export interface Env {
    * - 'x86_64-windows'
    */
   getTarget(): Target
+}
+
+export class LuxProviderError extends Error {
+  constructor(message?: string) {
+    super(message)
+    this.name = 'LuxProviderError'
+  }
+}
+
+export interface LuxProvider {
+  /**
+   * @returns the latest available Lux version string (e.g. "1.2.3").
+   */
+  latestLuxVersion(): Promise<string>
 }
