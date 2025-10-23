@@ -27390,7 +27390,7 @@ async function run(handle) {
         env.debug(`Parsed inputs: ${JSON.stringify(config)}`);
         env.debug(`Running on ${env.getTarget()}`);
         env.info(`Installing Lux version: ${config.version}`);
-        const latest_lux_version = lux_provider.latestLuxVersion();
+        const latest_lux_version = await lux_provider.latestLuxVersion();
         env.info(`Latest Lux version: ${latest_lux_version}`);
     }
     catch (error) {
