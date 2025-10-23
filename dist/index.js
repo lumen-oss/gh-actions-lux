@@ -27388,6 +27388,37 @@ async function latestLuxVersion(provider) {
     }
     return normalizeReleaseTag(release_tag);
 }
+function installerFilenameForTarget(version, target) {
+    switch (target) {
+        case 'aarch64-macos':
+            return `lux-cli_${version}_aarch64.dmg`;
+        case 'x86_64-linux':
+            return `lx_${version}_amd64.deb`;
+        case 'aarch64-linux':
+            return `lx_${version}_arm64.deb`;
+        case 'x86_64-windows':
+            return `lx_${version}_x64-setup.exe`;
+        default:
+            throw new Error(`non-exhaustive switch on target: ${String(target)}. This is a bug!`);
+    }
+}
+function installerDownloadUrl(version, target) {
+    const installer = installerFilenameForTarget(version, target);
+    const tagPart = `v${version}`;
+    return `https://github.com/lumen-oss/lux/releases/download/${encodeURIComponent(tagPart)}/${encodeURIComponent(installer)}`;
+}
+async function getInstallerDownloadUrl(env, provider) {
+    const rawVersion = env.getVersionInput();
+    const target = env.getTarget();
+    let version;
+    if (!rawVersion || rawVersion === 'latest') {
+        version = await latestLuxVersion(provider);
+    }
+    else {
+        version = rawVersion;
+    }
+    return installerDownloadUrl(version, target);
+}
 
 async function run(handle) {
     handle = handle ?? new GitHubActionsHandle();
@@ -27398,8 +27429,8 @@ async function run(handle) {
         env.debug(`Parsed inputs: ${JSON.stringify(config)}`);
         env.debug(`Running on ${env.getTarget()}`);
         env.info(`Installing Lux version: ${config.version}`);
-        const latest_lux_version = await latestLuxVersion(lux_provider);
-        env.info(`Latest Lux version: ${latest_lux_version}`);
+        const installer_download_url = await getInstallerDownloadUrl(env, lux_provider);
+        env.info(`Installer download URL: ${installer_download_url}`);
     }
     catch (error) {
         if (error instanceof Error) {
