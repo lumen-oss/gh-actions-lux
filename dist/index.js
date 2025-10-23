@@ -27358,9 +27358,9 @@ class GitHubReleasesLuxProvider {
             throw new LuxProviderError('unexpected response shape (not an object)');
         }
         const release = json;
-        const release_tag = (json && (release.tag_name ?? release.name));
-        if (!release_tag) {
-            throw new LuxProviderError('release object missing tag_name/name');
+        const release_tag = release['tag_name'] ?? release['name'];
+        if (typeof release_tag !== 'string') {
+            throw new LuxProviderError('release object missing tag_name/name as string');
         }
         return normalizeReleaseTag(release_tag);
     }

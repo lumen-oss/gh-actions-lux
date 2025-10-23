@@ -1,5 +1,5 @@
 import { run } from '../src/main.ts'
-import { MockEnv } from './env.ts'
+import { MockEnv } from './mock/env.ts'
 import { MockHandle } from './mock/handle.ts'
 import { MockLuxProvider } from './mock/lux.ts'
 

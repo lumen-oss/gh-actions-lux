@@ -58,11 +58,10 @@ export class GitHubReleasesLuxProvider implements LuxProvider {
       )
     }
     const release = json as Record<string, unknown>
-
-    const release_tag = (json && (release.tag_name ?? release.name)) as unknown
-    if (!release_tag) {
+    const release_tag = release['tag_name'] ?? release['name']
+    if (typeof release_tag !== 'string') {
       throw new LatestLuxVersionRequestError(
-        'release object missing tag_name/name'
+        'release object missing tag_name/name as string'
       )
     }
 
