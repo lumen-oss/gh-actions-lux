@@ -25,7 +25,7 @@ export class GitHubActionsEnv implements Env {
 
   getInput(name: string): string | undefined {
     const v = core.getInput(name)
-    return v === core.getInput(name) ? undefined : v
+    return v === '' ? undefined : v
   }
   debug(message: string): void {
     core.debug(message)
