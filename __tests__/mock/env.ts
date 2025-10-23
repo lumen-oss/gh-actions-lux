@@ -9,8 +9,11 @@ export class MockEnv implements Env {
   constructor(inputs: Record<string, string | undefined> = {}) {
     this.inputs = inputs
   }
-  getInput(name: string): string | undefined {
+  private getInput(name: string): string | undefined {
     return this.inputs[name]
+  }
+  getVersionInput(): string | undefined {
+    return this.getInput('version')
   }
   debug(message: string): void {
     this.debug_calls.push(message)

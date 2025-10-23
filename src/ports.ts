@@ -22,7 +22,7 @@ export interface Env {
   /**
    * Get an action input by name.
    */
-  getInput(name: string): string | undefined
+  getVersionInput(): string | undefined
 
   debug(message: string): void
   info(message: string): void

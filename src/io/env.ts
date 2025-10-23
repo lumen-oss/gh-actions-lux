@@ -23,9 +23,13 @@ export class GitHubActionsEnv implements Env {
     this.target = computeTarget(process.platform, process.arch)
   }
 
-  getInput(name: string): string | undefined {
+  private getInput(name: string): string | undefined {
     const v = core.getInput(name)
     return v === '' ? undefined : v
+  }
+
+  getVersionInput(): string | undefined {
+    return this.getInput('version')
   }
   debug(message: string): void {
     core.debug(message)

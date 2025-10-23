@@ -27291,6 +27291,9 @@ class GitHubActionsEnv {
         const v = coreExports.getInput(name);
         return v === '' ? undefined : v;
     }
+    getVersionInput() {
+        return this.getInput('version');
+    }
     debug(message) {
         coreExports.debug(message);
     }
@@ -27362,7 +27365,7 @@ function parseActionInputs(raw) {
 }
 function collectConfig(env) {
     const rawInputs = {
-        version: env.getInput('version')
+        version: env.getVersionInput()
     };
     return parseActionInputs(rawInputs);
 }

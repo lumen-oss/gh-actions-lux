@@ -17,7 +17,7 @@ function parseActionInputs(
 
 export function collectConfig(env: Env): ActionConfig {
   const rawInputs: Record<string, string | undefined> = {
-    version: env.getInput('version')
+    version: env.getVersionInput()
   }
   return parseActionInputs(rawInputs)
 }
