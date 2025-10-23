@@ -51,7 +51,7 @@ In short:
 
 <h1 align="center">
   <br>
-  <img src="./architecture.svg" alt="Architecture" width="200">
+  <img src="./architecture.svg" alt="Architecture" width="500">
   <br>
 </h1>
 
