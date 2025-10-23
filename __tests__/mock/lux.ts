@@ -1,7 +1,10 @@
 import { LuxProvider } from '../../src/ports'
 
 export class MockLuxProvider implements LuxProvider {
-  async latestLuxVersion(): Promise<string> {
-    return '1.0.0'
+  async latestLuxRelease(): Promise<Record<string, unknown>> {
+    return {
+      tag_name: 'v1.0.0',
+      name: 'v1.0.0'
+    }
   }
 }

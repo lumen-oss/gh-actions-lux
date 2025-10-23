@@ -3,19 +3,6 @@ import {
   type LuxProvider
 } from '../ports.js'
 
-/**
- * Minimal normalization helper for release tags.
- * - accepts strings like 'v1.2.3' or '1.2.3' and returns '1.2.3'
- */
-function normalizeReleaseTag(tag: unknown): string {
-  if (typeof tag !== 'string') {
-    throw new TypeError(
-      `normalizeReleaseTag: expected string, got ${typeof tag}`
-    )
-  }
-  return tag.trim().replace(/^v/, '')
-}
-
 export class GitHubReleasesLuxProvider implements LuxProvider {
   private readonly owner = 'lumen-oss'
   private readonly repo = 'lux'
@@ -25,7 +12,7 @@ export class GitHubReleasesLuxProvider implements LuxProvider {
     this.token = process.env.GITHUB_TOKEN || undefined
   }
 
-  async latestLuxVersion(): Promise<string> {
+  async latestLuxRelease(): Promise<Record<string, unknown>> {
     const url = `https://api.github.com/repos/${encodeURIComponent(this.owner)}/${encodeURIComponent(
       this.repo
     )}/releases/latest`
@@ -58,13 +45,6 @@ export class GitHubReleasesLuxProvider implements LuxProvider {
       )
     }
     const release = json as Record<string, unknown>
-    const release_tag = release['tag_name'] ?? release['name']
-    if (typeof release_tag !== 'string') {
-      throw new LatestLuxVersionRequestError(
-        'release object missing tag_name/name as string'
-      )
-    }
-
-    return normalizeReleaseTag(release_tag)
+    return release
   }
 }

@@ -26,21 +26,6 @@ import require$$0$7 from 'diagnostics_channel';
 import require$$2$2 from 'child_process';
 import require$$6$1 from 'timers';
 
-/**
- * Normalize action inputs into a typed config.
- */
-function parseActionInputs(raw) {
-    return {
-        version: raw['version'] ?? 'latest'
-    };
-}
-function collectConfig(env) {
-    const rawInputs = {
-        version: env.getInput('version')
-    };
-    return parseActionInputs(rawInputs);
-}
-
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
 var core = {};
@@ -27320,16 +27305,6 @@ class GitHubActionsEnv {
     }
 }
 
-/**
- * Minimal normalization helper for release tags.
- * - accepts strings like 'v1.2.3' or '1.2.3' and returns '1.2.3'
- */
-function normalizeReleaseTag(tag) {
-    if (typeof tag !== 'string') {
-        throw new TypeError(`normalizeReleaseTag: expected string, got ${typeof tag}`);
-    }
-    return tag.trim().replace(/^v/, '');
-}
 class GitHubReleasesLuxProvider {
     owner = 'lumen-oss';
     repo = 'lux';
@@ -27337,7 +27312,7 @@ class GitHubReleasesLuxProvider {
     constructor() {
         this.token = process.env.GITHUB_TOKEN || undefined;
     }
-    async latestLuxVersion() {
+    async latestLuxRelease() {
         const url = `https://api.github.com/repos/${encodeURIComponent(this.owner)}/${encodeURIComponent(this.repo)}/releases/latest`;
         const headers = {
             Accept: 'application/vnd.github+json',
@@ -27358,11 +27333,7 @@ class GitHubReleasesLuxProvider {
             throw new LuxProviderError('unexpected response shape (not an object)');
         }
         const release = json;
-        const release_tag = release['tag_name'] ?? release['name'];
-        if (typeof release_tag !== 'string') {
-            throw new LuxProviderError('release object missing tag_name/name as string');
-        }
-        return normalizeReleaseTag(release_tag);
+        return release;
     }
 }
 
@@ -27381,6 +27352,40 @@ class GitHubActionsHandle {
     }
 }
 
+/**
+ * Normalize action inputs into a typed config.
+ */
+function parseActionInputs(raw) {
+    return {
+        version: raw['version'] ?? 'latest'
+    };
+}
+function collectConfig(env) {
+    const rawInputs = {
+        version: env.getInput('version')
+    };
+    return parseActionInputs(rawInputs);
+}
+
+/**
+ * Minimal normalization helper for release tags.
+ * - accepts strings like 'v1.2.3' or '1.2.3' and returns '1.2.3'
+ */
+function normalizeReleaseTag(tag) {
+    if (typeof tag !== 'string') {
+        throw new TypeError(`normalizeReleaseTag: expected string, got ${typeof tag}`);
+    }
+    return tag.trim().replace(/^v/, '');
+}
+async function latestLuxVersion(provider) {
+    const release = await provider.latestLuxRelease();
+    const release_tag = release['tag_name'] ?? release['name'];
+    if (typeof release_tag !== 'string') {
+        throw new Error('lux release object missing tag_name/name as string');
+    }
+    return normalizeReleaseTag(release_tag);
+}
+
 async function run(handle) {
     handle = handle ?? new GitHubActionsHandle();
     const env = handle.getEnv();
@@ -27390,7 +27395,7 @@ async function run(handle) {
         env.debug(`Parsed inputs: ${JSON.stringify(config)}`);
         env.debug(`Running on ${env.getTarget()}`);
         env.info(`Installing Lux version: ${config.version}`);
-        const latest_lux_version = await lux_provider.latestLuxVersion();
+        const latest_lux_version = await latestLuxVersion(lux_provider);
         env.info(`Latest Lux version: ${latest_lux_version}`);
     }
     catch (error) {

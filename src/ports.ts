@@ -52,7 +52,7 @@ export class LuxProviderError extends Error {
 
 export interface LuxProvider {
   /**
-   * @returns the latest available Lux version string (e.g. "1.2.3").
+   * @returns the latest available Lux release JSON object
    */
-  latestLuxVersion(): Promise<string>
+  latestLuxRelease(): Promise<Record<string, unknown>>
 }
