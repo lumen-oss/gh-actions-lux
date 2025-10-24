@@ -25,7 +25,7 @@ import require$$6 from 'string_decoder';
 import require$$0$7 from 'diagnostics_channel';
 import require$$2$2, { spawn } from 'child_process';
 import require$$6$1 from 'timers';
-import { access, readdir } from 'fs/promises';
+import { access, readdir, unlink } from 'fs/promises';
 
 // Adapter interfaces for IO
 class UnsupportedTargetError extends Error {
@@ -27362,7 +27362,7 @@ class DiskFileSystem {
     }
 }
 
-async function runCommand$2(cmd, args) {
+async function runCommand$1(cmd, args) {
     return new Promise((resolve, reject) => {
         const p = spawn(cmd, args, { stdio: ['ignore', 'pipe', 'pipe'] });
         let stdout = '';
@@ -27385,16 +27385,18 @@ async function runCommand$2(cmd, args) {
 class DebInstaller {
     async install(assetPath) {
         await access(assetPath, constants$5.R_OK);
-        await runCommand$2('sudo', ['dpkg', '-i', assetPath]);
+        await runCommand$1('sudo', ['dpkg', '-i', assetPath]);
     }
 }
 function createDebInstaller() {
     return new DebInstaller();
 }
 
-async function runCommand$1(cmd, args) {
+async function capture(cmd, args, stdin) {
     return new Promise((resolve, reject) => {
-        const p = spawn(cmd, args, { stdio: ['ignore', 'pipe', 'pipe'] });
+        const p = spawn(cmd, args, {
+            stdio: ['ignore', 'pipe', 'pipe']
+        });
         let stdout = '';
         let stderr = '';
         p.stdout?.on('data', (b) => {
@@ -27404,47 +27406,74 @@ async function runCommand$1(cmd, args) {
             stderr += b.toString();
         });
         p.on('error', (err) => reject(err));
-        p.on('close', (code, signal) => {
-            if (code === 0)
-                return resolve();
-            const msg = `command failed: ${cmd} ${args.join(' ')} exit=${code} signal=${signal}\nstdout:\n${stdout}\nstderr:\n${stderr}`;
-            reject(new Error(msg));
-        });
+        p.on('close', (code) => resolve({ code, stdout, stderr }));
     });
+}
+async function runStrict(cmd, args, stdin) {
+    const r = await capture(cmd, args);
+    if (r.code === 0)
+        return;
+    throw new Error(`command failed: ${cmd} ${args.join(' ')} exit=${r.code}\nstdout:\n${r.stdout}\nstderr:\n${r.stderr}`);
 }
 class DmgInstaller {
     async install(assetPath) {
         await access(assetPath, constants$5.R_OK);
-        const mountBase = tmpdir();
-        const mountPoint = await import('fs/promises').then((m) => m.mkdtemp(join(mountBase, 'lux-dmg-')));
-        let attached = false;
+        const tmpBase = tmpdir();
+        const workDir = await import('fs/promises').then((m) => m.mkdtemp(join(tmpBase, 'lux-dmg-')));
+        // We need to convert to UDTO, to prevent a prompt to accept the license.
+        const converted = join(workDir, 'converted.cdr');
+        const mountPoint = '/Volumes/install_app';
+        let mounted = false;
         try {
-            await runCommand$1('hdiutil', [
+            await runStrict('hdiutil', [
+                'convert',
+                '-quiet',
+                assetPath,
+                '-format',
+                'UDTO',
+                '-o',
+                converted
+            ]);
+            await runStrict('hdiutil', [
                 'attach',
                 '-nobrowse',
                 '-noverify',
                 '-mountpoint',
                 mountPoint,
-                assetPath
+                converted
             ]);
-            attached = true;
+            mounted = true;
             const entries = await readdir(mountPoint);
             const app = entries.find((e) => e.endsWith('.app'));
-            if (app) {
-                const src = join(mountPoint, app);
-                await runCommand$1('cp', ['-R', src, '/Applications/']);
-                return;
-            }
-            throw new Error(`no .app found inside mounted dmg at ${mountPoint}`);
+            if (!app)
+                throw new Error(`no .app bundle found at ${mountPoint}`);
+            const src = join(mountPoint, app);
+            await runStrict('cp', ['-R', src, '/Applications/']);
+            const binPath = join('/Applications', app, 'Contents', 'MacOS', 'lx');
+            await runStrict('sudo', ['ln', '-sf', binPath, '/usr/local/bin/lx']);
         }
         finally {
-            if (attached) {
+            if (mounted) {
                 try {
-                    await runCommand$1('hdiutil', ['detach', mountPoint]);
+                    await runStrict('hdiutil', ['detach', mountPoint]);
                 }
                 catch {
-                    // we ignore detach failures
+                    /* best-effort */
                 }
+            }
+            else {
+                try {
+                    await runStrict('hdiutil', ['detach', workDir]);
+                }
+                catch {
+                    /* best-effort */
+                }
+            }
+            try {
+                await unlink(converted);
+            }
+            catch {
+                /* ignore cleanup errors */
             }
         }
     }
