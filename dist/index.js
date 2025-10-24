@@ -27362,7 +27362,7 @@ class DiskFileSystem {
     }
 }
 
-async function runCommand$2(cmd, args) {
+async function runCommand$1(cmd, args) {
     return new Promise((resolve, reject) => {
         const p = spawn(cmd, args, { stdio: ['ignore', 'pipe', 'pipe'] });
         let stdout = '';
@@ -27385,7 +27385,7 @@ async function runCommand$2(cmd, args) {
 class DebInstaller {
     async install(assetPath) {
         await access(assetPath, constants$5.R_OK);
-        await runCommand$2('sudo', ['dpkg', '-i', assetPath]);
+        await runCommand$1('sudo', ['dpkg', '-i', assetPath]);
     }
 }
 function createDebInstaller() {
@@ -27409,7 +27409,7 @@ async function capture(cmd, args, stdin) {
         p.on('close', (code) => resolve({ code, stdout, stderr }));
     });
 }
-async function runCommand$1(cmd, args, stdin) {
+async function runCommand(cmd, args, stdin) {
     const r = await capture(cmd, args);
     if (r.code === 0)
         return;
@@ -27425,7 +27425,7 @@ class DmgInstaller {
         const mountPoint = '/Volumes/install_app';
         let mounted = false;
         try {
-            await runCommand$1('hdiutil', [
+            await runCommand('hdiutil', [
                 'convert',
                 '-quiet',
                 assetPath,
@@ -27434,7 +27434,7 @@ class DmgInstaller {
                 '-o',
                 converted
             ]);
-            await runCommand$1('hdiutil', [
+            await runCommand('hdiutil', [
                 'attach',
                 '-nobrowse',
                 '-noverify',
@@ -27448,14 +27448,14 @@ class DmgInstaller {
             if (!app)
                 throw new Error(`no .app bundle found at ${mountPoint}`);
             const src = join(mountPoint, app);
-            await runCommand$1('cp', ['-R', src, '/Applications/']);
+            await runCommand('cp', ['-R', src, '/Applications/']);
             const binPath = join('/Applications', app, 'Contents', 'MacOS', 'lx');
-            await runCommand$1('sudo', ['ln', '-sf', binPath, '/usr/local/bin/lx']);
+            await runCommand('sudo', ['ln', '-sf', binPath, '/usr/local/bin/lx']);
         }
         finally {
             if (mounted) {
                 try {
-                    await runCommand$1('hdiutil', ['detach', mountPoint]);
+                    await runCommand('hdiutil', ['detach', mountPoint]);
                 }
                 catch {
                     /* best-effort */
@@ -27463,7 +27463,7 @@ class DmgInstaller {
             }
             else {
                 try {
-                    await runCommand$1('hdiutil', ['detach', workDir]);
+                    await runCommand('hdiutil', ['detach', workDir]);
                 }
                 catch {
                     /* best-effort */
@@ -27482,51 +27482,28 @@ function createDmgInstaller() {
     return new DmgInstaller();
 }
 
-async function runCommand(cmd, args) {
-    return new Promise((resolve, reject) => {
-        const p = spawn(cmd, args, { stdio: ['ignore', 'pipe', 'pipe'] });
-        let stdout = '';
-        let stderr = '';
-        p.stdout?.on('data', (b) => {
-            stdout += b.toString();
-        });
-        p.stderr?.on('data', (b) => {
-            stderr += b.toString();
-        });
-        p.on('error', (err) => reject(err));
-        p.on('close', (code, signal) => {
-            if (code === 0)
-                return resolve();
-            const msg = `command failed: ${cmd} ${args.join(' ')} exit=${code} signal=${signal}\nstdout:\n${stdout}\nstderr:\n${stderr}`;
-            reject(new Error(msg));
-        });
-    });
-}
+var execExports = requireExec();
+
 class ExeInstaller {
-    silentFlagSets = [
-        ['/S'],
-        ['/VERYSILENT'],
-        ['/quiet'],
-        ['/silent'],
-        ['--silent'],
-        ['/qn']
-    ];
     async install(assetPath) {
         await access(assetPath, constants$5.R_OK);
-        const errors = [];
-        for (const flags of this.silentFlagSets) {
-            try {
-                await runCommand(assetPath, flags);
-                return;
-            }
-            catch (err) {
-                errors.push(err instanceof Error ? err : new Error(String(err)));
-            }
+        const installDir = require$$1$4.join('c:', 'Program Files', 'lux');
+        try {
+            await execExports.exec('powershell.exe', [
+                '-NoProfile',
+                '-WindowStyle',
+                'Hidden',
+                'Start-Process',
+                assetPath,
+                '-Wait',
+                '-ArgumentList',
+                `/P, /D="${installDir}"`,
+            ]);
         }
-        const combined = errors
-            .map((e, i) => `attempt ${i + 1}: ${e.message}`)
-            .join('\n\n');
-        throw new Error(`failed to perform silent install for ${assetPath}. Attempts:\n\n${combined}`);
+        catch (err) {
+            throw new Error(`failed to perform silent install for ${assetPath}:\n\n${err}`);
+        }
+        coreExports.addPath(installDir);
     }
 }
 function createExeInstaller() {
