@@ -12,8 +12,8 @@ export class MockEnv implements Env {
   private getInput(name: string): string | undefined {
     return this.inputs[name]
   }
-  getVersionInput(): string | undefined {
-    return this.getInput('version')
+  getVersionInput(): string {
+    return this.getInput('version') || 'latest'
   }
   debug(message: string): void {
     this.debug_calls.push(message)

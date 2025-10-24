@@ -28,8 +28,8 @@ export class GitHubActionsEnv implements Env {
     return v === '' ? undefined : v
   }
 
-  getVersionInput(): string | undefined {
-    return this.getInput('version')
+  getVersionInput(): string {
+    return this.getInput('version') || 'latest'
   }
   debug(message: string): void {
     core.debug(message)

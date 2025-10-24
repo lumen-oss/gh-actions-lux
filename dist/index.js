@@ -27292,7 +27292,7 @@ class GitHubActionsEnv {
         return v === '' ? undefined : v;
     }
     getVersionInput() {
-        return this.getInput('version');
+        return this.getInput('version') || 'latest';
     }
     debug(message) {
         coreExports.debug(message);
@@ -27308,6 +27308,118 @@ class GitHubActionsEnv {
     }
 }
 
+class LuxRelease {
+    version;
+    assets;
+    constructor(version, assets) {
+        this.version = version;
+        this.assets = assets;
+    }
+    assetForTarget(target) {
+        const expected = installerFilenameForTarget(this.version, target);
+        const found = this.assets.find((a) => a.file_name === expected);
+        if (!found) {
+            throw new LuxReleaseError(`no Lux installer release asset found for target: ${target} (expected filename: ${expected})`);
+        }
+        return found;
+    }
+}
+class LuxReleaseError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'LuxReleaseError';
+    }
+}
+/**
+ * Normalize a GitHub release tag:
+ * - removes leading `v`
+ * - trims whitespace
+ */
+function normalizeReleaseTag(tag) {
+    if (typeof tag !== 'string') {
+        throw new TypeError(`normalizeReleaseTag: expected string, got ${typeof tag}`);
+    }
+    return tag.trim().replace(/^v/, '');
+}
+function installerFilenameForTarget(version, target) {
+    switch (target) {
+        case 'aarch64-macos':
+            return `lux-cli_${version}_aarch64.dmg`;
+        case 'x86_64-linux':
+            return `lx_${version}_amd64.deb`;
+        case 'aarch64-linux':
+            return `lx_${version}_arm64.deb`;
+        case 'x86_64-windows':
+            return `lx_${version}_x64-setup.exe`;
+        default:
+            throw new Error(`non-exhaustive switch on target: ${String(target)}. This is a bug!`);
+    }
+}
+/**
+ * Expected installer filenames for a given normalized version.
+ */
+function expectedInstallerNamesForVersion(version) {
+    return [
+        `lux-cli_${version}_aarch64.dmg`,
+        `lx_${version}_amd64.deb`,
+        `lx_${version}_arm64.deb`,
+        `lx_${version}_x64-setup.exe`
+    ];
+}
+/**
+ * Extract a sha256 hex string from a GitHub asset digest (if present).
+ */
+function extractSha256FromDigest(digest) {
+    if (typeof digest !== 'string')
+        return undefined;
+    const m = digest.match(/^sha256:([a-fA-F0-9]{64})$/);
+    return m ? m[1].toLowerCase() : undefined;
+}
+/**
+ * Map a `GitHubRelease` (raw JSON) to a `LuxRelease`.
+ */
+function mapGithubReleaseToLuxRelease(gh) {
+    const tagNameRaw = gh.tag_name ?? gh.name;
+    if (typeof tagNameRaw !== 'string') {
+        throw new LuxReleaseError('release object missing tag_name/name as string');
+    }
+    const version = normalizeReleaseTag(tagNameRaw);
+    const assets = Array.isArray(gh.assets) ? gh.assets : [];
+    const nameToAsset = new Map();
+    for (const a of assets) {
+        if (!a)
+            continue;
+        const name = typeof a.name === 'string' ? a.name : undefined;
+        if (!name)
+            continue;
+        nameToAsset.set(name, a);
+    }
+    const expectedInstallerNames = expectedInstallerNamesForVersion(version);
+    const luxInstallerAssets = [];
+    for (const expectedInstallerName of expectedInstallerNames) {
+        const ghAsset = nameToAsset.get(expectedInstallerName);
+        if (!ghAsset) {
+            continue;
+        }
+        const download_url = typeof ghAsset['browser_download_url'] === 'string'
+            ? ghAsset['browser_download_url']
+            : undefined;
+        if (!download_url) {
+            throw new LuxReleaseError(`installer asset ${expectedInstallerName} missing browser_download_url`);
+        }
+        const sha256 = extractSha256FromDigest(ghAsset['digest']);
+        if (!sha256) {
+            throw new LuxReleaseError(`installer asset ${expectedInstallerName} missing sha256 digest in asset.digest`);
+        }
+        luxInstallerAssets.push({
+            file_name: expectedInstallerName,
+            download_url,
+            sha256sum: sha256
+        });
+    }
+    return new LuxRelease(version, luxInstallerAssets);
+}
+
 class GitHubReleasesLuxProvider {
     owner = 'lumen-oss';
     repo = 'lux';
@@ -27315,16 +27427,17 @@ class GitHubReleasesLuxProvider {
     constructor() {
         this.token = process.env.GITHUB_TOKEN || undefined;
     }
-    async latestLuxRelease() {
-        const url = `https://api.github.com/repos/${encodeURIComponent(this.owner)}/${encodeURIComponent(this.repo)}/releases/latest`;
-        const headers = {
+    headers() {
+        const h = {
             Accept: 'application/vnd.github+json',
             'User-Agent': 'gh-actions-lux'
         };
-        if (this.token) {
-            headers.Authorization = `token ${this.token}`;
-        }
-        const res = await fetch(url, { headers });
+        if (this.token)
+            h.Authorization = `token ${this.token}`;
+        return h;
+    }
+    async fetchJson(url) {
+        const res = await fetch(url, { headers: this.headers() });
         if (!res.ok) {
             const body = (await res.text().catch(() => '')).slice(0, 200);
             throw new LuxProviderError(`failed to fetch ${url}: ${res.status} ${res.statusText} ${body}`);
@@ -27335,8 +27448,27 @@ class GitHubReleasesLuxProvider {
         if (typeof json !== 'object' || json === null) {
             throw new LuxProviderError('unexpected response shape (not an object)');
         }
-        const release = json;
-        return release;
+        return json;
+    }
+    async getGhReleaseLatest() {
+        const url = `https://api.github.com/repos/${encodeURIComponent(this.owner)}/${encodeURIComponent(this.repo)}/releases/latest`;
+        return this.fetchJson(url);
+    }
+    async getGhReleaseByTag(tag) {
+        const normalized = String(tag).replace(/^v/, '');
+        const tagName = `v${normalized}`;
+        const url = `https://api.github.com/repos/${encodeURIComponent(this.owner)}/${encodeURIComponent(this.repo)}/releases/tags/${encodeURIComponent(tagName)}`;
+        return this.fetchJson(url);
+    }
+    async getRelease(rawVersion) {
+        let ghRelease;
+        if (!rawVersion || rawVersion === 'latest') {
+            ghRelease = await this.getGhReleaseLatest();
+        }
+        else {
+            ghRelease = await this.getGhReleaseByTag(rawVersion);
+        }
+        return mapGithubReleaseToLuxRelease(ghRelease);
     }
 }
 
@@ -27370,56 +27502,6 @@ function collectConfig(env) {
     return parseActionInputs(rawInputs);
 }
 
-/**
- * Minimal normalization helper for release tags.
- * - accepts strings like 'v1.2.3' or '1.2.3' and returns '1.2.3'
- */
-function normalizeReleaseTag(tag) {
-    if (typeof tag !== 'string') {
-        throw new TypeError(`normalizeReleaseTag: expected string, got ${typeof tag}`);
-    }
-    return tag.trim().replace(/^v/, '');
-}
-async function latestLuxVersion(provider) {
-    const release = await provider.latestLuxRelease();
-    const release_tag = release['tag_name'] ?? release['name'];
-    if (typeof release_tag !== 'string') {
-        throw new Error('lux release object missing tag_name/name as string');
-    }
-    return normalizeReleaseTag(release_tag);
-}
-function installerFilenameForTarget(version, target) {
-    switch (target) {
-        case 'aarch64-macos':
-            return `lux-cli_${version}_aarch64.dmg`;
-        case 'x86_64-linux':
-            return `lx_${version}_amd64.deb`;
-        case 'aarch64-linux':
-            return `lx_${version}_arm64.deb`;
-        case 'x86_64-windows':
-            return `lx_${version}_x64-setup.exe`;
-        default:
-            throw new Error(`non-exhaustive switch on target: ${String(target)}. This is a bug!`);
-    }
-}
-function installerDownloadUrl(version, target) {
-    const installer = installerFilenameForTarget(version, target);
-    const tagPart = `v${version}`;
-    return `https://github.com/lumen-oss/lux/releases/download/${encodeURIComponent(tagPart)}/${encodeURIComponent(installer)}`;
-}
-async function getInstallerDownloadUrl(env, provider) {
-    const rawVersion = env.getVersionInput();
-    const target = env.getTarget();
-    let version;
-    if (!rawVersion || rawVersion === 'latest') {
-        version = await latestLuxVersion(provider);
-    }
-    else {
-        version = rawVersion;
-    }
-    return installerDownloadUrl(version, target);
-}
-
 async function run(handle) {
     handle = handle ?? new GitHubActionsHandle();
     const env = handle.getEnv();
@@ -27428,9 +27510,11 @@ async function run(handle) {
         const config = collectConfig(env);
         env.debug(`Parsed inputs: ${JSON.stringify(config)}`);
         env.debug(`Running on ${env.getTarget()}`);
-        env.info(`Installing Lux version: ${config.version}`);
-        const installer_download_url = await getInstallerDownloadUrl(env, lux_provider);
-        env.info(`Installer download URL: ${installer_download_url}`);
+        const version = env.getVersionInput();
+        const lux_release = await lux_provider.getRelease(version);
+        const installer_asset = lux_release.assetForTarget(env.getTarget());
+        env.info(`Downloading ${lux_release.version} installer...`);
+        env.info(`Found installer release asset: ${JSON.stringify(installer_asset)}`);
     }
     catch (error) {
         if (error instanceof Error) {

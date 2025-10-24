@@ -1,61 +1,101 @@
-import { getInstallerDownloadUrl } from '../src/lux'
-import { Env, LuxProvider, Target } from '../src/ports'
+import { mapGithubReleaseToLuxRelease } from '../src/lux.js'
+import type { GitHubRelease } from '../src/github.js'
 
-const goodProvider = (): LuxProvider => ({
-  async latestLuxRelease() {
-    return { tag_name: 'v1.0.0', name: 'v1.0.0' }
-  }
-})
-
-const badProvider = (): LuxProvider => ({
-  async latestLuxRelease() {
-    return { tag_name: 123 } as unknown as Record<string, unknown>
-  }
-})
-
-const mkEnv = (versionInput: string | undefined, target: Target): Env => ({
-  getVersionInput: () => versionInput,
-  getTarget: () => target,
-  debug: () => {},
-  info: () => {},
-  setFailed: () => {}
-})
-
-const cases: Array<[Target, string, string]> = [
-  ['aarch64-macos', 'lux-cli_0.18.3_aarch64.dmg', 'lux-cli_1.0.0_aarch64.dmg'],
-  ['x86_64-linux', 'lx_0.18.3_amd64.deb', 'lx_1.0.0_amd64.deb'],
-  ['aarch64-linux', 'lx_0.18.3_arm64.deb', 'lx_1.0.0_arm64.deb'],
-  ['x86_64-windows', 'lx_0.18.3_x64-setup.exe', 'lx_1.0.0_x64-setup.exe']
-]
-
-describe('getInstallerDownloadUrl (env + provider)', () => {
-  test.each(cases)(
-    'target %s: explicit version and latest -> expected URLs',
-    async (target, expectedExplicitFilename, expectedLatestFilename) => {
-      const provider = goodProvider()
-
-      const envExplicit = mkEnv('0.18.3', target)
-      const urlExplicit = await getInstallerDownloadUrl(envExplicit, provider)
-      expect(urlExplicit).toBe(
-        `https://github.com/lumen-oss/lux/releases/download/v0.18.3/${expectedExplicitFilename}`
-      )
-
-      const envLatest = mkEnv('latest', target)
-      const urlLatest = await getInstallerDownloadUrl(envLatest, provider)
-      expect(urlLatest).toBe(
-        `https://github.com/lumen-oss/lux/releases/download/v1.0.0/${expectedLatestFilename}`
-      )
-
-      const envUndefined = mkEnv(undefined, target)
-      const urlUndefined = await getInstallerDownloadUrl(envUndefined, provider)
-      expect(urlUndefined).toBe(
-        `https://github.com/lumen-oss/lux/releases/download/v1.0.0/${expectedLatestFilename}`
-      )
+describe('mapGithubReleaseToLuxRelease', () => {
+  test('maps a GitHub release with installer assets and digests to LuxRelease', () => {
+    const ghRelease: GitHubRelease = {
+      tag_name: 'v1.0.0',
+      assets: [
+        {
+          name: 'lx_1.0.0_amd64.deb',
+          browser_download_url: 'https://example.com/lx_1.0.0_amd64.deb',
+          digest:
+            'sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef'
+        },
+        {
+          name: 'lx_1.0.0_arm64.deb',
+          browser_download_url: 'https://example.com/lx_1.0.0_arm64.deb',
+          digest:
+            'sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+        },
+        {
+          name: 'lux-cli_1.0.0_aarch64.dmg',
+          browser_download_url: 'https://example.com/lux-cli_1.0.0_aarch64.dmg',
+          digest:
+            'sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'
+        },
+        {
+          name: 'lx_1.0.0_x64-setup.exe',
+          browser_download_url: 'https://example.com/lx_1.0.0_x64-setup.exe',
+          digest:
+            'sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc'
+        }
+      ]
     }
-  )
-  test('propagates error when provider returns invalid release shape', async () => {
-    const env = mkEnv('latest', 'x86_64-linux')
-    const provider = badProvider()
-    await expect(getInstallerDownloadUrl(env, provider)).rejects.toThrow()
+
+    const lux_release = mapGithubReleaseToLuxRelease(ghRelease)
+
+    expect(lux_release.version).toBe('1.0.0')
+    expect(lux_release.assets).toHaveLength(4)
+
+    const byName = new Map(lux_release.assets.map((a) => [a.file_name, a]))
+    expect(byName.get('lx_1.0.0_amd64.deb')!.download_url).toBe(
+      'https://example.com/lx_1.0.0_amd64.deb'
+    )
+    expect(byName.get('lx_1.0.0_amd64.deb')!.sha256sum).toBe(
+      '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef'
+    )
+
+    expect(byName.get('lx_1.0.0_arm64.deb')!.sha256sum).toBe(
+      'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    )
+    expect(byName.get('lux-cli_1.0.0_aarch64.dmg')!.sha256sum).toBe(
+      'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'
+    )
+    expect(byName.get('lx_1.0.0_x64-setup.exe')!.sha256sum).toBe(
+      'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc'
+    )
+  })
+
+  test('skips missing installer assets and only returns available ones', () => {
+    const ghRelease: GitHubRelease = {
+      tag_name: 'v2.0.0',
+      assets: [
+        {
+          name: 'lx_2.0.0_amd64.deb',
+          browser_download_url: 'https://example.com/lx_2.0.0_amd64.deb',
+          digest:
+            'sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef'
+        }
+        // other platforms not provided
+      ]
+    }
+
+    const lux_release = mapGithubReleaseToLuxRelease(ghRelease)
+    expect(lux_release.version).toBe('2.0.0')
+    expect(lux_release.assets).toHaveLength(1)
+    expect(lux_release.assets[0].file_name).toBe('lx_2.0.0_amd64.deb')
+  })
+
+  test('throws when an installer asset is present but missing digest', () => {
+    const ghRelease: GitHubRelease = {
+      tag_name: 'v3.0.0',
+      assets: [
+        {
+          name: 'lx_3.0.0_amd64.deb',
+          browser_download_url: 'https://example.com/lx_3.0.0_amd64.deb'
+          // missing digest
+        }
+      ]
+    }
+
+    expect(() => mapGithubReleaseToLuxRelease(ghRelease)).toThrow()
+  })
+
+  test('throws when release has no tag_name or name', () => {
+    const ghRelease: GitHubRelease = {
+      assets: []
+    }
+    expect(() => mapGithubReleaseToLuxRelease(ghRelease)).toThrow()
   })
 })

@@ -1,5 +1,7 @@
 // Adapter interfaces for IO
 
+import { LuxRelease } from './lux.js'
+
 export interface Handle {
   getEnv(): Env
   getLuxProvider(): LuxProvider
@@ -22,7 +24,7 @@ export interface Env {
   /**
    * Get an action input by name.
    */
-  getVersionInput(): string | undefined
+  getVersionInput(): string
 
   debug(message: string): void
   info(message: string): void
@@ -51,8 +53,5 @@ export class LuxProviderError extends Error {
 }
 
 export interface LuxProvider {
-  /**
-   * @returns the latest available Lux release JSON object
-   */
-  latestLuxRelease(): Promise<Record<string, unknown>>
+  getRelease(version: string): Promise<LuxRelease>
 }

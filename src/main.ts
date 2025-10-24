@@ -1,7 +1,6 @@
 import type { Handle } from './ports.ts'
 import { GitHubActionsHandle } from './io/handle.js'
 import { collectConfig } from './inputs.js'
-import { getInstallerDownloadUrl } from './lux.js'
 
 export async function run(handle?: Handle): Promise<void> {
   handle = handle ?? new GitHubActionsHandle()
@@ -11,12 +10,13 @@ export async function run(handle?: Handle): Promise<void> {
     const config = collectConfig(env)
     env.debug(`Parsed inputs: ${JSON.stringify(config)}`)
     env.debug(`Running on ${env.getTarget()}`)
-    env.info(`Installing Lux version: ${config.version}`)
-    const installer_download_url = await getInstallerDownloadUrl(
-      env,
-      lux_provider
+    const version = env.getVersionInput()
+    const lux_release = await lux_provider.getRelease(version)
+    const installer_asset = lux_release.assetForTarget(env.getTarget())
+    env.info(`Downloading ${lux_release.version} installer...`)
+    env.info(
+      `Found installer release asset: ${JSON.stringify(installer_asset)}`
     )
-    env.info(`Installer download URL: ${installer_download_url}`)
   } catch (error) {
     if (error instanceof Error) {
       env.setFailed(error.message)
