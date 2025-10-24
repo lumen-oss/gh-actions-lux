@@ -13,10 +13,10 @@ export async function run(handle?: Handle): Promise<void> {
     const version = env.getVersionInput()
     const lux_release = await lux_provider.getRelease(version)
     const installer_asset = lux_release.assetForTarget(env.getTarget())
-    env.info(`Downloading ${lux_release.version} installer...`)
     env.info(
       `Found installer release asset: ${JSON.stringify(installer_asset)}`
     )
+    env.info(`Downloading Lux ${lux_release.version} installer...`)
   } catch (error) {
     if (error instanceof Error) {
       env.setFailed(error.message)
