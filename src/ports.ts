@@ -1,10 +1,12 @@
 // Adapter interfaces for IO
 
-import { LuxRelease } from './lux.js'
+import { LuxInstallerAsset, LuxRelease } from './lux.js'
 
 export interface Handle {
   getEnv(): Env
   getLuxProvider(): LuxProvider
+  getDownloader(): Downloader
+  getFileSystem(): FileSystem
 }
 
 export type Target =
@@ -54,4 +56,18 @@ export class LuxProviderError extends Error {
 
 export interface LuxProvider {
   getRelease(version: string): Promise<LuxRelease>
+}
+
+export interface FileSystem {
+  readFile(path: string): Promise<Uint8Array>
+  writeFile(path: string, data: Uint8Array): Promise<void>
+  mkdtemp(prefix: string): Promise<string>
+}
+
+export interface Downloader {
+  download_installer_asset(
+    fs: FileSystem,
+    asset: LuxInstallerAsset,
+    destPath: string
+  ): Promise<void>
 }

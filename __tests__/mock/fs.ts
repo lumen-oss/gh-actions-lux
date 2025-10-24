@@ -1,0 +1,26 @@
+import type { FileSystem } from '../../src/ports.ts'
+
+export class MockFs implements FileSystem {
+  private files = new Map<string, Uint8Array>()
+  private nextTempId = 0
+
+  async writeFile(path: string, data: Uint8Array): Promise<void> {
+    this.files.set(path, data)
+  }
+
+  async readFile(path: string): Promise<Uint8Array> {
+    const v = this.files.get(path)
+    if (!v) throw new Error(`MockFs: file not found: ${path}`)
+    return v
+  }
+
+  has(path: string): boolean {
+    return this.files.has(path)
+  }
+
+  async mkdtemp(prefix: string): Promise<string> {
+    this.nextTempId += 1
+    const id = this.nextTempId.toString(36).padStart(8, '0')
+    return `${prefix}${id}`
+  }
+}

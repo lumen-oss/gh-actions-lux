@@ -1,7 +1,7 @@
-import require$$0 from 'os';
-import require$$0$1 from 'crypto';
-import require$$1 from 'fs';
-import require$$1$4 from 'path';
+import require$$0$1, { createHash } from 'crypto';
+import require$$0, { tmpdir } from 'os';
+import require$$1, { promises } from 'fs';
+import require$$1$4, { dirname, join } from 'path';
 import require$$2 from 'http';
 import require$$3 from 'https';
 import require$$0$4 from 'net';
@@ -25,6 +25,45 @@ import require$$6 from 'string_decoder';
 import require$$0$7 from 'diagnostics_channel';
 import require$$2$2 from 'child_process';
 import require$$6$1 from 'timers';
+
+class InvalidChecksumError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'InvalidChecksumError';
+    }
+}
+async function computeFileSha256(fs, path) {
+    const data = await fs.readFile(path);
+    const h = createHash('sha256');
+    h.update(data);
+    return h.digest('hex');
+}
+async function verifyFileSha256(fs, path, expectedHex) {
+    const actual = await computeFileSha256(fs, path);
+    if (actual.toLowerCase() !== expectedHex.toLowerCase()) {
+        throw new InvalidChecksumError(`sha256 mismatch for ${path}: expected ${expectedHex.toLowerCase()}, got ${actual.toLowerCase()}`);
+    }
+}
+
+class DownloadError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'DownloadError';
+    }
+}
+class DiskDownloader {
+    async download_installer_asset(fs, asset, destPath) {
+        const url = asset.download_url;
+        const res = await fetch(url);
+        if (!res.ok) {
+            throw new DownloadError(`failed to download ${url}: ${res.status} ${res.statusText}`);
+        }
+        const ab = await res.arrayBuffer();
+        const data = new Uint8Array(ab);
+        await fs.writeFile(destPath, data);
+        await verifyFileSha256(fs, destPath, asset.sha256sum);
+    }
+}
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -27308,6 +27347,20 @@ class GitHubActionsEnv {
     }
 }
 
+class DiskFileSystem {
+    async readFile(path) {
+        const buf = await promises.readFile(path);
+        return new Uint8Array(buf);
+    }
+    async writeFile(path, data) {
+        await promises.mkdir(dirname(path), { recursive: true });
+        await promises.writeFile(path, Buffer.from(data));
+    }
+    async mkdtemp(prefix) {
+        return await promises.mkdtemp(join(tmpdir(), prefix));
+    }
+}
+
 class LuxRelease {
     version;
     assets;
@@ -27475,15 +27528,25 @@ class GitHubReleasesLuxProvider {
 class GitHubActionsHandle {
     env;
     lux_provider;
+    filesytem;
+    downloader;
     constructor() {
         this.env = new GitHubActionsEnv();
         this.lux_provider = new GitHubReleasesLuxProvider();
+        this.filesytem = new DiskFileSystem();
+        this.downloader = new DiskDownloader();
     }
     getLuxProvider() {
         return this.lux_provider;
     }
     getEnv() {
         return this.env;
+    }
+    getFileSystem() {
+        return this.filesytem;
+    }
+    getDownloader() {
+        return this.downloader;
     }
 }
 
@@ -27506,6 +27569,8 @@ async function run(handle) {
     handle = handle ?? new GitHubActionsHandle();
     const env = handle.getEnv();
     const lux_provider = handle.getLuxProvider();
+    const filesystem = handle.getFileSystem();
+    const downloader = handle.getDownloader();
     try {
         const config = collectConfig(env);
         env.debug(`Parsed inputs: ${JSON.stringify(config)}`);
@@ -27513,8 +27578,12 @@ async function run(handle) {
         const version = env.getVersionInput();
         const lux_release = await lux_provider.getRelease(version);
         const installer_asset = lux_release.assetForTarget(env.getTarget());
-        env.info(`Downloading ${lux_release.version} installer...`);
         env.info(`Found installer release asset: ${JSON.stringify(installer_asset)}`);
+        env.info(`Downloading Lux ${lux_release.version} installer...`);
+        const tmpDir = await filesystem.mkdtemp('lux-');
+        const destPath = join(tmpDir, installer_asset.file_name);
+        await downloader.download_installer_asset(filesystem, installer_asset, destPath);
+        env.info(`Downloaded ${installer_asset.file_name} to ${destPath}`);
     }
     catch (error) {
         if (error instanceof Error) {
