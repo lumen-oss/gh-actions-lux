@@ -27502,31 +27502,27 @@ async function runCommand(cmd, args) {
         });
     });
 }
+async function addToPath(dir) {
+    const current = process.env.PATH ?? '';
+    const normalized = dir.replace(/\//g, '\\').replace(/\\+$/, '');
+    if (current.toLowerCase().includes(normalized.toLowerCase())) {
+        process.env.PATH = `${current}`;
+        return;
+    }
+    await runCommand('setx', ['PATH', `${current};${normalized}`]);
+    process.env.PATH = `${current};${normalized}`;
+}
 class ExeInstaller {
-    silentFlagSets = [
-        ['/S'],
-        ['/VERYSILENT'],
-        ['/quiet'],
-        ['/silent'],
-        ['--silent'],
-        ['/qn']
-    ];
     async install(assetPath) {
         await access(assetPath, constants$5.R_OK);
-        const errors = [];
-        for (const flags of this.silentFlagSets) {
-            try {
-                await runCommand(assetPath, flags);
-                return;
-            }
-            catch (err) {
-                errors.push(err instanceof Error ? err : new Error(String(err)));
-            }
+        try {
+            await runCommand(assetPath, []);
+            const installDir = require$$1$4.join('C:', 'Program Files', 'lux');
+            await addToPath(installDir);
         }
-        const combined = errors
-            .map((e, i) => `attempt ${i + 1}: ${e.message}`)
-            .join('\n\n');
-        throw new Error(`failed to perform silent install for ${assetPath}. Attempts:\n\n${combined}`);
+        catch (err) {
+            throw new Error(`failed to perform silent install for ${assetPath}:\n\n${err}`);
+        }
     }
 }
 function createExeInstaller() {

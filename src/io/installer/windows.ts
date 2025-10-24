@@ -2,6 +2,7 @@ import { spawn } from 'child_process'
 import { access } from 'fs/promises'
 import { constants as fsConstants } from 'fs'
 import type { Installer } from '../../ports.js'
+import path from 'path'
 
 async function runCommand(cmd: string, args: string[]): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -23,36 +24,30 @@ async function runCommand(cmd: string, args: string[]): Promise<void> {
   })
 }
 
-export class ExeInstaller implements Installer {
-  private readonly silentFlagSets: string[][] = [
-    ['/S'],
-    ['/VERYSILENT'],
-    ['/quiet'],
-    ['/silent'],
-    ['--silent'],
-    ['/qn']
-  ]
+async function addToPath(dir: string): Promise<void> {
+  const current = process.env.PATH ?? ''
+  const normalized = dir.replace(/\//g, '\\').replace(/\\+$/, '')
+  if (current.toLowerCase().includes(normalized.toLowerCase())) {
+    process.env.PATH = `${current}`
+    return
+  }
+  await runCommand('setx', ['PATH', `${current};${normalized}`])
+  process.env.PATH = `${current};${normalized}`
+}
 
+export class ExeInstaller implements Installer {
   async install(assetPath: string): Promise<void> {
     await access(assetPath, fsConstants.R_OK)
 
-    const errors: Error[] = []
-
-    for (const flags of this.silentFlagSets) {
-      try {
-        await runCommand(assetPath, flags)
-        return
-      } catch (err) {
-        errors.push(err instanceof Error ? err : new Error(String(err)))
-      }
+    try {
+      await runCommand(assetPath, [])
+      const installDir = path.join('C:', 'Program Files', 'lux')
+      await addToPath(installDir)
+    } catch (err) {
+      throw new Error(
+        `failed to perform silent install for ${assetPath}:\n\n${err}`
+      )
     }
-
-    const combined = errors
-      .map((e, i) => `attempt ${i + 1}: ${e.message}`)
-      .join('\n\n')
-    throw new Error(
-      `failed to perform silent install for ${assetPath}. Attempts:\n\n${combined}`
-    )
   }
 }
 
