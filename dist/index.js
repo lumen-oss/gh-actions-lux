@@ -27743,6 +27743,7 @@ async function run(handle) {
         env.info(`Downloaded ${installer_asset.file_name} to ${installer_asset_path}`);
         env.info(`Installing Lux ${lux_release.version}...`);
         handle.getInstaller().install(installer_asset_path);
+        env.info('Done.');
     }
     catch (error) {
         if (error instanceof Error) {

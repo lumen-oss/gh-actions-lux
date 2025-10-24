@@ -32,6 +32,7 @@ export async function run(handle?: Handle): Promise<void> {
     )
     env.info(`Installing Lux ${lux_release.version}...`)
     handle.getInstaller().install(installer_asset_path)
+    env.info('Done.')
   } catch (error) {
     if (error instanceof Error) {
       env.setFailed(error.message)
