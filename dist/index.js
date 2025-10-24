@@ -27385,7 +27385,7 @@ async function runCommand$2(cmd, args) {
 class DebInstaller {
     async install(assetPath) {
         await access(assetPath, constants$5.R_OK);
-        await runCommand$2('dpkg', ['-i', assetPath]);
+        await runCommand$2('sudo', ['dpkg', '-i', assetPath]);
     }
 }
 function createDebInstaller() {

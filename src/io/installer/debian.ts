@@ -26,7 +26,7 @@ async function runCommand(cmd: string, args: string[]): Promise<void> {
 export class DebInstaller implements Installer {
   async install(assetPath: string): Promise<void> {
     await access(assetPath, fsConstants.R_OK)
-    await runCommand('dpkg', ['-i', assetPath])
+    await runCommand('sudo', ['dpkg', '-i', assetPath])
   }
 }
 
