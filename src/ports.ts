@@ -7,6 +7,7 @@ export interface Handle {
   getLuxProvider(): LuxProvider
   getDownloader(): Downloader
   getFileSystem(): FileSystem
+  getInstaller(): Installer
 }
 
 export type Target =
@@ -70,4 +71,8 @@ export interface Downloader {
     asset: LuxInstallerAsset,
     destPath: string
   ): Promise<void>
+}
+
+export interface Installer {
+  install(assetPath: string): Promise<void>
 }

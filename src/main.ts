@@ -21,13 +21,17 @@ export async function run(handle?: Handle): Promise<void> {
     )
     env.info(`Downloading Lux ${lux_release.version} installer...`)
     const tmpDir = await filesystem.mkdtemp('lux-')
-    const destPath = pathJoin(tmpDir, installer_asset.file_name)
+    const installer_asset_path = pathJoin(tmpDir, installer_asset.file_name)
     await downloader.download_installer_asset(
       filesystem,
       installer_asset,
-      destPath
+      installer_asset_path
     )
-    env.info(`Downloaded ${installer_asset.file_name} to ${destPath}`)
+    env.info(
+      `Downloaded ${installer_asset.file_name} to ${installer_asset_path}`
+    )
+    env.info(`Installing Lux ${lux_release.version}...`)
+    handle.getInstaller().install(installer_asset_path)
   } catch (error) {
     if (error instanceof Error) {
       env.setFailed(error.message)

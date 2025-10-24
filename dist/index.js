@@ -1,6 +1,6 @@
 import require$$0$1, { createHash } from 'crypto';
 import require$$0, { tmpdir } from 'os';
-import require$$1, { promises } from 'fs';
+import require$$1, { promises, constants as constants$5 } from 'fs';
 import require$$1$4, { dirname, join } from 'path';
 import require$$2 from 'http';
 import require$$3 from 'https';
@@ -23,8 +23,23 @@ import require$$1$3 from 'url';
 import require$$3$1 from 'zlib';
 import require$$6 from 'string_decoder';
 import require$$0$7 from 'diagnostics_channel';
-import require$$2$2 from 'child_process';
+import require$$2$2, { spawn } from 'child_process';
 import require$$6$1 from 'timers';
+import { access, readdir } from 'fs/promises';
+
+// Adapter interfaces for IO
+class UnsupportedTargetError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'UnsupportedTargetError';
+    }
+}
+class LuxProviderError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'LuxProviderError';
+    }
+}
 
 class InvalidChecksumError extends Error {
     constructor(message) {
@@ -27292,20 +27307,6 @@ function requireCore () {
 
 var coreExports = requireCore();
 
-// Adapter interfaces for IO
-class UnsupportedTargetError extends Error {
-    constructor(message) {
-        super(message);
-        this.name = 'UnsupportedTargetError';
-    }
-}
-class LuxProviderError extends Error {
-    constructor(message) {
-        super(message);
-        this.name = 'LuxProviderError';
-    }
-}
-
 function computeTarget(platform, arch) {
     if (platform === 'linux' && arch === 'arm64') {
         return 'aarch64-linux';
@@ -27359,6 +27360,148 @@ class DiskFileSystem {
     async mkdtemp(prefix) {
         return await promises.mkdtemp(join(tmpdir(), prefix));
     }
+}
+
+async function runCommand$2(cmd, args) {
+    return new Promise((resolve, reject) => {
+        const p = spawn(cmd, args, { stdio: ['ignore', 'pipe', 'pipe'] });
+        let stdout = '';
+        let stderr = '';
+        p.stdout?.on('data', (b) => {
+            stdout += b.toString();
+        });
+        p.stderr?.on('data', (b) => {
+            stderr += b.toString();
+        });
+        p.on('error', (err) => reject(err));
+        p.on('close', (code, signal) => {
+            if (code === 0)
+                return resolve();
+            const msg = `command failed: ${cmd} ${args.join(' ')} exit=${code} signal=${signal}\nstdout:\n${stdout}\nstderr:\n${stderr}`;
+            reject(new Error(msg));
+        });
+    });
+}
+class DebInstaller {
+    async install(assetPath) {
+        await access(assetPath, constants$5.R_OK);
+        await runCommand$2('dpkg', ['-i', assetPath]);
+    }
+}
+function createDebInstaller() {
+    return new DebInstaller();
+}
+
+async function runCommand$1(cmd, args) {
+    return new Promise((resolve, reject) => {
+        const p = spawn(cmd, args, { stdio: ['ignore', 'pipe', 'pipe'] });
+        let stdout = '';
+        let stderr = '';
+        p.stdout?.on('data', (b) => {
+            stdout += b.toString();
+        });
+        p.stderr?.on('data', (b) => {
+            stderr += b.toString();
+        });
+        p.on('error', (err) => reject(err));
+        p.on('close', (code, signal) => {
+            if (code === 0)
+                return resolve();
+            const msg = `command failed: ${cmd} ${args.join(' ')} exit=${code} signal=${signal}\nstdout:\n${stdout}\nstderr:\n${stderr}`;
+            reject(new Error(msg));
+        });
+    });
+}
+class DmgInstaller {
+    async install(assetPath) {
+        await access(assetPath, constants$5.R_OK);
+        const mountBase = tmpdir();
+        const mountPoint = await import('fs/promises').then((m) => m.mkdtemp(join(mountBase, 'lux-dmg-')));
+        let attached = false;
+        try {
+            await runCommand$1('hdiutil', [
+                'attach',
+                '-nobrowse',
+                '-noverify',
+                '-mountpoint',
+                mountPoint,
+                assetPath
+            ]);
+            attached = true;
+            const entries = await readdir(mountPoint);
+            const app = entries.find((e) => e.endsWith('.app'));
+            if (app) {
+                const src = join(mountPoint, app);
+                await runCommand$1('cp', ['-R', src, '/Applications/']);
+                return;
+            }
+            throw new Error(`no .app found inside mounted dmg at ${mountPoint}`);
+        }
+        finally {
+            if (attached) {
+                try {
+                    await runCommand$1('hdiutil', ['detach', mountPoint]);
+                }
+                catch {
+                    // we ignore detach failures
+                }
+            }
+        }
+    }
+}
+function createDmgInstaller() {
+    return new DmgInstaller();
+}
+
+async function runCommand(cmd, args) {
+    return new Promise((resolve, reject) => {
+        const p = spawn(cmd, args, { stdio: ['ignore', 'pipe', 'pipe'] });
+        let stdout = '';
+        let stderr = '';
+        p.stdout?.on('data', (b) => {
+            stdout += b.toString();
+        });
+        p.stderr?.on('data', (b) => {
+            stderr += b.toString();
+        });
+        p.on('error', (err) => reject(err));
+        p.on('close', (code, signal) => {
+            if (code === 0)
+                return resolve();
+            const msg = `command failed: ${cmd} ${args.join(' ')} exit=${code} signal=${signal}\nstdout:\n${stdout}\nstderr:\n${stderr}`;
+            reject(new Error(msg));
+        });
+    });
+}
+class ExeInstaller {
+    silentFlagSets = [
+        ['/S'],
+        ['/VERYSILENT'],
+        ['/quiet'],
+        ['/silent'],
+        ['--silent'],
+        ['/qn']
+    ];
+    async install(assetPath) {
+        await access(assetPath, constants$5.R_OK);
+        const errors = [];
+        for (const flags of this.silentFlagSets) {
+            try {
+                await runCommand(assetPath, flags);
+                return;
+            }
+            catch (err) {
+                errors.push(err instanceof Error ? err : new Error(String(err)));
+            }
+        }
+        const combined = errors
+            .map((e, i) => `attempt ${i + 1}: ${e.message}`)
+            .join('\n\n');
+        throw new Error(`failed to perform silent install for ${assetPath}. Attempts:\n\n${combined}`);
+    }
+}
+function createExeInstaller() {
+    return new ExeInstaller();
 }
 
 class LuxRelease {
@@ -27548,6 +27691,20 @@ class GitHubActionsHandle {
     getDownloader() {
         return this.downloader;
     }
+    getInstaller() {
+        const env = this.getEnv();
+        switch (env.getTarget()) {
+            case 'x86_64-linux':
+            case 'aarch64-linux':
+                return createDebInstaller();
+            case 'aarch64-macos':
+                return createDmgInstaller();
+            case 'x86_64-windows':
+                return createExeInstaller();
+            default:
+                throw new UnsupportedTargetError(`no installer available for target: ${String(env.getTarget())}`);
+        }
+    }
 }
 
 /**
@@ -27581,9 +27738,11 @@ async function run(handle) {
         env.info(`Found installer release asset: ${JSON.stringify(installer_asset)}`);
         env.info(`Downloading Lux ${lux_release.version} installer...`);
         const tmpDir = await filesystem.mkdtemp('lux-');
-        const destPath = join(tmpDir, installer_asset.file_name);
-        await downloader.download_installer_asset(filesystem, installer_asset, destPath);
-        env.info(`Downloaded ${installer_asset.file_name} to ${destPath}`);
+        const installer_asset_path = join(tmpDir, installer_asset.file_name);
+        await downloader.download_installer_asset(filesystem, installer_asset, installer_asset_path);
+        env.info(`Downloaded ${installer_asset.file_name} to ${installer_asset_path}`);
+        env.info(`Installing Lux ${lux_release.version}...`);
+        handle.getInstaller().install(installer_asset_path);
     }
     catch (error) {
         if (error instanceof Error) {

@@ -3,12 +3,10 @@ import type {
   Env,
   LuxProvider,
   Downloader,
-  FileSystem
+  FileSystem,
+  Installer
 } from '../../src/ports.ts'
-import { MockEnv } from './env.ts'
-import { MockLuxProvider } from './lux.ts'
-import { MockFs } from './fs.ts'
-import { MockDownloader } from './downloader.ts'
+import { MockInstaller } from './installer.ts'
 
 export class MockHandle implements Handle {
   private readonly env: Env
@@ -43,12 +41,8 @@ export class MockHandle implements Handle {
   getFileSystem(): FileSystem {
     return this.fs
   }
-}
 
-export function createDefaultMockHandle(): MockHandle {
-  const fs = new MockFs()
-  const downloader = new MockDownloader()
-  const provider = new MockLuxProvider()
-  const env = new MockEnv()
-  return new MockHandle(env, provider, downloader, fs)
+  getInstaller(): Installer {
+    return new MockInstaller()
+  }
 }
