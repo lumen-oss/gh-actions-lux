@@ -1,9 +1,9 @@
+import { addPath } from '@actions/core'
+import { exec } from '@actions/exec'
 import { access } from 'fs/promises'
 import { constants as fsConstants } from 'fs'
-import type { Installer } from '../../ports.js'
 import path from 'path'
-import * as core from '@actions/core'
-import * as exec from '@actions/exec'
+import type { Installer } from '../../ports.js'
 
 export class ExeInstaller implements Installer {
   async install(assetPath: string): Promise<void> {
@@ -11,7 +11,7 @@ export class ExeInstaller implements Installer {
 
     const installDir = path.join('c:', 'Program Files', 'lux')
     try {
-      await exec.exec('powershell.exe', [
+      await exec('powershell.exe', [
         '-NoProfile',
         '-WindowStyle',
         'Hidden',
@@ -19,14 +19,14 @@ export class ExeInstaller implements Installer {
         assetPath,
         '-Wait',
         '-ArgumentList',
-        `/P, /D="${installDir}"`,
+        `/P, /D="${installDir}"`
       ])
     } catch (err) {
       throw new Error(
         `failed to perform silent install for ${assetPath}:\n\n${err}`
       )
     }
-    core.addPath(installDir)
+    addPath(installDir)
   }
 }
 

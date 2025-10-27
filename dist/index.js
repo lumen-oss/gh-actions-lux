@@ -23,7 +23,7 @@ import require$$1$3 from 'url';
 import require$$3$1 from 'zlib';
 import require$$6 from 'string_decoder';
 import require$$0$7 from 'diagnostics_channel';
-import require$$2$2, { spawn } from 'child_process';
+import require$$2$2 from 'child_process';
 import require$$6$1 from 'timers';
 import { access, readdir, unlink } from 'fs/promises';
 
@@ -27362,59 +27362,18 @@ class DiskFileSystem {
     }
 }
 
-async function runCommand$1(cmd, args) {
-    return new Promise((resolve, reject) => {
-        const p = spawn(cmd, args, { stdio: ['ignore', 'pipe', 'pipe'] });
-        let stdout = '';
-        let stderr = '';
-        p.stdout?.on('data', (b) => {
-            stdout += b.toString();
-        });
-        p.stderr?.on('data', (b) => {
-            stderr += b.toString();
-        });
-        p.on('error', (err) => reject(err));
-        p.on('close', (code, signal) => {
-            if (code === 0)
-                return resolve();
-            const msg = `command failed: ${cmd} ${args.join(' ')} exit=${code} signal=${signal}\nstdout:\n${stdout}\nstderr:\n${stderr}`;
-            reject(new Error(msg));
-        });
-    });
-}
+var execExports = requireExec();
+
 class DebInstaller {
     async install(assetPath) {
         await access(assetPath, constants$5.R_OK);
-        await runCommand$1('sudo', ['dpkg', '-i', assetPath]);
+        await execExports.exec('sudo', ['dpkg', '-i', assetPath]);
     }
 }
 function createDebInstaller() {
     return new DebInstaller();
 }
 
-async function capture(cmd, args, stdin) {
-    return new Promise((resolve, reject) => {
-        const p = spawn(cmd, args, {
-            stdio: ['ignore', 'pipe', 'pipe']
-        });
-        let stdout = '';
-        let stderr = '';
-        p.stdout?.on('data', (b) => {
-            stdout += b.toString();
-        });
-        p.stderr?.on('data', (b) => {
-            stderr += b.toString();
-        });
-        p.on('error', (err) => reject(err));
-        p.on('close', (code) => resolve({ code, stdout, stderr }));
-    });
-}
-async function runCommand(cmd, args, stdin) {
-    const r = await capture(cmd, args);
-    if (r.code === 0)
-        return;
-    throw new Error(`command failed: ${cmd} ${args.join(' ')} exit=${r.code}\nstdout:\n${r.stdout}\nstderr:\n${r.stderr}`);
-}
 class DmgInstaller {
     async install(assetPath) {
         await access(assetPath, constants$5.R_OK);
@@ -27425,7 +27384,7 @@ class DmgInstaller {
         const mountPoint = '/Volumes/install_app';
         let mounted = false;
         try {
-            await runCommand('hdiutil', [
+            await execExports.exec('hdiutil', [
                 'convert',
                 '-quiet',
                 assetPath,
@@ -27434,7 +27393,7 @@ class DmgInstaller {
                 '-o',
                 converted
             ]);
-            await runCommand('hdiutil', [
+            await execExports.exec('hdiutil', [
                 'attach',
                 '-nobrowse',
                 '-noverify',
@@ -27448,14 +27407,14 @@ class DmgInstaller {
             if (!app)
                 throw new Error(`no .app bundle found at ${mountPoint}`);
             const src = join(mountPoint, app);
-            await runCommand('cp', ['-R', src, '/Applications/']);
-            const binPath = join('/Applications', app, 'Contents', 'MacOS', 'lx');
-            await runCommand('sudo', ['ln', '-sf', binPath, '/usr/local/bin/lx']);
+            await execExports.exec('cp', ['-R', src, '/Applications/']);
+            const lx_app_dir = join('/Applications', app, 'Contents', 'MacOS');
+            coreExports.addPath(lx_app_dir);
         }
         finally {
             if (mounted) {
                 try {
-                    await runCommand('hdiutil', ['detach', mountPoint]);
+                    await execExports.exec('hdiutil', ['detach', mountPoint]);
                 }
                 catch {
                     /* best-effort */
@@ -27463,7 +27422,7 @@ class DmgInstaller {
             }
             else {
                 try {
-                    await runCommand('hdiutil', ['detach', workDir]);
+                    await execExports.exec('hdiutil', ['detach', workDir]);
                 }
                 catch {
                     /* best-effort */
@@ -27482,8 +27441,6 @@ function createDmgInstaller() {
     return new DmgInstaller();
 }
 
-var execExports = requireExec();
-
 class ExeInstaller {
     async install(assetPath) {
         await access(assetPath, constants$5.R_OK);
@@ -27497,7 +27454,7 @@ class ExeInstaller {
                 assetPath,
                 '-Wait',
                 '-ArgumentList',
-                `/P, /D="${installDir}"`,
+                `/P, /D="${installDir}"`
             ]);
         }
         catch (err) {

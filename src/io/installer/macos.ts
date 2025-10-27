@@ -1,53 +1,10 @@
-import { spawn } from 'child_process'
+import { exec } from '@actions/exec'
+import { addPath } from '@actions/core'
 import { access, readdir, unlink } from 'fs/promises'
 import { constants as fsConstants } from 'fs'
 import { tmpdir } from 'os'
 import { join as pathJoin } from 'path'
 import type { Installer } from '../../ports.js'
-
-type CmdResult = { code: number | null; stdout: string; stderr: string }
-
-async function capture(
-  cmd: string,
-  args: string[],
-  stdin?: string
-): Promise<CmdResult> {
-  return new Promise((resolve, reject) => {
-    const p = spawn(cmd, args, {
-      stdio: stdin ? ['pipe', 'pipe', 'pipe'] : ['ignore', 'pipe', 'pipe']
-    })
-    let stdout = ''
-    let stderr = ''
-    p.stdout?.on('data', (b: Buffer) => {
-      stdout += b.toString()
-    })
-    p.stderr?.on('data', (b: Buffer) => {
-      stderr += b.toString()
-    })
-    p.on('error', (err) => reject(err))
-    p.on('close', (code) => resolve({ code, stdout, stderr }))
-    if (stdin) {
-      try {
-        p.stdin?.write(stdin)
-        p.stdin?.end()
-      } catch {
-        /* ignore */
-      }
-    }
-  })
-}
-
-async function runCommand(
-  cmd: string,
-  args: string[],
-  stdin?: string
-): Promise<void> {
-  const r = await capture(cmd, args, stdin)
-  if (r.code === 0) return
-  throw new Error(
-    `command failed: ${cmd} ${args.join(' ')} exit=${r.code}\nstdout:\n${r.stdout}\nstderr:\n${r.stderr}`
-  )
-}
 
 export class DmgInstaller implements Installer {
   async install(assetPath: string): Promise<void> {
@@ -61,7 +18,7 @@ export class DmgInstaller implements Installer {
     const mountPoint = '/Volumes/install_app'
     let mounted = false
     try {
-      await runCommand('hdiutil', [
+      await exec('hdiutil', [
         'convert',
         '-quiet',
         assetPath,
@@ -70,7 +27,7 @@ export class DmgInstaller implements Installer {
         '-o',
         converted
       ])
-      await runCommand('hdiutil', [
+      await exec('hdiutil', [
         'attach',
         '-nobrowse',
         '-noverify',
@@ -83,19 +40,19 @@ export class DmgInstaller implements Installer {
       const app = entries.find((e) => e.endsWith('.app'))
       if (!app) throw new Error(`no .app bundle found at ${mountPoint}`)
       const src = pathJoin(mountPoint, app)
-      await runCommand('cp', ['-R', src, '/Applications/'])
-      const binPath = pathJoin('/Applications', app, 'Contents', 'MacOS', 'lx')
-      await runCommand('sudo', ['ln', '-sf', binPath, '/usr/local/bin/lx'])
+      await exec('cp', ['-R', src, '/Applications/'])
+      const lx_app_dir = pathJoin('/Applications', app, 'Contents', 'MacOS')
+      addPath(lx_app_dir)
     } finally {
       if (mounted) {
         try {
-          await runCommand('hdiutil', ['detach', mountPoint])
+          await exec('hdiutil', ['detach', mountPoint])
         } catch {
           /* best-effort */
         }
       } else {
         try {
-          await runCommand('hdiutil', ['detach', workDir])
+          await exec('hdiutil', ['detach', workDir])
         } catch {
           /* best-effort */
         }
