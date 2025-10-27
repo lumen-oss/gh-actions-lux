@@ -37,7 +37,7 @@ async function capture(
   })
 }
 
-async function runStrict(
+async function runCommand(
   cmd: string,
   args: string[],
   stdin?: string
@@ -61,7 +61,7 @@ export class DmgInstaller implements Installer {
     const mountPoint = '/Volumes/install_app'
     let mounted = false
     try {
-      await runStrict('hdiutil', [
+      await runCommand('hdiutil', [
         'convert',
         '-quiet',
         assetPath,
@@ -70,7 +70,7 @@ export class DmgInstaller implements Installer {
         '-o',
         converted
       ])
-      await runStrict('hdiutil', [
+      await runCommand('hdiutil', [
         'attach',
         '-nobrowse',
         '-noverify',
@@ -83,19 +83,19 @@ export class DmgInstaller implements Installer {
       const app = entries.find((e) => e.endsWith('.app'))
       if (!app) throw new Error(`no .app bundle found at ${mountPoint}`)
       const src = pathJoin(mountPoint, app)
-      await runStrict('cp', ['-R', src, '/Applications/'])
+      await runCommand('cp', ['-R', src, '/Applications/'])
       const binPath = pathJoin('/Applications', app, 'Contents', 'MacOS', 'lx')
-      await runStrict('sudo', ['ln', '-sf', binPath, '/usr/local/bin/lx'])
+      await runCommand('sudo', ['ln', '-sf', binPath, '/usr/local/bin/lx'])
     } finally {
       if (mounted) {
         try {
-          await runStrict('hdiutil', ['detach', mountPoint])
+          await runCommand('hdiutil', ['detach', mountPoint])
         } catch {
           /* best-effort */
         }
       } else {
         try {
-          await runStrict('hdiutil', ['detach', workDir])
+          await runCommand('hdiutil', ['detach', workDir])
         } catch {
           /* best-effort */
         }

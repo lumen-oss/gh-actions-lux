@@ -27362,7 +27362,7 @@ class DiskFileSystem {
     }
 }
 
-async function runCommand$1(cmd, args) {
+async function runCommand$2(cmd, args) {
     return new Promise((resolve, reject) => {
         const p = spawn(cmd, args, { stdio: ['ignore', 'pipe', 'pipe'] });
         let stdout = '';
@@ -27385,7 +27385,7 @@ async function runCommand$1(cmd, args) {
 class DebInstaller {
     async install(assetPath) {
         await access(assetPath, constants$5.R_OK);
-        await runCommand$1('sudo', ['dpkg', '-i', assetPath]);
+        await runCommand$2('sudo', ['dpkg', '-i', assetPath]);
     }
 }
 function createDebInstaller() {
@@ -27409,7 +27409,7 @@ async function capture(cmd, args, stdin) {
         p.on('close', (code) => resolve({ code, stdout, stderr }));
     });
 }
-async function runStrict(cmd, args, stdin) {
+async function runCommand$1(cmd, args, stdin) {
     const r = await capture(cmd, args);
     if (r.code === 0)
         return;
@@ -27425,7 +27425,7 @@ class DmgInstaller {
         const mountPoint = '/Volumes/install_app';
         let mounted = false;
         try {
-            await runStrict('hdiutil', [
+            await runCommand$1('hdiutil', [
                 'convert',
                 '-quiet',
                 assetPath,
@@ -27434,7 +27434,7 @@ class DmgInstaller {
                 '-o',
                 converted
             ]);
-            await runStrict('hdiutil', [
+            await runCommand$1('hdiutil', [
                 'attach',
                 '-nobrowse',
                 '-noverify',
@@ -27448,14 +27448,14 @@ class DmgInstaller {
             if (!app)
                 throw new Error(`no .app bundle found at ${mountPoint}`);
             const src = join(mountPoint, app);
-            await runStrict('cp', ['-R', src, '/Applications/']);
+            await runCommand$1('cp', ['-R', src, '/Applications/']);
             const binPath = join('/Applications', app, 'Contents', 'MacOS', 'lx');
-            await runStrict('sudo', ['ln', '-sf', binPath, '/usr/local/bin/lx']);
+            await runCommand$1('sudo', ['ln', '-sf', binPath, '/usr/local/bin/lx']);
         }
         finally {
             if (mounted) {
                 try {
-                    await runStrict('hdiutil', ['detach', mountPoint]);
+                    await runCommand$1('hdiutil', ['detach', mountPoint]);
                 }
                 catch {
                     /* best-effort */
@@ -27463,7 +27463,7 @@ class DmgInstaller {
             }
             else {
                 try {
-                    await runStrict('hdiutil', ['detach', workDir]);
+                    await runCommand$1('hdiutil', ['detach', workDir]);
                 }
                 catch {
                     /* best-effort */
