@@ -16,7 +16,7 @@ function computeTarget(platform: string, arch: string): Target {
   )
 }
 
-export class GitHubActionsEnv implements Env {
+class GitHubActionsEnv implements Env {
   private readonly target: Target
 
   constructor() {
@@ -43,4 +43,8 @@ export class GitHubActionsEnv implements Env {
   getTarget(): Target {
     return this.target
   }
+}
+
+export function createGitHubActionsEnv(): Env {
+  return new GitHubActionsEnv()
 }

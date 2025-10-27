@@ -2,7 +2,7 @@ import { LuxProviderError, type LuxProvider } from '../ports.js'
 import { mapGithubReleaseToLuxRelease, type LuxRelease } from '../lux.js'
 import { GitHubRelease } from '../github.js'
 
-export class GitHubReleasesLuxProvider implements LuxProvider {
+class GitHubReleasesLuxProvider implements LuxProvider {
   private readonly owner = 'lumen-oss'
   private readonly repo = 'lux'
   private readonly token?: string
@@ -62,4 +62,8 @@ export class GitHubReleasesLuxProvider implements LuxProvider {
     }
     return mapGithubReleaseToLuxRelease(ghRelease)
   }
+}
+
+export function createGitHubReleasesLuxProvider(): LuxProvider {
+  return new GitHubReleasesLuxProvider()
 }

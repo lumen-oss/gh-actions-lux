@@ -9,7 +9,7 @@ export class DownloadError extends Error {
   }
 }
 
-export class DiskDownloader implements Downloader {
+class DiskDownloader implements Downloader {
   async download_installer_asset(
     fs: FileSystem,
     asset: LuxInstallerAsset,
@@ -27,4 +27,8 @@ export class DiskDownloader implements Downloader {
     await fs.writeFile(destPath, data)
     await verifyFileSha256(fs, destPath, asset.sha256sum)
   }
+}
+
+export function createDiskDownloader(): Downloader {
+  return new DiskDownloader()
 }

@@ -79,6 +79,9 @@ class DiskDownloader {
         await verifyFileSha256(fs, destPath, asset.sha256sum);
     }
 }
+function createDiskDownloader() {
+    return new DiskDownloader();
+}
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -27347,6 +27350,9 @@ class GitHubActionsEnv {
         return this.target;
     }
 }
+function createGitHubActionsEnv() {
+    return new GitHubActionsEnv();
+}
 
 class DiskFileSystem {
     async readFile(path) {
@@ -27360,6 +27366,9 @@ class DiskFileSystem {
     async mkdtemp(prefix) {
         return await promises.mkdtemp(join(tmpdir(), prefix));
     }
+}
+function createDiskFileSystem() {
+    return new DiskFileSystem();
 }
 
 var execExports = requireExec();
@@ -27630,6 +27639,9 @@ class GitHubReleasesLuxProvider {
         return mapGithubReleaseToLuxRelease(ghRelease);
     }
 }
+function createGitHubReleasesLuxProvider() {
+    return new GitHubReleasesLuxProvider();
+}
 
 class GitHubActionsHandle {
     env;
@@ -27637,10 +27649,10 @@ class GitHubActionsHandle {
     filesytem;
     downloader;
     constructor() {
-        this.env = new GitHubActionsEnv();
-        this.lux_provider = new GitHubReleasesLuxProvider();
-        this.filesytem = new DiskFileSystem();
-        this.downloader = new DiskDownloader();
+        this.env = createGitHubActionsEnv();
+        this.lux_provider = createGitHubReleasesLuxProvider();
+        this.filesytem = createDiskFileSystem();
+        this.downloader = createDiskDownloader();
     }
     getLuxProvider() {
         return this.lux_provider;

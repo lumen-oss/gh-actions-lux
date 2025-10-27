@@ -7,13 +7,13 @@ import {
   LuxProvider,
   UnsupportedTargetError
 } from '../ports.js'
-import { DiskDownloader } from './downloader.js'
-import { GitHubActionsEnv } from './env.js'
-import { DiskFileSystem } from './filesystem.js'
+import { createDiskDownloader } from './downloader.js'
+import { createGitHubActionsEnv } from './env.js'
+import { createDiskFileSystem } from './filesystem.js'
 import { createDebInstaller } from './installer/debian.js'
 import { createDmgInstaller } from './installer/macos.js'
 import { createExeInstaller } from './installer/windows.js'
-import { GitHubReleasesLuxProvider } from './lux.js'
+import { createGitHubReleasesLuxProvider } from './lux.js'
 
 export class GitHubActionsHandle implements Handle {
   private readonly env: Env
@@ -22,10 +22,10 @@ export class GitHubActionsHandle implements Handle {
   private readonly downloader: Downloader
 
   constructor() {
-    this.env = new GitHubActionsEnv()
-    this.lux_provider = new GitHubReleasesLuxProvider()
-    this.filesytem = new DiskFileSystem()
-    this.downloader = new DiskDownloader()
+    this.env = createGitHubActionsEnv()
+    this.lux_provider = createGitHubReleasesLuxProvider()
+    this.filesytem = createDiskFileSystem()
+    this.downloader = createDiskDownloader()
   }
   getLuxProvider(): LuxProvider {
     return this.lux_provider

@@ -3,7 +3,7 @@ import { dirname, join as pathJoin } from 'path'
 import { tmpdir } from 'os'
 import type { FileSystem } from '../ports.js'
 
-export class DiskFileSystem implements FileSystem {
+class DiskFileSystem implements FileSystem {
   async readFile(path: string): Promise<Uint8Array> {
     const buf = await fs.readFile(path)
     return new Uint8Array(buf)
@@ -17,4 +17,8 @@ export class DiskFileSystem implements FileSystem {
   async mkdtemp(prefix: string): Promise<string> {
     return await fs.mkdtemp(pathJoin(tmpdir(), prefix))
   }
+}
+
+export function createDiskFileSystem(): FileSystem {
+  return new DiskFileSystem()
 }
