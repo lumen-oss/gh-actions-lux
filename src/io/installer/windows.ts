@@ -5,7 +5,7 @@ import { constants as fsConstants } from 'fs'
 import path from 'path'
 import type { Installer } from '../../ports.js'
 
-export class ExeInstaller implements Installer {
+class ExeInstaller implements Installer {
   async install(assetPath: string): Promise<void> {
     await access(assetPath, fsConstants.R_OK)
 

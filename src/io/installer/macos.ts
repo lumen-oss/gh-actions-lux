@@ -6,7 +6,7 @@ import { tmpdir } from 'os'
 import { join as pathJoin } from 'path'
 import type { Installer } from '../../ports.js'
 
-export class DmgInstaller implements Installer {
+class DmgInstaller implements Installer {
   async install(assetPath: string): Promise<void> {
     await access(assetPath, fsConstants.R_OK)
     const tmpBase = tmpdir()
