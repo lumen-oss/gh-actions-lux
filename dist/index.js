@@ -27771,7 +27771,7 @@ async function run(handle) {
         await downloader.download_installer_asset(filesystem, installer_asset, installer_asset_path);
         env.info(`Downloaded ${installer_asset.file_name} to ${installer_asset_path}`);
         env.info(`Installing Lux ${lux_release.version}...`);
-        handle.getInstaller().install(installer_asset_path);
+        await handle.getInstaller().install(installer_asset_path);
         env.info('Done.');
     }
     catch (error) {
