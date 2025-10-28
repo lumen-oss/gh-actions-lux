@@ -47,7 +47,7 @@ In short:
   example for this is `src/inputs.ts`.
 - Pure interfaces to IO actions live in `src/ports.ts`.
 - Adapters to the real world live in the "demilitarized zone" (`src/io/*.ts`).
-  These adapters implement the adapters in `src/ports.ts`. The implementations
+  These adapters implement the interfaces in `src/ports.ts`. The implementations
   are private and instantiated via factory functions.
 - Core business logic never uses IO directly, only via pure interfaces. This
   allows us to mock the interfaces with pure implementations (no IO) in our
