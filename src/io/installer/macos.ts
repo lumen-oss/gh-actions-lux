@@ -1,14 +1,18 @@
 import { exec } from '@actions/exec'
 import { addPath } from '@actions/core'
-import { access, readdir, unlink } from 'fs/promises'
-import { constants as fsConstants } from 'fs'
 import { tmpdir } from 'os'
 import { join as pathJoin } from 'path'
-import type { Installer } from '../../ports.js'
+import type { FileSystem, Installer } from '../../ports.js'
 
 class DmgInstaller implements Installer {
+  private readonly filesystem: FileSystem
+
+  constructor(fs: FileSystem) {
+    this.filesystem = fs
+  }
+
   async install(assetPath: string): Promise<void> {
-    await access(assetPath, fsConstants.R_OK)
+    await this.filesystem.access_read(assetPath)
     const tmpBase = tmpdir()
     const workDir = await import('fs/promises').then((m) =>
       m.mkdtemp(pathJoin(tmpBase, 'lux-dmg-'))
@@ -36,7 +40,7 @@ class DmgInstaller implements Installer {
         converted
       ])
       mounted = true
-      const entries = await readdir(mountPoint)
+      const entries = await this.filesystem.readdir(mountPoint)
       const app = entries.find((e) => e.endsWith('.app'))
       if (!app) throw new Error(`no .app bundle found at ${mountPoint}`)
       const src = pathJoin(mountPoint, app)
@@ -58,7 +62,7 @@ class DmgInstaller implements Installer {
         }
       }
       try {
-        await unlink(converted)
+        await this.filesystem.unlink(converted)
       } catch {
         /* ignore cleanup errors */
       }
@@ -66,6 +70,6 @@ class DmgInstaller implements Installer {
   }
 }
 
-export function createDmgInstaller(): Installer {
-  return new DmgInstaller()
+export function createDmgInstaller(fs: FileSystem): Installer {
+  return new DmgInstaller(fs)
 }

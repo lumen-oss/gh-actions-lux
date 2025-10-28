@@ -63,6 +63,16 @@ export interface FileSystem {
   readFile(path: string): Promise<Uint8Array>
   writeFile(path: string, data: Uint8Array): Promise<void>
   mkdtemp(prefix: string): Promise<string>
+  /**
+   * Tests a user's permissions for reading the file or directory specified by `path`.
+   * Throws if the file cannot be read.
+   */
+  access_read(path: string): Promise<void>
+  readdir(path: string): Promise<string[]>
+  /**
+   * See the POSIX [`unlink(2)`](http://man7.org/linux/man-pages/man2/unlink.2.html)
+   */
+  unlink(path: string): Promise<void>
 }
 
 export interface Downloader {

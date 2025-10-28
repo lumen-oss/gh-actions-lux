@@ -1,15 +1,19 @@
 import { exec } from '@actions/exec'
-import { access } from 'fs/promises'
-import { constants as fsConstants } from 'fs'
-import type { Installer } from '../../ports.js'
+import type { FileSystem, Installer } from '../../ports.js'
 
 class DebInstaller implements Installer {
+  private readonly filesystem: FileSystem
+
+  constructor(fs: FileSystem) {
+    this.filesystem = fs
+  }
+
   async install(assetPath: string): Promise<void> {
-    await access(assetPath, fsConstants.R_OK)
+    await this.filesystem.access_read(assetPath)
     await exec('sudo', ['dpkg', '-i', assetPath])
   }
 }
 
-export function createDebInstaller(): Installer {
-  return new DebInstaller()
+export function createDebInstaller(fs: FileSystem): Installer {
+  return new DebInstaller(fs)
 }

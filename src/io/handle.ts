@@ -48,11 +48,11 @@ export class GitHubActionsHandle implements Handle {
     switch (env.getTarget()) {
       case 'x86_64-linux':
       case 'aarch64-linux':
-        return createDebInstaller()
+        return createDebInstaller(this.filesytem)
       case 'aarch64-macos':
-        return createDmgInstaller()
+        return createDmgInstaller(this.filesytem)
       case 'x86_64-windows':
-        return createExeInstaller()
+        return createExeInstaller(this.filesytem)
       default:
         throw new UnsupportedTargetError(
           `no installer available for target: ${String(env.getTarget())}`

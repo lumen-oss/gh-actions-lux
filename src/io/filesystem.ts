@@ -1,6 +1,8 @@
 import { promises as fs } from 'fs'
+import { constants as fsConstants } from 'fs'
 import { dirname, join as pathJoin } from 'path'
 import { tmpdir } from 'os'
+import { access, readdir, unlink } from 'fs/promises'
 import type { FileSystem } from '../ports.js'
 
 class DiskFileSystem implements FileSystem {
@@ -16,6 +18,18 @@ class DiskFileSystem implements FileSystem {
 
   async mkdtemp(prefix: string): Promise<string> {
     return await fs.mkdtemp(pathJoin(tmpdir(), prefix))
+  }
+
+  async access_read(path: string): Promise<void> {
+    await access(path, fsConstants.R_OK)
+  }
+
+  async readdir(path: string): Promise<string[]> {
+    return await readdir(path)
+  }
+
+  async unlink(path: string): Promise<void> {
+    await unlink(path)
   }
 }
 

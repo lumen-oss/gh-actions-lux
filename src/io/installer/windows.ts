@@ -1,13 +1,17 @@
 import { addPath } from '@actions/core'
 import { exec } from '@actions/exec'
-import { access } from 'fs/promises'
-import { constants as fsConstants } from 'fs'
 import path from 'path'
-import type { Installer } from '../../ports.js'
+import type { FileSystem, Installer } from '../../ports.js'
 
 class ExeInstaller implements Installer {
+  private readonly filesystem: FileSystem
+
+  constructor(fs: FileSystem) {
+    this.filesystem = fs
+  }
+
   async install(assetPath: string): Promise<void> {
-    await access(assetPath, fsConstants.R_OK)
+    await this.filesystem.access_read(assetPath)
 
     const installDir = path.join('c:', 'Program Files', 'lux')
     try {
@@ -30,6 +34,6 @@ class ExeInstaller implements Installer {
   }
 }
 
-export function createExeInstaller(): Installer {
-  return new ExeInstaller()
+export function createExeInstaller(fs: FileSystem): Installer {
+  return new ExeInstaller(fs)
 }

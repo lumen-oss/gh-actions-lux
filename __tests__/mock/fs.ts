@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import type { FileSystem } from '../../src/ports.ts'
 
 export class MockFs implements FileSystem {
@@ -23,4 +25,12 @@ export class MockFs implements FileSystem {
     const id = this.nextTempId.toString(36).padStart(8, '0')
     return `${prefix}${id}`
   }
+
+  async access_read(_path: string): Promise<void> {}
+
+  async readdir(_path: string): Promise<string[]> {
+    return []
+  }
+
+  async unlink(_path: string): Promise<void> {}
 }

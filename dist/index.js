@@ -27366,6 +27366,15 @@ class DiskFileSystem {
     async mkdtemp(prefix) {
         return await promises.mkdtemp(join(tmpdir(), prefix));
     }
+    async access_read(path) {
+        await access(path, constants$5.R_OK);
+    }
+    async readdir(path) {
+        return await readdir(path);
+    }
+    async unlink(path) {
+        await unlink(path);
+    }
 }
 function createDiskFileSystem() {
     return new DiskFileSystem();
@@ -27374,18 +27383,26 @@ function createDiskFileSystem() {
 var execExports = requireExec();
 
 class DebInstaller {
+    filesystem;
+    constructor(fs) {
+        this.filesystem = fs;
+    }
     async install(assetPath) {
-        await access(assetPath, constants$5.R_OK);
+        await this.filesystem.access_read(assetPath);
         await execExports.exec('sudo', ['dpkg', '-i', assetPath]);
     }
 }
-function createDebInstaller() {
-    return new DebInstaller();
+function createDebInstaller(fs) {
+    return new DebInstaller(fs);
 }
 
 class DmgInstaller {
+    filesystem;
+    constructor(fs) {
+        this.filesystem = fs;
+    }
     async install(assetPath) {
-        await access(assetPath, constants$5.R_OK);
+        await this.filesystem.access_read(assetPath);
         const tmpBase = tmpdir();
         const workDir = await import('fs/promises').then((m) => m.mkdtemp(join(tmpBase, 'lux-dmg-')));
         // We need to convert to UDTO, to prevent a prompt to accept the license.
@@ -27411,7 +27428,7 @@ class DmgInstaller {
                 converted
             ]);
             mounted = true;
-            const entries = await readdir(mountPoint);
+            const entries = await this.filesystem.readdir(mountPoint);
             const app = entries.find((e) => e.endsWith('.app'));
             if (!app)
                 throw new Error(`no .app bundle found at ${mountPoint}`);
@@ -27438,7 +27455,7 @@ class DmgInstaller {
                 }
             }
             try {
-                await unlink(converted);
+                await this.filesystem.unlink(converted);
             }
             catch {
                 /* ignore cleanup errors */
@@ -27446,13 +27463,17 @@ class DmgInstaller {
         }
     }
 }
-function createDmgInstaller() {
-    return new DmgInstaller();
+function createDmgInstaller(fs) {
+    return new DmgInstaller(fs);
 }
 
 class ExeInstaller {
+    filesystem;
+    constructor(fs) {
+        this.filesystem = fs;
+    }
     async install(assetPath) {
-        await access(assetPath, constants$5.R_OK);
+        await this.filesystem.access_read(assetPath);
         const installDir = require$$1$4.join('c:', 'Program Files', 'lux');
         try {
             await execExports.exec('powershell.exe', [
@@ -27472,8 +27493,8 @@ class ExeInstaller {
         coreExports.addPath(installDir);
     }
 }
-function createExeInstaller() {
-    return new ExeInstaller();
+function createExeInstaller(fs) {
+    return new ExeInstaller(fs);
 }
 
 class LuxRelease {
@@ -27671,11 +27692,11 @@ class GitHubActionsHandle {
         switch (env.getTarget()) {
             case 'x86_64-linux':
             case 'aarch64-linux':
-                return createDebInstaller();
+                return createDebInstaller(this.filesytem);
             case 'aarch64-macos':
-                return createDmgInstaller();
+                return createDmgInstaller(this.filesytem);
             case 'x86_64-windows':
-                return createExeInstaller();
+                return createExeInstaller(this.filesytem);
             default:
                 throw new UnsupportedTargetError(`no installer available for target: ${String(env.getTarget())}`);
         }
