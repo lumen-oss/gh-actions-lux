@@ -28,8 +28,12 @@ export class MockFs implements FileSystem {
 
   async access_read(_path: string): Promise<void> {}
 
-  async readdir(_path: string): Promise<string[]> {
-    return []
+  async readdir(path: string): Promise<string[]> {
+    if (path.endsWith('Volumes/install_app')) {
+      return ['lux.app']
+    } else {
+      return []
+    }
   }
 
   async unlink(_path: string): Promise<void> {}

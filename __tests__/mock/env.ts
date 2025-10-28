@@ -1,13 +1,15 @@
 import type { Env, Target } from '../../src/ports.ts'
 
 export class MockEnv implements Env {
+  private target: Target
   private env_vars = new Map<string, string>()
   private inputs: Record<string, string | undefined>
   public debug_calls: string[] = []
   public info_calls: string[] = []
   public failed?: string
 
-  constructor(inputs: Record<string, string | undefined> = {}) {
+  constructor(target: Target, inputs: Record<string, string | undefined> = {}) {
+    this.target = target
     this.inputs = inputs
   }
   private getInput(name: string): string | undefined {
@@ -26,7 +28,7 @@ export class MockEnv implements Env {
     this.failed = message
   }
   getTarget(): Target {
-    return 'x86_64-linux'
+    return this.target
   }
 
   addPath(inputPath: string): void {

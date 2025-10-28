@@ -2,6 +2,7 @@ import type { Handle } from './ports.ts'
 import { GitHubActionsHandle } from './io/handle.js'
 import { collectConfig } from './inputs.js'
 import { join as pathJoin } from 'path'
+import { createInstaller } from './installer.js'
 
 export async function run(handle?: Handle): Promise<void> {
   handle = handle ?? new GitHubActionsHandle()
@@ -31,7 +32,8 @@ export async function run(handle?: Handle): Promise<void> {
       `Downloaded ${installer_asset.file_name} to ${installer_asset_path}`
     )
     env.info(`Installing Lux ${lux_release.version}...`)
-    await handle.getInstaller().install(installer_asset_path)
+    const installer = createInstaller(handle)
+    await installer.install(installer_asset_path)
     env.info('Done.')
   } catch (error) {
     if (error instanceof Error) {

@@ -27,20 +27,6 @@ import require$$2$2 from 'child_process';
 import require$$6$1 from 'timers';
 import { access, readdir, unlink } from 'fs/promises';
 
-// Adapter interfaces for IO
-class UnsupportedTargetError extends Error {
-    constructor(message) {
-        super(message);
-        this.name = 'UnsupportedTargetError';
-    }
-}
-class LuxProviderError extends Error {
-    constructor(message) {
-        super(message);
-        this.name = 'LuxProviderError';
-    }
-}
-
 class InvalidChecksumError extends Error {
     constructor(message) {
         super(message);
@@ -27310,6 +27296,20 @@ function requireCore () {
 
 var coreExports = requireCore();
 
+// Adapter interfaces for IO
+class UnsupportedTargetError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'UnsupportedTargetError';
+    }
+}
+class LuxProviderError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'LuxProviderError';
+    }
+}
+
 function computeTarget(platform, arch) {
     if (platform === 'linux' && arch === 'arm64') {
         return 'aarch64-linux';
@@ -27381,131 +27381,6 @@ class DiskFileSystem {
 }
 function createDiskFileSystem() {
     return new DiskFileSystem();
-}
-
-class DebInstaller {
-    filesystem;
-    os;
-    constructor(fs, os) {
-        this.filesystem = fs;
-        this.os = os;
-    }
-    async install(assetPath) {
-        await this.filesystem.access_read(assetPath);
-        await this.os.exec('sudo', ['dpkg', '-i', assetPath]);
-    }
-}
-function createDebInstaller(fs, os) {
-    return new DebInstaller(fs, os);
-}
-
-class DmgInstaller {
-    env;
-    filesystem;
-    os;
-    constructor(env, fs, os) {
-        this.env = env;
-        this.filesystem = fs;
-        this.os = os;
-    }
-    async install(assetPath) {
-        await this.filesystem.access_read(assetPath);
-        const tmpBase = tmpdir();
-        const workDir = await import('fs/promises').then((m) => m.mkdtemp(join(tmpBase, 'lux-dmg-')));
-        // We need to convert to UDTO, to prevent a prompt to accept the license.
-        const converted = join(workDir, 'converted.cdr');
-        const mountPoint = '/Volumes/install_app';
-        let mounted = false;
-        try {
-            await this.os.exec('hdiutil', [
-                'convert',
-                '-quiet',
-                assetPath,
-                '-format',
-                'UDTO',
-                '-o',
-                converted
-            ]);
-            await this.os.exec('hdiutil', [
-                'attach',
-                '-nobrowse',
-                '-noverify',
-                '-mountpoint',
-                mountPoint,
-                converted
-            ]);
-            mounted = true;
-            const entries = await this.filesystem.readdir(mountPoint);
-            const app = entries.find((e) => e.endsWith('.app'));
-            if (!app)
-                throw new Error(`no .app bundle found at ${mountPoint}`);
-            const src = join(mountPoint, app);
-            await this.os.exec('cp', ['-R', src, '/Applications/']);
-            const lx_app_dir = join('/Applications', app, 'Contents', 'MacOS');
-            this.env.addPath(lx_app_dir);
-        }
-        finally {
-            if (mounted) {
-                try {
-                    await this.os.exec('hdiutil', ['detach', mountPoint]);
-                }
-                catch {
-                    /* best-effort */
-                }
-            }
-            else {
-                try {
-                    await this.os.exec('hdiutil', ['detach', workDir]);
-                }
-                catch {
-                    /* best-effort */
-                }
-            }
-            try {
-                await this.filesystem.unlink(converted);
-            }
-            catch {
-                /* ignore cleanup errors */
-            }
-        }
-    }
-}
-function createDmgInstaller(env, fs, os) {
-    return new DmgInstaller(env, fs, os);
-}
-
-class ExeInstaller {
-    env;
-    filesystem;
-    os;
-    constructor(env, fs, os) {
-        this.env = env;
-        this.filesystem = fs;
-        this.os = os;
-    }
-    async install(assetPath) {
-        await this.filesystem.access_read(assetPath);
-        const installDir = require$$1$4.join('c:', 'Program Files', 'lux');
-        try {
-            await this.os.exec('powershell.exe', [
-                '-NoProfile',
-                '-WindowStyle',
-                'Hidden',
-                'Start-Process',
-                assetPath,
-                '-Wait',
-                '-ArgumentList',
-                `/P, /D="${installDir}"`
-            ]);
-        }
-        catch (err) {
-            throw new Error(`failed to perform silent install for ${assetPath}:\n\n${err}`);
-        }
-        this.env.addPath(installDir);
-    }
-}
-function createExeInstaller(env, fs, os) {
-    return new ExeInstaller(env, fs, os);
 }
 
 class LuxRelease {
@@ -27711,19 +27586,8 @@ class GitHubActionsHandle {
     getDownloader() {
         return this.downloader;
     }
-    getInstaller() {
-        const env = this.getEnv();
-        switch (env.getTarget()) {
-            case 'x86_64-linux':
-            case 'aarch64-linux':
-                return createDebInstaller(this.filesytem, this.os);
-            case 'aarch64-macos':
-                return createDmgInstaller(this.env, this.filesytem, this.os);
-            case 'x86_64-windows':
-                return createExeInstaller(this.env, this.filesytem, this.os);
-            default:
-                throw new UnsupportedTargetError(`no installer available for target: ${String(env.getTarget())}`);
-        }
+    getOS() {
+        return this.os;
     }
 }
 
@@ -27740,6 +27604,142 @@ function collectConfig(env) {
         version: env.getVersionInput()
     };
     return parseActionInputs(rawInputs);
+}
+
+function createInstaller(handle) {
+    const env = handle.getEnv();
+    switch (env.getTarget()) {
+        case 'x86_64-linux':
+        case 'aarch64-linux':
+            return createDebInstaller(handle.getFileSystem(), handle.getOS());
+        case 'aarch64-macos':
+            return createDmgInstaller(env, handle.getFileSystem(), handle.getOS());
+        case 'x86_64-windows':
+            return createExeInstaller(env, handle.getFileSystem(), handle.getOS());
+        default:
+            throw new UnsupportedTargetError(`no installer available for target: ${String(env.getTarget())}`);
+    }
+}
+class DebInstaller {
+    filesystem;
+    os;
+    constructor(fs, os) {
+        this.filesystem = fs;
+        this.os = os;
+    }
+    async install(assetPath) {
+        await this.filesystem.access_read(assetPath);
+        await this.os.exec('sudo', ['dpkg', '-i', assetPath]);
+    }
+}
+function createDebInstaller(fs, os) {
+    return new DebInstaller(fs, os);
+}
+class DmgInstaller {
+    env;
+    filesystem;
+    os;
+    constructor(env, fs, os) {
+        this.env = env;
+        this.filesystem = fs;
+        this.os = os;
+    }
+    async install(assetPath) {
+        await this.filesystem.access_read(assetPath);
+        const workDir = await this.filesystem.mkdtemp('lux-dmg-');
+        // We need to convert to UDTO, to prevent a prompt to accept the license.
+        const converted = join(workDir, 'converted.cdr');
+        const mountPoint = '/Volumes/install_app';
+        let mounted = false;
+        try {
+            await this.os.exec('hdiutil', [
+                'convert',
+                '-quiet',
+                assetPath,
+                '-format',
+                'UDTO',
+                '-o',
+                converted
+            ]);
+            await this.os.exec('hdiutil', [
+                'attach',
+                '-nobrowse',
+                '-noverify',
+                '-mountpoint',
+                mountPoint,
+                converted
+            ]);
+            mounted = true;
+            const entries = await this.filesystem.readdir(mountPoint);
+            const app = entries.find((e) => e.endsWith('.app'));
+            if (!app)
+                throw new Error(`no .app bundle found at ${mountPoint}`);
+            const src = join(mountPoint, app);
+            await this.os.exec('cp', ['-R', src, '/Applications/']);
+            const lx_app_dir = join('/Applications', app, 'Contents', 'MacOS');
+            this.env.addPath(lx_app_dir);
+        }
+        finally {
+            if (mounted) {
+                try {
+                    await this.os.exec('hdiutil', ['detach', mountPoint]);
+                }
+                catch {
+                    /* best-effort */
+                }
+            }
+            else {
+                try {
+                    await this.os.exec('hdiutil', ['detach', workDir]);
+                }
+                catch {
+                    /* best-effort */
+                }
+            }
+            try {
+                await this.filesystem.unlink(converted);
+            }
+            catch {
+                /* ignore cleanup errors */
+            }
+        }
+    }
+}
+function createDmgInstaller(env, fs, os) {
+    return new DmgInstaller(env, fs, os);
+}
+class ExeInstaller {
+    env;
+    filesystem;
+    os;
+    constructor(env, fs, os) {
+        this.env = env;
+        this.filesystem = fs;
+        this.os = os;
+    }
+    async install(assetPath) {
+        await this.filesystem.access_read(assetPath);
+        const installDir = join('c:', 'Program Files', 'lux');
+        try {
+            await this.os.exec('powershell.exe', [
+                '-NoProfile',
+                '-WindowStyle',
+                'Hidden',
+                'Start-Process',
+                assetPath,
+                '-Wait',
+                '-ArgumentList',
+                `/P, /D="${installDir}"`
+            ]);
+        }
+        catch (err) {
+            throw new Error(`failed to perform silent install for ${assetPath}:\n\n${err}`);
+        }
+        this.env.addPath(installDir);
+    }
+}
+function createExeInstaller(env, fs, os) {
+    return new ExeInstaller(env, fs, os);
 }
 
 async function run(handle) {
@@ -27762,7 +27762,8 @@ async function run(handle) {
         await downloader.download_installer_asset(filesystem, installer_asset, installer_asset_path);
         env.info(`Downloaded ${installer_asset.file_name} to ${installer_asset_path}`);
         env.info(`Installing Lux ${lux_release.version}...`);
-        await handle.getInstaller().install(installer_asset_path);
+        const installer = createInstaller(handle);
+        await installer.install(installer_asset_path);
         env.info('Done.');
     }
     catch (error) {

@@ -4,26 +4,28 @@ import type {
   LuxProvider,
   Downloader,
   FileSystem,
-  Installer
+  OS
 } from '../../src/ports.ts'
-import { MockInstaller } from './installer.ts'
 
 export class MockHandle implements Handle {
   private readonly env: Env
   private readonly provider: LuxProvider
   private readonly downloader: Downloader
   private readonly fs: FileSystem
+  private readonly os: OS
 
   constructor(
     env: Env,
     provider: LuxProvider,
     downloader: Downloader,
-    fs: FileSystem
+    fs: FileSystem,
+    os: OS
   ) {
     this.env = env
     this.provider = provider
     this.downloader = downloader
     this.fs = fs
+    this.os = os
   }
 
   getEnv(): Env {
@@ -42,7 +44,7 @@ export class MockHandle implements Handle {
     return this.fs
   }
 
-  getInstaller(): Installer {
-    return new MockInstaller(this.env)
+  getOS(): OS {
+    return this.os
   }
 }
