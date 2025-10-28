@@ -52,7 +52,7 @@ export class GitHubActionsHandle implements Handle {
       case 'aarch64-macos':
         return createDmgInstaller(this.filesytem)
       case 'x86_64-windows':
-        return createExeInstaller(this.filesytem)
+        return createExeInstaller(this.env, this.filesytem)
       default:
         throw new UnsupportedTargetError(
           `no installer available for target: ${String(env.getTarget())}`

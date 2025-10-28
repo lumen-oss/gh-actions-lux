@@ -46,6 +46,11 @@ export interface Env {
    * - 'x86_64-windows'
    */
   getTarget(): Target
+
+  /**
+   * Prepends inputPath to the PATH.
+   */
+  addPath(inputPath: string): void
 }
 
 export class LuxProviderError extends Error {

@@ -43,6 +43,9 @@ class GitHubActionsEnv implements Env {
   getTarget(): Target {
     return this.target
   }
+  addPath(inputPath: string): void {
+    core.addPath(inputPath)
+  }
 }
 
 export function createGitHubActionsEnv(): Env {

@@ -27349,6 +27349,9 @@ class GitHubActionsEnv {
     getTarget() {
         return this.target;
     }
+    addPath(inputPath) {
+        coreExports.addPath(inputPath);
+    }
 }
 function createGitHubActionsEnv() {
     return new GitHubActionsEnv();
@@ -27468,8 +27471,10 @@ function createDmgInstaller(fs) {
 }
 
 class ExeInstaller {
+    env;
     filesystem;
-    constructor(fs) {
+    constructor(env, fs) {
+        this.env = env;
         this.filesystem = fs;
     }
     async install(assetPath) {
@@ -27490,11 +27495,11 @@ class ExeInstaller {
         catch (err) {
             throw new Error(`failed to perform silent install for ${assetPath}:\n\n${err}`);
         }
-        coreExports.addPath(installDir);
+        this.env.addPath(installDir);
     }
 }
-function createExeInstaller(fs) {
-    return new ExeInstaller(fs);
+function createExeInstaller(env, fs) {
+    return new ExeInstaller(env, fs);
 }
 
 class LuxRelease {
@@ -27696,7 +27701,7 @@ class GitHubActionsHandle {
             case 'aarch64-macos':
                 return createDmgInstaller(this.filesytem);
             case 'x86_64-windows':
-                return createExeInstaller(this.filesytem);
+                return createExeInstaller(this.env, this.filesytem);
             default:
                 throw new UnsupportedTargetError(`no installer available for target: ${String(env.getTarget())}`);
         }

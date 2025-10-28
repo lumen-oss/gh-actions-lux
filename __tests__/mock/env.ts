@@ -1,6 +1,7 @@
 import type { Env, Target } from '../../src/ports.ts'
 
 export class MockEnv implements Env {
+  private env_vars = new Map<string, string>()
   private inputs: Record<string, string | undefined>
   public debug_calls: string[] = []
   public info_calls: string[] = []
@@ -26,5 +27,15 @@ export class MockEnv implements Env {
   }
   getTarget(): Target {
     return 'x86_64-linux'
+  }
+
+  addPath(inputPath: string): void {
+    const key = 'PATH'
+    const pathSeparator = ':'
+    const current = this.env_vars.get(key) ?? process.env.PATH ?? ''
+    const newValue = current
+      ? `${current}${pathSeparator}${inputPath}`
+      : inputPath
+    this.env_vars.set(key, newValue)
   }
 }

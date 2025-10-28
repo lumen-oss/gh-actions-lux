@@ -1,12 +1,13 @@
-import { addPath } from '@actions/core'
 import { exec } from '@actions/exec'
 import path from 'path'
-import type { FileSystem, Installer } from '../../ports.js'
+import type { Env, FileSystem, Installer } from '../../ports.js'
 
 class ExeInstaller implements Installer {
+  private readonly env: Env
   private readonly filesystem: FileSystem
 
-  constructor(fs: FileSystem) {
+  constructor(env: Env, fs: FileSystem) {
+    this.env = env
     this.filesystem = fs
   }
 
@@ -30,10 +31,10 @@ class ExeInstaller implements Installer {
         `failed to perform silent install for ${assetPath}:\n\n${err}`
       )
     }
-    addPath(installDir)
+    this.env.addPath(installDir)
   }
 }
 
-export function createExeInstaller(fs: FileSystem): Installer {
-  return new ExeInstaller(fs)
+export function createExeInstaller(env: Env, fs: FileSystem): Installer {
+  return new ExeInstaller(env, fs)
 }

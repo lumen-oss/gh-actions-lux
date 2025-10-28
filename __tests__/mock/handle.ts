@@ -43,6 +43,6 @@ export class MockHandle implements Handle {
   }
 
   getInstaller(): Installer {
-    return new MockInstaller()
+    return new MockInstaller(this.env)
   }
 }
