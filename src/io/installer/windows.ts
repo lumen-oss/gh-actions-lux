@@ -1,14 +1,15 @@
-import { exec } from '@actions/exec'
 import path from 'path'
-import type { Env, FileSystem, Installer } from '../../ports.js'
+import type { Env, FileSystem, Installer, OS } from '../../ports.js'
 
 class ExeInstaller implements Installer {
   private readonly env: Env
   private readonly filesystem: FileSystem
+  private readonly os: OS
 
-  constructor(env: Env, fs: FileSystem) {
+  constructor(env: Env, fs: FileSystem, os: OS) {
     this.env = env
     this.filesystem = fs
+    this.os = os
   }
 
   async install(assetPath: string): Promise<void> {
@@ -16,7 +17,7 @@ class ExeInstaller implements Installer {
 
     const installDir = path.join('c:', 'Program Files', 'lux')
     try {
-      await exec('powershell.exe', [
+      await this.os.exec('powershell.exe', [
         '-NoProfile',
         '-WindowStyle',
         'Hidden',
@@ -35,6 +36,10 @@ class ExeInstaller implements Installer {
   }
 }
 
-export function createExeInstaller(env: Env, fs: FileSystem): Installer {
-  return new ExeInstaller(env, fs)
+export function createExeInstaller(
+  env: Env,
+  fs: FileSystem,
+  os: OS
+): Installer {
+  return new ExeInstaller(env, fs, os)
 }

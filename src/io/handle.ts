@@ -5,6 +5,7 @@ import {
   Handle,
   Installer,
   LuxProvider,
+  OS,
   UnsupportedTargetError
 } from '../ports.js'
 import { createDiskDownloader } from './downloader.js'
@@ -14,11 +15,13 @@ import { createDebInstaller } from './installer/debian.js'
 import { createDmgInstaller } from './installer/macos.js'
 import { createExeInstaller } from './installer/windows.js'
 import { createGitHubReleasesLuxProvider } from './lux.js'
+import { createRealOS } from './os.js'
 
 export class GitHubActionsHandle implements Handle {
   private readonly env: Env
   private readonly lux_provider: LuxProvider
   private readonly filesytem: FileSystem
+  private readonly os: OS
   private readonly downloader: Downloader
 
   constructor() {
@@ -26,7 +29,9 @@ export class GitHubActionsHandle implements Handle {
     this.lux_provider = createGitHubReleasesLuxProvider()
     this.filesytem = createDiskFileSystem()
     this.downloader = createDiskDownloader()
+    this.os = createRealOS()
   }
+
   getLuxProvider(): LuxProvider {
     return this.lux_provider
   }
@@ -48,11 +53,11 @@ export class GitHubActionsHandle implements Handle {
     switch (env.getTarget()) {
       case 'x86_64-linux':
       case 'aarch64-linux':
-        return createDebInstaller(this.filesytem)
+        return createDebInstaller(this.filesytem, this.os)
       case 'aarch64-macos':
-        return createDmgInstaller(this.filesytem)
+        return createDmgInstaller(this.env, this.filesytem, this.os)
       case 'x86_64-windows':
-        return createExeInstaller(this.env, this.filesytem)
+        return createExeInstaller(this.env, this.filesytem, this.os)
       default:
         throw new UnsupportedTargetError(
           `no installer available for target: ${String(env.getTarget())}`

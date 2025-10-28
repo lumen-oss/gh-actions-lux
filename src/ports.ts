@@ -80,6 +80,10 @@ export interface FileSystem {
   unlink(path: string): Promise<void>
 }
 
+export interface OS {
+  exec(commandLine: string, args?: string[]): Promise<number>
+}
+
 export interface Downloader {
   download_installer_asset(
     fs: FileSystem,

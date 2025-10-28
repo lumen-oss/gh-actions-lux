@@ -27383,26 +27383,30 @@ function createDiskFileSystem() {
     return new DiskFileSystem();
 }
 
-var execExports = requireExec();
-
 class DebInstaller {
     filesystem;
-    constructor(fs) {
+    os;
+    constructor(fs, os) {
         this.filesystem = fs;
+        this.os = os;
     }
     async install(assetPath) {
         await this.filesystem.access_read(assetPath);
-        await execExports.exec('sudo', ['dpkg', '-i', assetPath]);
+        await this.os.exec('sudo', ['dpkg', '-i', assetPath]);
     }
 }
-function createDebInstaller(fs) {
-    return new DebInstaller(fs);
+function createDebInstaller(fs, os) {
+    return new DebInstaller(fs, os);
 }
 
 class DmgInstaller {
+    env;
     filesystem;
-    constructor(fs) {
+    os;
+    constructor(env, fs, os) {
+        this.env = env;
         this.filesystem = fs;
+        this.os = os;
     }
     async install(assetPath) {
         await this.filesystem.access_read(assetPath);
@@ -27413,7 +27417,7 @@ class DmgInstaller {
         const mountPoint = '/Volumes/install_app';
         let mounted = false;
         try {
-            await execExports.exec('hdiutil', [
+            await this.os.exec('hdiutil', [
                 'convert',
                 '-quiet',
                 assetPath,
@@ -27422,7 +27426,7 @@ class DmgInstaller {
                 '-o',
                 converted
             ]);
-            await execExports.exec('hdiutil', [
+            await this.os.exec('hdiutil', [
                 'attach',
                 '-nobrowse',
                 '-noverify',
@@ -27436,14 +27440,14 @@ class DmgInstaller {
             if (!app)
                 throw new Error(`no .app bundle found at ${mountPoint}`);
             const src = join(mountPoint, app);
-            await execExports.exec('cp', ['-R', src, '/Applications/']);
+            await this.os.exec('cp', ['-R', src, '/Applications/']);
             const lx_app_dir = join('/Applications', app, 'Contents', 'MacOS');
-            coreExports.addPath(lx_app_dir);
+            this.env.addPath(lx_app_dir);
         }
         finally {
             if (mounted) {
                 try {
-                    await execExports.exec('hdiutil', ['detach', mountPoint]);
+                    await this.os.exec('hdiutil', ['detach', mountPoint]);
                 }
                 catch {
                     /* best-effort */
@@ -27451,7 +27455,7 @@ class DmgInstaller {
             }
             else {
                 try {
-                    await execExports.exec('hdiutil', ['detach', workDir]);
+                    await this.os.exec('hdiutil', ['detach', workDir]);
                 }
                 catch {
                     /* best-effort */
@@ -27466,22 +27470,24 @@ class DmgInstaller {
         }
     }
 }
-function createDmgInstaller(fs) {
-    return new DmgInstaller(fs);
+function createDmgInstaller(env, fs, os) {
+    return new DmgInstaller(env, fs, os);
 }
 
 class ExeInstaller {
     env;
     filesystem;
-    constructor(env, fs) {
+    os;
+    constructor(env, fs, os) {
         this.env = env;
         this.filesystem = fs;
+        this.os = os;
     }
     async install(assetPath) {
         await this.filesystem.access_read(assetPath);
         const installDir = require$$1$4.join('c:', 'Program Files', 'lux');
         try {
-            await execExports.exec('powershell.exe', [
+            await this.os.exec('powershell.exe', [
                 '-NoProfile',
                 '-WindowStyle',
                 'Hidden',
@@ -27498,8 +27504,8 @@ class ExeInstaller {
         this.env.addPath(installDir);
     }
 }
-function createExeInstaller(env, fs) {
-    return new ExeInstaller(env, fs);
+function createExeInstaller(env, fs, os) {
+    return new ExeInstaller(env, fs, os);
 }
 
 class LuxRelease {
@@ -27669,16 +27675,29 @@ function createGitHubReleasesLuxProvider() {
     return new GitHubReleasesLuxProvider();
 }
 
+var execExports = requireExec();
+
+class RealOS {
+    async exec(commandLine, args = []) {
+        return await execExports.exec(commandLine, args);
+    }
+}
+function createRealOS() {
+    return new RealOS();
+}
+
 class GitHubActionsHandle {
     env;
     lux_provider;
     filesytem;
+    os;
     downloader;
     constructor() {
         this.env = createGitHubActionsEnv();
         this.lux_provider = createGitHubReleasesLuxProvider();
         this.filesytem = createDiskFileSystem();
         this.downloader = createDiskDownloader();
+        this.os = createRealOS();
     }
     getLuxProvider() {
         return this.lux_provider;
@@ -27697,11 +27716,11 @@ class GitHubActionsHandle {
         switch (env.getTarget()) {
             case 'x86_64-linux':
             case 'aarch64-linux':
-                return createDebInstaller(this.filesytem);
+                return createDebInstaller(this.filesytem, this.os);
             case 'aarch64-macos':
-                return createDmgInstaller(this.filesytem);
+                return createDmgInstaller(this.env, this.filesytem, this.os);
             case 'x86_64-windows':
-                return createExeInstaller(this.env, this.filesytem);
+                return createExeInstaller(this.env, this.filesytem, this.os);
             default:
                 throw new UnsupportedTargetError(`no installer available for target: ${String(env.getTarget())}`);
         }
