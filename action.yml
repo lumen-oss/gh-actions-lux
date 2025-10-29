@@ -11,6 +11,11 @@ inputs:
       Version of Lux to install (e.g. "1.2.3" or "latest")
     required: false
     default: 'latest'
+  token:
+    description: |
+      GitHub token for fetching Lux releases, defaults to using secrets.GITHUB_TOKEN
+    required: false
+    default: ${{ github.token }}
 runs:
   using: 'node24'
   main: dist/index.js
