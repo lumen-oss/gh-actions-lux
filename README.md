@@ -46,10 +46,9 @@ jobs:
       - name: Use lux-cli
         run: |
           lx --version
-        shell: bash
 ```
 
-### In a matrix
+### Matrix (multiple targets)
 
 ```yaml
 name: Lux
@@ -84,5 +83,53 @@ jobs:
       - name: Use lux-cli
         run: |
           lx --version
-        shell: bash
+```
+
+### Matrix (multiple targets + Lua versions)
+
+Because Lux can handle installing Lua for you, you do not need a step for
+installing Lua.
+
+```yaml
+name: Lux
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  lux-action:
+    name: ${{ matrix.job.target }} - Lua ${{ matrix.lua_version }}
+    runs-on: ${{ matrix.job.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        job:
+          - { os: ubuntu-24.04, target: x86_64-linux }
+          - { os: ubuntu-24.04-arm, target: aarch64-linux }
+          - { os: macos-14, target: aarch64-darwin }
+          - { os: windows-2025, target: x86_63-windows-msvc }
+        lua_version:
+          - 5.1
+          - 5.2
+          - 5.3
+          - 5.4
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Install MSVC Compiler Toolchain
+        uses: ilammy/msvc-dev-cmd@v1
+        if: endsWith(matrix.job.target, '-msvc')
+
+      - name: Install Lux
+        uses: lumen-oss/gh-actions-lux
+        with:
+          version: 0.18.7
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run tests
+        run: |
+          lx --lua-version ${{ matrix.lua_version }} test
 ```
