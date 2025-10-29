@@ -37,6 +37,9 @@ class GitHubActionsEnv implements Env {
   info(message: string): void {
     core.info(message)
   }
+  warning(message: string): void {
+    core.warning(message)
+  }
   setFailed(message: string): void {
     core.setFailed(message)
   }
@@ -45,6 +48,9 @@ class GitHubActionsEnv implements Env {
   }
   addPath(inputPath: string): void {
     core.addPath(inputPath)
+  }
+  getEnvVar(name: string): string | undefined {
+    return process.env[name]
   }
 }
 
