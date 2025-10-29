@@ -7,7 +7,7 @@ on:
 
 jobs:
   test-lux-action:
-    name: ${{ matrix.job.target }}
+    name: ${{ matrix.job.target }} - Lua ${{ matrix.lua_version }}
     runs-on: ${{ matrix.job.os }}
     strategy:
       fail-fast: false
@@ -17,16 +17,24 @@ jobs:
           - { os: ubuntu-24.04-arm, target: aarch64-linux }
           - { os: macos-14, target: aarch64-darwin }
           - { os: windows-2025, target: x86_63-windows-msvc }
+        lua_version:
+          - 5.1
+          - 5.2
+          - 5.3
+          - 5.4
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
+
+      - name: Install MSVC Compiler Toolchain
+        uses: ilammy/msvc-dev-cmd@v1
+        if: endsWith(matrix.job.target, '-msvc')
 
       - name: Install Lux
         uses: ./
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Check Lux availability
+      - name: Use Lux
         run: |
-          lx --version
-        shell: bash
+          lx --lua-version ${{ matrix.lua_version }} install-lua
