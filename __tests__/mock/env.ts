@@ -21,6 +21,9 @@ export class MockEnv implements Env {
   getVersionInput(): string {
     return this.getInput('version') || 'latest'
   }
+  getTokenInput(): string | undefined {
+    return this.getInput('token')
+  }
   debug(message: string): void {
     this.debug_calls.push(message)
   }

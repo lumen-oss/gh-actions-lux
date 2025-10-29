@@ -1,14 +1,15 @@
 import { LuxProviderError, type LuxProvider } from '../ports.js'
 import { mapGithubReleaseToLuxRelease, type LuxRelease } from '../lux.js'
 import { GitHubRelease } from '../github.js'
+import { ActionConfig } from '../inputs.js'
 
 class GitHubReleasesLuxProvider implements LuxProvider {
   private readonly owner = 'lumen-oss'
   private readonly repo = 'lux'
   private readonly token?: string
 
-  constructor() {
-    this.token = process.env.GITHUB_TOKEN || undefined
+  constructor(config: ActionConfig) {
+    this.token = config.token || process.env.GITHUB_TOKEN
   }
 
   private headers(): Record<string, string> {
@@ -64,6 +65,8 @@ class GitHubReleasesLuxProvider implements LuxProvider {
   }
 }
 
-export function createGitHubReleasesLuxProvider(): LuxProvider {
-  return new GitHubReleasesLuxProvider()
+export function createGitHubReleasesLuxProvider(
+  config: ActionConfig
+): LuxProvider {
+  return new GitHubReleasesLuxProvider(config)
 }

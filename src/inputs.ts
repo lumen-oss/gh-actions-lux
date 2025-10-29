@@ -2,6 +2,7 @@ import type { Env } from './ports.ts'
 
 export type ActionConfig = {
   version: string
+  token: string | undefined
 }
 
 /**
@@ -11,13 +12,15 @@ function parseActionInputs(
   raw: Record<string, string | undefined>
 ): ActionConfig {
   return {
-    version: raw['version'] ?? 'latest'
+    version: raw['version'] ?? 'latest',
+    token: raw['token']
   }
 }
 
 export function collectConfig(env: Env): ActionConfig {
   const rawInputs: Record<string, string | undefined> = {
-    version: env.getVersionInput()
+    version: env.getVersionInput(),
+    token: env.getTokenInput()
   }
   return parseActionInputs(rawInputs)
 }

@@ -1,3 +1,4 @@
+import { ActionConfig } from '../../src/inputs.ts'
 import type {
   Cache,
   Handle,
@@ -30,6 +31,13 @@ export class MockHandle implements Handle {
     this.fs = fs
     this.os = os
     this.cache = cache
+  }
+
+  getConfig(): ActionConfig {
+    return {
+      version: '0.18.8',
+      token: undefined
+    }
   }
 
   getEnv(): Env {

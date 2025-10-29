@@ -40,8 +40,6 @@ jobs:
         uses: lumen-oss/gh-actions-lux@v1
         with:
           version: 0.18.8
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Use lux-cli
         run: |
@@ -81,8 +79,6 @@ jobs:
         uses: lumen-oss/gh-actions-lux@v1
         with:
           version: 0.18.8
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Use lux-cli
         run: |
@@ -130,8 +126,6 @@ jobs:
         uses: lumen-oss/gh-actions-lux@v1
         with:
           version: 0.18.8
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run tests
         run: |
@@ -183,8 +177,6 @@ on:
         uses: lumen-oss/gh-actions-lux@v1
         with:
           version: 0.18.8
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run tests
         run: |
