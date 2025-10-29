@@ -3,6 +3,9 @@
 GitHub action for installing [lux-cli](https://lux.lumen-labs.org/) bundled with
 lux-lua.
 
+Feel free to consult the [documentation](https://lux.lumen-labs.org/tutorial/getting-started) on how to get started with Lux!
+It features a tutorial and several guides to make you good at managing Lua projects.
+
 ## Inputs
 
 ### `version`
