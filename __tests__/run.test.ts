@@ -12,8 +12,8 @@ import { Target } from '../src/ports.ts'
 async function testTarget(target: Target): Promise<void> {
   const env = new MockEnv(target, { version: '2.0.0' })
   const luxProvider = new MockLuxProvider()
-  const downloader = new MockDownloader()
   const fs = new MockFs()
+  const downloader = new MockDownloader(fs)
   const os = new MockOS()
   const handle = new MockHandle(env, luxProvider, downloader, fs, os)
   await expect(run(handle)).resolves.toBeUndefined()

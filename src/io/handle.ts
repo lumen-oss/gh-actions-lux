@@ -23,7 +23,7 @@ export class GitHubActionsHandle implements Handle {
     this.env = createGitHubActionsEnv()
     this.lux_provider = createGitHubReleasesLuxProvider()
     this.filesytem = createDiskFileSystem()
-    this.downloader = createDiskDownloader()
+    this.downloader = createDiskDownloader(this.filesytem)
     this.os = createRealOS()
   }
 

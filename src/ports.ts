@@ -86,7 +86,6 @@ export interface OS {
 
 export interface Downloader {
   download_installer_asset(
-    fs: FileSystem,
     asset: LuxInstallerAsset,
     destPath: string
   ): Promise<void>
