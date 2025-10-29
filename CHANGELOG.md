@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/lumen-oss/gh-actions-lux/compare/v1.0.0...v1.0.1) (2025-10-29)
+
+
+### Bug Fixes
+
+* name in action.yml ([bcb7a4a](https://github.com/lumen-oss/gh-actions-lux/commit/bcb7a4a64c0cb408cfeec378e3839c5737597944))
+
 ## 1.0.0 (2025-10-29)
 
 
