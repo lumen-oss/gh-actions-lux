@@ -30617,6 +30617,8 @@ function createGitHubActionsEnv() {
     return new GitHubActionsEnv();
 }
 
+var ioExports = requireIo();
+
 class DiskFileSystem {
     async readFile(path) {
         const buf = await promises.readFile(path);
@@ -30637,6 +30639,9 @@ class DiskFileSystem {
     }
     async unlink(path) {
         await unlink(path);
+    }
+    async copyRecursive(src, dest) {
+        await ioExports.cp(src, dest, { recursive: true, force: false });
     }
 }
 function createDiskFileSystem() {
@@ -30935,7 +30940,7 @@ class DmgInstaller {
             if (!app)
                 throw new Error(`no .app bundle found at ${mountPoint}`);
             const src = join(mountPoint, app);
-            await this.os.exec('cp', ['-R', src, '/Applications/']);
+            await this.filesystem.copyRecursive(src, '/Applications/');
             const lx_app_dir = join('/Applications', app, 'Contents', 'MacOS');
             this.env.addPath(lx_app_dir);
         }

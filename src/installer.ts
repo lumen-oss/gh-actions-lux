@@ -82,7 +82,7 @@ class DmgInstaller implements Installer {
       const app = entries.find((e) => e.endsWith('.app'))
       if (!app) throw new Error(`no .app bundle found at ${mountPoint}`)
       const src = pathJoin(mountPoint, app)
-      await this.os.exec('cp', ['-R', src, '/Applications/'])
+      await this.filesystem.copyRecursive(src, '/Applications/')
       const lx_app_dir = pathJoin('/Applications', app, 'Contents', 'MacOS')
       this.env.addPath(lx_app_dir)
     } finally {

@@ -1,3 +1,4 @@
+import * as io from '@actions/io'
 import { promises as fs } from 'fs'
 import { constants as fsConstants } from 'fs'
 import { dirname, join as pathJoin } from 'path'
@@ -30,6 +31,10 @@ class DiskFileSystem implements FileSystem {
 
   async unlink(path: string): Promise<void> {
     await unlink(path)
+  }
+
+  async copyRecursive(src: string, dest: string): Promise<void> {
+    await io.cp(src, dest, { recursive: true, force: false })
   }
 }
 

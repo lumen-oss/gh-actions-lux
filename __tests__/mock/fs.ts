@@ -2,6 +2,8 @@
 
 import type { FileSystem } from '../../src/ports.ts'
 
+const MOCK_DATA: Uint8Array = new TextEncoder().encode('mock-fs-bytes')
+
 export class MockFs implements FileSystem {
   private files = new Map<string, Uint8Array>()
   private nextTempId = 0
@@ -37,4 +39,14 @@ export class MockFs implements FileSystem {
   }
 
   async unlink(_path: string): Promise<void> {}
+
+  async copyRecursive(src: string, dest: string): Promise<void> {
+    let data: Uint8Array
+    try {
+      data = await this.readFile(src)
+    } catch (_error) {
+      data = MOCK_DATA
+    }
+    this.files.set(dest, data)
+  }
 }

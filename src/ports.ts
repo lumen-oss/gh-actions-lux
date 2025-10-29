@@ -66,6 +66,7 @@ export interface LuxProvider {
 
 export interface FileSystem {
   readFile(path: string): Promise<Uint8Array>
+  copyRecursive(src: string, dest: string): Promise<void>
   writeFile(path: string, data: Uint8Array): Promise<void>
   mkdtemp(prefix: string): Promise<string>
   /**
