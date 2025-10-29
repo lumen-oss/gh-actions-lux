@@ -182,3 +182,38 @@ on:
         run: |
           lx --nvim test
 ```
+
+### Uploading a package to luarocks.org
+
+To use `lx upload`, you need to provide an API key for luarocks.org.
+
+> [!TIP]
+>
+> We recommend combining this workflow with [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
+> and [release-please](https://github.com/googleapis/release-please-action).
+
+```yaml
+name: Lux upload
+on:
+  push:
+    tags: # Will upload to luarocks.org when a tag is pushed
+      - "*"
+  workflow_dispatch:
+jobs:
+  luarocks-upload:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Install Lux
+        uses: lumen-oss/gh-actions-lux@v1
+        with:
+          version: 0.18.8
+
+      - name: Upload
+        run: |
+          lx upload
+        env:
+          LUX_API_KEY: ${{ secrets.LUX_API_KEY }}
+```
