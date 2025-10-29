@@ -10,11 +10,15 @@ export async function run(handle?: Handle): Promise<void> {
   const lux_provider = handle.getLuxProvider()
   const filesystem = handle.getFileSystem()
   const downloader = handle.getDownloader()
+  const cache = handle.getCache()
   try {
     const config = collectConfig(env)
     env.debug(`Parsed inputs: ${JSON.stringify(config)}`)
     env.debug(`Running on ${env.getTarget()}`)
     const version = env.getVersionInput()
+
+    await cache.restore(version)
+
     const lux_release = await lux_provider.getRelease(version)
     const installer_asset = lux_release.assetForTarget(env.getTarget())
     env.info(

@@ -1,4 +1,5 @@
 import type {
+  Cache,
   Handle,
   Env,
   LuxProvider,
@@ -13,19 +14,22 @@ export class MockHandle implements Handle {
   private readonly downloader: Downloader
   private readonly fs: FileSystem
   private readonly os: OS
+  private readonly cache: Cache
 
   constructor(
     env: Env,
     provider: LuxProvider,
     downloader: Downloader,
     fs: FileSystem,
-    os: OS
+    os: OS,
+    cache: Cache
   ) {
     this.env = env
     this.provider = provider
     this.downloader = downloader
     this.fs = fs
     this.os = os
+    this.cache = cache
   }
 
   getEnv(): Env {
@@ -46,5 +50,9 @@ export class MockHandle implements Handle {
 
   getOS(): OS {
     return this.os
+  }
+
+  getCache(): Cache {
+    return this.cache
   }
 }

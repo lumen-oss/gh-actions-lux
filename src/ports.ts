@@ -8,6 +8,7 @@ export interface Handle {
   getDownloader(): Downloader
   getFileSystem(): FileSystem
   getOS(): OS
+  getCache(): Cache
 }
 
 export type Target =
@@ -31,6 +32,7 @@ export interface Env {
 
   debug(message: string): void
   info(message: string): void
+  warning(message: string): void
 
   /**
    * Mark the action as failed.
@@ -51,6 +53,11 @@ export interface Env {
    * Prepends inputPath to the PATH.
    */
   addPath(inputPath: string): void
+
+  /**
+   * @returns an environment variable value, if present.
+   */
+  getEnvVar(name: string): string | undefined
 }
 
 export class LuxProviderError extends Error {
@@ -90,4 +97,9 @@ export interface Downloader {
     asset: LuxInstallerAsset,
     destPath: string
   ): Promise<void>
+}
+
+export interface Cache {
+  restore(version: string): Promise<void>
+  save(version: string): Promise<void>
 }

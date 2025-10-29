@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import type { Env, Target } from '../../src/ports.ts'
 
 export class MockEnv implements Env {
@@ -6,6 +8,7 @@ export class MockEnv implements Env {
   private inputs: Record<string, string | undefined>
   public debug_calls: string[] = []
   public info_calls: string[] = []
+  public warning_calls: string[] = []
   public failed?: string
 
   constructor(target: Target, inputs: Record<string, string | undefined> = {}) {
@@ -24,6 +27,9 @@ export class MockEnv implements Env {
   info(message: string): void {
     this.info_calls.push(message)
   }
+  warning(message: string): void {
+    this.warning_calls.push(message)
+  }
   setFailed(message: string): void {
     this.failed = message
   }
@@ -39,5 +45,9 @@ export class MockEnv implements Env {
       ? `${current}${pathSeparator}${inputPath}`
       : inputPath
     this.env_vars.set(key, newValue)
+  }
+
+  getEnvVar(_name: string): string | undefined {
+    return undefined
   }
 }

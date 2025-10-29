@@ -1,4 +1,5 @@
 import {
+  Cache,
   Downloader,
   Env,
   FileSystem,
@@ -6,6 +7,7 @@ import {
   LuxProvider,
   OS
 } from '../ports.js'
+import { createActionsCache } from './cache.js'
 import { createDiskDownloader } from './downloader.js'
 import { createGitHubActionsEnv } from './env.js'
 import { createDiskFileSystem } from './filesystem.js'
@@ -18,6 +20,7 @@ export class GitHubActionsHandle implements Handle {
   private readonly filesytem: FileSystem
   private readonly os: OS
   private readonly downloader: Downloader
+  private readonly cache: Cache
 
   constructor() {
     this.env = createGitHubActionsEnv()
@@ -25,6 +28,7 @@ export class GitHubActionsHandle implements Handle {
     this.filesytem = createDiskFileSystem()
     this.downloader = createDiskDownloader(this.filesytem)
     this.os = createRealOS()
+    this.cache = createActionsCache(this.env)
   }
 
   getLuxProvider(): LuxProvider {
@@ -45,5 +49,9 @@ export class GitHubActionsHandle implements Handle {
 
   getOS(): OS {
     return this.os
+  }
+
+  getCache(): Cache {
+    return this.cache
   }
 }
