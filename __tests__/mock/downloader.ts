@@ -5,11 +5,16 @@ import type { MockFs } from './fs.js'
 const MOCK_DOWNLOAD_BYTES = new TextEncoder().encode('mock-installer-bytes')
 
 export class MockDownloader implements Downloader {
+  private readonly filesystem: MockFs
+
+  constructor(fs: MockFs) {
+    this.filesystem = fs
+  }
+
   async download_installer_asset(
-    fs: MockFs,
     _asset: LuxInstallerAsset,
-    destPath: string
+    destDir: string
   ): Promise<void> {
-    await fs.writeFile(destPath, MOCK_DOWNLOAD_BYTES)
+    await this.filesystem.writeFile(destDir, MOCK_DOWNLOAD_BYTES)
   }
 }

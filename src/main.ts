@@ -24,7 +24,6 @@ export async function run(handle?: Handle): Promise<void> {
     const tmpDir = await filesystem.mkdtemp('lux-')
     const installer_asset_path = pathJoin(tmpDir, installer_asset.file_name)
     await downloader.download_installer_asset(
-      filesystem,
       installer_asset,
       installer_asset_path
     )
