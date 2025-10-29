@@ -31,6 +31,9 @@ class GitHubActionsEnv implements Env {
   getVersionInput(): string {
     return this.getInput('version') || 'latest'
   }
+  getTokenInput(): string | undefined {
+    return this.getInput('token')
+  }
   debug(message: string): void {
     core.debug(message)
   }

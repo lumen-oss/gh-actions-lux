@@ -1,4 +1,4 @@
-import { U as UnsupportedTargetError, G as GitHubActionsHandle } from './handle-BV5Fssw8.js';
+import { U as UnsupportedTargetError, G as GitHubActionsHandle, c as collectConfig } from './handle-zgMIq5sw.js';
 import { join } from 'path';
 import 'os';
 import 'crypto';
@@ -28,21 +28,6 @@ import 'child_process';
 import 'timers';
 import 'tty';
 import 'fs/promises';
-
-/**
- * Normalize action inputs into a typed config.
- */
-function parseActionInputs(raw) {
-    return {
-        version: raw['version'] ?? 'latest'
-    };
-}
-function collectConfig(env) {
-    const rawInputs = {
-        version: env.getVersionInput()
-    };
-    return parseActionInputs(rawInputs);
-}
 
 function createInstaller(handle) {
     const env = handle.getEnv();

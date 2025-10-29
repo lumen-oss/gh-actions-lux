@@ -1,3 +1,4 @@
+import { ActionConfig, collectConfig } from '../inputs.js'
 import {
   Cache,
   Downloader,
@@ -16,6 +17,7 @@ import { createRealOS } from './os.js'
 
 export class GitHubActionsHandle implements Handle {
   private readonly env: Env
+  private readonly config: ActionConfig
   private readonly lux_provider: LuxProvider
   private readonly filesytem: FileSystem
   private readonly os: OS
@@ -24,19 +26,24 @@ export class GitHubActionsHandle implements Handle {
 
   constructor() {
     this.env = createGitHubActionsEnv()
-    this.lux_provider = createGitHubReleasesLuxProvider()
+    this.config = collectConfig(this.env)
+    this.lux_provider = createGitHubReleasesLuxProvider(this.config)
     this.filesytem = createDiskFileSystem()
     this.downloader = createDiskDownloader(this.filesytem)
     this.os = createRealOS()
     this.cache = createActionsCache(this.env)
   }
 
-  getLuxProvider(): LuxProvider {
-    return this.lux_provider
-  }
-
   getEnv(): Env {
     return this.env
+  }
+
+  getConfig(): ActionConfig {
+    return this.config
+  }
+
+  getLuxProvider(): LuxProvider {
+    return this.lux_provider
   }
 
   getFileSystem(): FileSystem {

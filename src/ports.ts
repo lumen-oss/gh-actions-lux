@@ -1,8 +1,10 @@
 // Adapter interfaces for IO
 
+import { ActionConfig } from './inputs.js'
 import { LuxInstallerAsset, LuxRelease } from './lux.js'
 
 export interface Handle {
+  getConfig(): ActionConfig
   getEnv(): Env
   getLuxProvider(): LuxProvider
   getDownloader(): Downloader
@@ -29,6 +31,7 @@ export interface Env {
    * Get an action input by name.
    */
   getVersionInput(): string
+  getTokenInput(): string | undefined
 
   debug(message: string): void
   info(message: string): void
