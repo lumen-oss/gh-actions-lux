@@ -8,7 +8,7 @@ lux-lua.
 ### `version`
 
 - Default: `latest`
-- Example: `0.18.7`
+- Example: `0.18.8`
 
 > [!IMPORTANT]
 >
@@ -37,9 +37,9 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Install Lux
-        uses: lumen-oss/gh-actions-lux
+        uses: lumen-oss/gh-actions-lux@v1
         with:
-          version: 0.18.7
+          version: 0.18.8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -78,9 +78,9 @@ jobs:
         if: endsWith(matrix.job.target, '-msvc')
 
       - name: Install Lux
-        uses: lumen-oss/gh-actions-lux
+        uses: lumen-oss/gh-actions-lux@v1
         with:
-          version: 0.18.7
+          version: 0.18.8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -95,14 +95,14 @@ Because Lux can handle installing Lua for you, you do not need a step for
 installing Lua.
 
 ```yaml
-name: Lux
+name: Tests
 on:
   pull_request:
   push:
     branches: [main]
 
 jobs:
-  lux-action:
+  test:
     name: ${{ matrix.job.target }} - Lua ${{ matrix.lua_version }}
     runs-on: ${{ matrix.job.os }}
     strategy:
@@ -127,13 +127,66 @@ jobs:
         if: endsWith(matrix.job.target, '-msvc')
 
       - name: Install Lux
-        uses: lumen-oss/gh-actions-lux
+        uses: lumen-oss/gh-actions-lux@v1
         with:
-          version: 0.18.7
+          version: 0.18.8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run tests
         run: |
           lx --lua-version ${{ matrix.lua_version }} test
+```
+
+### Matrix (Neovim plugin)
+
+To test a Neovim plugin that uses the
+[`busted-nlua`](https://lux.lumen-labs.org/guides/lux-toml#busted-nlua) test
+backend:
+
+```yaml
+name: Tests
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+  test:
+    name: ${{ matrix.job.target }} - Lua ${{ matrix.lua_version }}
+    runs-on: ${{ matrix.job.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        job:
+          - { os: ubuntu-24.04, target: x86_64-linux }
+          - { os: ubuntu-24.04-arm, target: aarch64-linux }
+          - { os: macos-14, target: aarch64-darwin }
+          - { os: windows-2025, target: x86_63-windows-msvc }
+        nvim-version:
+          - stable
+          - nightly
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Install MSVC Compiler Toolchain
+        uses: ilammy/msvc-dev-cmd@v1
+        if: endsWith(matrix.job.target, '-msvc')
+
+      - name: Setup Neovim
+        uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: ${{ matrix.nvim-version }}
+
+      - name: Install Lux
+        uses: lumen-oss/gh-actions-lux@v1
+        with:
+          version: 0.18.8
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run tests
+        run: |
+          lx --nvim test
 ```
