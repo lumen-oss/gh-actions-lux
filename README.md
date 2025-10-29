@@ -3,8 +3,10 @@
 GitHub action for installing [lux-cli](https://lux.lumen-labs.org/) bundled with
 lux-lua.
 
-Feel free to consult the [documentation](https://lux.lumen-labs.org/tutorial/getting-started) on how to get started with Lux!
-It features a tutorial and several guides to make you good at managing Lua projects.
+Feel free to consult the
+[documentation](https://lux.lumen-labs.org/tutorial/getting-started) on how to
+get started with Lux! It features a tutorial and several guides to make you good
+at managing Lua projects.
 
 ## Inputs
 
@@ -130,6 +132,10 @@ jobs:
         with:
           version: 0.18.8
 
+      - name: Type checks
+        run: |
+          lx --lua-version ${{ matrix.lua_version }} check
+
       - name: Run tests
         run: |
           lx --lua-version ${{ matrix.lua_version }} test
@@ -181,6 +187,10 @@ on:
         with:
           version: 0.18.8
 
+      - name: Type checks
+        run: |
+          lx --nvim check
+
       - name: Run tests
         run: |
           lx --nvim test
@@ -192,15 +202,16 @@ To use `lx upload`, you need to provide an API key for luarocks.org.
 
 > [!TIP]
 >
-> We recommend combining this workflow with [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
-> and [release-please](https://github.com/googleapis/release-please-action).
+> We recommend combining this workflow with
+> [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) and
+> [release-please](https://github.com/googleapis/release-please-action).
 
 ```yaml
 name: Lux upload
 on:
   push:
     tags: # Will upload to luarocks.org when a tag is pushed
-      - "*"
+      - '*'
   workflow_dispatch:
 jobs:
   luarocks-upload:
