@@ -1,5 +1,5 @@
 ---
-name: 'Lux'
+name: 'LuxAction'
 description: 'Install the Lux package manager for Lua'
 author: 'Marc Jakobi'
 branding:
