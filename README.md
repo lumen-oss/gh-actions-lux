@@ -13,7 +13,7 @@ at managing Lua projects.
 ### `version`
 
 - Default: `latest`
-- Example: `0.19.0`
+- Example: `0.20.3`
 
 > [!IMPORTANT]
 >
@@ -44,7 +44,7 @@ jobs:
       - name: Install Lux
         uses: lumen-oss/gh-actions-lux@v1
         with:
-          version: 0.19.0
+          version: 0.20.3
 
       - name: Use lux-cli
         run: |
@@ -83,7 +83,7 @@ jobs:
       - name: Install Lux
         uses: lumen-oss/gh-actions-lux@v1
         with:
-          version: 0.19.0
+          version: 0.20.3
 
       - name: Use lux-cli
         run: |
@@ -130,7 +130,7 @@ jobs:
       - name: Install Lux
         uses: lumen-oss/gh-actions-lux@v1
         with:
-          version: 0.19.0
+          version: 0.20.3
 
       - name: Type checks
         run: |
@@ -185,7 +185,7 @@ jobs:
       - name: Install Lux
         uses: lumen-oss/gh-actions-lux@v1
         with:
-          version: 0.19.0
+          version: 0.20.3
 
       - name: Type checks
         run: |
@@ -231,6 +231,62 @@ To use `lx upload`, you need to provide an API key for luarocks.org.
 > [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) and
 > [release-please](https://github.com/googleapis/release-please-action).
 
+#### With artifact signing enabled (recommended)
+
+First, [generate a GPG key](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key)
+and export the private key to your clipboard:
+
+```bash
+# Ubuntu (assuming GNU base64)
+gpg --armor --export-secret-key joe@foo.bar -w0 | xclip
+
+# Arch Linux
+gpg --armor --export-secret-key joe@foo.bar | xclip -selection clipboard -i
+
+# macOS
+gpg --armor --export-secret-key joe@foo.bar | pbcopy
+
+# FreeBSD (assuming BSD base64)
+gpg --armor --export-secret-key joe@foo.bar | xclip
+```
+
+Then, add the key to your [repository's secrets](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets).
+Create another secret with the `GPG_PASSPHRASE` if applicable.
+
+```yaml
+name: Lux upload
+on:
+  push:
+    tags: # Will upload to luarocks.org when a tag is pushed
+      - '*'
+  workflow_dispatch:
+jobs:
+  luarocks-upload:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.GPG_PASSPHRASE }}
+
+      - name: Install Lux
+        uses: lumen-oss/gh-actions-lux@v1
+        with:
+          version: 0.20.3
+
+      - name: Upload
+        run: |
+          lx upload
+        env:
+          LUX_API_KEY: ${{ secrets.LUX_API_KEY }}
+```
+
+#### With artifact signing disabled
+
 ```yaml
 name: Lux upload
 on:
@@ -248,11 +304,11 @@ jobs:
       - name: Install Lux
         uses: lumen-oss/gh-actions-lux@v1
         with:
-          version: 0.19.0
+          version: 0.20.3
 
       - name: Upload
         run: |
-          lx upload
+          lx upload --sign-protocol none
         env:
           LUX_API_KEY: ${{ secrets.LUX_API_KEY }}
 ```
