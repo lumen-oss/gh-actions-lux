@@ -233,7 +233,8 @@ To use `lx upload`, you need to provide an API key for luarocks.org.
 
 #### With artifact signing enabled (recommended)
 
-First, [generate a GPG key](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key)
+First,
+[generate a GPG key](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key)
 and export the private key to your clipboard:
 
 ```bash
@@ -250,7 +251,8 @@ gpg --armor --export-secret-key joe@foo.bar | pbcopy
 gpg --armor --export-secret-key joe@foo.bar | xclip
 ```
 
-Then, add the key to your [repository's secrets](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets).
+Then, add the key to your
+[repository's secrets](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets).
 Create another secret with the `GPG_PASSPHRASE` if applicable.
 
 ```yaml
