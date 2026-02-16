@@ -8290,9 +8290,9 @@ var hasRequiredConstants$8;
 function requireConstants$8 () {
 	if (hasRequiredConstants$8) return constants$8;
 	hasRequiredConstants$8 = 1;
-	(function (exports) {
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.SPECIAL_HEADERS = exports.HEADER_STATE = exports.MINOR = exports.MAJOR = exports.CONNECTION_TOKEN_CHARS = exports.HEADER_CHARS = exports.TOKEN = exports.STRICT_TOKEN = exports.HEX = exports.URL_CHAR = exports.STRICT_URL_CHAR = exports.USERINFO_CHARS = exports.MARK = exports.ALPHANUM = exports.NUM = exports.HEX_MAP = exports.NUM_MAP = exports.ALPHA = exports.FINISH = exports.H_METHOD_MAP = exports.METHOD_MAP = exports.METHODS_RTSP = exports.METHODS_ICE = exports.METHODS_HTTP = exports.METHODS = exports.LENIENT_FLAGS = exports.FLAGS = exports.TYPE = exports.ERROR = void 0;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.SPECIAL_HEADERS = exports$1.HEADER_STATE = exports$1.MINOR = exports$1.MAJOR = exports$1.CONNECTION_TOKEN_CHARS = exports$1.HEADER_CHARS = exports$1.TOKEN = exports$1.STRICT_TOKEN = exports$1.HEX = exports$1.URL_CHAR = exports$1.STRICT_URL_CHAR = exports$1.USERINFO_CHARS = exports$1.MARK = exports$1.ALPHANUM = exports$1.NUM = exports$1.HEX_MAP = exports$1.NUM_MAP = exports$1.ALPHA = exports$1.FINISH = exports$1.H_METHOD_MAP = exports$1.METHOD_MAP = exports$1.METHODS_RTSP = exports$1.METHODS_ICE = exports$1.METHODS_HTTP = exports$1.METHODS = exports$1.LENIENT_FLAGS = exports$1.FLAGS = exports$1.TYPE = exports$1.ERROR = void 0;
 		const utils_1 = requireUtils$2();
 		(function (ERROR) {
 		    ERROR[ERROR["OK"] = 0] = "OK";
@@ -8320,12 +8320,12 @@ function requireConstants$8 () {
 		    ERROR[ERROR["PAUSED_UPGRADE"] = 22] = "PAUSED_UPGRADE";
 		    ERROR[ERROR["PAUSED_H2_UPGRADE"] = 23] = "PAUSED_H2_UPGRADE";
 		    ERROR[ERROR["USER"] = 24] = "USER";
-		})(exports.ERROR || (exports.ERROR = {}));
+		})(exports$1.ERROR || (exports$1.ERROR = {}));
 		(function (TYPE) {
 		    TYPE[TYPE["BOTH"] = 0] = "BOTH";
 		    TYPE[TYPE["REQUEST"] = 1] = "REQUEST";
 		    TYPE[TYPE["RESPONSE"] = 2] = "RESPONSE";
-		})(exports.TYPE || (exports.TYPE = {}));
+		})(exports$1.TYPE || (exports$1.TYPE = {}));
 		(function (FLAGS) {
 		    FLAGS[FLAGS["CONNECTION_KEEP_ALIVE"] = 1] = "CONNECTION_KEEP_ALIVE";
 		    FLAGS[FLAGS["CONNECTION_CLOSE"] = 2] = "CONNECTION_CLOSE";
@@ -8337,12 +8337,12 @@ function requireConstants$8 () {
 		    FLAGS[FLAGS["TRAILING"] = 128] = "TRAILING";
 		    // 1 << 8 is unused
 		    FLAGS[FLAGS["TRANSFER_ENCODING"] = 512] = "TRANSFER_ENCODING";
-		})(exports.FLAGS || (exports.FLAGS = {}));
+		})(exports$1.FLAGS || (exports$1.FLAGS = {}));
 		(function (LENIENT_FLAGS) {
 		    LENIENT_FLAGS[LENIENT_FLAGS["HEADERS"] = 1] = "HEADERS";
 		    LENIENT_FLAGS[LENIENT_FLAGS["CHUNKED_LENGTH"] = 2] = "CHUNKED_LENGTH";
 		    LENIENT_FLAGS[LENIENT_FLAGS["KEEP_ALIVE"] = 4] = "KEEP_ALIVE";
-		})(exports.LENIENT_FLAGS || (exports.LENIENT_FLAGS = {}));
+		})(exports$1.LENIENT_FLAGS || (exports$1.LENIENT_FLAGS = {}));
 		var METHODS;
 		(function (METHODS) {
 		    METHODS[METHODS["DELETE"] = 0] = "DELETE";
@@ -8402,8 +8402,8 @@ function requireConstants$8 () {
 		    METHODS[METHODS["RECORD"] = 44] = "RECORD";
 		    /* RAOP */
 		    METHODS[METHODS["FLUSH"] = 45] = "FLUSH";
-		})(METHODS = exports.METHODS || (exports.METHODS = {}));
-		exports.METHODS_HTTP = [
+		})(METHODS = exports$1.METHODS || (exports$1.METHODS = {}));
+		exports$1.METHODS_HTTP = [
 		    METHODS.DELETE,
 		    METHODS.GET,
 		    METHODS.HEAD,
@@ -8441,10 +8441,10 @@ function requireConstants$8 () {
 		    // TODO(indutny): should we allow it with HTTP?
 		    METHODS.SOURCE,
 		];
-		exports.METHODS_ICE = [
+		exports$1.METHODS_ICE = [
 		    METHODS.SOURCE,
 		];
-		exports.METHODS_RTSP = [
+		exports$1.METHODS_RTSP = [
 		    METHODS.OPTIONS,
 		    METHODS.DESCRIBE,
 		    METHODS.ANNOUNCE,
@@ -8461,59 +8461,59 @@ function requireConstants$8 () {
 		    METHODS.GET,
 		    METHODS.POST,
 		];
-		exports.METHOD_MAP = utils_1.enumToMap(METHODS);
-		exports.H_METHOD_MAP = {};
-		Object.keys(exports.METHOD_MAP).forEach((key) => {
+		exports$1.METHOD_MAP = utils_1.enumToMap(METHODS);
+		exports$1.H_METHOD_MAP = {};
+		Object.keys(exports$1.METHOD_MAP).forEach((key) => {
 		    if (/^H/.test(key)) {
-		        exports.H_METHOD_MAP[key] = exports.METHOD_MAP[key];
+		        exports$1.H_METHOD_MAP[key] = exports$1.METHOD_MAP[key];
 		    }
 		});
 		(function (FINISH) {
 		    FINISH[FINISH["SAFE"] = 0] = "SAFE";
 		    FINISH[FINISH["SAFE_WITH_CB"] = 1] = "SAFE_WITH_CB";
 		    FINISH[FINISH["UNSAFE"] = 2] = "UNSAFE";
-		})(exports.FINISH || (exports.FINISH = {}));
-		exports.ALPHA = [];
+		})(exports$1.FINISH || (exports$1.FINISH = {}));
+		exports$1.ALPHA = [];
 		for (let i = 'A'.charCodeAt(0); i <= 'Z'.charCodeAt(0); i++) {
 		    // Upper case
-		    exports.ALPHA.push(String.fromCharCode(i));
+		    exports$1.ALPHA.push(String.fromCharCode(i));
 		    // Lower case
-		    exports.ALPHA.push(String.fromCharCode(i + 0x20));
+		    exports$1.ALPHA.push(String.fromCharCode(i + 0x20));
 		}
-		exports.NUM_MAP = {
+		exports$1.NUM_MAP = {
 		    0: 0, 1: 1, 2: 2, 3: 3, 4: 4,
 		    5: 5, 6: 6, 7: 7, 8: 8, 9: 9,
 		};
-		exports.HEX_MAP = {
+		exports$1.HEX_MAP = {
 		    0: 0, 1: 1, 2: 2, 3: 3, 4: 4,
 		    5: 5, 6: 6, 7: 7, 8: 8, 9: 9,
 		    A: 0XA, B: 0XB, C: 0XC, D: 0XD, E: 0XE, F: 0XF,
 		    a: 0xa, b: 0xb, c: 0xc, d: 0xd, e: 0xe, f: 0xf,
 		};
-		exports.NUM = [
+		exports$1.NUM = [
 		    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 		];
-		exports.ALPHANUM = exports.ALPHA.concat(exports.NUM);
-		exports.MARK = ['-', '_', '.', '!', '~', '*', '\'', '(', ')'];
-		exports.USERINFO_CHARS = exports.ALPHANUM
-		    .concat(exports.MARK)
+		exports$1.ALPHANUM = exports$1.ALPHA.concat(exports$1.NUM);
+		exports$1.MARK = ['-', '_', '.', '!', '~', '*', '\'', '(', ')'];
+		exports$1.USERINFO_CHARS = exports$1.ALPHANUM
+		    .concat(exports$1.MARK)
 		    .concat(['%', ';', ':', '&', '=', '+', '$', ',']);
 		// TODO(indutny): use RFC
-		exports.STRICT_URL_CHAR = [
+		exports$1.STRICT_URL_CHAR = [
 		    '!', '"', '$', '%', '&', '\'',
 		    '(', ')', '*', '+', ',', '-', '.', '/',
 		    ':', ';', '<', '=', '>',
 		    '@', '[', '\\', ']', '^', '_',
 		    '`',
 		    '{', '|', '}', '~',
-		].concat(exports.ALPHANUM);
-		exports.URL_CHAR = exports.STRICT_URL_CHAR
+		].concat(exports$1.ALPHANUM);
+		exports$1.URL_CHAR = exports$1.STRICT_URL_CHAR
 		    .concat(['\t', '\f']);
 		// All characters with 0x80 bit set to 1
 		for (let i = 0x80; i <= 0xff; i++) {
-		    exports.URL_CHAR.push(i);
+		    exports$1.URL_CHAR.push(i);
 		}
-		exports.HEX = exports.NUM.concat(['a', 'b', 'c', 'd', 'e', 'f', 'A', 'B', 'C', 'D', 'E', 'F']);
+		exports$1.HEX = exports$1.NUM.concat(['a', 'b', 'c', 'd', 'e', 'f', 'A', 'B', 'C', 'D', 'E', 'F']);
 		/* Tokens as defined by rfc 2616. Also lowercases them.
 		 *        token       = 1*<any CHAR except CTLs or separators>
 		 *     separators     = "(" | ")" | "<" | ">" | "@"
@@ -8521,27 +8521,27 @@ function requireConstants$8 () {
 		 *                    | "/" | "[" | "]" | "?" | "="
 		 *                    | "{" | "}" | SP | HT
 		 */
-		exports.STRICT_TOKEN = [
+		exports$1.STRICT_TOKEN = [
 		    '!', '#', '$', '%', '&', '\'',
 		    '*', '+', '-', '.',
 		    '^', '_', '`',
 		    '|', '~',
-		].concat(exports.ALPHANUM);
-		exports.TOKEN = exports.STRICT_TOKEN.concat([' ']);
+		].concat(exports$1.ALPHANUM);
+		exports$1.TOKEN = exports$1.STRICT_TOKEN.concat([' ']);
 		/*
 		 * Verify that a char is a valid visible (printable) US-ASCII
 		 * character or %x80-FF
 		 */
-		exports.HEADER_CHARS = ['\t'];
+		exports$1.HEADER_CHARS = ['\t'];
 		for (let i = 32; i <= 255; i++) {
 		    if (i !== 127) {
-		        exports.HEADER_CHARS.push(i);
+		        exports$1.HEADER_CHARS.push(i);
 		    }
 		}
 		// ',' = \x44
-		exports.CONNECTION_TOKEN_CHARS = exports.HEADER_CHARS.filter((c) => c !== 44);
-		exports.MAJOR = exports.NUM_MAP;
-		exports.MINOR = exports.MAJOR;
+		exports$1.CONNECTION_TOKEN_CHARS = exports$1.HEADER_CHARS.filter((c) => c !== 44);
+		exports$1.MAJOR = exports$1.NUM_MAP;
+		exports$1.MINOR = exports$1.MAJOR;
 		var HEADER_STATE;
 		(function (HEADER_STATE) {
 		    HEADER_STATE[HEADER_STATE["GENERAL"] = 0] = "GENERAL";
@@ -8553,8 +8553,8 @@ function requireConstants$8 () {
 		    HEADER_STATE[HEADER_STATE["CONNECTION_CLOSE"] = 6] = "CONNECTION_CLOSE";
 		    HEADER_STATE[HEADER_STATE["CONNECTION_UPGRADE"] = 7] = "CONNECTION_UPGRADE";
 		    HEADER_STATE[HEADER_STATE["TRANSFER_ENCODING_CHUNKED"] = 8] = "TRANSFER_ENCODING_CHUNKED";
-		})(HEADER_STATE = exports.HEADER_STATE || (exports.HEADER_STATE = {}));
-		exports.SPECIAL_HEADERS = {
+		})(HEADER_STATE = exports$1.HEADER_STATE || (exports$1.HEADER_STATE = {}));
+		exports$1.SPECIAL_HEADERS = {
 		    'connection': HEADER_STATE.CONNECTION,
 		    'content-length': HEADER_STATE.CONTENT_LENGTH,
 		    'proxy-connection': HEADER_STATE.CONNECTION,
@@ -9393,10 +9393,10 @@ function requireClient () {
 	const TIMEOUT_IDLE = 3;
 
 	class Parser {
-	  constructor (client, socket, { exports }) {
+	  constructor (client, socket, { exports: exports$1 }) {
 	    assert(Number.isFinite(client[kMaxHeadersSize]) && client[kMaxHeadersSize] > 0);
 
-	    this.llhttp = exports;
+	    this.llhttp = exports$1;
 	    this.ptr = this.llhttp.llhttp_alloc(constants.TYPE.RESPONSE);
 	    this.client = client;
 	    this.socket = socket;
@@ -25258,7 +25258,7 @@ var hasRequiredSummary;
 function requireSummary () {
 	if (hasRequiredSummary) return summary;
 	hasRequiredSummary = 1;
-	(function (exports) {
+	(function (exports$1) {
 		var __awaiter = (summary && summary.__awaiter) || function (thisArg, _arguments, P, generator) {
 		    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
 		    return new (P || (P = Promise))(function (resolve, reject) {
@@ -25268,13 +25268,13 @@ function requireSummary () {
 		        step((generator = generator.apply(thisArg, _arguments || [])).next());
 		    });
 		};
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.summary = exports.markdownSummary = exports.SUMMARY_DOCS_URL = exports.SUMMARY_ENV_VAR = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.summary = exports$1.markdownSummary = exports$1.SUMMARY_DOCS_URL = exports$1.SUMMARY_ENV_VAR = void 0;
 		const os_1 = require$$0$1;
 		const fs_1 = require$$1;
 		const { access, appendFile, writeFile } = fs_1.promises;
-		exports.SUMMARY_ENV_VAR = 'GITHUB_STEP_SUMMARY';
-		exports.SUMMARY_DOCS_URL = 'https://docs.github.com/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary';
+		exports$1.SUMMARY_ENV_VAR = 'GITHUB_STEP_SUMMARY';
+		exports$1.SUMMARY_DOCS_URL = 'https://docs.github.com/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary';
 		class Summary {
 		    constructor() {
 		        this._buffer = '';
@@ -25290,9 +25290,9 @@ function requireSummary () {
 		            if (this._filePath) {
 		                return this._filePath;
 		            }
-		            const pathFromEnv = process.env[exports.SUMMARY_ENV_VAR];
+		            const pathFromEnv = process.env[exports$1.SUMMARY_ENV_VAR];
 		            if (!pathFromEnv) {
-		                throw new Error(`Unable to find environment variable for $${exports.SUMMARY_ENV_VAR}. Check if your runtime environment supports job summaries.`);
+		                throw new Error(`Unable to find environment variable for $${exports$1.SUMMARY_ENV_VAR}. Check if your runtime environment supports job summaries.`);
 		            }
 		            try {
 		                yield access(pathFromEnv, fs_1.constants.R_OK | fs_1.constants.W_OK);
@@ -25538,8 +25538,8 @@ function requireSummary () {
 		/**
 		 * @deprecated use `core.summary`
 		 */
-		exports.markdownSummary = _summary;
-		exports.summary = _summary;
+		exports$1.markdownSummary = _summary;
+		exports$1.summary = _summary;
 		
 	} (summary));
 	return summary;
@@ -25631,7 +25631,7 @@ var hasRequiredIoUtil;
 function requireIoUtil () {
 	if (hasRequiredIoUtil) return ioUtil;
 	hasRequiredIoUtil = 1;
-	(function (exports) {
+	(function (exports$1) {
 		var __createBinding = (ioUtil && ioUtil.__createBinding) || (Object.create ? (function(o, m, k, k2) {
 		    if (k2 === undefined) k2 = k;
 		    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -25661,22 +25661,22 @@ function requireIoUtil () {
 		    });
 		};
 		var _a;
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.getCmdPath = exports.tryGetExecutablePath = exports.isRooted = exports.isDirectory = exports.exists = exports.READONLY = exports.UV_FS_O_EXLOCK = exports.IS_WINDOWS = exports.unlink = exports.symlink = exports.stat = exports.rmdir = exports.rm = exports.rename = exports.readlink = exports.readdir = exports.open = exports.mkdir = exports.lstat = exports.copyFile = exports.chmod = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.getCmdPath = exports$1.tryGetExecutablePath = exports$1.isRooted = exports$1.isDirectory = exports$1.exists = exports$1.READONLY = exports$1.UV_FS_O_EXLOCK = exports$1.IS_WINDOWS = exports$1.unlink = exports$1.symlink = exports$1.stat = exports$1.rmdir = exports$1.rm = exports$1.rename = exports$1.readlink = exports$1.readdir = exports$1.open = exports$1.mkdir = exports$1.lstat = exports$1.copyFile = exports$1.chmod = void 0;
 		const fs = __importStar(require$$1);
 		const path = __importStar(require$$1$4);
 		_a = fs.promises
 		// export const {open} = 'fs'
-		, exports.chmod = _a.chmod, exports.copyFile = _a.copyFile, exports.lstat = _a.lstat, exports.mkdir = _a.mkdir, exports.open = _a.open, exports.readdir = _a.readdir, exports.readlink = _a.readlink, exports.rename = _a.rename, exports.rm = _a.rm, exports.rmdir = _a.rmdir, exports.stat = _a.stat, exports.symlink = _a.symlink, exports.unlink = _a.unlink;
+		, exports$1.chmod = _a.chmod, exports$1.copyFile = _a.copyFile, exports$1.lstat = _a.lstat, exports$1.mkdir = _a.mkdir, exports$1.open = _a.open, exports$1.readdir = _a.readdir, exports$1.readlink = _a.readlink, exports$1.rename = _a.rename, exports$1.rm = _a.rm, exports$1.rmdir = _a.rmdir, exports$1.stat = _a.stat, exports$1.symlink = _a.symlink, exports$1.unlink = _a.unlink;
 		// export const {open} = 'fs'
-		exports.IS_WINDOWS = process.platform === 'win32';
+		exports$1.IS_WINDOWS = process.platform === 'win32';
 		// See https://github.com/nodejs/node/blob/d0153aee367422d0858105abec186da4dff0a0c5/deps/uv/include/uv/win.h#L691
-		exports.UV_FS_O_EXLOCK = 0x10000000;
-		exports.READONLY = fs.constants.O_RDONLY;
+		exports$1.UV_FS_O_EXLOCK = 0x10000000;
+		exports$1.READONLY = fs.constants.O_RDONLY;
 		function exists(fsPath) {
 		    return __awaiter(this, void 0, void 0, function* () {
 		        try {
-		            yield exports.stat(fsPath);
+		            yield exports$1.stat(fsPath);
 		        }
 		        catch (err) {
 		            if (err.code === 'ENOENT') {
@@ -25687,14 +25687,14 @@ function requireIoUtil () {
 		        return true;
 		    });
 		}
-		exports.exists = exists;
+		exports$1.exists = exists;
 		function isDirectory(fsPath, useStat = false) {
 		    return __awaiter(this, void 0, void 0, function* () {
-		        const stats = useStat ? yield exports.stat(fsPath) : yield exports.lstat(fsPath);
+		        const stats = useStat ? yield exports$1.stat(fsPath) : yield exports$1.lstat(fsPath);
 		        return stats.isDirectory();
 		    });
 		}
-		exports.isDirectory = isDirectory;
+		exports$1.isDirectory = isDirectory;
 		/**
 		 * On OSX/Linux, true if path starts with '/'. On Windows, true for paths like:
 		 * \, \hello, \\hello\share, C:, and C:\hello (and corresponding alternate separator cases).
@@ -25704,13 +25704,13 @@ function requireIoUtil () {
 		    if (!p) {
 		        throw new Error('isRooted() parameter "p" cannot be empty');
 		    }
-		    if (exports.IS_WINDOWS) {
+		    if (exports$1.IS_WINDOWS) {
 		        return (p.startsWith('\\') || /^[A-Z]:/i.test(p) // e.g. \ or \hello or \\hello
 		        ); // e.g. C: or C:\hello
 		    }
 		    return p.startsWith('/');
 		}
-		exports.isRooted = isRooted;
+		exports$1.isRooted = isRooted;
 		/**
 		 * Best effort attempt to determine whether a file exists and is executable.
 		 * @param filePath    file path to check
@@ -25722,7 +25722,7 @@ function requireIoUtil () {
 		        let stats = undefined;
 		        try {
 		            // test file exists
-		            stats = yield exports.stat(filePath);
+		            stats = yield exports$1.stat(filePath);
 		        }
 		        catch (err) {
 		            if (err.code !== 'ENOENT') {
@@ -25731,7 +25731,7 @@ function requireIoUtil () {
 		            }
 		        }
 		        if (stats && stats.isFile()) {
-		            if (exports.IS_WINDOWS) {
+		            if (exports$1.IS_WINDOWS) {
 		                // on Windows, test for valid extension
 		                const upperExt = path.extname(filePath).toUpperCase();
 		                if (extensions.some(validExt => validExt.toUpperCase() === upperExt)) {
@@ -25750,7 +25750,7 @@ function requireIoUtil () {
 		            filePath = originalFilePath + extension;
 		            stats = undefined;
 		            try {
-		                stats = yield exports.stat(filePath);
+		                stats = yield exports$1.stat(filePath);
 		            }
 		            catch (err) {
 		                if (err.code !== 'ENOENT') {
@@ -25759,12 +25759,12 @@ function requireIoUtil () {
 		                }
 		            }
 		            if (stats && stats.isFile()) {
-		                if (exports.IS_WINDOWS) {
+		                if (exports$1.IS_WINDOWS) {
 		                    // preserve the case of the actual file (since an extension was appended)
 		                    try {
 		                        const directory = path.dirname(filePath);
 		                        const upperName = path.basename(filePath).toUpperCase();
-		                        for (const actualName of yield exports.readdir(directory)) {
+		                        for (const actualName of yield exports$1.readdir(directory)) {
 		                            if (upperName === actualName.toUpperCase()) {
 		                                filePath = path.join(directory, actualName);
 		                                break;
@@ -25787,10 +25787,10 @@ function requireIoUtil () {
 		        return '';
 		    });
 		}
-		exports.tryGetExecutablePath = tryGetExecutablePath;
+		exports$1.tryGetExecutablePath = tryGetExecutablePath;
 		function normalizeSeparators(p) {
 		    p = p || '';
-		    if (exports.IS_WINDOWS) {
+		    if (exports$1.IS_WINDOWS) {
 		        // convert slashes on Windows
 		        p = p.replace(/\//g, '\\');
 		        // remove redundant slashes
@@ -25812,7 +25812,7 @@ function requireIoUtil () {
 		    var _a;
 		    return (_a = process.env['COMSPEC']) !== null && _a !== void 0 ? _a : `cmd.exe`;
 		}
-		exports.getCmdPath = getCmdPath;
+		exports$1.getCmdPath = getCmdPath;
 		
 	} (ioUtil));
 	return ioUtil;
@@ -26864,7 +26864,7 @@ var hasRequiredPlatform;
 function requirePlatform () {
 	if (hasRequiredPlatform) return platform;
 	hasRequiredPlatform = 1;
-	(function (exports) {
+	(function (exports$1) {
 		var __createBinding = (platform && platform.__createBinding) || (Object.create ? (function(o, m, k, k2) {
 		    if (k2 === undefined) k2 = k;
 		    var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -26900,8 +26900,8 @@ function requirePlatform () {
 		var __importDefault = (platform && platform.__importDefault) || function (mod) {
 		    return (mod && mod.__esModule) ? mod : { "default": mod };
 		};
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.getDetails = exports.isLinux = exports.isMacOS = exports.isWindows = exports.arch = exports.platform = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.getDetails = exports$1.isLinux = exports$1.isMacOS = exports$1.isWindows = exports$1.arch = exports$1.platform = void 0;
 		const os_1 = __importDefault(require$$0$1);
 		const exec = __importStar(requireExec());
 		const getWindowsInfo = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -26938,25 +26938,25 @@ function requirePlatform () {
 		        version
 		    };
 		});
-		exports.platform = os_1.default.platform();
-		exports.arch = os_1.default.arch();
-		exports.isWindows = exports.platform === 'win32';
-		exports.isMacOS = exports.platform === 'darwin';
-		exports.isLinux = exports.platform === 'linux';
+		exports$1.platform = os_1.default.platform();
+		exports$1.arch = os_1.default.arch();
+		exports$1.isWindows = exports$1.platform === 'win32';
+		exports$1.isMacOS = exports$1.platform === 'darwin';
+		exports$1.isLinux = exports$1.platform === 'linux';
 		function getDetails() {
 		    return __awaiter(this, void 0, void 0, function* () {
-		        return Object.assign(Object.assign({}, (yield (exports.isWindows
+		        return Object.assign(Object.assign({}, (yield (exports$1.isWindows
 		            ? getWindowsInfo()
-		            : exports.isMacOS
+		            : exports$1.isMacOS
 		                ? getMacOsInfo()
-		                : getLinuxInfo()))), { platform: exports.platform,
-		            arch: exports.arch,
-		            isWindows: exports.isWindows,
-		            isMacOS: exports.isMacOS,
-		            isLinux: exports.isLinux });
+		                : getLinuxInfo()))), { platform: exports$1.platform,
+		            arch: exports$1.arch,
+		            isWindows: exports$1.isWindows,
+		            isMacOS: exports$1.isMacOS,
+		            isLinux: exports$1.isLinux });
 		    });
 		}
-		exports.getDetails = getDetails;
+		exports$1.getDetails = getDetails;
 		
 	} (platform));
 	return platform;
@@ -26967,7 +26967,7 @@ var hasRequiredCore;
 function requireCore () {
 	if (hasRequiredCore) return core;
 	hasRequiredCore = 1;
-	(function (exports) {
+	(function (exports$1) {
 		var __createBinding = (core && core.__createBinding) || (Object.create ? (function(o, m, k, k2) {
 		    if (k2 === undefined) k2 = k;
 		    var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -27000,8 +27000,8 @@ function requireCore () {
 		        step((generator = generator.apply(thisArg, _arguments || [])).next());
 		    });
 		};
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.platform = exports.toPlatformPath = exports.toWin32Path = exports.toPosixPath = exports.markdownSummary = exports.summary = exports.getIDToken = exports.getState = exports.saveState = exports.group = exports.endGroup = exports.startGroup = exports.info = exports.notice = exports.warning = exports.error = exports.debug = exports.isDebug = exports.setFailed = exports.setCommandEcho = exports.setOutput = exports.getBooleanInput = exports.getMultilineInput = exports.getInput = exports.addPath = exports.setSecret = exports.exportVariable = exports.ExitCode = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.platform = exports$1.toPlatformPath = exports$1.toWin32Path = exports$1.toPosixPath = exports$1.markdownSummary = exports$1.summary = exports$1.getIDToken = exports$1.getState = exports$1.saveState = exports$1.group = exports$1.endGroup = exports$1.startGroup = exports$1.info = exports$1.notice = exports$1.warning = exports$1.error = exports$1.debug = exports$1.isDebug = exports$1.setFailed = exports$1.setCommandEcho = exports$1.setOutput = exports$1.getBooleanInput = exports$1.getMultilineInput = exports$1.getInput = exports$1.addPath = exports$1.setSecret = exports$1.exportVariable = exports$1.ExitCode = void 0;
 		const command_1 = requireCommand();
 		const file_command_1 = requireFileCommand();
 		const utils_1 = requireUtils$3();
@@ -27021,7 +27021,7 @@ function requireCore () {
 		     * A code indicating that the action was a failure
 		     */
 		    ExitCode[ExitCode["Failure"] = 1] = "Failure";
-		})(ExitCode || (exports.ExitCode = ExitCode = {}));
+		})(ExitCode || (exports$1.ExitCode = ExitCode = {}));
 		//-----------------------------------------------------------------------
 		// Variables
 		//-----------------------------------------------------------------------
@@ -27040,7 +27040,7 @@ function requireCore () {
 		    }
 		    (0, command_1.issueCommand)('set-env', { name }, convertedVal);
 		}
-		exports.exportVariable = exportVariable;
+		exports$1.exportVariable = exportVariable;
 		/**
 		 * Registers a secret which will get masked from logs
 		 * @param secret value of the secret
@@ -27048,7 +27048,7 @@ function requireCore () {
 		function setSecret(secret) {
 		    (0, command_1.issueCommand)('add-mask', {}, secret);
 		}
-		exports.setSecret = setSecret;
+		exports$1.setSecret = setSecret;
 		/**
 		 * Prepends inputPath to the PATH (for this action and future actions)
 		 * @param inputPath
@@ -27063,7 +27063,7 @@ function requireCore () {
 		    }
 		    process.env['PATH'] = `${inputPath}${path.delimiter}${process.env['PATH']}`;
 		}
-		exports.addPath = addPath;
+		exports$1.addPath = addPath;
 		/**
 		 * Gets the value of an input.
 		 * Unless trimWhitespace is set to false in InputOptions, the value is also trimmed.
@@ -27083,7 +27083,7 @@ function requireCore () {
 		    }
 		    return val.trim();
 		}
-		exports.getInput = getInput;
+		exports$1.getInput = getInput;
 		/**
 		 * Gets the values of an multiline input.  Each value is also trimmed.
 		 *
@@ -27101,7 +27101,7 @@ function requireCore () {
 		    }
 		    return inputs.map(input => input.trim());
 		}
-		exports.getMultilineInput = getMultilineInput;
+		exports$1.getMultilineInput = getMultilineInput;
 		/**
 		 * Gets the input value of the boolean type in the YAML 1.2 "core schema" specification.
 		 * Support boolean input list: `true | True | TRUE | false | False | FALSE` .
@@ -27123,7 +27123,7 @@ function requireCore () {
 		    throw new TypeError(`Input does not meet YAML 1.2 "Core Schema" specification: ${name}\n` +
 		        `Support boolean input list: \`true | True | TRUE | false | False | FALSE\``);
 		}
-		exports.getBooleanInput = getBooleanInput;
+		exports$1.getBooleanInput = getBooleanInput;
 		/**
 		 * Sets the value of an output.
 		 *
@@ -27139,7 +27139,7 @@ function requireCore () {
 		    process.stdout.write(os.EOL);
 		    (0, command_1.issueCommand)('set-output', { name }, (0, utils_1.toCommandValue)(value));
 		}
-		exports.setOutput = setOutput;
+		exports$1.setOutput = setOutput;
 		/**
 		 * Enables or disables the echoing of commands into stdout for the rest of the step.
 		 * Echoing is disabled by default if ACTIONS_STEP_DEBUG is not set.
@@ -27148,7 +27148,7 @@ function requireCore () {
 		function setCommandEcho(enabled) {
 		    (0, command_1.issue)('echo', enabled ? 'on' : 'off');
 		}
-		exports.setCommandEcho = setCommandEcho;
+		exports$1.setCommandEcho = setCommandEcho;
 		//-----------------------------------------------------------------------
 		// Results
 		//-----------------------------------------------------------------------
@@ -27161,7 +27161,7 @@ function requireCore () {
 		    process.exitCode = ExitCode.Failure;
 		    error(message);
 		}
-		exports.setFailed = setFailed;
+		exports$1.setFailed = setFailed;
 		//-----------------------------------------------------------------------
 		// Logging Commands
 		//-----------------------------------------------------------------------
@@ -27171,7 +27171,7 @@ function requireCore () {
 		function isDebug() {
 		    return process.env['RUNNER_DEBUG'] === '1';
 		}
-		exports.isDebug = isDebug;
+		exports$1.isDebug = isDebug;
 		/**
 		 * Writes debug message to user log
 		 * @param message debug message
@@ -27179,7 +27179,7 @@ function requireCore () {
 		function debug(message) {
 		    (0, command_1.issueCommand)('debug', {}, message);
 		}
-		exports.debug = debug;
+		exports$1.debug = debug;
 		/**
 		 * Adds an error issue
 		 * @param message error issue message. Errors will be converted to string via toString()
@@ -27188,7 +27188,7 @@ function requireCore () {
 		function error(message, properties = {}) {
 		    (0, command_1.issueCommand)('error', (0, utils_1.toCommandProperties)(properties), message instanceof Error ? message.toString() : message);
 		}
-		exports.error = error;
+		exports$1.error = error;
 		/**
 		 * Adds a warning issue
 		 * @param message warning issue message. Errors will be converted to string via toString()
@@ -27197,7 +27197,7 @@ function requireCore () {
 		function warning(message, properties = {}) {
 		    (0, command_1.issueCommand)('warning', (0, utils_1.toCommandProperties)(properties), message instanceof Error ? message.toString() : message);
 		}
-		exports.warning = warning;
+		exports$1.warning = warning;
 		/**
 		 * Adds a notice issue
 		 * @param message notice issue message. Errors will be converted to string via toString()
@@ -27206,7 +27206,7 @@ function requireCore () {
 		function notice(message, properties = {}) {
 		    (0, command_1.issueCommand)('notice', (0, utils_1.toCommandProperties)(properties), message instanceof Error ? message.toString() : message);
 		}
-		exports.notice = notice;
+		exports$1.notice = notice;
 		/**
 		 * Writes info to log with console.log.
 		 * @param message info message
@@ -27214,7 +27214,7 @@ function requireCore () {
 		function info(message) {
 		    process.stdout.write(message + os.EOL);
 		}
-		exports.info = info;
+		exports$1.info = info;
 		/**
 		 * Begin an output group.
 		 *
@@ -27225,14 +27225,14 @@ function requireCore () {
 		function startGroup(name) {
 		    (0, command_1.issue)('group', name);
 		}
-		exports.startGroup = startGroup;
+		exports$1.startGroup = startGroup;
 		/**
 		 * End an output group.
 		 */
 		function endGroup() {
 		    (0, command_1.issue)('endgroup');
 		}
-		exports.endGroup = endGroup;
+		exports$1.endGroup = endGroup;
 		/**
 		 * Wrap an asynchronous function call in a group.
 		 *
@@ -27254,7 +27254,7 @@ function requireCore () {
 		        return result;
 		    });
 		}
-		exports.group = group;
+		exports$1.group = group;
 		//-----------------------------------------------------------------------
 		// Wrapper action state
 		//-----------------------------------------------------------------------
@@ -27272,7 +27272,7 @@ function requireCore () {
 		    }
 		    (0, command_1.issueCommand)('save-state', { name }, (0, utils_1.toCommandValue)(value));
 		}
-		exports.saveState = saveState;
+		exports$1.saveState = saveState;
 		/**
 		 * Gets the value of an state set by this action's main execution.
 		 *
@@ -27282,34 +27282,34 @@ function requireCore () {
 		function getState(name) {
 		    return process.env[`STATE_${name}`] || '';
 		}
-		exports.getState = getState;
+		exports$1.getState = getState;
 		function getIDToken(aud) {
 		    return __awaiter(this, void 0, void 0, function* () {
 		        return yield oidc_utils_1.OidcClient.getIDToken(aud);
 		    });
 		}
-		exports.getIDToken = getIDToken;
+		exports$1.getIDToken = getIDToken;
 		/**
 		 * Summary exports
 		 */
 		var summary_1 = requireSummary();
-		Object.defineProperty(exports, "summary", { enumerable: true, get: function () { return summary_1.summary; } });
+		Object.defineProperty(exports$1, "summary", { enumerable: true, get: function () { return summary_1.summary; } });
 		/**
 		 * @deprecated use core.summary
 		 */
 		var summary_2 = requireSummary();
-		Object.defineProperty(exports, "markdownSummary", { enumerable: true, get: function () { return summary_2.markdownSummary; } });
+		Object.defineProperty(exports$1, "markdownSummary", { enumerable: true, get: function () { return summary_2.markdownSummary; } });
 		/**
 		 * Path exports
 		 */
 		var path_utils_1 = requirePathUtils();
-		Object.defineProperty(exports, "toPosixPath", { enumerable: true, get: function () { return path_utils_1.toPosixPath; } });
-		Object.defineProperty(exports, "toWin32Path", { enumerable: true, get: function () { return path_utils_1.toWin32Path; } });
-		Object.defineProperty(exports, "toPlatformPath", { enumerable: true, get: function () { return path_utils_1.toPlatformPath; } });
+		Object.defineProperty(exports$1, "toPosixPath", { enumerable: true, get: function () { return path_utils_1.toPosixPath; } });
+		Object.defineProperty(exports$1, "toWin32Path", { enumerable: true, get: function () { return path_utils_1.toWin32Path; } });
+		Object.defineProperty(exports$1, "toPlatformPath", { enumerable: true, get: function () { return path_utils_1.toPlatformPath; } });
 		/**
 		 * Platform utilities exports
 		 */
-		exports.platform = __importStar(requirePlatform());
+		exports$1.platform = __importStar(requirePlatform());
 		
 	} (core));
 	return core;
@@ -27594,9 +27594,9 @@ var hasRequiredInternalMatchKind;
 function requireInternalMatchKind () {
 	if (hasRequiredInternalMatchKind) return internalMatchKind;
 	hasRequiredInternalMatchKind = 1;
-	(function (exports) {
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.MatchKind = void 0;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.MatchKind = void 0;
 		(function (MatchKind) {
 		    /** Not matched */
 		    MatchKind[MatchKind["None"] = 0] = "None";
@@ -27606,7 +27606,7 @@ function requireInternalMatchKind () {
 		    MatchKind[MatchKind["File"] = 2] = "File";
 		    /** Matched */
 		    MatchKind[MatchKind["All"] = 3] = "All";
-		})(exports.MatchKind || (exports.MatchKind = {}));
+		})(exports$1.MatchKind || (exports$1.MatchKind = {}));
 		
 	} (internalMatchKind));
 	return internalMatchKind;
@@ -29647,15 +29647,15 @@ function requireGlob () {
 	return glob;
 }
 
-var semver$1 = {exports: {}};
+var semver = {exports: {}};
 
-var hasRequiredSemver$1;
+var hasRequiredSemver;
 
-function requireSemver$1 () {
-	if (hasRequiredSemver$1) return semver$1.exports;
-	hasRequiredSemver$1 = 1;
-	(function (module, exports) {
-		exports = module.exports = SemVer;
+function requireSemver () {
+	if (hasRequiredSemver) return semver.exports;
+	hasRequiredSemver = 1;
+	(function (module, exports$1) {
+		exports$1 = module.exports = SemVer;
 
 		var debug;
 		/* istanbul ignore next */
@@ -29674,7 +29674,7 @@ function requireSemver$1 () {
 
 		// Note: this is the semver.org version of the spec that it implements
 		// Not necessarily the package version of this code.
-		exports.SEMVER_SPEC_VERSION = '2.0.0';
+		exports$1.SEMVER_SPEC_VERSION = '2.0.0';
 
 		var MAX_LENGTH = 256;
 		var MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER ||
@@ -29686,10 +29686,10 @@ function requireSemver$1 () {
 		var MAX_SAFE_BUILD_LENGTH = MAX_LENGTH - 6;
 
 		// The actual regexps go on exports.re
-		var re = exports.re = [];
-		var safeRe = exports.safeRe = [];
-		var src = exports.src = [];
-		var t = exports.tokens = {};
+		var re = exports$1.re = [];
+		var safeRe = exports$1.safeRe = [];
+		var src = exports$1.src = [];
+		var t = exports$1.tokens = {};
 		var R = 0;
 
 		function tok (n) {
@@ -29947,7 +29947,7 @@ function requireSemver$1 () {
 		  }
 		}
 
-		exports.parse = parse;
+		exports$1.parse = parse;
 		function parse (version, options) {
 		  if (!options || typeof options !== 'object') {
 		    options = {
@@ -29980,19 +29980,19 @@ function requireSemver$1 () {
 		  }
 		}
 
-		exports.valid = valid;
+		exports$1.valid = valid;
 		function valid (version, options) {
 		  var v = parse(version, options);
 		  return v ? v.version : null
 		}
 
-		exports.clean = clean;
+		exports$1.clean = clean;
 		function clean (version, options) {
 		  var s = parse(version.trim().replace(/^[=v]+/, ''), options);
 		  return s ? s.version : null
 		}
 
-		exports.SemVer = SemVer;
+		exports$1.SemVer = SemVer;
 
 		function SemVer (version, options) {
 		  if (!options || typeof options !== 'object') {
@@ -30263,7 +30263,7 @@ function requireSemver$1 () {
 		  return this
 		};
 
-		exports.inc = inc;
+		exports$1.inc = inc;
 		function inc (version, release, loose, identifier) {
 		  if (typeof (loose) === 'string') {
 		    identifier = loose;
@@ -30277,7 +30277,7 @@ function requireSemver$1 () {
 		  }
 		}
 
-		exports.diff = diff;
+		exports$1.diff = diff;
 		function diff (version1, version2) {
 		  if (eq(version1, version2)) {
 		    return null
@@ -30300,7 +30300,7 @@ function requireSemver$1 () {
 		  }
 		}
 
-		exports.compareIdentifiers = compareIdentifiers;
+		exports$1.compareIdentifiers = compareIdentifiers;
 
 		var numeric = /^[0-9]+$/;
 		function compareIdentifiers (a, b) {
@@ -30319,93 +30319,93 @@ function requireSemver$1 () {
 		    : 1
 		}
 
-		exports.rcompareIdentifiers = rcompareIdentifiers;
+		exports$1.rcompareIdentifiers = rcompareIdentifiers;
 		function rcompareIdentifiers (a, b) {
 		  return compareIdentifiers(b, a)
 		}
 
-		exports.major = major;
+		exports$1.major = major;
 		function major (a, loose) {
 		  return new SemVer(a, loose).major
 		}
 
-		exports.minor = minor;
+		exports$1.minor = minor;
 		function minor (a, loose) {
 		  return new SemVer(a, loose).minor
 		}
 
-		exports.patch = patch;
+		exports$1.patch = patch;
 		function patch (a, loose) {
 		  return new SemVer(a, loose).patch
 		}
 
-		exports.compare = compare;
+		exports$1.compare = compare;
 		function compare (a, b, loose) {
 		  return new SemVer(a, loose).compare(new SemVer(b, loose))
 		}
 
-		exports.compareLoose = compareLoose;
+		exports$1.compareLoose = compareLoose;
 		function compareLoose (a, b) {
 		  return compare(a, b, true)
 		}
 
-		exports.compareBuild = compareBuild;
+		exports$1.compareBuild = compareBuild;
 		function compareBuild (a, b, loose) {
 		  var versionA = new SemVer(a, loose);
 		  var versionB = new SemVer(b, loose);
 		  return versionA.compare(versionB) || versionA.compareBuild(versionB)
 		}
 
-		exports.rcompare = rcompare;
+		exports$1.rcompare = rcompare;
 		function rcompare (a, b, loose) {
 		  return compare(b, a, loose)
 		}
 
-		exports.sort = sort;
+		exports$1.sort = sort;
 		function sort (list, loose) {
 		  return list.sort(function (a, b) {
-		    return exports.compareBuild(a, b, loose)
+		    return exports$1.compareBuild(a, b, loose)
 		  })
 		}
 
-		exports.rsort = rsort;
+		exports$1.rsort = rsort;
 		function rsort (list, loose) {
 		  return list.sort(function (a, b) {
-		    return exports.compareBuild(b, a, loose)
+		    return exports$1.compareBuild(b, a, loose)
 		  })
 		}
 
-		exports.gt = gt;
+		exports$1.gt = gt;
 		function gt (a, b, loose) {
 		  return compare(a, b, loose) > 0
 		}
 
-		exports.lt = lt;
+		exports$1.lt = lt;
 		function lt (a, b, loose) {
 		  return compare(a, b, loose) < 0
 		}
 
-		exports.eq = eq;
+		exports$1.eq = eq;
 		function eq (a, b, loose) {
 		  return compare(a, b, loose) === 0
 		}
 
-		exports.neq = neq;
+		exports$1.neq = neq;
 		function neq (a, b, loose) {
 		  return compare(a, b, loose) !== 0
 		}
 
-		exports.gte = gte;
+		exports$1.gte = gte;
 		function gte (a, b, loose) {
 		  return compare(a, b, loose) >= 0
 		}
 
-		exports.lte = lte;
+		exports$1.lte = lte;
 		function lte (a, b, loose) {
 		  return compare(a, b, loose) <= 0
 		}
 
-		exports.cmp = cmp;
+		exports$1.cmp = cmp;
 		function cmp (a, op, b, loose) {
 		  switch (op) {
 		    case '===':
@@ -30447,7 +30447,7 @@ function requireSemver$1 () {
 		  }
 		}
 
-		exports.Comparator = Comparator;
+		exports$1.Comparator = Comparator;
 		function Comparator (comp, options) {
 		  if (!options || typeof options !== 'object') {
 		    options = {
@@ -30579,7 +30579,7 @@ function requireSemver$1 () {
 		    oppositeDirectionsLessThan || oppositeDirectionsGreaterThan
 		};
 
-		exports.Range = Range;
+		exports$1.Range = Range;
 		function Range (range, options) {
 		  if (!options || typeof options !== 'object') {
 		    options = {
@@ -30723,7 +30723,7 @@ function requireSemver$1 () {
 		}
 
 		// Mostly just for testing and legacy API reasons
-		exports.toComparators = toComparators;
+		exports$1.toComparators = toComparators;
 		function toComparators (range, options) {
 		  return new Range(range, options).set.map(function (comp) {
 		    return comp.map(function (c) {
@@ -31034,7 +31034,7 @@ function requireSemver$1 () {
 		  return true
 		}
 
-		exports.satisfies = satisfies;
+		exports$1.satisfies = satisfies;
 		function satisfies (version, range, options) {
 		  try {
 		    range = new Range(range, options);
@@ -31044,7 +31044,7 @@ function requireSemver$1 () {
 		  return range.test(version)
 		}
 
-		exports.maxSatisfying = maxSatisfying;
+		exports$1.maxSatisfying = maxSatisfying;
 		function maxSatisfying (versions, range, options) {
 		  var max = null;
 		  var maxSV = null;
@@ -31066,7 +31066,7 @@ function requireSemver$1 () {
 		  return max
 		}
 
-		exports.minSatisfying = minSatisfying;
+		exports$1.minSatisfying = minSatisfying;
 		function minSatisfying (versions, range, options) {
 		  var min = null;
 		  var minSV = null;
@@ -31088,7 +31088,7 @@ function requireSemver$1 () {
 		  return min
 		}
 
-		exports.minVersion = minVersion;
+		exports$1.minVersion = minVersion;
 		function minVersion (range, loose) {
 		  range = new Range(range, loose);
 
@@ -31142,7 +31142,7 @@ function requireSemver$1 () {
 		  return null
 		}
 
-		exports.validRange = validRange;
+		exports$1.validRange = validRange;
 		function validRange (range, options) {
 		  try {
 		    // Return '*' instead of '' so that truthiness works.
@@ -31154,18 +31154,18 @@ function requireSemver$1 () {
 		}
 
 		// Determine if version is less than all the versions possible in the range
-		exports.ltr = ltr;
+		exports$1.ltr = ltr;
 		function ltr (version, range, options) {
 		  return outside(version, range, '<', options)
 		}
 
 		// Determine if version is greater than all the versions possible in the range.
-		exports.gtr = gtr;
+		exports$1.gtr = gtr;
 		function gtr (version, range, options) {
 		  return outside(version, range, '>', options)
 		}
 
-		exports.outside = outside;
+		exports$1.outside = outside;
 		function outside (version, range, hilo, options) {
 		  version = new SemVer(version, options);
 		  range = new Range(range, options);
@@ -31235,20 +31235,20 @@ function requireSemver$1 () {
 		  return true
 		}
 
-		exports.prerelease = prerelease;
+		exports$1.prerelease = prerelease;
 		function prerelease (version, options) {
 		  var parsed = parse(version, options);
 		  return (parsed && parsed.prerelease.length) ? parsed.prerelease : null
 		}
 
-		exports.intersects = intersects;
+		exports$1.intersects = intersects;
 		function intersects (r1, r2, options) {
 		  r1 = new Range(r1, options);
 		  r2 = new Range(r2, options);
 		  return r1.intersects(r2)
 		}
 
-		exports.coerce = coerce;
+		exports$1.coerce = coerce;
 		function coerce (version, options) {
 		  if (version instanceof SemVer) {
 		    return version
@@ -31298,8 +31298,8 @@ function requireSemver$1 () {
 		    '.' + (match[3] || '0') +
 		    '.' + (match[4] || '0'), options)
 		} 
-	} (semver$1, semver$1.exports));
-	return semver$1.exports;
+	} (semver, semver.exports));
+	return semver.exports;
 }
 
 var constants$5 = {};
@@ -31400,7 +31400,7 @@ function requireCacheUtils () {
 	const crypto = __importStar(require$$0$2);
 	const fs = __importStar(require$$1);
 	const path = __importStar(require$$1$4);
-	const semver = __importStar(requireSemver$1());
+	const semver = __importStar(requireSemver());
 	const util = __importStar(require$$0$3);
 	const constants_1 = requireConstants$5();
 	// From https://github.com/actions/toolkit/blob/main/packages/tool-cache/src/tool-cache.ts#L23
@@ -32551,9 +32551,6 @@ var pipelineRequest$1 = {};
 
 var uuidUtils = {};
 
-const require$6 = createRequire(import.meta.url);
-function __require$5() { return require$6("node:crypto"); }
-
 var hasRequiredUuidUtils;
 
 function requireUuidUtils () {
@@ -32563,18 +32560,13 @@ function requireUuidUtils () {
 	// Licensed under the MIT License.
 	Object.defineProperty(uuidUtils, "__esModule", { value: true });
 	uuidUtils.randomUUID = randomUUID;
-	const node_crypto_1 = __require$5();
-	// NOTE: This is a workaround until we can use `globalThis.crypto.randomUUID` in Node.js 19+.
-	const uuidFunction = typeof globalThis?.crypto?.randomUUID === "function"
-	    ? globalThis.crypto.randomUUID.bind(globalThis.crypto)
-	    : node_crypto_1.randomUUID;
 	/**
 	 * Generated Universally Unique Identifier
 	 *
 	 * @returns RFC4122 v4 UUID.
 	 */
 	function randomUUID() {
-	    return uuidFunction();
+	    return crypto.randomUUID();
 	}
 	
 	return uuidUtils;
@@ -33299,14 +33291,14 @@ var defaultHttpClient$1 = {};
 
 var nodeHttpClient = {};
 
+const require$6 = createRequire(import.meta.url);
+function __require$5() { return require$6("node:http"); }
+
 const require$5 = createRequire(import.meta.url);
-function __require$4() { return require$5("node:http"); }
+function __require$4() { return require$5("node:https"); }
 
 const require$4 = createRequire(import.meta.url);
-function __require$3() { return require$4("node:https"); }
-
-const require$3 = createRequire(import.meta.url);
-function __require$2() { return require$3("node:zlib"); }
+function __require$3() { return require$4("node:zlib"); }
 
 var log$4 = {};
 
@@ -33336,9 +33328,9 @@ function requireNodeHttpClient () {
 	nodeHttpClient.getBodyLength = getBodyLength;
 	nodeHttpClient.createNodeHttpClient = createNodeHttpClient;
 	const tslib_1 = require$$0;
-	const node_http_1 = tslib_1.__importDefault(__require$4());
-	const node_https_1 = tslib_1.__importDefault(__require$3());
-	const node_zlib_1 = tslib_1.__importDefault(__require$2());
+	const node_http_1 = tslib_1.__importDefault(__require$5());
+	const node_https_1 = tslib_1.__importDefault(__require$4());
+	const node_zlib_1 = tslib_1.__importDefault(__require$3());
 	const node_stream_1 = __require$a();
 	const AbortError_js_1 = requireAbortError$3();
 	const httpHeaders_js_1 = requireHttpHeaders$1();
@@ -33717,18 +33709,18 @@ var hasRequiredLogPolicy$1;
 function requireLogPolicy$1 () {
 	if (hasRequiredLogPolicy$1) return logPolicy$1;
 	hasRequiredLogPolicy$1 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.logPolicyName = void 0;
-		exports.logPolicy = logPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.logPolicyName = void 0;
+		exports$1.logPolicy = logPolicy;
 		const log_js_1 = requireLog$4();
 		const sanitizer_js_1 = requireSanitizer();
 		/**
 		 * The programmatic identifier of the logPolicy.
 		 */
-		exports.logPolicyName = "logPolicy";
+		exports$1.logPolicyName = "logPolicy";
 		/**
 		 * A policy that logs all requests and responses.
 		 * @param options - Options to configure logPolicy.
@@ -33740,7 +33732,7 @@ function requireLogPolicy$1 () {
 		        additionalAllowedQueryParameters: options.additionalAllowedQueryParameters,
 		    });
 		    return {
-		        name: exports.logPolicyName,
+		        name: exports$1.logPolicyName,
 		        async sendRequest(request, next) {
 		            if (!logger.enabled) {
 		                return next(request);
@@ -33765,16 +33757,16 @@ var hasRequiredRedirectPolicy$1;
 function requireRedirectPolicy$1 () {
 	if (hasRequiredRedirectPolicy$1) return redirectPolicy$1;
 	hasRequiredRedirectPolicy$1 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.redirectPolicyName = void 0;
-		exports.redirectPolicy = redirectPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.redirectPolicyName = void 0;
+		exports$1.redirectPolicy = redirectPolicy;
 		/**
 		 * The programmatic identifier of the redirectPolicy.
 		 */
-		exports.redirectPolicyName = "redirectPolicy";
+		exports$1.redirectPolicyName = "redirectPolicy";
 		/**
 		 * Methods that are allowed to follow redirects 301 and 302
 		 */
@@ -33788,7 +33780,7 @@ function requireRedirectPolicy$1 () {
 		function redirectPolicy(options = {}) {
 		    const { maxRetries = 20 } = options;
 		    return {
-		        name: exports.redirectPolicyName,
+		        name: exports$1.redirectPolicyName,
 		        async sendRequest(request, next) {
 		            const response = await next(request);
 		            return handleRedirect(next, response, maxRetries);
@@ -33855,18 +33847,18 @@ function requireUserAgentPlatform$1 () {
 	 */
 	async function setPlatformSpecificData(map) {
 	    if (node_process_1.default && node_process_1.default.versions) {
+	        const osInfo = `${node_os_1.default.type()} ${node_os_1.default.release()}; ${node_os_1.default.arch()}`;
 	        const versions = node_process_1.default.versions;
 	        if (versions.bun) {
-	            map.set("Bun", versions.bun);
+	            map.set("Bun", `${versions.bun} (${osInfo})`);
 	        }
 	        else if (versions.deno) {
-	            map.set("Deno", versions.deno);
+	            map.set("Deno", `${versions.deno} (${osInfo})`);
 	        }
 	        else if (versions.node) {
-	            map.set("Node", versions.node);
+	            map.set("Node", `${versions.node} (${osInfo})`);
 	        }
 	    }
-	    map.set("OS", `(${node_os_1.default.arch()}-${node_os_1.default.type()}-${node_os_1.default.release()})`);
 	}
 	
 	return userAgentPlatform$1;
@@ -33883,7 +33875,7 @@ function requireConstants$4 () {
 	// Licensed under the MIT License.
 	Object.defineProperty(constants$4, "__esModule", { value: true });
 	constants$4.DEFAULT_RETRY_POLICY_COUNT = constants$4.SDK_VERSION = void 0;
-	constants$4.SDK_VERSION = "0.3.1";
+	constants$4.SDK_VERSION = "0.3.3";
 	constants$4.DEFAULT_RETRY_POLICY_COUNT = 3;
 	
 	return constants$4;
@@ -33935,18 +33927,18 @@ var hasRequiredUserAgentPolicy$1;
 function requireUserAgentPolicy$1 () {
 	if (hasRequiredUserAgentPolicy$1) return userAgentPolicy$1;
 	hasRequiredUserAgentPolicy$1 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.userAgentPolicyName = void 0;
-		exports.userAgentPolicy = userAgentPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.userAgentPolicyName = void 0;
+		exports$1.userAgentPolicy = userAgentPolicy;
 		const userAgent_js_1 = requireUserAgent$1();
 		const UserAgentHeaderName = (0, userAgent_js_1.getUserAgentHeaderName)();
 		/**
 		 * The programmatic identifier of the userAgentPolicy.
 		 */
-		exports.userAgentPolicyName = "userAgentPolicy";
+		exports$1.userAgentPolicyName = "userAgentPolicy";
 		/**
 		 * A policy that sets the User-Agent header (or equivalent) to reflect
 		 * the library version.
@@ -33955,7 +33947,7 @@ function requireUserAgentPolicy$1 () {
 		function userAgentPolicy(options = {}) {
 		    const userAgentValue = (0, userAgent_js_1.getUserAgentValue)(options.userAgentPrefix);
 		    return {
-		        name: exports.userAgentPolicyName,
+		        name: exports$1.userAgentPolicyName,
 		        async sendRequest(request, next) {
 		            if (!request.headers.has(UserAgentHeaderName)) {
 		                request.headers.set(UserAgentHeaderName, await userAgentValue);
@@ -33976,23 +33968,23 @@ var hasRequiredDecompressResponsePolicy$1;
 function requireDecompressResponsePolicy$1 () {
 	if (hasRequiredDecompressResponsePolicy$1) return decompressResponsePolicy$1;
 	hasRequiredDecompressResponsePolicy$1 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.decompressResponsePolicyName = void 0;
-		exports.decompressResponsePolicy = decompressResponsePolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.decompressResponsePolicyName = void 0;
+		exports$1.decompressResponsePolicy = decompressResponsePolicy;
 		/**
 		 * The programmatic identifier of the decompressResponsePolicy.
 		 */
-		exports.decompressResponsePolicyName = "decompressResponsePolicy";
+		exports$1.decompressResponsePolicyName = "decompressResponsePolicy";
 		/**
 		 * A policy to enable response decompression according to Accept-Encoding header
 		 * https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding
 		 */
 		function decompressResponsePolicy() {
 		    return {
-		        name: exports.decompressResponsePolicyName,
+		        name: exports$1.decompressResponsePolicyName,
 		        async sendRequest(request, next) {
 		            // HEAD requests have no body
 		            if (request.method !== "HEAD") {
@@ -34430,12 +34422,12 @@ var hasRequiredDefaultRetryPolicy$1;
 function requireDefaultRetryPolicy$1 () {
 	if (hasRequiredDefaultRetryPolicy$1) return defaultRetryPolicy$1;
 	hasRequiredDefaultRetryPolicy$1 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.defaultRetryPolicyName = void 0;
-		exports.defaultRetryPolicy = defaultRetryPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.defaultRetryPolicyName = void 0;
+		exports$1.defaultRetryPolicy = defaultRetryPolicy;
 		const exponentialRetryStrategy_js_1 = requireExponentialRetryStrategy();
 		const throttlingRetryStrategy_js_1 = requireThrottlingRetryStrategy();
 		const retryPolicy_js_1 = requireRetryPolicy$1();
@@ -34443,7 +34435,7 @@ function requireDefaultRetryPolicy$1 () {
 		/**
 		 * Name of the {@link defaultRetryPolicy}
 		 */
-		exports.defaultRetryPolicyName = "defaultRetryPolicy";
+		exports$1.defaultRetryPolicyName = "defaultRetryPolicy";
 		/**
 		 * A policy that retries according to three strategies:
 		 * - When the server sends a 429 response with a Retry-After header.
@@ -34452,7 +34444,7 @@ function requireDefaultRetryPolicy$1 () {
 		 */
 		function defaultRetryPolicy(options = {}) {
 		    return {
-		        name: exports.defaultRetryPolicyName,
+		        name: exports$1.defaultRetryPolicyName,
 		        sendRequest: (0, retryPolicy_js_1.retryPolicy)([(0, throttlingRetryStrategy_js_1.throttlingRetryStrategy)(), (0, exponentialRetryStrategy_js_1.exponentialRetryStrategy)(options)], {
 		            maxRetries: options.maxRetries ?? constants_js_1.DEFAULT_RETRY_POLICY_COUNT,
 		        }).sendRequest,
@@ -34472,20 +34464,20 @@ var hasRequiredCheckEnvironment;
 function requireCheckEnvironment () {
 	if (hasRequiredCheckEnvironment) return checkEnvironment;
 	hasRequiredCheckEnvironment = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.isReactNative = exports.isNodeRuntime = exports.isNodeLike = exports.isBun = exports.isDeno = exports.isWebWorker = exports.isBrowser = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.isReactNative = exports$1.isNodeRuntime = exports$1.isNodeLike = exports$1.isBun = exports$1.isDeno = exports$1.isWebWorker = exports$1.isBrowser = void 0;
 		/**
 		 * A constant that indicates whether the environment the code is running is a Web Browser.
 		 */
 		// eslint-disable-next-line @azure/azure-sdk/ts-no-window
-		exports.isBrowser = typeof window !== "undefined" && typeof window.document !== "undefined";
+		exports$1.isBrowser = typeof window !== "undefined" && typeof window.document !== "undefined";
 		/**
 		 * A constant that indicates whether the environment the code is running is a Web Worker.
 		 */
-		exports.isWebWorker = typeof self === "object" &&
+		exports$1.isWebWorker = typeof self === "object" &&
 		    typeof self?.importScripts === "function" &&
 		    (self.constructor?.name === "DedicatedWorkerGlobalScope" ||
 		        self.constructor?.name === "ServiceWorkerGlobalScope" ||
@@ -34493,28 +34485,28 @@ function requireCheckEnvironment () {
 		/**
 		 * A constant that indicates whether the environment the code is running is Deno.
 		 */
-		exports.isDeno = typeof Deno !== "undefined" &&
+		exports$1.isDeno = typeof Deno !== "undefined" &&
 		    typeof Deno.version !== "undefined" &&
 		    typeof Deno.version.deno !== "undefined";
 		/**
 		 * A constant that indicates whether the environment the code is running is Bun.sh.
 		 */
-		exports.isBun = typeof Bun !== "undefined" && typeof Bun.version !== "undefined";
+		exports$1.isBun = typeof Bun !== "undefined" && typeof Bun.version !== "undefined";
 		/**
 		 * A constant that indicates whether the environment the code is running is a Node.js compatible environment.
 		 */
-		exports.isNodeLike = typeof globalThis.process !== "undefined" &&
+		exports$1.isNodeLike = typeof globalThis.process !== "undefined" &&
 		    Boolean(globalThis.process.version) &&
 		    Boolean(globalThis.process.versions?.node);
 		/**
 		 * A constant that indicates whether the environment the code is running is Node.JS.
 		 */
-		exports.isNodeRuntime = exports.isNodeLike && !exports.isBun && !exports.isDeno;
+		exports$1.isNodeRuntime = exports$1.isNodeLike && !exports$1.isBun && !exports$1.isDeno;
 		/**
 		 * A constant that indicates whether the environment the code is running is in React-Native.
 		 */
 		// https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/Core/setUpNavigator.js
-		exports.isReactNative = typeof navigator !== "undefined" && navigator?.product === "ReactNative";
+		exports$1.isReactNative = typeof navigator !== "undefined" && navigator?.product === "ReactNative";
 		
 	} (checkEnvironment));
 	return checkEnvironment;
@@ -34525,19 +34517,19 @@ var hasRequiredFormDataPolicy$1;
 function requireFormDataPolicy$1 () {
 	if (hasRequiredFormDataPolicy$1) return formDataPolicy$1;
 	hasRequiredFormDataPolicy$1 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.formDataPolicyName = void 0;
-		exports.formDataPolicy = formDataPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.formDataPolicyName = void 0;
+		exports$1.formDataPolicy = formDataPolicy;
 		const bytesEncoding_js_1 = requireBytesEncoding();
 		const checkEnvironment_js_1 = requireCheckEnvironment();
 		const httpHeaders_js_1 = requireHttpHeaders$1();
 		/**
 		 * The programmatic identifier of the formDataPolicy.
 		 */
-		exports.formDataPolicyName = "formDataPolicy";
+		exports$1.formDataPolicyName = "formDataPolicy";
 		function formDataToFormDataMap(formData) {
 		    const formDataMap = {};
 		    for (const [key, value] of formData.entries()) {
@@ -34551,7 +34543,7 @@ function requireFormDataPolicy$1 () {
 		 */
 		function formDataPolicy() {
 		    return {
-		        name: exports.formDataPolicyName,
+		        name: exports$1.formDataPolicyName,
 		        async sendRequest(request, next) {
 		            if (checkEnvironment_js_1.isNodeLike && typeof FormData !== "undefined" && request.body instanceof FormData) {
 		                request.formData = formDataToFormDataMap(request.body);
@@ -35115,17 +35107,17 @@ var hasRequiredBrowser;
 function requireBrowser () {
 	if (hasRequiredBrowser) return browser.exports;
 	hasRequiredBrowser = 1;
-	(function (module, exports) {
+	(function (module, exports$1) {
 		/**
 		 * This is the web browser implementation of `debug()`.
 		 */
 
-		exports.formatArgs = formatArgs;
-		exports.save = save;
-		exports.load = load;
-		exports.useColors = useColors;
-		exports.storage = localstorage();
-		exports.destroy = (() => {
+		exports$1.formatArgs = formatArgs;
+		exports$1.save = save;
+		exports$1.load = load;
+		exports$1.useColors = useColors;
+		exports$1.storage = localstorage();
+		exports$1.destroy = (() => {
 			let warned = false;
 
 			return () => {
@@ -35140,7 +35132,7 @@ function requireBrowser () {
 		 * Colors.
 		 */
 
-		exports.colors = [
+		exports$1.colors = [
 			'#0000CC',
 			'#0000FF',
 			'#0033CC',
@@ -35305,7 +35297,7 @@ function requireBrowser () {
 		 *
 		 * @api public
 		 */
-		exports.log = console.debug || console.log || (() => {});
+		exports$1.log = console.debug || console.log || (() => {});
 
 		/**
 		 * Save `namespaces`.
@@ -35316,9 +35308,9 @@ function requireBrowser () {
 		function save(namespaces) {
 			try {
 				if (namespaces) {
-					exports.storage.setItem('debug', namespaces);
+					exports$1.storage.setItem('debug', namespaces);
 				} else {
-					exports.storage.removeItem('debug');
+					exports$1.storage.removeItem('debug');
 				}
 			} catch (error) {
 				// Swallow
@@ -35335,7 +35327,7 @@ function requireBrowser () {
 		function load() {
 			let r;
 			try {
-				r = exports.storage.getItem('debug') || exports.storage.getItem('DEBUG') ;
+				r = exports$1.storage.getItem('debug') || exports$1.storage.getItem('DEBUG') ;
 			} catch (error) {
 				// Swallow
 				// XXX (@Qix-) should we be logging these?
@@ -35371,7 +35363,7 @@ function requireBrowser () {
 			}
 		}
 
-		module.exports = requireCommon()(exports);
+		module.exports = requireCommon()(exports$1);
 
 		const {formatters} = module.exports;
 
@@ -35560,7 +35552,7 @@ var hasRequiredNode;
 function requireNode () {
 	if (hasRequiredNode) return node.exports;
 	hasRequiredNode = 1;
-	(function (module, exports) {
+	(function (module, exports$1) {
 		const tty = require$$1$5;
 		const util = require$$0$3;
 
@@ -35568,13 +35560,13 @@ function requireNode () {
 		 * This is the Node.js implementation of `debug()`.
 		 */
 
-		exports.init = init;
-		exports.log = log;
-		exports.formatArgs = formatArgs;
-		exports.save = save;
-		exports.load = load;
-		exports.useColors = useColors;
-		exports.destroy = util.deprecate(
+		exports$1.init = init;
+		exports$1.log = log;
+		exports$1.formatArgs = formatArgs;
+		exports$1.save = save;
+		exports$1.load = load;
+		exports$1.useColors = useColors;
+		exports$1.destroy = util.deprecate(
 			() => {},
 			'Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.'
 		);
@@ -35583,7 +35575,7 @@ function requireNode () {
 		 * Colors.
 		 */
 
-		exports.colors = [6, 2, 3, 4, 5, 1];
+		exports$1.colors = [6, 2, 3, 4, 5, 1];
 
 		try {
 			// Optional dependency (as in, doesn't need to be installed, NOT like optionalDependencies in package.json)
@@ -35591,7 +35583,7 @@ function requireNode () {
 			const supportsColor = requireSupportsColor();
 
 			if (supportsColor && (supportsColor.stderr || supportsColor).level >= 2) {
-				exports.colors = [
+				exports$1.colors = [
 					20,
 					21,
 					26,
@@ -35680,7 +35672,7 @@ function requireNode () {
 		 *   $ DEBUG_COLORS=no DEBUG_DEPTH=10 DEBUG_SHOW_HIDDEN=enabled node script.js
 		 */
 
-		exports.inspectOpts = Object.keys(process.env).filter(key => {
+		exports$1.inspectOpts = Object.keys(process.env).filter(key => {
 			return /^debug_/i.test(key);
 		}).reduce((obj, key) => {
 			// Camel-case
@@ -35712,8 +35704,8 @@ function requireNode () {
 		 */
 
 		function useColors() {
-			return 'colors' in exports.inspectOpts ?
-				Boolean(exports.inspectOpts.colors) :
+			return 'colors' in exports$1.inspectOpts ?
+				Boolean(exports$1.inspectOpts.colors) :
 				tty.isatty(process.stderr.fd);
 		}
 
@@ -35739,7 +35731,7 @@ function requireNode () {
 		}
 
 		function getDate() {
-			if (exports.inspectOpts.hideDate) {
+			if (exports$1.inspectOpts.hideDate) {
 				return '';
 			}
 			return new Date().toISOString() + ' ';
@@ -35750,7 +35742,7 @@ function requireNode () {
 		 */
 
 		function log(...args) {
-			return process.stderr.write(util.formatWithOptions(exports.inspectOpts, ...args) + '\n');
+			return process.stderr.write(util.formatWithOptions(exports$1.inspectOpts, ...args) + '\n');
 		}
 
 		/**
@@ -35790,13 +35782,13 @@ function requireNode () {
 		function init(debug) {
 			debug.inspectOpts = {};
 
-			const keys = Object.keys(exports.inspectOpts);
+			const keys = Object.keys(exports$1.inspectOpts);
 			for (let i = 0; i < keys.length; i++) {
-				debug.inspectOpts[keys[i]] = exports.inspectOpts[keys[i]];
+				debug.inspectOpts[keys[i]] = exports$1.inspectOpts[keys[i]];
 			}
 		}
 
-		module.exports = requireCommon()(exports);
+		module.exports = requireCommon()(exports$1);
 
 		const {formatters} = module.exports;
 
@@ -35924,7 +35916,7 @@ var hasRequiredDist$2;
 function requireDist$2 () {
 	if (hasRequiredDist$2) return dist$1;
 	hasRequiredDist$2 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		var __createBinding = (dist$1 && dist$1.__createBinding) || (Object.create ? (function(o, m, k, k2) {
 		    if (k2 === undefined) k2 = k;
 		    var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -35948,15 +35940,15 @@ function requireDist$2 () {
 		    __setModuleDefault(result, mod);
 		    return result;
 		};
-		var __exportStar = (dist$1 && dist$1.__exportStar) || function(m, exports) {
-		    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+		var __exportStar = (dist$1 && dist$1.__exportStar) || function(m, exports$1) {
+		    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports$1, p)) __createBinding(exports$1, m, p);
 		};
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.Agent = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.Agent = void 0;
 		const net = __importStar(require$$0$6);
 		const http = __importStar(require$$2);
 		const https_1 = require$$1$1;
-		__exportStar(requireHelpers(), exports);
+		__exportStar(requireHelpers(), exports$1);
 		const INTERNAL = Symbol('AgentBaseInternalState');
 		class Agent extends http.Agent {
 		    constructor(opts) {
@@ -36100,7 +36092,7 @@ function requireDist$2 () {
 		        }
 		    }
 		}
-		exports.Agent = Agent;
+		exports$1.Agent = Agent;
 		
 	} (dist$1));
 	return dist$1;
@@ -36565,14 +36557,14 @@ var hasRequiredProxyPolicy$1;
 function requireProxyPolicy$1 () {
 	if (hasRequiredProxyPolicy$1) return proxyPolicy$1;
 	hasRequiredProxyPolicy$1 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.globalNoProxyList = exports.proxyPolicyName = void 0;
-		exports.loadNoProxy = loadNoProxy;
-		exports.getDefaultProxySettings = getDefaultProxySettings;
-		exports.proxyPolicy = proxyPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.globalNoProxyList = exports$1.proxyPolicyName = void 0;
+		exports$1.loadNoProxy = loadNoProxy;
+		exports$1.getDefaultProxySettings = getDefaultProxySettings;
+		exports$1.proxyPolicy = proxyPolicy;
 		const https_proxy_agent_1 = requireDist$1();
 		const http_proxy_agent_1 = requireDist();
 		const log_js_1 = requireLog$4();
@@ -36583,12 +36575,12 @@ function requireProxyPolicy$1 () {
 		/**
 		 * The programmatic identifier of the proxyPolicy.
 		 */
-		exports.proxyPolicyName = "proxyPolicy";
+		exports$1.proxyPolicyName = "proxyPolicy";
 		/**
 		 * Stores the patterns specified in NO_PROXY environment variable.
 		 * @internal
 		 */
-		exports.globalNoProxyList = [];
+		exports$1.globalNoProxyList = [];
 		let noProxyListLoaded = false;
 		/** A cache of whether a host should bypass the proxy. */
 		const globalBypassedMap = new Map();
@@ -36739,18 +36731,18 @@ function requireProxyPolicy$1 () {
 		 */
 		function proxyPolicy(proxySettings, options) {
 		    if (!noProxyListLoaded) {
-		        exports.globalNoProxyList.push(...loadNoProxy());
+		        exports$1.globalNoProxyList.push(...loadNoProxy());
 		    }
 		    const defaultProxy = proxySettings
 		        ? getUrlFromProxySettings(proxySettings)
 		        : getDefaultProxySettingsInternal();
 		    const cachedAgents = {};
 		    return {
-		        name: exports.proxyPolicyName,
+		        name: exports$1.proxyPolicyName,
 		        async sendRequest(request, next) {
 		            if (!request.proxySettings &&
 		                defaultProxy &&
-		                !isBypassed(request.url, options?.customNoProxyList ?? exports.globalNoProxyList, options?.customNoProxyList ? undefined : globalBypassedMap)) {
+		                !isBypassed(request.url, options?.customNoProxyList ?? exports$1.globalNoProxyList, options?.customNoProxyList ? undefined : globalBypassedMap)) {
 		                setProxyAgentOnRequest(request, cachedAgents, defaultProxy);
 		            }
 		            else if (request.proxySettings) {
@@ -36772,22 +36764,22 @@ var hasRequiredAgentPolicy$1;
 function requireAgentPolicy$1 () {
 	if (hasRequiredAgentPolicy$1) return agentPolicy$1;
 	hasRequiredAgentPolicy$1 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.agentPolicyName = void 0;
-		exports.agentPolicy = agentPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.agentPolicyName = void 0;
+		exports$1.agentPolicy = agentPolicy;
 		/**
 		 * Name of the Agent Policy
 		 */
-		exports.agentPolicyName = "agentPolicy";
+		exports$1.agentPolicyName = "agentPolicy";
 		/**
 		 * Gets a pipeline policy that sets http.agent
 		 */
 		function agentPolicy(agent) {
 		    return {
-		        name: exports.agentPolicyName,
+		        name: exports$1.agentPolicyName,
 		        sendRequest: async (req, next) => {
 		            // Users may define an agent on the request, honor it over the client level one
 		            if (!req.agent) {
@@ -36809,22 +36801,22 @@ var hasRequiredTlsPolicy$1;
 function requireTlsPolicy$1 () {
 	if (hasRequiredTlsPolicy$1) return tlsPolicy$1;
 	hasRequiredTlsPolicy$1 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.tlsPolicyName = void 0;
-		exports.tlsPolicy = tlsPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.tlsPolicyName = void 0;
+		exports$1.tlsPolicy = tlsPolicy;
 		/**
 		 * Name of the TLS Policy
 		 */
-		exports.tlsPolicyName = "tlsPolicy";
+		exports$1.tlsPolicyName = "tlsPolicy";
 		/**
 		 * Gets a pipeline policy that adds the client certificate to the HttpClient agent for authentication.
 		 */
 		function tlsPolicy(tlsSettings) {
 		    return {
-		        name: exports.tlsPolicyName,
+		        name: exports$1.tlsPolicyName,
 		        sendRequest: async (req, next) => {
 		            // Users may define a request tlsSettings, honor those over the client level one
 		            if (!req.tlsSettings) {
@@ -36967,12 +36959,12 @@ var hasRequiredMultipartPolicy$1;
 function requireMultipartPolicy$1 () {
 	if (hasRequiredMultipartPolicy$1) return multipartPolicy$1;
 	hasRequiredMultipartPolicy$1 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.multipartPolicyName = void 0;
-		exports.multipartPolicy = multipartPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.multipartPolicyName = void 0;
+		exports$1.multipartPolicy = multipartPolicy;
 		const bytesEncoding_js_1 = requireBytesEncoding();
 		const typeGuards_js_1 = requireTypeGuards$1();
 		const uuidUtils_js_1 = requireUuidUtils();
@@ -37033,7 +37025,7 @@ function requireMultipartPolicy$1 () {
 		/**
 		 * Name of multipart policy
 		 */
-		exports.multipartPolicyName = "multipartPolicy";
+		exports$1.multipartPolicyName = "multipartPolicy";
 		const maxBoundaryLength = 70;
 		const validBoundaryCharacters = new Set(`abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'()+,-./:=?`);
 		function assertValidBoundary(boundary) {
@@ -37049,7 +37041,7 @@ function requireMultipartPolicy$1 () {
 		 */
 		function multipartPolicy() {
 		    return {
-		        name: exports.multipartPolicyName,
+		        name: exports$1.multipartPolicyName,
 		        async sendRequest(request, next) {
 		            if (!request.multipartBody) {
 		                return next(request);
@@ -37149,13 +37141,13 @@ var hasRequiredApiVersionPolicy;
 function requireApiVersionPolicy () {
 	if (hasRequiredApiVersionPolicy) return apiVersionPolicy;
 	hasRequiredApiVersionPolicy = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.apiVersionPolicyName = void 0;
-		exports.apiVersionPolicy = apiVersionPolicy;
-		exports.apiVersionPolicyName = "ApiVersionPolicy";
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.apiVersionPolicyName = void 0;
+		exports$1.apiVersionPolicy = apiVersionPolicy;
+		exports$1.apiVersionPolicyName = "ApiVersionPolicy";
 		/**
 		 * Creates a policy that sets the apiVersion as a query parameter on every request
 		 * @param options - Client options
@@ -37163,7 +37155,7 @@ function requireApiVersionPolicy () {
 		 */
 		function apiVersionPolicy(options) {
 		    return {
-		        name: exports.apiVersionPolicyName,
+		        name: exports$1.apiVersionPolicyName,
 		        sendRequest: (req, next) => {
 		            // Use the apiVesion defined in request url directly
 		            // Append one if there is no apiVesion and we have one at client options
@@ -37291,23 +37283,23 @@ var hasRequiredApiKeyAuthenticationPolicy;
 function requireApiKeyAuthenticationPolicy () {
 	if (hasRequiredApiKeyAuthenticationPolicy) return apiKeyAuthenticationPolicy;
 	hasRequiredApiKeyAuthenticationPolicy = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.apiKeyAuthenticationPolicyName = void 0;
-		exports.apiKeyAuthenticationPolicy = apiKeyAuthenticationPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.apiKeyAuthenticationPolicyName = void 0;
+		exports$1.apiKeyAuthenticationPolicy = apiKeyAuthenticationPolicy;
 		const checkInsecureConnection_js_1 = requireCheckInsecureConnection();
 		/**
 		 * Name of the API Key Authentication Policy
 		 */
-		exports.apiKeyAuthenticationPolicyName = "apiKeyAuthenticationPolicy";
+		exports$1.apiKeyAuthenticationPolicyName = "apiKeyAuthenticationPolicy";
 		/**
 		 * Gets a pipeline policy that adds API key authentication to requests
 		 */
 		function apiKeyAuthenticationPolicy(options) {
 		    return {
-		        name: exports.apiKeyAuthenticationPolicyName,
+		        name: exports$1.apiKeyAuthenticationPolicyName,
 		        async sendRequest(request, next) {
 		            // Ensure allowInsecureConnection is explicitly set when sending request to non-https URLs
 		            (0, checkInsecureConnection_js_1.ensureSecureConnection)(request, options);
@@ -37336,24 +37328,24 @@ var hasRequiredBasicAuthenticationPolicy;
 function requireBasicAuthenticationPolicy () {
 	if (hasRequiredBasicAuthenticationPolicy) return basicAuthenticationPolicy;
 	hasRequiredBasicAuthenticationPolicy = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.basicAuthenticationPolicyName = void 0;
-		exports.basicAuthenticationPolicy = basicAuthenticationPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.basicAuthenticationPolicyName = void 0;
+		exports$1.basicAuthenticationPolicy = basicAuthenticationPolicy;
 		const bytesEncoding_js_1 = requireBytesEncoding();
 		const checkInsecureConnection_js_1 = requireCheckInsecureConnection();
 		/**
 		 * Name of the Basic Authentication Policy
 		 */
-		exports.basicAuthenticationPolicyName = "bearerAuthenticationPolicy";
+		exports$1.basicAuthenticationPolicyName = "bearerAuthenticationPolicy";
 		/**
 		 * Gets a pipeline policy that adds basic authentication to requests
 		 */
 		function basicAuthenticationPolicy(options) {
 		    return {
-		        name: exports.basicAuthenticationPolicyName,
+		        name: exports$1.basicAuthenticationPolicyName,
 		        async sendRequest(request, next) {
 		            // Ensure allowInsecureConnection is explicitly set when sending request to non-https URLs
 		            (0, checkInsecureConnection_js_1.ensureSecureConnection)(request, options);
@@ -37381,23 +37373,23 @@ var hasRequiredBearerAuthenticationPolicy;
 function requireBearerAuthenticationPolicy () {
 	if (hasRequiredBearerAuthenticationPolicy) return bearerAuthenticationPolicy;
 	hasRequiredBearerAuthenticationPolicy = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.bearerAuthenticationPolicyName = void 0;
-		exports.bearerAuthenticationPolicy = bearerAuthenticationPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.bearerAuthenticationPolicyName = void 0;
+		exports$1.bearerAuthenticationPolicy = bearerAuthenticationPolicy;
 		const checkInsecureConnection_js_1 = requireCheckInsecureConnection();
 		/**
 		 * Name of the Bearer Authentication Policy
 		 */
-		exports.bearerAuthenticationPolicyName = "bearerAuthenticationPolicy";
+		exports$1.bearerAuthenticationPolicyName = "bearerAuthenticationPolicy";
 		/**
 		 * Gets a pipeline policy that adds bearer token authentication to requests
 		 */
 		function bearerAuthenticationPolicy(options) {
 		    return {
-		        name: exports.bearerAuthenticationPolicyName,
+		        name: exports$1.bearerAuthenticationPolicyName,
 		        async sendRequest(request, next) {
 		            // Ensure allowInsecureConnection is explicitly set when sending request to non-https URLs
 		            (0, checkInsecureConnection_js_1.ensureSecureConnection)(request, options);
@@ -37426,23 +37418,23 @@ var hasRequiredOauth2AuthenticationPolicy;
 function requireOauth2AuthenticationPolicy () {
 	if (hasRequiredOauth2AuthenticationPolicy) return oauth2AuthenticationPolicy;
 	hasRequiredOauth2AuthenticationPolicy = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.oauth2AuthenticationPolicyName = void 0;
-		exports.oauth2AuthenticationPolicy = oauth2AuthenticationPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.oauth2AuthenticationPolicyName = void 0;
+		exports$1.oauth2AuthenticationPolicy = oauth2AuthenticationPolicy;
 		const checkInsecureConnection_js_1 = requireCheckInsecureConnection();
 		/**
 		 * Name of the OAuth2 Authentication Policy
 		 */
-		exports.oauth2AuthenticationPolicyName = "oauth2AuthenticationPolicy";
+		exports$1.oauth2AuthenticationPolicyName = "oauth2AuthenticationPolicy";
 		/**
 		 * Gets a pipeline policy that adds authorization header from OAuth2 schemes
 		 */
 		function oauth2AuthenticationPolicy(options) {
 		    return {
-		        name: exports.oauth2AuthenticationPolicyName,
+		        name: exports$1.oauth2AuthenticationPolicyName,
 		        async sendRequest(request, next) {
 		            // Ensure allowInsecureConnection is explicitly set when sending request to non-https URLs
 		            (0, checkInsecureConnection_js_1.ensureSecureConnection)(request, options);
@@ -37721,6 +37713,9 @@ function requireSendRequest () {
 	 * @returns returns the content-type
 	 */
 	function getContentType(body) {
+	    if (body === undefined) {
+	        return undefined;
+	    }
 	    if (ArrayBuffer.isView(body)) {
 	        return "application/octet-stream";
 	    }
@@ -37740,12 +37735,10 @@ function requireSendRequest () {
 	function buildPipelineRequest(method, url, options = {}) {
 	    const requestContentType = getRequestContentType(options);
 	    const { body, multipartBody } = getRequestBody(options.body, requestContentType);
-	    const hasContent = body !== undefined || multipartBody !== undefined;
 	    const headers = (0, httpHeaders_js_1.createHttpHeaders)({
 	        ...(options.headers ? options.headers : {}),
 	        accept: options.accept ?? options.headers?.accept ?? "application/json",
-	        ...(hasContent &&
-	            requestContentType && {
+	        ...(requestContentType && {
 	            "content-type": requestContentType,
 	        }),
 	    });
@@ -38177,41 +38170,41 @@ var hasRequiredCommonjs$e;
 function requireCommonjs$e () {
 	if (hasRequiredCommonjs$e) return commonjs$c;
 	hasRequiredCommonjs$e = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.createRestError = exports.operationOptionsToRequestParameters = exports.getClient = exports.createDefaultHttpClient = exports.uint8ArrayToString = exports.stringToUint8Array = exports.isRestError = exports.RestError = exports.createEmptyPipeline = exports.createPipelineRequest = exports.createHttpHeaders = exports.TypeSpecRuntimeLogger = exports.setLogLevel = exports.getLogLevel = exports.createClientLogger = exports.AbortError = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.createRestError = exports$1.operationOptionsToRequestParameters = exports$1.getClient = exports$1.createDefaultHttpClient = exports$1.uint8ArrayToString = exports$1.stringToUint8Array = exports$1.isRestError = exports$1.RestError = exports$1.createEmptyPipeline = exports$1.createPipelineRequest = exports$1.createHttpHeaders = exports$1.TypeSpecRuntimeLogger = exports$1.setLogLevel = exports$1.getLogLevel = exports$1.createClientLogger = exports$1.AbortError = void 0;
 		const tslib_1 = require$$0;
 		var AbortError_js_1 = requireAbortError$3();
-		Object.defineProperty(exports, "AbortError", { enumerable: true, get: function () { return AbortError_js_1.AbortError; } });
+		Object.defineProperty(exports$1, "AbortError", { enumerable: true, get: function () { return AbortError_js_1.AbortError; } });
 		var logger_js_1 = requireLogger$1();
-		Object.defineProperty(exports, "createClientLogger", { enumerable: true, get: function () { return logger_js_1.createClientLogger; } });
-		Object.defineProperty(exports, "getLogLevel", { enumerable: true, get: function () { return logger_js_1.getLogLevel; } });
-		Object.defineProperty(exports, "setLogLevel", { enumerable: true, get: function () { return logger_js_1.setLogLevel; } });
-		Object.defineProperty(exports, "TypeSpecRuntimeLogger", { enumerable: true, get: function () { return logger_js_1.TypeSpecRuntimeLogger; } });
+		Object.defineProperty(exports$1, "createClientLogger", { enumerable: true, get: function () { return logger_js_1.createClientLogger; } });
+		Object.defineProperty(exports$1, "getLogLevel", { enumerable: true, get: function () { return logger_js_1.getLogLevel; } });
+		Object.defineProperty(exports$1, "setLogLevel", { enumerable: true, get: function () { return logger_js_1.setLogLevel; } });
+		Object.defineProperty(exports$1, "TypeSpecRuntimeLogger", { enumerable: true, get: function () { return logger_js_1.TypeSpecRuntimeLogger; } });
 		var httpHeaders_js_1 = requireHttpHeaders$1();
-		Object.defineProperty(exports, "createHttpHeaders", { enumerable: true, get: function () { return httpHeaders_js_1.createHttpHeaders; } });
-		tslib_1.__exportStar(requireSchemes(), exports);
-		tslib_1.__exportStar(requireOauth2Flows(), exports);
+		Object.defineProperty(exports$1, "createHttpHeaders", { enumerable: true, get: function () { return httpHeaders_js_1.createHttpHeaders; } });
+		tslib_1.__exportStar(requireSchemes(), exports$1);
+		tslib_1.__exportStar(requireOauth2Flows(), exports$1);
 		var pipelineRequest_js_1 = requirePipelineRequest$1();
-		Object.defineProperty(exports, "createPipelineRequest", { enumerable: true, get: function () { return pipelineRequest_js_1.createPipelineRequest; } });
+		Object.defineProperty(exports$1, "createPipelineRequest", { enumerable: true, get: function () { return pipelineRequest_js_1.createPipelineRequest; } });
 		var pipeline_js_1 = requirePipeline$3();
-		Object.defineProperty(exports, "createEmptyPipeline", { enumerable: true, get: function () { return pipeline_js_1.createEmptyPipeline; } });
+		Object.defineProperty(exports$1, "createEmptyPipeline", { enumerable: true, get: function () { return pipeline_js_1.createEmptyPipeline; } });
 		var restError_js_1 = requireRestError$2();
-		Object.defineProperty(exports, "RestError", { enumerable: true, get: function () { return restError_js_1.RestError; } });
-		Object.defineProperty(exports, "isRestError", { enumerable: true, get: function () { return restError_js_1.isRestError; } });
+		Object.defineProperty(exports$1, "RestError", { enumerable: true, get: function () { return restError_js_1.RestError; } });
+		Object.defineProperty(exports$1, "isRestError", { enumerable: true, get: function () { return restError_js_1.isRestError; } });
 		var bytesEncoding_js_1 = requireBytesEncoding();
-		Object.defineProperty(exports, "stringToUint8Array", { enumerable: true, get: function () { return bytesEncoding_js_1.stringToUint8Array; } });
-		Object.defineProperty(exports, "uint8ArrayToString", { enumerable: true, get: function () { return bytesEncoding_js_1.uint8ArrayToString; } });
+		Object.defineProperty(exports$1, "stringToUint8Array", { enumerable: true, get: function () { return bytesEncoding_js_1.stringToUint8Array; } });
+		Object.defineProperty(exports$1, "uint8ArrayToString", { enumerable: true, get: function () { return bytesEncoding_js_1.uint8ArrayToString; } });
 		var defaultHttpClient_js_1 = requireDefaultHttpClient$1();
-		Object.defineProperty(exports, "createDefaultHttpClient", { enumerable: true, get: function () { return defaultHttpClient_js_1.createDefaultHttpClient; } });
+		Object.defineProperty(exports$1, "createDefaultHttpClient", { enumerable: true, get: function () { return defaultHttpClient_js_1.createDefaultHttpClient; } });
 		var getClient_js_1 = requireGetClient();
-		Object.defineProperty(exports, "getClient", { enumerable: true, get: function () { return getClient_js_1.getClient; } });
+		Object.defineProperty(exports$1, "getClient", { enumerable: true, get: function () { return getClient_js_1.getClient; } });
 		var operationOptionHelpers_js_1 = requireOperationOptionHelpers();
-		Object.defineProperty(exports, "operationOptionsToRequestParameters", { enumerable: true, get: function () { return operationOptionHelpers_js_1.operationOptionsToRequestParameters; } });
+		Object.defineProperty(exports$1, "operationOptionsToRequestParameters", { enumerable: true, get: function () { return operationOptionHelpers_js_1.operationOptionsToRequestParameters; } });
 		var restError_js_2 = requireRestError$1();
-		Object.defineProperty(exports, "createRestError", { enumerable: true, get: function () { return restError_js_2.createRestError; } });
+		Object.defineProperty(exports$1, "createRestError", { enumerable: true, get: function () { return restError_js_2.createRestError; } });
 		
 	} (commonjs$c));
 	return commonjs$c;
@@ -38253,13 +38246,13 @@ var hasRequiredInternal$2;
 function requireInternal$2 () {
 	if (hasRequiredInternal$2) return internal$2;
 	hasRequiredInternal$2 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.createLoggerContext = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.createLoggerContext = void 0;
 		var logger_js_1 = requireLogger$1();
-		Object.defineProperty(exports, "createLoggerContext", { enumerable: true, get: function () { return logger_js_1.createLoggerContext; } });
+		Object.defineProperty(exports$1, "createLoggerContext", { enumerable: true, get: function () { return logger_js_1.createLoggerContext; } });
 		
 	} (internal$2));
 	return internal$2;
@@ -38379,19 +38372,19 @@ var hasRequiredSystemErrorRetryPolicy$1;
 function requireSystemErrorRetryPolicy$1 () {
 	if (hasRequiredSystemErrorRetryPolicy$1) return systemErrorRetryPolicy$1;
 	hasRequiredSystemErrorRetryPolicy$1 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.systemErrorRetryPolicyName = void 0;
-		exports.systemErrorRetryPolicy = systemErrorRetryPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.systemErrorRetryPolicyName = void 0;
+		exports$1.systemErrorRetryPolicy = systemErrorRetryPolicy;
 		const exponentialRetryStrategy_js_1 = requireExponentialRetryStrategy();
 		const retryPolicy_js_1 = requireRetryPolicy$1();
 		const constants_js_1 = requireConstants$4();
 		/**
 		 * Name of the {@link systemErrorRetryPolicy}
 		 */
-		exports.systemErrorRetryPolicyName = "systemErrorRetryPolicy";
+		exports$1.systemErrorRetryPolicyName = "systemErrorRetryPolicy";
 		/**
 		 * A retry policy that specifically seeks to handle errors in the
 		 * underlying transport layer (e.g. DNS lookup failures) rather than
@@ -38400,7 +38393,7 @@ function requireSystemErrorRetryPolicy$1 () {
 		 */
 		function systemErrorRetryPolicy(options = {}) {
 		    return {
-		        name: exports.systemErrorRetryPolicyName,
+		        name: exports$1.systemErrorRetryPolicyName,
 		        sendRequest: (0, retryPolicy_js_1.retryPolicy)([
 		            (0, exponentialRetryStrategy_js_1.exponentialRetryStrategy)({
 		                ...options,
@@ -38423,19 +38416,19 @@ var hasRequiredThrottlingRetryPolicy$1;
 function requireThrottlingRetryPolicy$1 () {
 	if (hasRequiredThrottlingRetryPolicy$1) return throttlingRetryPolicy$1;
 	hasRequiredThrottlingRetryPolicy$1 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.throttlingRetryPolicyName = void 0;
-		exports.throttlingRetryPolicy = throttlingRetryPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.throttlingRetryPolicyName = void 0;
+		exports$1.throttlingRetryPolicy = throttlingRetryPolicy;
 		const throttlingRetryStrategy_js_1 = requireThrottlingRetryStrategy();
 		const retryPolicy_js_1 = requireRetryPolicy$1();
 		const constants_js_1 = requireConstants$4();
 		/**
 		 * Name of the {@link throttlingRetryPolicy}
 		 */
-		exports.throttlingRetryPolicyName = "throttlingRetryPolicy";
+		exports$1.throttlingRetryPolicyName = "throttlingRetryPolicy";
 		/**
 		 * A policy that retries when the server sends a 429 response with a Retry-After header.
 		 *
@@ -38448,7 +38441,7 @@ function requireThrottlingRetryPolicy$1 () {
 		 */
 		function throttlingRetryPolicy(options = {}) {
 		    return {
-		        name: exports.throttlingRetryPolicyName,
+		        name: exports$1.throttlingRetryPolicyName,
 		        sendRequest: (0, retryPolicy_js_1.retryPolicy)([(0, throttlingRetryStrategy_js_1.throttlingRetryStrategy)()], {
 		            maxRetries: options.maxRetries ?? constants_js_1.DEFAULT_RETRY_POLICY_COUNT,
 		        }).sendRequest,
@@ -38464,53 +38457,53 @@ var hasRequiredInternal$1;
 function requireInternal$1 () {
 	if (hasRequiredInternal$1) return internal$1;
 	hasRequiredInternal$1 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.userAgentPolicyName = exports.userAgentPolicy = exports.tlsPolicyName = exports.tlsPolicy = exports.redirectPolicyName = exports.redirectPolicy = exports.getDefaultProxySettings = exports.proxyPolicyName = exports.proxyPolicy = exports.multipartPolicyName = exports.multipartPolicy = exports.logPolicyName = exports.logPolicy = exports.formDataPolicyName = exports.formDataPolicy = exports.throttlingRetryPolicyName = exports.throttlingRetryPolicy = exports.systemErrorRetryPolicyName = exports.systemErrorRetryPolicy = exports.retryPolicy = exports.exponentialRetryPolicyName = exports.exponentialRetryPolicy = exports.defaultRetryPolicyName = exports.defaultRetryPolicy = exports.decompressResponsePolicyName = exports.decompressResponsePolicy = exports.agentPolicyName = exports.agentPolicy = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.userAgentPolicyName = exports$1.userAgentPolicy = exports$1.tlsPolicyName = exports$1.tlsPolicy = exports$1.redirectPolicyName = exports$1.redirectPolicy = exports$1.getDefaultProxySettings = exports$1.proxyPolicyName = exports$1.proxyPolicy = exports$1.multipartPolicyName = exports$1.multipartPolicy = exports$1.logPolicyName = exports$1.logPolicy = exports$1.formDataPolicyName = exports$1.formDataPolicy = exports$1.throttlingRetryPolicyName = exports$1.throttlingRetryPolicy = exports$1.systemErrorRetryPolicyName = exports$1.systemErrorRetryPolicy = exports$1.retryPolicy = exports$1.exponentialRetryPolicyName = exports$1.exponentialRetryPolicy = exports$1.defaultRetryPolicyName = exports$1.defaultRetryPolicy = exports$1.decompressResponsePolicyName = exports$1.decompressResponsePolicy = exports$1.agentPolicyName = exports$1.agentPolicy = void 0;
 		var agentPolicy_js_1 = requireAgentPolicy$1();
-		Object.defineProperty(exports, "agentPolicy", { enumerable: true, get: function () { return agentPolicy_js_1.agentPolicy; } });
-		Object.defineProperty(exports, "agentPolicyName", { enumerable: true, get: function () { return agentPolicy_js_1.agentPolicyName; } });
+		Object.defineProperty(exports$1, "agentPolicy", { enumerable: true, get: function () { return agentPolicy_js_1.agentPolicy; } });
+		Object.defineProperty(exports$1, "agentPolicyName", { enumerable: true, get: function () { return agentPolicy_js_1.agentPolicyName; } });
 		var decompressResponsePolicy_js_1 = requireDecompressResponsePolicy$1();
-		Object.defineProperty(exports, "decompressResponsePolicy", { enumerable: true, get: function () { return decompressResponsePolicy_js_1.decompressResponsePolicy; } });
-		Object.defineProperty(exports, "decompressResponsePolicyName", { enumerable: true, get: function () { return decompressResponsePolicy_js_1.decompressResponsePolicyName; } });
+		Object.defineProperty(exports$1, "decompressResponsePolicy", { enumerable: true, get: function () { return decompressResponsePolicy_js_1.decompressResponsePolicy; } });
+		Object.defineProperty(exports$1, "decompressResponsePolicyName", { enumerable: true, get: function () { return decompressResponsePolicy_js_1.decompressResponsePolicyName; } });
 		var defaultRetryPolicy_js_1 = requireDefaultRetryPolicy$1();
-		Object.defineProperty(exports, "defaultRetryPolicy", { enumerable: true, get: function () { return defaultRetryPolicy_js_1.defaultRetryPolicy; } });
-		Object.defineProperty(exports, "defaultRetryPolicyName", { enumerable: true, get: function () { return defaultRetryPolicy_js_1.defaultRetryPolicyName; } });
+		Object.defineProperty(exports$1, "defaultRetryPolicy", { enumerable: true, get: function () { return defaultRetryPolicy_js_1.defaultRetryPolicy; } });
+		Object.defineProperty(exports$1, "defaultRetryPolicyName", { enumerable: true, get: function () { return defaultRetryPolicy_js_1.defaultRetryPolicyName; } });
 		var exponentialRetryPolicy_js_1 = requireExponentialRetryPolicy$1();
-		Object.defineProperty(exports, "exponentialRetryPolicy", { enumerable: true, get: function () { return exponentialRetryPolicy_js_1.exponentialRetryPolicy; } });
-		Object.defineProperty(exports, "exponentialRetryPolicyName", { enumerable: true, get: function () { return exponentialRetryPolicy_js_1.exponentialRetryPolicyName; } });
+		Object.defineProperty(exports$1, "exponentialRetryPolicy", { enumerable: true, get: function () { return exponentialRetryPolicy_js_1.exponentialRetryPolicy; } });
+		Object.defineProperty(exports$1, "exponentialRetryPolicyName", { enumerable: true, get: function () { return exponentialRetryPolicy_js_1.exponentialRetryPolicyName; } });
 		var retryPolicy_js_1 = requireRetryPolicy$1();
-		Object.defineProperty(exports, "retryPolicy", { enumerable: true, get: function () { return retryPolicy_js_1.retryPolicy; } });
+		Object.defineProperty(exports$1, "retryPolicy", { enumerable: true, get: function () { return retryPolicy_js_1.retryPolicy; } });
 		var systemErrorRetryPolicy_js_1 = requireSystemErrorRetryPolicy$1();
-		Object.defineProperty(exports, "systemErrorRetryPolicy", { enumerable: true, get: function () { return systemErrorRetryPolicy_js_1.systemErrorRetryPolicy; } });
-		Object.defineProperty(exports, "systemErrorRetryPolicyName", { enumerable: true, get: function () { return systemErrorRetryPolicy_js_1.systemErrorRetryPolicyName; } });
+		Object.defineProperty(exports$1, "systemErrorRetryPolicy", { enumerable: true, get: function () { return systemErrorRetryPolicy_js_1.systemErrorRetryPolicy; } });
+		Object.defineProperty(exports$1, "systemErrorRetryPolicyName", { enumerable: true, get: function () { return systemErrorRetryPolicy_js_1.systemErrorRetryPolicyName; } });
 		var throttlingRetryPolicy_js_1 = requireThrottlingRetryPolicy$1();
-		Object.defineProperty(exports, "throttlingRetryPolicy", { enumerable: true, get: function () { return throttlingRetryPolicy_js_1.throttlingRetryPolicy; } });
-		Object.defineProperty(exports, "throttlingRetryPolicyName", { enumerable: true, get: function () { return throttlingRetryPolicy_js_1.throttlingRetryPolicyName; } });
+		Object.defineProperty(exports$1, "throttlingRetryPolicy", { enumerable: true, get: function () { return throttlingRetryPolicy_js_1.throttlingRetryPolicy; } });
+		Object.defineProperty(exports$1, "throttlingRetryPolicyName", { enumerable: true, get: function () { return throttlingRetryPolicy_js_1.throttlingRetryPolicyName; } });
 		var formDataPolicy_js_1 = requireFormDataPolicy$1();
-		Object.defineProperty(exports, "formDataPolicy", { enumerable: true, get: function () { return formDataPolicy_js_1.formDataPolicy; } });
-		Object.defineProperty(exports, "formDataPolicyName", { enumerable: true, get: function () { return formDataPolicy_js_1.formDataPolicyName; } });
+		Object.defineProperty(exports$1, "formDataPolicy", { enumerable: true, get: function () { return formDataPolicy_js_1.formDataPolicy; } });
+		Object.defineProperty(exports$1, "formDataPolicyName", { enumerable: true, get: function () { return formDataPolicy_js_1.formDataPolicyName; } });
 		var logPolicy_js_1 = requireLogPolicy$1();
-		Object.defineProperty(exports, "logPolicy", { enumerable: true, get: function () { return logPolicy_js_1.logPolicy; } });
-		Object.defineProperty(exports, "logPolicyName", { enumerable: true, get: function () { return logPolicy_js_1.logPolicyName; } });
+		Object.defineProperty(exports$1, "logPolicy", { enumerable: true, get: function () { return logPolicy_js_1.logPolicy; } });
+		Object.defineProperty(exports$1, "logPolicyName", { enumerable: true, get: function () { return logPolicy_js_1.logPolicyName; } });
 		var multipartPolicy_js_1 = requireMultipartPolicy$1();
-		Object.defineProperty(exports, "multipartPolicy", { enumerable: true, get: function () { return multipartPolicy_js_1.multipartPolicy; } });
-		Object.defineProperty(exports, "multipartPolicyName", { enumerable: true, get: function () { return multipartPolicy_js_1.multipartPolicyName; } });
+		Object.defineProperty(exports$1, "multipartPolicy", { enumerable: true, get: function () { return multipartPolicy_js_1.multipartPolicy; } });
+		Object.defineProperty(exports$1, "multipartPolicyName", { enumerable: true, get: function () { return multipartPolicy_js_1.multipartPolicyName; } });
 		var proxyPolicy_js_1 = requireProxyPolicy$1();
-		Object.defineProperty(exports, "proxyPolicy", { enumerable: true, get: function () { return proxyPolicy_js_1.proxyPolicy; } });
-		Object.defineProperty(exports, "proxyPolicyName", { enumerable: true, get: function () { return proxyPolicy_js_1.proxyPolicyName; } });
-		Object.defineProperty(exports, "getDefaultProxySettings", { enumerable: true, get: function () { return proxyPolicy_js_1.getDefaultProxySettings; } });
+		Object.defineProperty(exports$1, "proxyPolicy", { enumerable: true, get: function () { return proxyPolicy_js_1.proxyPolicy; } });
+		Object.defineProperty(exports$1, "proxyPolicyName", { enumerable: true, get: function () { return proxyPolicy_js_1.proxyPolicyName; } });
+		Object.defineProperty(exports$1, "getDefaultProxySettings", { enumerable: true, get: function () { return proxyPolicy_js_1.getDefaultProxySettings; } });
 		var redirectPolicy_js_1 = requireRedirectPolicy$1();
-		Object.defineProperty(exports, "redirectPolicy", { enumerable: true, get: function () { return redirectPolicy_js_1.redirectPolicy; } });
-		Object.defineProperty(exports, "redirectPolicyName", { enumerable: true, get: function () { return redirectPolicy_js_1.redirectPolicyName; } });
+		Object.defineProperty(exports$1, "redirectPolicy", { enumerable: true, get: function () { return redirectPolicy_js_1.redirectPolicy; } });
+		Object.defineProperty(exports$1, "redirectPolicyName", { enumerable: true, get: function () { return redirectPolicy_js_1.redirectPolicyName; } });
 		var tlsPolicy_js_1 = requireTlsPolicy$1();
-		Object.defineProperty(exports, "tlsPolicy", { enumerable: true, get: function () { return tlsPolicy_js_1.tlsPolicy; } });
-		Object.defineProperty(exports, "tlsPolicyName", { enumerable: true, get: function () { return tlsPolicy_js_1.tlsPolicyName; } });
+		Object.defineProperty(exports$1, "tlsPolicy", { enumerable: true, get: function () { return tlsPolicy_js_1.tlsPolicy; } });
+		Object.defineProperty(exports$1, "tlsPolicyName", { enumerable: true, get: function () { return tlsPolicy_js_1.tlsPolicyName; } });
 		var userAgentPolicy_js_1 = requireUserAgentPolicy$1();
-		Object.defineProperty(exports, "userAgentPolicy", { enumerable: true, get: function () { return userAgentPolicy_js_1.userAgentPolicy; } });
-		Object.defineProperty(exports, "userAgentPolicyName", { enumerable: true, get: function () { return userAgentPolicy_js_1.userAgentPolicyName; } });
+		Object.defineProperty(exports$1, "userAgentPolicy", { enumerable: true, get: function () { return userAgentPolicy_js_1.userAgentPolicy; } });
+		Object.defineProperty(exports$1, "userAgentPolicyName", { enumerable: true, get: function () { return userAgentPolicy_js_1.userAgentPolicyName; } });
 		
 	} (internal$1));
 	return internal$1;
@@ -38606,18 +38599,18 @@ function requireUserAgentPlatform () {
 	 */
 	async function setPlatformSpecificData(map) {
 	    if (node_process_1.default && node_process_1.default.versions) {
+	        const osInfo = `${node_os_1.default.type()} ${node_os_1.default.release()}; ${node_os_1.default.arch()}`;
 	        const versions = node_process_1.default.versions;
 	        if (versions.bun) {
-	            map.set("Bun", versions.bun);
+	            map.set("Bun", `${versions.bun} (${osInfo})`);
 	        }
 	        else if (versions.deno) {
-	            map.set("Deno", versions.deno);
+	            map.set("Deno", `${versions.deno} (${osInfo})`);
 	        }
 	        else if (versions.node) {
-	            map.set("Node", versions.node);
+	            map.set("Node", `${versions.node} (${osInfo})`);
 	        }
 	    }
-	    map.set("OS", `(${node_os_1.default.arch()}-${node_os_1.default.type()}-${node_os_1.default.release()})`);
 	}
 	
 	return userAgentPlatform;
@@ -38634,7 +38627,7 @@ function requireConstants$3 () {
 	// Licensed under the MIT License.
 	Object.defineProperty(constants$3, "__esModule", { value: true });
 	constants$3.DEFAULT_RETRY_POLICY_COUNT = constants$3.SDK_VERSION = void 0;
-	constants$3.SDK_VERSION = "1.22.1";
+	constants$3.SDK_VERSION = "1.22.2";
 	constants$3.DEFAULT_RETRY_POLICY_COUNT = 3;
 	
 	return constants$3;
@@ -38686,18 +38679,18 @@ var hasRequiredUserAgentPolicy;
 function requireUserAgentPolicy () {
 	if (hasRequiredUserAgentPolicy) return userAgentPolicy;
 	hasRequiredUserAgentPolicy = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.userAgentPolicyName = void 0;
-		exports.userAgentPolicy = userAgentPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.userAgentPolicyName = void 0;
+		exports$1.userAgentPolicy = userAgentPolicy;
 		const userAgent_js_1 = requireUserAgent();
 		const UserAgentHeaderName = (0, userAgent_js_1.getUserAgentHeaderName)();
 		/**
 		 * The programmatic identifier of the userAgentPolicy.
 		 */
-		exports.userAgentPolicyName = "userAgentPolicy";
+		exports$1.userAgentPolicyName = "userAgentPolicy";
 		/**
 		 * A policy that sets the User-Agent header (or equivalent) to reflect
 		 * the library version.
@@ -38706,7 +38699,7 @@ function requireUserAgentPolicy () {
 		function userAgentPolicy(options = {}) {
 		    const userAgentValue = (0, userAgent_js_1.getUserAgentValue)(options.userAgentPrefix);
 		    return {
-		        name: exports.userAgentPolicyName,
+		        name: exports$1.userAgentPolicyName,
 		        async sendRequest(request, next) {
 		            if (!request.headers.has(UserAgentHeaderName)) {
 		                request.headers.set(UserAgentHeaderName, await userAgentValue);
@@ -38730,6 +38723,9 @@ var internal = {};
 
 var sha256 = {};
 
+const require$3 = createRequire(import.meta.url);
+function __require$2() { return require$3("node:crypto"); }
+
 var hasRequiredSha256;
 
 function requireSha256 () {
@@ -38740,7 +38736,7 @@ function requireSha256 () {
 	Object.defineProperty(sha256, "__esModule", { value: true });
 	sha256.computeSha256Hmac = computeSha256Hmac;
 	sha256.computeSha256Hash = computeSha256Hash;
-	const node_crypto_1 = __require$5();
+	const node_crypto_1 = __require$2();
 	/**
 	 * Generates a SHA-256 HMAC signature.
 	 * @param key - The HMAC key represented as a base64 string, used to generate the cryptographic HMAC hash.
@@ -38768,37 +38764,37 @@ var hasRequiredInternal;
 function requireInternal () {
 	if (hasRequiredInternal) return internal;
 	hasRequiredInternal = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.Sanitizer = exports.uint8ArrayToString = exports.stringToUint8Array = exports.isWebWorker = exports.isReactNative = exports.isDeno = exports.isNodeRuntime = exports.isNodeLike = exports.isBun = exports.isBrowser = exports.randomUUID = exports.computeSha256Hmac = exports.computeSha256Hash = exports.isError = exports.isObject = exports.getRandomIntegerInclusive = exports.calculateRetryDelay = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.Sanitizer = exports$1.uint8ArrayToString = exports$1.stringToUint8Array = exports$1.isWebWorker = exports$1.isReactNative = exports$1.isDeno = exports$1.isNodeRuntime = exports$1.isNodeLike = exports$1.isBun = exports$1.isBrowser = exports$1.randomUUID = exports$1.computeSha256Hmac = exports$1.computeSha256Hash = exports$1.isError = exports$1.isObject = exports$1.getRandomIntegerInclusive = exports$1.calculateRetryDelay = void 0;
 		var delay_js_1 = requireDelay$1();
-		Object.defineProperty(exports, "calculateRetryDelay", { enumerable: true, get: function () { return delay_js_1.calculateRetryDelay; } });
+		Object.defineProperty(exports$1, "calculateRetryDelay", { enumerable: true, get: function () { return delay_js_1.calculateRetryDelay; } });
 		var random_js_1 = requireRandom();
-		Object.defineProperty(exports, "getRandomIntegerInclusive", { enumerable: true, get: function () { return random_js_1.getRandomIntegerInclusive; } });
+		Object.defineProperty(exports$1, "getRandomIntegerInclusive", { enumerable: true, get: function () { return random_js_1.getRandomIntegerInclusive; } });
 		var object_js_1 = requireObject();
-		Object.defineProperty(exports, "isObject", { enumerable: true, get: function () { return object_js_1.isObject; } });
+		Object.defineProperty(exports$1, "isObject", { enumerable: true, get: function () { return object_js_1.isObject; } });
 		var error_js_1 = requireError$1();
-		Object.defineProperty(exports, "isError", { enumerable: true, get: function () { return error_js_1.isError; } });
+		Object.defineProperty(exports$1, "isError", { enumerable: true, get: function () { return error_js_1.isError; } });
 		var sha256_js_1 = requireSha256();
-		Object.defineProperty(exports, "computeSha256Hash", { enumerable: true, get: function () { return sha256_js_1.computeSha256Hash; } });
-		Object.defineProperty(exports, "computeSha256Hmac", { enumerable: true, get: function () { return sha256_js_1.computeSha256Hmac; } });
+		Object.defineProperty(exports$1, "computeSha256Hash", { enumerable: true, get: function () { return sha256_js_1.computeSha256Hash; } });
+		Object.defineProperty(exports$1, "computeSha256Hmac", { enumerable: true, get: function () { return sha256_js_1.computeSha256Hmac; } });
 		var uuidUtils_js_1 = requireUuidUtils();
-		Object.defineProperty(exports, "randomUUID", { enumerable: true, get: function () { return uuidUtils_js_1.randomUUID; } });
+		Object.defineProperty(exports$1, "randomUUID", { enumerable: true, get: function () { return uuidUtils_js_1.randomUUID; } });
 		var checkEnvironment_js_1 = requireCheckEnvironment();
-		Object.defineProperty(exports, "isBrowser", { enumerable: true, get: function () { return checkEnvironment_js_1.isBrowser; } });
-		Object.defineProperty(exports, "isBun", { enumerable: true, get: function () { return checkEnvironment_js_1.isBun; } });
-		Object.defineProperty(exports, "isNodeLike", { enumerable: true, get: function () { return checkEnvironment_js_1.isNodeLike; } });
-		Object.defineProperty(exports, "isNodeRuntime", { enumerable: true, get: function () { return checkEnvironment_js_1.isNodeRuntime; } });
-		Object.defineProperty(exports, "isDeno", { enumerable: true, get: function () { return checkEnvironment_js_1.isDeno; } });
-		Object.defineProperty(exports, "isReactNative", { enumerable: true, get: function () { return checkEnvironment_js_1.isReactNative; } });
-		Object.defineProperty(exports, "isWebWorker", { enumerable: true, get: function () { return checkEnvironment_js_1.isWebWorker; } });
+		Object.defineProperty(exports$1, "isBrowser", { enumerable: true, get: function () { return checkEnvironment_js_1.isBrowser; } });
+		Object.defineProperty(exports$1, "isBun", { enumerable: true, get: function () { return checkEnvironment_js_1.isBun; } });
+		Object.defineProperty(exports$1, "isNodeLike", { enumerable: true, get: function () { return checkEnvironment_js_1.isNodeLike; } });
+		Object.defineProperty(exports$1, "isNodeRuntime", { enumerable: true, get: function () { return checkEnvironment_js_1.isNodeRuntime; } });
+		Object.defineProperty(exports$1, "isDeno", { enumerable: true, get: function () { return checkEnvironment_js_1.isDeno; } });
+		Object.defineProperty(exports$1, "isReactNative", { enumerable: true, get: function () { return checkEnvironment_js_1.isReactNative; } });
+		Object.defineProperty(exports$1, "isWebWorker", { enumerable: true, get: function () { return checkEnvironment_js_1.isWebWorker; } });
 		var bytesEncoding_js_1 = requireBytesEncoding();
-		Object.defineProperty(exports, "stringToUint8Array", { enumerable: true, get: function () { return bytesEncoding_js_1.stringToUint8Array; } });
-		Object.defineProperty(exports, "uint8ArrayToString", { enumerable: true, get: function () { return bytesEncoding_js_1.uint8ArrayToString; } });
+		Object.defineProperty(exports$1, "stringToUint8Array", { enumerable: true, get: function () { return bytesEncoding_js_1.stringToUint8Array; } });
+		Object.defineProperty(exports$1, "uint8ArrayToString", { enumerable: true, get: function () { return bytesEncoding_js_1.uint8ArrayToString; } });
 		var sanitizer_js_1 = requireSanitizer();
-		Object.defineProperty(exports, "Sanitizer", { enumerable: true, get: function () { return sanitizer_js_1.Sanitizer; } });
+		Object.defineProperty(exports$1, "Sanitizer", { enumerable: true, get: function () { return sanitizer_js_1.Sanitizer; } });
 		
 	} (internal));
 	return internal;
@@ -38885,13 +38881,13 @@ var hasRequiredCommonjs$c;
 function requireCommonjs$c () {
 	if (hasRequiredCommonjs$c) return commonjs$9;
 	hasRequiredCommonjs$c = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT license.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.AbortError = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.AbortError = void 0;
 		var AbortError_js_1 = requireAbortError$2();
-		Object.defineProperty(exports, "AbortError", { enumerable: true, get: function () { return AbortError_js_1.AbortError; } });
+		Object.defineProperty(exports$1, "AbortError", { enumerable: true, get: function () { return AbortError_js_1.AbortError; } });
 		
 	} (commonjs$9));
 	return commonjs$9;
@@ -39096,34 +39092,34 @@ var hasRequiredCommonjs$b;
 function requireCommonjs$b () {
 	if (hasRequiredCommonjs$b) return commonjs$a;
 	hasRequiredCommonjs$b = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.isWebWorker = exports.isReactNative = exports.isNodeRuntime = exports.isNodeLike = exports.isNode = exports.isDeno = exports.isBun = exports.isBrowser = exports.objectHasProperty = exports.isObjectWithProperties = exports.isDefined = exports.getErrorMessage = exports.delay = exports.createAbortablePromise = exports.cancelablePromiseRace = void 0;
-		exports.calculateRetryDelay = calculateRetryDelay;
-		exports.computeSha256Hash = computeSha256Hash;
-		exports.computeSha256Hmac = computeSha256Hmac;
-		exports.getRandomIntegerInclusive = getRandomIntegerInclusive;
-		exports.isError = isError;
-		exports.isObject = isObject;
-		exports.randomUUID = randomUUID;
-		exports.uint8ArrayToString = uint8ArrayToString;
-		exports.stringToUint8Array = stringToUint8Array;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.isWebWorker = exports$1.isReactNative = exports$1.isNodeRuntime = exports$1.isNodeLike = exports$1.isNode = exports$1.isDeno = exports$1.isBun = exports$1.isBrowser = exports$1.objectHasProperty = exports$1.isObjectWithProperties = exports$1.isDefined = exports$1.getErrorMessage = exports$1.delay = exports$1.createAbortablePromise = exports$1.cancelablePromiseRace = void 0;
+		exports$1.calculateRetryDelay = calculateRetryDelay;
+		exports$1.computeSha256Hash = computeSha256Hash;
+		exports$1.computeSha256Hmac = computeSha256Hmac;
+		exports$1.getRandomIntegerInclusive = getRandomIntegerInclusive;
+		exports$1.isError = isError;
+		exports$1.isObject = isObject;
+		exports$1.randomUUID = randomUUID;
+		exports$1.uint8ArrayToString = uint8ArrayToString;
+		exports$1.stringToUint8Array = stringToUint8Array;
 		const tslib_1 = require$$0;
 		const tspRuntime = tslib_1.__importStar(/*@__PURE__*/ requireInternal());
 		var aborterUtils_js_1 = requireAborterUtils();
-		Object.defineProperty(exports, "cancelablePromiseRace", { enumerable: true, get: function () { return aborterUtils_js_1.cancelablePromiseRace; } });
+		Object.defineProperty(exports$1, "cancelablePromiseRace", { enumerable: true, get: function () { return aborterUtils_js_1.cancelablePromiseRace; } });
 		var createAbortablePromise_js_1 = requireCreateAbortablePromise();
-		Object.defineProperty(exports, "createAbortablePromise", { enumerable: true, get: function () { return createAbortablePromise_js_1.createAbortablePromise; } });
+		Object.defineProperty(exports$1, "createAbortablePromise", { enumerable: true, get: function () { return createAbortablePromise_js_1.createAbortablePromise; } });
 		var delay_js_1 = requireDelay();
-		Object.defineProperty(exports, "delay", { enumerable: true, get: function () { return delay_js_1.delay; } });
+		Object.defineProperty(exports$1, "delay", { enumerable: true, get: function () { return delay_js_1.delay; } });
 		var error_js_1 = requireError();
-		Object.defineProperty(exports, "getErrorMessage", { enumerable: true, get: function () { return error_js_1.getErrorMessage; } });
+		Object.defineProperty(exports$1, "getErrorMessage", { enumerable: true, get: function () { return error_js_1.getErrorMessage; } });
 		var typeGuards_js_1 = requireTypeGuards();
-		Object.defineProperty(exports, "isDefined", { enumerable: true, get: function () { return typeGuards_js_1.isDefined; } });
-		Object.defineProperty(exports, "isObjectWithProperties", { enumerable: true, get: function () { return typeGuards_js_1.isObjectWithProperties; } });
-		Object.defineProperty(exports, "objectHasProperty", { enumerable: true, get: function () { return typeGuards_js_1.objectHasProperty; } });
+		Object.defineProperty(exports$1, "isDefined", { enumerable: true, get: function () { return typeGuards_js_1.isDefined; } });
+		Object.defineProperty(exports$1, "isObjectWithProperties", { enumerable: true, get: function () { return typeGuards_js_1.isObjectWithProperties; } });
+		Object.defineProperty(exports$1, "objectHasProperty", { enumerable: true, get: function () { return typeGuards_js_1.objectHasProperty; } });
 		/**
 		 * Calculates the delay interval for retry attempts using exponential delay with jitter.
 		 *
@@ -39195,15 +39191,15 @@ function requireCommonjs$b () {
 		/**
 		 * A constant that indicates whether the environment the code is running is a Web Browser.
 		 */
-		exports.isBrowser = tspRuntime.isBrowser;
+		exports$1.isBrowser = tspRuntime.isBrowser;
 		/**
 		 * A constant that indicates whether the environment the code is running is Bun.sh.
 		 */
-		exports.isBun = tspRuntime.isBun;
+		exports$1.isBun = tspRuntime.isBun;
 		/**
 		 * A constant that indicates whether the environment the code is running is Deno.
 		 */
-		exports.isDeno = tspRuntime.isDeno;
+		exports$1.isDeno = tspRuntime.isDeno;
 		/**
 		 * A constant that indicates whether the environment the code is running is a Node.js compatible environment.
 		 *
@@ -39211,23 +39207,23 @@ function requireCommonjs$b () {
 		 *
 		 * Use `isNodeLike` instead.
 		 */
-		exports.isNode = tspRuntime.isNodeLike;
+		exports$1.isNode = tspRuntime.isNodeLike;
 		/**
 		 * A constant that indicates whether the environment the code is running is a Node.js compatible environment.
 		 */
-		exports.isNodeLike = tspRuntime.isNodeLike;
+		exports$1.isNodeLike = tspRuntime.isNodeLike;
 		/**
 		 * A constant that indicates whether the environment the code is running is Node.JS.
 		 */
-		exports.isNodeRuntime = tspRuntime.isNodeRuntime;
+		exports$1.isNodeRuntime = tspRuntime.isNodeRuntime;
 		/**
 		 * A constant that indicates whether the environment the code is running is in React-Native.
 		 */
-		exports.isReactNative = tspRuntime.isReactNative;
+		exports$1.isReactNative = tspRuntime.isReactNative;
 		/**
 		 * A constant that indicates whether the environment the code is running is a Web Worker.
 		 */
-		exports.isWebWorker = tspRuntime.isWebWorker;
+		exports$1.isWebWorker = tspRuntime.isWebWorker;
 		/**
 		 * The helper that transforms bytes with specific character encoding into string
 		 * @param bytes - the uint8array bytes
@@ -39373,13 +39369,21 @@ function requireFile () {
 	            size: content.byteLength,
 	            name,
 	            arrayBuffer: async () => content.buffer,
-	            stream: () => new Blob([content]).stream(),
+	            stream: () => new Blob([toArrayBuffer(content)]).stream(),
 	            [rawContent]: () => content,
 	        };
 	    }
 	    else {
-	        return new File([content], name, options);
+	        return new File([toArrayBuffer(content)], name, options);
 	    }
+	}
+	function toArrayBuffer(source) {
+	    if ("resize" in source.buffer) {
+	        // ArrayBuffer
+	        return source;
+	    }
+	    // SharedArrayBuffer
+	    return source.map((x) => x);
 	}
 	
 	return file;
@@ -39390,25 +39394,25 @@ var hasRequiredMultipartPolicy;
 function requireMultipartPolicy () {
 	if (hasRequiredMultipartPolicy) return multipartPolicy;
 	hasRequiredMultipartPolicy = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.multipartPolicyName = void 0;
-		exports.multipartPolicy = multipartPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.multipartPolicyName = void 0;
+		exports$1.multipartPolicy = multipartPolicy;
 		const policies_1 = /*@__PURE__*/ requireInternal$1();
 		const file_js_1 = requireFile();
 		/**
 		 * Name of multipart policy
 		 */
-		exports.multipartPolicyName = policies_1.multipartPolicyName;
+		exports$1.multipartPolicyName = policies_1.multipartPolicyName;
 		/**
 		 * Pipeline policy for multipart requests
 		 */
 		function multipartPolicy() {
 		    const tspPolicy = (0, policies_1.multipartPolicy)();
 		    return {
-		        name: exports.multipartPolicyName,
+		        name: exports$1.multipartPolicyName,
 		        sendRequest: async (request, next) => {
 		            if (request.multipartBody) {
 		                for (const part of request.multipartBody.parts) {
@@ -39560,16 +39564,16 @@ var hasRequiredSetClientRequestIdPolicy;
 function requireSetClientRequestIdPolicy () {
 	if (hasRequiredSetClientRequestIdPolicy) return setClientRequestIdPolicy;
 	hasRequiredSetClientRequestIdPolicy = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.setClientRequestIdPolicyName = void 0;
-		exports.setClientRequestIdPolicy = setClientRequestIdPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.setClientRequestIdPolicyName = void 0;
+		exports$1.setClientRequestIdPolicy = setClientRequestIdPolicy;
 		/**
 		 * The programmatic identifier of the setClientRequestIdPolicy.
 		 */
-		exports.setClientRequestIdPolicyName = "setClientRequestIdPolicy";
+		exports$1.setClientRequestIdPolicyName = "setClientRequestIdPolicy";
 		/**
 		 * Each PipelineRequest gets a unique id upon creation.
 		 * This policy passes that unique id along via an HTTP header to enable better
@@ -39578,7 +39582,7 @@ function requireSetClientRequestIdPolicy () {
 		 */
 		function setClientRequestIdPolicy(requestIdHeaderName = "x-ms-client-request-id") {
 		    return {
-		        name: exports.setClientRequestIdPolicyName,
+		        name: exports$1.setClientRequestIdPolicyName,
 		        async sendRequest(request, next) {
 		            if (!request.headers.has(requestIdHeaderName)) {
 		                request.headers.set(requestIdHeaderName, request.requestId);
@@ -39659,14 +39663,14 @@ var hasRequiredTracingContext;
 function requireTracingContext () {
 	if (hasRequiredTracingContext) return tracingContext;
 	hasRequiredTracingContext = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.TracingContextImpl = exports.knownContextKeys = void 0;
-		exports.createTracingContext = createTracingContext;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.TracingContextImpl = exports$1.knownContextKeys = void 0;
+		exports$1.createTracingContext = createTracingContext;
 		/** @internal */
-		exports.knownContextKeys = {
+		exports$1.knownContextKeys = {
 		    span: Symbol.for("@azure/core-tracing span"),
 		    namespace: Symbol.for("@azure/core-tracing namespace"),
 		};
@@ -39680,10 +39684,10 @@ function requireTracingContext () {
 		function createTracingContext(options = {}) {
 		    let context = new TracingContextImpl(options.parentContext);
 		    if (options.span) {
-		        context = context.setValue(exports.knownContextKeys.span, options.span);
+		        context = context.setValue(exports$1.knownContextKeys.span, options.span);
 		    }
 		    if (options.namespace) {
-		        context = context.setValue(exports.knownContextKeys.namespace, options.namespace);
+		        context = context.setValue(exports$1.knownContextKeys.namespace, options.namespace);
 		    }
 		    return context;
 		}
@@ -39710,7 +39714,7 @@ function requireTracingContext () {
 		        return newContext;
 		    }
 		}
-		exports.TracingContextImpl = TracingContextImpl;
+		exports$1.TracingContextImpl = TracingContextImpl;
 		
 	} (tracingContext));
 	return tracingContext;
@@ -39910,15 +39914,15 @@ var hasRequiredCommonjs$a;
 function requireCommonjs$a () {
 	if (hasRequiredCommonjs$a) return commonjs$8;
 	hasRequiredCommonjs$a = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.createTracingClient = exports.useInstrumenter = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.createTracingClient = exports$1.useInstrumenter = void 0;
 		var instrumenter_js_1 = requireInstrumenter();
-		Object.defineProperty(exports, "useInstrumenter", { enumerable: true, get: function () { return instrumenter_js_1.useInstrumenter; } });
+		Object.defineProperty(exports$1, "useInstrumenter", { enumerable: true, get: function () { return instrumenter_js_1.useInstrumenter; } });
 		var tracingClient_js_1 = requireTracingClient();
-		Object.defineProperty(exports, "createTracingClient", { enumerable: true, get: function () { return tracingClient_js_1.createTracingClient; } });
+		Object.defineProperty(exports$1, "createTracingClient", { enumerable: true, get: function () { return tracingClient_js_1.createTracingClient; } });
 		
 	} (commonjs$8));
 	return commonjs$8;
@@ -39958,12 +39962,12 @@ var hasRequiredTracingPolicy;
 function requireTracingPolicy () {
 	if (hasRequiredTracingPolicy) return tracingPolicy;
 	hasRequiredTracingPolicy = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.tracingPolicyName = void 0;
-		exports.tracingPolicy = tracingPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.tracingPolicyName = void 0;
+		exports$1.tracingPolicy = tracingPolicy;
 		const core_tracing_1 = /*@__PURE__*/ requireCommonjs$a();
 		const constants_js_1 = requireConstants$3();
 		const userAgent_js_1 = requireUserAgent();
@@ -39974,7 +39978,7 @@ function requireTracingPolicy () {
 		/**
 		 * The programmatic identifier of the tracingPolicy.
 		 */
-		exports.tracingPolicyName = "tracingPolicy";
+		exports$1.tracingPolicyName = "tracingPolicy";
 		/**
 		 * A simple policy to create OpenTelemetry Spans for each request made by the pipeline
 		 * that has SpanOptions with a parent.
@@ -39988,7 +39992,7 @@ function requireTracingPolicy () {
 		    });
 		    const tracingClient = tryCreateTracingClient();
 		    return {
-		        name: exports.tracingPolicyName,
+		        name: exports$1.tracingPolicyName,
 		        async sendRequest(request, next) {
 		            if (!tracingClient) {
 		                return next(request);
@@ -40147,14 +40151,14 @@ var hasRequiredWrapAbortSignalLikePolicy;
 function requireWrapAbortSignalLikePolicy () {
 	if (hasRequiredWrapAbortSignalLikePolicy) return wrapAbortSignalLikePolicy;
 	hasRequiredWrapAbortSignalLikePolicy = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.wrapAbortSignalLikePolicyName = void 0;
-		exports.wrapAbortSignalLikePolicy = wrapAbortSignalLikePolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.wrapAbortSignalLikePolicyName = void 0;
+		exports$1.wrapAbortSignalLikePolicy = wrapAbortSignalLikePolicy;
 		const wrapAbortSignal_js_1 = requireWrapAbortSignal();
-		exports.wrapAbortSignalLikePolicyName = "wrapAbortSignalLikePolicy";
+		exports$1.wrapAbortSignalLikePolicyName = "wrapAbortSignalLikePolicy";
 		/**
 		 * Policy that ensure that any AbortSignalLike is wrapped in a native AbortSignal for processing by the pipeline.
 		 * Since the ts-http-runtime expects a native AbortSignal, this policy is used to ensure that any AbortSignalLike is wrapped in a native AbortSignal.
@@ -40163,13 +40167,12 @@ function requireWrapAbortSignalLikePolicy () {
 		 */
 		function wrapAbortSignalLikePolicy() {
 		    return {
-		        name: exports.wrapAbortSignalLikePolicyName,
+		        name: exports$1.wrapAbortSignalLikePolicyName,
 		        sendRequest: async (request, next) => {
 		            if (!request.abortSignal) {
 		                return next(request);
 		            }
 		            const { abortSignal, cleanup } = (0, wrapAbortSignal_js_1.wrapAbortSignalLike)(request.abortSignal);
-		            // eslint-disable-next-line no-param-reassign
 		            request.abortSignal = abortSignal;
 		            try {
 		                return await next(request);
@@ -40275,7 +40278,6 @@ function requireDefaultHttpClient () {
 	                ? (0, wrapAbortSignal_js_1.wrapAbortSignalLike)(request.abortSignal)
 	                : {};
 	            try {
-	                // eslint-disable-next-line no-param-reassign
 	                request.abortSignal = abortSignal;
 	                return await client.sendRequest(request);
 	            }
@@ -40471,15 +40473,15 @@ var hasRequiredTokenCycler;
 function requireTokenCycler () {
 	if (hasRequiredTokenCycler) return tokenCycler;
 	hasRequiredTokenCycler = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.DEFAULT_CYCLER_OPTIONS = void 0;
-		exports.createTokenCycler = createTokenCycler;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.DEFAULT_CYCLER_OPTIONS = void 0;
+		exports$1.createTokenCycler = createTokenCycler;
 		const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
 		// Default options for the cycler if none are provided
-		exports.DEFAULT_CYCLER_OPTIONS = {
+		exports$1.DEFAULT_CYCLER_OPTIONS = {
 		    forcedRefreshWindowInMs: 1000, // Force waiting for a refresh 1s before the token expires
 		    retryIntervalInMs: 3000, // Allow refresh attempts every 3s
 		    refreshWindowInMs: 1000 * 60 * 2, // Start refreshing 2m before expiry
@@ -40541,7 +40543,7 @@ function requireTokenCycler () {
 		    let token = null;
 		    let tenantId;
 		    const options = {
-		        ...exports.DEFAULT_CYCLER_OPTIONS,
+		        ...exports$1.DEFAULT_CYCLER_OPTIONS,
 		        ...tokenCyclerOptions,
 		    };
 		    /**
@@ -40647,20 +40649,20 @@ var hasRequiredBearerTokenAuthenticationPolicy;
 function requireBearerTokenAuthenticationPolicy () {
 	if (hasRequiredBearerTokenAuthenticationPolicy) return bearerTokenAuthenticationPolicy;
 	hasRequiredBearerTokenAuthenticationPolicy = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.bearerTokenAuthenticationPolicyName = void 0;
-		exports.bearerTokenAuthenticationPolicy = bearerTokenAuthenticationPolicy;
-		exports.parseChallenges = parseChallenges;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.bearerTokenAuthenticationPolicyName = void 0;
+		exports$1.bearerTokenAuthenticationPolicy = bearerTokenAuthenticationPolicy;
+		exports$1.parseChallenges = parseChallenges;
 		const tokenCycler_js_1 = requireTokenCycler();
 		const log_js_1 = requireLog$3();
 		const restError_js_1 = requireRestError();
 		/**
 		 * The programmatic identifier of the bearerTokenAuthenticationPolicy.
 		 */
-		exports.bearerTokenAuthenticationPolicyName = "bearerTokenAuthenticationPolicy";
+		exports$1.bearerTokenAuthenticationPolicyName = "bearerTokenAuthenticationPolicy";
 		/**
 		 * Try to send the given request.
 		 *
@@ -40742,7 +40744,7 @@ function requireBearerTokenAuthenticationPolicy () {
 		        ? (0, tokenCycler_js_1.createTokenCycler)(credential /* , options */)
 		        : () => Promise.resolve(null);
 		    return {
-		        name: exports.bearerTokenAuthenticationPolicyName,
+		        name: exports$1.bearerTokenAuthenticationPolicyName,
 		        /**
 		         * If there's no challenge parameter:
 		         * - It will try to retrieve the token using the cache, or the credential's getToken.
@@ -40898,22 +40900,22 @@ var hasRequiredNdJsonPolicy;
 function requireNdJsonPolicy () {
 	if (hasRequiredNdJsonPolicy) return ndJsonPolicy;
 	hasRequiredNdJsonPolicy = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.ndJsonPolicyName = void 0;
-		exports.ndJsonPolicy = ndJsonPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.ndJsonPolicyName = void 0;
+		exports$1.ndJsonPolicy = ndJsonPolicy;
 		/**
 		 * The programmatic identifier of the ndJsonPolicy.
 		 */
-		exports.ndJsonPolicyName = "ndJsonPolicy";
+		exports$1.ndJsonPolicyName = "ndJsonPolicy";
 		/**
 		 * ndJsonPolicy is a policy used to control keep alive settings for every request.
 		 */
 		function ndJsonPolicy() {
 		    return {
-		        name: exports.ndJsonPolicyName,
+		        name: exports$1.ndJsonPolicyName,
 		        async sendRequest(request, next) {
 		            // There currently isn't a good way to bypass the serializer
 		            if (typeof request.body === "string" && request.body.startsWith("[")) {
@@ -40938,18 +40940,18 @@ var hasRequiredAuxiliaryAuthenticationHeaderPolicy;
 function requireAuxiliaryAuthenticationHeaderPolicy () {
 	if (hasRequiredAuxiliaryAuthenticationHeaderPolicy) return auxiliaryAuthenticationHeaderPolicy;
 	hasRequiredAuxiliaryAuthenticationHeaderPolicy = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.auxiliaryAuthenticationHeaderPolicyName = void 0;
-		exports.auxiliaryAuthenticationHeaderPolicy = auxiliaryAuthenticationHeaderPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.auxiliaryAuthenticationHeaderPolicyName = void 0;
+		exports$1.auxiliaryAuthenticationHeaderPolicy = auxiliaryAuthenticationHeaderPolicy;
 		const tokenCycler_js_1 = requireTokenCycler();
 		const log_js_1 = requireLog$3();
 		/**
 		 * The programmatic identifier of the auxiliaryAuthenticationHeaderPolicy.
 		 */
-		exports.auxiliaryAuthenticationHeaderPolicyName = "auxiliaryAuthenticationHeaderPolicy";
+		exports$1.auxiliaryAuthenticationHeaderPolicyName = "auxiliaryAuthenticationHeaderPolicy";
 		const AUTHORIZATION_AUXILIARY_HEADER = "x-ms-authorization-auxiliary";
 		async function sendAuthorizeRequest(options) {
 		    const { scopes, getAccessToken, request } = options;
@@ -40970,13 +40972,13 @@ function requireAuxiliaryAuthenticationHeaderPolicy () {
 		    const logger = options.logger || log_js_1.logger;
 		    const tokenCyclerMap = new WeakMap();
 		    return {
-		        name: exports.auxiliaryAuthenticationHeaderPolicyName,
+		        name: exports$1.auxiliaryAuthenticationHeaderPolicyName,
 		        async sendRequest(request, next) {
 		            if (!request.url.toLowerCase().startsWith("https://")) {
 		                throw new Error("Bearer token authentication for auxiliary header is not permitted for non-TLS protected (non-https) URLs.");
 		            }
 		            if (!credentials || credentials.length === 0) {
-		                logger.info(`${exports.auxiliaryAuthenticationHeaderPolicyName} header will not be set due to empty credentials.`);
+		                logger.info(`${exports$1.auxiliaryAuthenticationHeaderPolicyName} header will not be set due to empty credentials.`);
 		                return next(request);
 		            }
 		            const tokenPromises = [];
@@ -41011,83 +41013,83 @@ var hasRequiredCommonjs$9;
 function requireCommonjs$9 () {
 	if (hasRequiredCommonjs$9) return commonjs$d;
 	hasRequiredCommonjs$9 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.createFileFromStream = exports.createFile = exports.agentPolicyName = exports.agentPolicy = exports.auxiliaryAuthenticationHeaderPolicyName = exports.auxiliaryAuthenticationHeaderPolicy = exports.ndJsonPolicyName = exports.ndJsonPolicy = exports.bearerTokenAuthenticationPolicyName = exports.bearerTokenAuthenticationPolicy = exports.formDataPolicyName = exports.formDataPolicy = exports.tlsPolicyName = exports.tlsPolicy = exports.userAgentPolicyName = exports.userAgentPolicy = exports.defaultRetryPolicy = exports.tracingPolicyName = exports.tracingPolicy = exports.retryPolicy = exports.throttlingRetryPolicyName = exports.throttlingRetryPolicy = exports.systemErrorRetryPolicyName = exports.systemErrorRetryPolicy = exports.redirectPolicyName = exports.redirectPolicy = exports.getDefaultProxySettings = exports.proxyPolicyName = exports.proxyPolicy = exports.multipartPolicyName = exports.multipartPolicy = exports.logPolicyName = exports.logPolicy = exports.setClientRequestIdPolicyName = exports.setClientRequestIdPolicy = exports.exponentialRetryPolicyName = exports.exponentialRetryPolicy = exports.decompressResponsePolicyName = exports.decompressResponsePolicy = exports.isRestError = exports.RestError = exports.createPipelineRequest = exports.createHttpHeaders = exports.createDefaultHttpClient = exports.createPipelineFromOptions = exports.createEmptyPipeline = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.createFileFromStream = exports$1.createFile = exports$1.agentPolicyName = exports$1.agentPolicy = exports$1.auxiliaryAuthenticationHeaderPolicyName = exports$1.auxiliaryAuthenticationHeaderPolicy = exports$1.ndJsonPolicyName = exports$1.ndJsonPolicy = exports$1.bearerTokenAuthenticationPolicyName = exports$1.bearerTokenAuthenticationPolicy = exports$1.formDataPolicyName = exports$1.formDataPolicy = exports$1.tlsPolicyName = exports$1.tlsPolicy = exports$1.userAgentPolicyName = exports$1.userAgentPolicy = exports$1.defaultRetryPolicy = exports$1.tracingPolicyName = exports$1.tracingPolicy = exports$1.retryPolicy = exports$1.throttlingRetryPolicyName = exports$1.throttlingRetryPolicy = exports$1.systemErrorRetryPolicyName = exports$1.systemErrorRetryPolicy = exports$1.redirectPolicyName = exports$1.redirectPolicy = exports$1.getDefaultProxySettings = exports$1.proxyPolicyName = exports$1.proxyPolicy = exports$1.multipartPolicyName = exports$1.multipartPolicy = exports$1.logPolicyName = exports$1.logPolicy = exports$1.setClientRequestIdPolicyName = exports$1.setClientRequestIdPolicy = exports$1.exponentialRetryPolicyName = exports$1.exponentialRetryPolicy = exports$1.decompressResponsePolicyName = exports$1.decompressResponsePolicy = exports$1.isRestError = exports$1.RestError = exports$1.createPipelineRequest = exports$1.createHttpHeaders = exports$1.createDefaultHttpClient = exports$1.createPipelineFromOptions = exports$1.createEmptyPipeline = void 0;
 		var pipeline_js_1 = requirePipeline$2();
-		Object.defineProperty(exports, "createEmptyPipeline", { enumerable: true, get: function () { return pipeline_js_1.createEmptyPipeline; } });
+		Object.defineProperty(exports$1, "createEmptyPipeline", { enumerable: true, get: function () { return pipeline_js_1.createEmptyPipeline; } });
 		var createPipelineFromOptions_js_1 = requireCreatePipelineFromOptions();
-		Object.defineProperty(exports, "createPipelineFromOptions", { enumerable: true, get: function () { return createPipelineFromOptions_js_1.createPipelineFromOptions; } });
+		Object.defineProperty(exports$1, "createPipelineFromOptions", { enumerable: true, get: function () { return createPipelineFromOptions_js_1.createPipelineFromOptions; } });
 		var defaultHttpClient_js_1 = requireDefaultHttpClient();
-		Object.defineProperty(exports, "createDefaultHttpClient", { enumerable: true, get: function () { return defaultHttpClient_js_1.createDefaultHttpClient; } });
+		Object.defineProperty(exports$1, "createDefaultHttpClient", { enumerable: true, get: function () { return defaultHttpClient_js_1.createDefaultHttpClient; } });
 		var httpHeaders_js_1 = requireHttpHeaders();
-		Object.defineProperty(exports, "createHttpHeaders", { enumerable: true, get: function () { return httpHeaders_js_1.createHttpHeaders; } });
+		Object.defineProperty(exports$1, "createHttpHeaders", { enumerable: true, get: function () { return httpHeaders_js_1.createHttpHeaders; } });
 		var pipelineRequest_js_1 = requirePipelineRequest();
-		Object.defineProperty(exports, "createPipelineRequest", { enumerable: true, get: function () { return pipelineRequest_js_1.createPipelineRequest; } });
+		Object.defineProperty(exports$1, "createPipelineRequest", { enumerable: true, get: function () { return pipelineRequest_js_1.createPipelineRequest; } });
 		var restError_js_1 = requireRestError();
-		Object.defineProperty(exports, "RestError", { enumerable: true, get: function () { return restError_js_1.RestError; } });
-		Object.defineProperty(exports, "isRestError", { enumerable: true, get: function () { return restError_js_1.isRestError; } });
+		Object.defineProperty(exports$1, "RestError", { enumerable: true, get: function () { return restError_js_1.RestError; } });
+		Object.defineProperty(exports$1, "isRestError", { enumerable: true, get: function () { return restError_js_1.isRestError; } });
 		var decompressResponsePolicy_js_1 = requireDecompressResponsePolicy();
-		Object.defineProperty(exports, "decompressResponsePolicy", { enumerable: true, get: function () { return decompressResponsePolicy_js_1.decompressResponsePolicy; } });
-		Object.defineProperty(exports, "decompressResponsePolicyName", { enumerable: true, get: function () { return decompressResponsePolicy_js_1.decompressResponsePolicyName; } });
+		Object.defineProperty(exports$1, "decompressResponsePolicy", { enumerable: true, get: function () { return decompressResponsePolicy_js_1.decompressResponsePolicy; } });
+		Object.defineProperty(exports$1, "decompressResponsePolicyName", { enumerable: true, get: function () { return decompressResponsePolicy_js_1.decompressResponsePolicyName; } });
 		var exponentialRetryPolicy_js_1 = requireExponentialRetryPolicy();
-		Object.defineProperty(exports, "exponentialRetryPolicy", { enumerable: true, get: function () { return exponentialRetryPolicy_js_1.exponentialRetryPolicy; } });
-		Object.defineProperty(exports, "exponentialRetryPolicyName", { enumerable: true, get: function () { return exponentialRetryPolicy_js_1.exponentialRetryPolicyName; } });
+		Object.defineProperty(exports$1, "exponentialRetryPolicy", { enumerable: true, get: function () { return exponentialRetryPolicy_js_1.exponentialRetryPolicy; } });
+		Object.defineProperty(exports$1, "exponentialRetryPolicyName", { enumerable: true, get: function () { return exponentialRetryPolicy_js_1.exponentialRetryPolicyName; } });
 		var setClientRequestIdPolicy_js_1 = requireSetClientRequestIdPolicy();
-		Object.defineProperty(exports, "setClientRequestIdPolicy", { enumerable: true, get: function () { return setClientRequestIdPolicy_js_1.setClientRequestIdPolicy; } });
-		Object.defineProperty(exports, "setClientRequestIdPolicyName", { enumerable: true, get: function () { return setClientRequestIdPolicy_js_1.setClientRequestIdPolicyName; } });
+		Object.defineProperty(exports$1, "setClientRequestIdPolicy", { enumerable: true, get: function () { return setClientRequestIdPolicy_js_1.setClientRequestIdPolicy; } });
+		Object.defineProperty(exports$1, "setClientRequestIdPolicyName", { enumerable: true, get: function () { return setClientRequestIdPolicy_js_1.setClientRequestIdPolicyName; } });
 		var logPolicy_js_1 = requireLogPolicy();
-		Object.defineProperty(exports, "logPolicy", { enumerable: true, get: function () { return logPolicy_js_1.logPolicy; } });
-		Object.defineProperty(exports, "logPolicyName", { enumerable: true, get: function () { return logPolicy_js_1.logPolicyName; } });
+		Object.defineProperty(exports$1, "logPolicy", { enumerable: true, get: function () { return logPolicy_js_1.logPolicy; } });
+		Object.defineProperty(exports$1, "logPolicyName", { enumerable: true, get: function () { return logPolicy_js_1.logPolicyName; } });
 		var multipartPolicy_js_1 = requireMultipartPolicy();
-		Object.defineProperty(exports, "multipartPolicy", { enumerable: true, get: function () { return multipartPolicy_js_1.multipartPolicy; } });
-		Object.defineProperty(exports, "multipartPolicyName", { enumerable: true, get: function () { return multipartPolicy_js_1.multipartPolicyName; } });
+		Object.defineProperty(exports$1, "multipartPolicy", { enumerable: true, get: function () { return multipartPolicy_js_1.multipartPolicy; } });
+		Object.defineProperty(exports$1, "multipartPolicyName", { enumerable: true, get: function () { return multipartPolicy_js_1.multipartPolicyName; } });
 		var proxyPolicy_js_1 = requireProxyPolicy();
-		Object.defineProperty(exports, "proxyPolicy", { enumerable: true, get: function () { return proxyPolicy_js_1.proxyPolicy; } });
-		Object.defineProperty(exports, "proxyPolicyName", { enumerable: true, get: function () { return proxyPolicy_js_1.proxyPolicyName; } });
-		Object.defineProperty(exports, "getDefaultProxySettings", { enumerable: true, get: function () { return proxyPolicy_js_1.getDefaultProxySettings; } });
+		Object.defineProperty(exports$1, "proxyPolicy", { enumerable: true, get: function () { return proxyPolicy_js_1.proxyPolicy; } });
+		Object.defineProperty(exports$1, "proxyPolicyName", { enumerable: true, get: function () { return proxyPolicy_js_1.proxyPolicyName; } });
+		Object.defineProperty(exports$1, "getDefaultProxySettings", { enumerable: true, get: function () { return proxyPolicy_js_1.getDefaultProxySettings; } });
 		var redirectPolicy_js_1 = requireRedirectPolicy();
-		Object.defineProperty(exports, "redirectPolicy", { enumerable: true, get: function () { return redirectPolicy_js_1.redirectPolicy; } });
-		Object.defineProperty(exports, "redirectPolicyName", { enumerable: true, get: function () { return redirectPolicy_js_1.redirectPolicyName; } });
+		Object.defineProperty(exports$1, "redirectPolicy", { enumerable: true, get: function () { return redirectPolicy_js_1.redirectPolicy; } });
+		Object.defineProperty(exports$1, "redirectPolicyName", { enumerable: true, get: function () { return redirectPolicy_js_1.redirectPolicyName; } });
 		var systemErrorRetryPolicy_js_1 = requireSystemErrorRetryPolicy();
-		Object.defineProperty(exports, "systemErrorRetryPolicy", { enumerable: true, get: function () { return systemErrorRetryPolicy_js_1.systemErrorRetryPolicy; } });
-		Object.defineProperty(exports, "systemErrorRetryPolicyName", { enumerable: true, get: function () { return systemErrorRetryPolicy_js_1.systemErrorRetryPolicyName; } });
+		Object.defineProperty(exports$1, "systemErrorRetryPolicy", { enumerable: true, get: function () { return systemErrorRetryPolicy_js_1.systemErrorRetryPolicy; } });
+		Object.defineProperty(exports$1, "systemErrorRetryPolicyName", { enumerable: true, get: function () { return systemErrorRetryPolicy_js_1.systemErrorRetryPolicyName; } });
 		var throttlingRetryPolicy_js_1 = requireThrottlingRetryPolicy();
-		Object.defineProperty(exports, "throttlingRetryPolicy", { enumerable: true, get: function () { return throttlingRetryPolicy_js_1.throttlingRetryPolicy; } });
-		Object.defineProperty(exports, "throttlingRetryPolicyName", { enumerable: true, get: function () { return throttlingRetryPolicy_js_1.throttlingRetryPolicyName; } });
+		Object.defineProperty(exports$1, "throttlingRetryPolicy", { enumerable: true, get: function () { return throttlingRetryPolicy_js_1.throttlingRetryPolicy; } });
+		Object.defineProperty(exports$1, "throttlingRetryPolicyName", { enumerable: true, get: function () { return throttlingRetryPolicy_js_1.throttlingRetryPolicyName; } });
 		var retryPolicy_js_1 = requireRetryPolicy();
-		Object.defineProperty(exports, "retryPolicy", { enumerable: true, get: function () { return retryPolicy_js_1.retryPolicy; } });
+		Object.defineProperty(exports$1, "retryPolicy", { enumerable: true, get: function () { return retryPolicy_js_1.retryPolicy; } });
 		var tracingPolicy_js_1 = requireTracingPolicy();
-		Object.defineProperty(exports, "tracingPolicy", { enumerable: true, get: function () { return tracingPolicy_js_1.tracingPolicy; } });
-		Object.defineProperty(exports, "tracingPolicyName", { enumerable: true, get: function () { return tracingPolicy_js_1.tracingPolicyName; } });
+		Object.defineProperty(exports$1, "tracingPolicy", { enumerable: true, get: function () { return tracingPolicy_js_1.tracingPolicy; } });
+		Object.defineProperty(exports$1, "tracingPolicyName", { enumerable: true, get: function () { return tracingPolicy_js_1.tracingPolicyName; } });
 		var defaultRetryPolicy_js_1 = requireDefaultRetryPolicy();
-		Object.defineProperty(exports, "defaultRetryPolicy", { enumerable: true, get: function () { return defaultRetryPolicy_js_1.defaultRetryPolicy; } });
+		Object.defineProperty(exports$1, "defaultRetryPolicy", { enumerable: true, get: function () { return defaultRetryPolicy_js_1.defaultRetryPolicy; } });
 		var userAgentPolicy_js_1 = requireUserAgentPolicy();
-		Object.defineProperty(exports, "userAgentPolicy", { enumerable: true, get: function () { return userAgentPolicy_js_1.userAgentPolicy; } });
-		Object.defineProperty(exports, "userAgentPolicyName", { enumerable: true, get: function () { return userAgentPolicy_js_1.userAgentPolicyName; } });
+		Object.defineProperty(exports$1, "userAgentPolicy", { enumerable: true, get: function () { return userAgentPolicy_js_1.userAgentPolicy; } });
+		Object.defineProperty(exports$1, "userAgentPolicyName", { enumerable: true, get: function () { return userAgentPolicy_js_1.userAgentPolicyName; } });
 		var tlsPolicy_js_1 = requireTlsPolicy();
-		Object.defineProperty(exports, "tlsPolicy", { enumerable: true, get: function () { return tlsPolicy_js_1.tlsPolicy; } });
-		Object.defineProperty(exports, "tlsPolicyName", { enumerable: true, get: function () { return tlsPolicy_js_1.tlsPolicyName; } });
+		Object.defineProperty(exports$1, "tlsPolicy", { enumerable: true, get: function () { return tlsPolicy_js_1.tlsPolicy; } });
+		Object.defineProperty(exports$1, "tlsPolicyName", { enumerable: true, get: function () { return tlsPolicy_js_1.tlsPolicyName; } });
 		var formDataPolicy_js_1 = requireFormDataPolicy();
-		Object.defineProperty(exports, "formDataPolicy", { enumerable: true, get: function () { return formDataPolicy_js_1.formDataPolicy; } });
-		Object.defineProperty(exports, "formDataPolicyName", { enumerable: true, get: function () { return formDataPolicy_js_1.formDataPolicyName; } });
+		Object.defineProperty(exports$1, "formDataPolicy", { enumerable: true, get: function () { return formDataPolicy_js_1.formDataPolicy; } });
+		Object.defineProperty(exports$1, "formDataPolicyName", { enumerable: true, get: function () { return formDataPolicy_js_1.formDataPolicyName; } });
 		var bearerTokenAuthenticationPolicy_js_1 = requireBearerTokenAuthenticationPolicy();
-		Object.defineProperty(exports, "bearerTokenAuthenticationPolicy", { enumerable: true, get: function () { return bearerTokenAuthenticationPolicy_js_1.bearerTokenAuthenticationPolicy; } });
-		Object.defineProperty(exports, "bearerTokenAuthenticationPolicyName", { enumerable: true, get: function () { return bearerTokenAuthenticationPolicy_js_1.bearerTokenAuthenticationPolicyName; } });
+		Object.defineProperty(exports$1, "bearerTokenAuthenticationPolicy", { enumerable: true, get: function () { return bearerTokenAuthenticationPolicy_js_1.bearerTokenAuthenticationPolicy; } });
+		Object.defineProperty(exports$1, "bearerTokenAuthenticationPolicyName", { enumerable: true, get: function () { return bearerTokenAuthenticationPolicy_js_1.bearerTokenAuthenticationPolicyName; } });
 		var ndJsonPolicy_js_1 = requireNdJsonPolicy();
-		Object.defineProperty(exports, "ndJsonPolicy", { enumerable: true, get: function () { return ndJsonPolicy_js_1.ndJsonPolicy; } });
-		Object.defineProperty(exports, "ndJsonPolicyName", { enumerable: true, get: function () { return ndJsonPolicy_js_1.ndJsonPolicyName; } });
+		Object.defineProperty(exports$1, "ndJsonPolicy", { enumerable: true, get: function () { return ndJsonPolicy_js_1.ndJsonPolicy; } });
+		Object.defineProperty(exports$1, "ndJsonPolicyName", { enumerable: true, get: function () { return ndJsonPolicy_js_1.ndJsonPolicyName; } });
 		var auxiliaryAuthenticationHeaderPolicy_js_1 = requireAuxiliaryAuthenticationHeaderPolicy();
-		Object.defineProperty(exports, "auxiliaryAuthenticationHeaderPolicy", { enumerable: true, get: function () { return auxiliaryAuthenticationHeaderPolicy_js_1.auxiliaryAuthenticationHeaderPolicy; } });
-		Object.defineProperty(exports, "auxiliaryAuthenticationHeaderPolicyName", { enumerable: true, get: function () { return auxiliaryAuthenticationHeaderPolicy_js_1.auxiliaryAuthenticationHeaderPolicyName; } });
+		Object.defineProperty(exports$1, "auxiliaryAuthenticationHeaderPolicy", { enumerable: true, get: function () { return auxiliaryAuthenticationHeaderPolicy_js_1.auxiliaryAuthenticationHeaderPolicy; } });
+		Object.defineProperty(exports$1, "auxiliaryAuthenticationHeaderPolicyName", { enumerable: true, get: function () { return auxiliaryAuthenticationHeaderPolicy_js_1.auxiliaryAuthenticationHeaderPolicyName; } });
 		var agentPolicy_js_1 = requireAgentPolicy();
-		Object.defineProperty(exports, "agentPolicy", { enumerable: true, get: function () { return agentPolicy_js_1.agentPolicy; } });
-		Object.defineProperty(exports, "agentPolicyName", { enumerable: true, get: function () { return agentPolicy_js_1.agentPolicyName; } });
+		Object.defineProperty(exports$1, "agentPolicy", { enumerable: true, get: function () { return agentPolicy_js_1.agentPolicy; } });
+		Object.defineProperty(exports$1, "agentPolicyName", { enumerable: true, get: function () { return agentPolicy_js_1.agentPolicyName; } });
 		var file_js_1 = requireFile();
-		Object.defineProperty(exports, "createFile", { enumerable: true, get: function () { return file_js_1.createFile; } });
-		Object.defineProperty(exports, "createFileFromStream", { enumerable: true, get: function () { return file_js_1.createFileFromStream; } });
+		Object.defineProperty(exports$1, "createFile", { enumerable: true, get: function () { return file_js_1.createFile; } });
+		Object.defineProperty(exports$1, "createFileFromStream", { enumerable: true, get: function () { return file_js_1.createFileFromStream; } });
 		
 	} (commonjs$d));
 	return commonjs$d;
@@ -41370,21 +41372,21 @@ var hasRequiredCommonjs$8;
 function requireCommonjs$8 () {
 	if (hasRequiredCommonjs$8) return commonjs$7;
 	hasRequiredCommonjs$8 = 1;
-	(function (exports) {
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.isTokenCredential = exports.isSASCredential = exports.AzureSASCredential = exports.isNamedKeyCredential = exports.AzureNamedKeyCredential = exports.isKeyCredential = exports.AzureKeyCredential = void 0;
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.isTokenCredential = exports$1.isSASCredential = exports$1.AzureSASCredential = exports$1.isNamedKeyCredential = exports$1.AzureNamedKeyCredential = exports$1.isKeyCredential = exports$1.AzureKeyCredential = void 0;
 		var azureKeyCredential_js_1 = requireAzureKeyCredential();
-		Object.defineProperty(exports, "AzureKeyCredential", { enumerable: true, get: function () { return azureKeyCredential_js_1.AzureKeyCredential; } });
+		Object.defineProperty(exports$1, "AzureKeyCredential", { enumerable: true, get: function () { return azureKeyCredential_js_1.AzureKeyCredential; } });
 		var keyCredential_js_1 = requireKeyCredential();
-		Object.defineProperty(exports, "isKeyCredential", { enumerable: true, get: function () { return keyCredential_js_1.isKeyCredential; } });
+		Object.defineProperty(exports$1, "isKeyCredential", { enumerable: true, get: function () { return keyCredential_js_1.isKeyCredential; } });
 		var azureNamedKeyCredential_js_1 = requireAzureNamedKeyCredential();
-		Object.defineProperty(exports, "AzureNamedKeyCredential", { enumerable: true, get: function () { return azureNamedKeyCredential_js_1.AzureNamedKeyCredential; } });
-		Object.defineProperty(exports, "isNamedKeyCredential", { enumerable: true, get: function () { return azureNamedKeyCredential_js_1.isNamedKeyCredential; } });
+		Object.defineProperty(exports$1, "AzureNamedKeyCredential", { enumerable: true, get: function () { return azureNamedKeyCredential_js_1.AzureNamedKeyCredential; } });
+		Object.defineProperty(exports$1, "isNamedKeyCredential", { enumerable: true, get: function () { return azureNamedKeyCredential_js_1.isNamedKeyCredential; } });
 		var azureSASCredential_js_1 = requireAzureSASCredential();
-		Object.defineProperty(exports, "AzureSASCredential", { enumerable: true, get: function () { return azureSASCredential_js_1.AzureSASCredential; } });
-		Object.defineProperty(exports, "isSASCredential", { enumerable: true, get: function () { return azureSASCredential_js_1.isSASCredential; } });
+		Object.defineProperty(exports$1, "AzureSASCredential", { enumerable: true, get: function () { return azureSASCredential_js_1.AzureSASCredential; } });
+		Object.defineProperty(exports$1, "isSASCredential", { enumerable: true, get: function () { return azureSASCredential_js_1.isSASCredential; } });
 		var tokenCredential_js_1 = requireTokenCredential();
-		Object.defineProperty(exports, "isTokenCredential", { enumerable: true, get: function () { return tokenCredential_js_1.isTokenCredential; } });
+		Object.defineProperty(exports$1, "isTokenCredential", { enumerable: true, get: function () { return tokenCredential_js_1.isTokenCredential; } });
 		
 	} (commonjs$7));
 	return commonjs$7;
@@ -41403,17 +41405,17 @@ var hasRequiredDisableKeepAlivePolicy;
 function requireDisableKeepAlivePolicy () {
 	if (hasRequiredDisableKeepAlivePolicy) return disableKeepAlivePolicy;
 	hasRequiredDisableKeepAlivePolicy = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.disableKeepAlivePolicyName = void 0;
-		exports.createDisableKeepAlivePolicy = createDisableKeepAlivePolicy;
-		exports.pipelineContainsDisableKeepAlivePolicy = pipelineContainsDisableKeepAlivePolicy;
-		exports.disableKeepAlivePolicyName = "DisableKeepAlivePolicy";
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.disableKeepAlivePolicyName = void 0;
+		exports$1.createDisableKeepAlivePolicy = createDisableKeepAlivePolicy;
+		exports$1.pipelineContainsDisableKeepAlivePolicy = pipelineContainsDisableKeepAlivePolicy;
+		exports$1.disableKeepAlivePolicyName = "DisableKeepAlivePolicy";
 		function createDisableKeepAlivePolicy() {
 		    return {
-		        name: exports.disableKeepAlivePolicyName,
+		        name: exports$1.disableKeepAlivePolicyName,
 		        async sendRequest(request, next) {
 		            request.disableKeepAlive = true;
 		            return next(request);
@@ -41424,7 +41426,7 @@ function requireDisableKeepAlivePolicy () {
 		 * @internal
 		 */
 		function pipelineContainsDisableKeepAlivePolicy(pipeline) {
-		    return pipeline.getOrderedPolicies().some((policy) => policy.name === exports.disableKeepAlivePolicyName);
+		    return pipeline.getOrderedPolicies().some((policy) => policy.name === exports$1.disableKeepAlivePolicyName);
 		}
 		
 	} (disableKeepAlivePolicy));
@@ -41486,27 +41488,27 @@ function requireBase64 () {
 	return base64;
 }
 
-var interfaces = {};
+var interfaces$1 = {};
 
-var hasRequiredInterfaces;
+var hasRequiredInterfaces$1;
 
-function requireInterfaces () {
-	if (hasRequiredInterfaces) return interfaces;
-	hasRequiredInterfaces = 1;
+function requireInterfaces$1 () {
+	if (hasRequiredInterfaces$1) return interfaces$1;
+	hasRequiredInterfaces$1 = 1;
 	// Copyright (c) Microsoft Corporation.
 	// Licensed under the MIT License.
-	Object.defineProperty(interfaces, "__esModule", { value: true });
-	interfaces.XML_CHARKEY = interfaces.XML_ATTRKEY = void 0;
+	Object.defineProperty(interfaces$1, "__esModule", { value: true });
+	interfaces$1.XML_CHARKEY = interfaces$1.XML_ATTRKEY = void 0;
 	/**
 	 * Default key used to access the XML attributes.
 	 */
-	interfaces.XML_ATTRKEY = "$";
+	interfaces$1.XML_ATTRKEY = "$";
 	/**
 	 * Default key used to access the XML value content.
 	 */
-	interfaces.XML_CHARKEY = "_";
+	interfaces$1.XML_CHARKEY = "_";
 	
-	return interfaces;
+	return interfaces$1;
 }
 
 var utils$1 = {};
@@ -41664,7 +41666,7 @@ function requireSerializer () {
 	serializer.createSerializer = createSerializer;
 	const tslib_1 = require$$0;
 	const base64 = tslib_1.__importStar(requireBase64());
-	const interfaces_js_1 = requireInterfaces();
+	const interfaces_js_1 = requireInterfaces$1();
 	const utils_js_1 = requireUtils$1();
 	class SerializerImpl {
 	    modelMappers;
@@ -42724,13 +42726,13 @@ var hasRequiredDeserializationPolicy;
 function requireDeserializationPolicy () {
 	if (hasRequiredDeserializationPolicy) return deserializationPolicy;
 	hasRequiredDeserializationPolicy = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.deserializationPolicyName = void 0;
-		exports.deserializationPolicy = deserializationPolicy;
-		const interfaces_js_1 = requireInterfaces();
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.deserializationPolicyName = void 0;
+		exports$1.deserializationPolicy = deserializationPolicy;
+		const interfaces_js_1 = requireInterfaces$1();
 		const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
 		const serializer_js_1 = requireSerializer();
 		const operationHelpers_js_1 = requireOperationHelpers();
@@ -42739,7 +42741,7 @@ function requireDeserializationPolicy () {
 		/**
 		 * The programmatic identifier of the deserializationPolicy.
 		 */
-		exports.deserializationPolicyName = "deserializationPolicy";
+		exports$1.deserializationPolicyName = "deserializationPolicy";
 		/**
 		 * This policy handles parsing out responses according to OperationSpecs on the request.
 		 */
@@ -42756,7 +42758,7 @@ function requireDeserializationPolicy () {
 		        },
 		    };
 		    return {
-		        name: exports.deserializationPolicyName,
+		        name: exports$1.deserializationPolicyName,
 		        async sendRequest(request, next) {
 		            const response = await next(request);
 		            return deserializeResponseBody(jsonContentTypes, xmlContentTypes, response, updatedOptions, parseXML);
@@ -43021,22 +43023,22 @@ var hasRequiredSerializationPolicy;
 function requireSerializationPolicy () {
 	if (hasRequiredSerializationPolicy) return serializationPolicy;
 	hasRequiredSerializationPolicy = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.serializationPolicyName = void 0;
-		exports.serializationPolicy = serializationPolicy;
-		exports.serializeHeaders = serializeHeaders;
-		exports.serializeRequestBody = serializeRequestBody;
-		const interfaces_js_1 = requireInterfaces();
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.serializationPolicyName = void 0;
+		exports$1.serializationPolicy = serializationPolicy;
+		exports$1.serializeHeaders = serializeHeaders;
+		exports$1.serializeRequestBody = serializeRequestBody;
+		const interfaces_js_1 = requireInterfaces$1();
 		const operationHelpers_js_1 = requireOperationHelpers();
 		const serializer_js_1 = requireSerializer();
 		const interfaceHelpers_js_1 = requireInterfaceHelpers();
 		/**
 		 * The programmatic identifier of the serializationPolicy.
 		 */
-		exports.serializationPolicyName = "serializationPolicy";
+		exports$1.serializationPolicyName = "serializationPolicy";
 		/**
 		 * This policy handles assembling the request body and headers using
 		 * an OperationSpec and OperationArguments on the request.
@@ -43044,7 +43046,7 @@ function requireSerializationPolicy () {
 		function serializationPolicy(options = {}) {
 		    const stringifyXML = options.stringifyXML;
 		    return {
-		        name: exports.serializationPolicyName,
+		        name: exports$1.serializationPolicyName,
 		        async sendRequest(request, next) {
 		            const operationInfo = (0, operationHelpers_js_1.getOperationRequestInfo)(request);
 		            const operationSpec = operationInfo?.operationSpec;
@@ -43906,31 +43908,31 @@ var hasRequiredCommonjs$7;
 function requireCommonjs$7 () {
 	if (hasRequiredCommonjs$7) return commonjs$5;
 	hasRequiredCommonjs$7 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.authorizeRequestOnTenantChallenge = exports.authorizeRequestOnClaimChallenge = exports.serializationPolicyName = exports.serializationPolicy = exports.deserializationPolicyName = exports.deserializationPolicy = exports.XML_CHARKEY = exports.XML_ATTRKEY = exports.createClientPipeline = exports.ServiceClient = exports.MapperTypeNames = exports.createSerializer = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.authorizeRequestOnTenantChallenge = exports$1.authorizeRequestOnClaimChallenge = exports$1.serializationPolicyName = exports$1.serializationPolicy = exports$1.deserializationPolicyName = exports$1.deserializationPolicy = exports$1.XML_CHARKEY = exports$1.XML_ATTRKEY = exports$1.createClientPipeline = exports$1.ServiceClient = exports$1.MapperTypeNames = exports$1.createSerializer = void 0;
 		var serializer_js_1 = requireSerializer();
-		Object.defineProperty(exports, "createSerializer", { enumerable: true, get: function () { return serializer_js_1.createSerializer; } });
-		Object.defineProperty(exports, "MapperTypeNames", { enumerable: true, get: function () { return serializer_js_1.MapperTypeNames; } });
+		Object.defineProperty(exports$1, "createSerializer", { enumerable: true, get: function () { return serializer_js_1.createSerializer; } });
+		Object.defineProperty(exports$1, "MapperTypeNames", { enumerable: true, get: function () { return serializer_js_1.MapperTypeNames; } });
 		var serviceClient_js_1 = requireServiceClient();
-		Object.defineProperty(exports, "ServiceClient", { enumerable: true, get: function () { return serviceClient_js_1.ServiceClient; } });
+		Object.defineProperty(exports$1, "ServiceClient", { enumerable: true, get: function () { return serviceClient_js_1.ServiceClient; } });
 		var pipeline_js_1 = requirePipeline$1();
-		Object.defineProperty(exports, "createClientPipeline", { enumerable: true, get: function () { return pipeline_js_1.createClientPipeline; } });
-		var interfaces_js_1 = requireInterfaces();
-		Object.defineProperty(exports, "XML_ATTRKEY", { enumerable: true, get: function () { return interfaces_js_1.XML_ATTRKEY; } });
-		Object.defineProperty(exports, "XML_CHARKEY", { enumerable: true, get: function () { return interfaces_js_1.XML_CHARKEY; } });
+		Object.defineProperty(exports$1, "createClientPipeline", { enumerable: true, get: function () { return pipeline_js_1.createClientPipeline; } });
+		var interfaces_js_1 = requireInterfaces$1();
+		Object.defineProperty(exports$1, "XML_ATTRKEY", { enumerable: true, get: function () { return interfaces_js_1.XML_ATTRKEY; } });
+		Object.defineProperty(exports$1, "XML_CHARKEY", { enumerable: true, get: function () { return interfaces_js_1.XML_CHARKEY; } });
 		var deserializationPolicy_js_1 = requireDeserializationPolicy();
-		Object.defineProperty(exports, "deserializationPolicy", { enumerable: true, get: function () { return deserializationPolicy_js_1.deserializationPolicy; } });
-		Object.defineProperty(exports, "deserializationPolicyName", { enumerable: true, get: function () { return deserializationPolicy_js_1.deserializationPolicyName; } });
+		Object.defineProperty(exports$1, "deserializationPolicy", { enumerable: true, get: function () { return deserializationPolicy_js_1.deserializationPolicy; } });
+		Object.defineProperty(exports$1, "deserializationPolicyName", { enumerable: true, get: function () { return deserializationPolicy_js_1.deserializationPolicyName; } });
 		var serializationPolicy_js_1 = requireSerializationPolicy();
-		Object.defineProperty(exports, "serializationPolicy", { enumerable: true, get: function () { return serializationPolicy_js_1.serializationPolicy; } });
-		Object.defineProperty(exports, "serializationPolicyName", { enumerable: true, get: function () { return serializationPolicy_js_1.serializationPolicyName; } });
+		Object.defineProperty(exports$1, "serializationPolicy", { enumerable: true, get: function () { return serializationPolicy_js_1.serializationPolicy; } });
+		Object.defineProperty(exports$1, "serializationPolicyName", { enumerable: true, get: function () { return serializationPolicy_js_1.serializationPolicyName; } });
 		var authorizeRequestOnClaimChallenge_js_1 = requireAuthorizeRequestOnClaimChallenge();
-		Object.defineProperty(exports, "authorizeRequestOnClaimChallenge", { enumerable: true, get: function () { return authorizeRequestOnClaimChallenge_js_1.authorizeRequestOnClaimChallenge; } });
+		Object.defineProperty(exports$1, "authorizeRequestOnClaimChallenge", { enumerable: true, get: function () { return authorizeRequestOnClaimChallenge_js_1.authorizeRequestOnClaimChallenge; } });
 		var authorizeRequestOnTenantChallenge_js_1 = requireAuthorizeRequestOnTenantChallenge();
-		Object.defineProperty(exports, "authorizeRequestOnTenantChallenge", { enumerable: true, get: function () { return authorizeRequestOnTenantChallenge_js_1.authorizeRequestOnTenantChallenge; } });
+		Object.defineProperty(exports$1, "authorizeRequestOnTenantChallenge", { enumerable: true, get: function () { return authorizeRequestOnTenantChallenge_js_1.authorizeRequestOnTenantChallenge; } });
 		
 	} (commonjs$5));
 	return commonjs$5;
@@ -44364,12 +44366,12 @@ var hasRequiredRequestPolicyFactoryPolicy;
 function requireRequestPolicyFactoryPolicy () {
 	if (hasRequiredRequestPolicyFactoryPolicy) return requestPolicyFactoryPolicy;
 	hasRequiredRequestPolicyFactoryPolicy = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.requestPolicyFactoryPolicyName = exports.HttpPipelineLogLevel = void 0;
-		exports.createRequestPolicyFactoryPolicy = createRequestPolicyFactoryPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.requestPolicyFactoryPolicyName = exports$1.HttpPipelineLogLevel = void 0;
+		exports$1.createRequestPolicyFactoryPolicy = createRequestPolicyFactoryPolicy;
 		const util_js_1 = requireUtil();
 		const response_js_1 = requireResponse();
 		/**
@@ -44381,7 +44383,7 @@ function requireRequestPolicyFactoryPolicy () {
 		    HttpPipelineLogLevel[HttpPipelineLogLevel["INFO"] = 3] = "INFO";
 		    HttpPipelineLogLevel[HttpPipelineLogLevel["OFF"] = 0] = "OFF";
 		    HttpPipelineLogLevel[HttpPipelineLogLevel["WARNING"] = 2] = "WARNING";
-		})(HttpPipelineLogLevel || (exports.HttpPipelineLogLevel = HttpPipelineLogLevel = {}));
+		})(HttpPipelineLogLevel || (exports$1.HttpPipelineLogLevel = HttpPipelineLogLevel = {}));
 		const mockRequestPolicyOptions = {
 		    log(_logLevel, _message) {
 		        /* do nothing */
@@ -44393,7 +44395,7 @@ function requireRequestPolicyFactoryPolicy () {
 		/**
 		 * The name of the RequestPolicyFactoryPolicy
 		 */
-		exports.requestPolicyFactoryPolicyName = "RequestPolicyFactoryPolicy";
+		exports$1.requestPolicyFactoryPolicyName = "RequestPolicyFactoryPolicy";
 		/**
 		 * A policy that wraps policies written for core-http.
 		 * @param factories - An array of `RequestPolicyFactory` objects from a core-http pipeline
@@ -44401,7 +44403,7 @@ function requireRequestPolicyFactoryPolicy () {
 		function createRequestPolicyFactoryPolicy(factories) {
 		    const orderedFactories = factories.slice().reverse();
 		    return {
-		        name: exports.requestPolicyFactoryPolicyName,
+		        name: exports$1.requestPolicyFactoryPolicyName,
 		        async sendRequest(request, next) {
 		            let httpPipeline = {
 		                async sendRequest(httpRequest) {
@@ -44458,28 +44460,28 @@ var hasRequiredCommonjs$6;
 function requireCommonjs$6 () {
 	if (hasRequiredCommonjs$6) return commonjs$6;
 	hasRequiredCommonjs$6 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.toHttpHeadersLike = exports.convertHttpClient = exports.disableKeepAlivePolicyName = exports.HttpPipelineLogLevel = exports.createRequestPolicyFactoryPolicy = exports.requestPolicyFactoryPolicyName = exports.ExtendedServiceClient = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.toHttpHeadersLike = exports$1.convertHttpClient = exports$1.disableKeepAlivePolicyName = exports$1.HttpPipelineLogLevel = exports$1.createRequestPolicyFactoryPolicy = exports$1.requestPolicyFactoryPolicyName = exports$1.ExtendedServiceClient = void 0;
 		/**
 		 * A Shim Library that provides compatibility between Core V1 & V2 Packages.
 		 *
 		 * @packageDocumentation
 		 */
 		var extendedClient_js_1 = requireExtendedClient();
-		Object.defineProperty(exports, "ExtendedServiceClient", { enumerable: true, get: function () { return extendedClient_js_1.ExtendedServiceClient; } });
+		Object.defineProperty(exports$1, "ExtendedServiceClient", { enumerable: true, get: function () { return extendedClient_js_1.ExtendedServiceClient; } });
 		var requestPolicyFactoryPolicy_js_1 = requireRequestPolicyFactoryPolicy();
-		Object.defineProperty(exports, "requestPolicyFactoryPolicyName", { enumerable: true, get: function () { return requestPolicyFactoryPolicy_js_1.requestPolicyFactoryPolicyName; } });
-		Object.defineProperty(exports, "createRequestPolicyFactoryPolicy", { enumerable: true, get: function () { return requestPolicyFactoryPolicy_js_1.createRequestPolicyFactoryPolicy; } });
-		Object.defineProperty(exports, "HttpPipelineLogLevel", { enumerable: true, get: function () { return requestPolicyFactoryPolicy_js_1.HttpPipelineLogLevel; } });
+		Object.defineProperty(exports$1, "requestPolicyFactoryPolicyName", { enumerable: true, get: function () { return requestPolicyFactoryPolicy_js_1.requestPolicyFactoryPolicyName; } });
+		Object.defineProperty(exports$1, "createRequestPolicyFactoryPolicy", { enumerable: true, get: function () { return requestPolicyFactoryPolicy_js_1.createRequestPolicyFactoryPolicy; } });
+		Object.defineProperty(exports$1, "HttpPipelineLogLevel", { enumerable: true, get: function () { return requestPolicyFactoryPolicy_js_1.HttpPipelineLogLevel; } });
 		var disableKeepAlivePolicy_js_1 = requireDisableKeepAlivePolicy();
-		Object.defineProperty(exports, "disableKeepAlivePolicyName", { enumerable: true, get: function () { return disableKeepAlivePolicy_js_1.disableKeepAlivePolicyName; } });
+		Object.defineProperty(exports$1, "disableKeepAlivePolicyName", { enumerable: true, get: function () { return disableKeepAlivePolicy_js_1.disableKeepAlivePolicyName; } });
 		var httpClientAdapter_js_1 = requireHttpClientAdapter();
-		Object.defineProperty(exports, "convertHttpClient", { enumerable: true, get: function () { return httpClientAdapter_js_1.convertHttpClient; } });
+		Object.defineProperty(exports$1, "convertHttpClient", { enumerable: true, get: function () { return httpClientAdapter_js_1.convertHttpClient; } });
 		var util_js_1 = requireUtil();
-		Object.defineProperty(exports, "toHttpHeadersLike", { enumerable: true, get: function () { return util_js_1.toHttpHeadersLike; } });
+		Object.defineProperty(exports$1, "toHttpHeadersLike", { enumerable: true, get: function () { return util_js_1.toHttpHeadersLike; } });
 		
 	} (commonjs$6));
 	return commonjs$6;
@@ -44496,7 +44498,7 @@ var hasRequiredFxp;
 function requireFxp () {
 	if (hasRequiredFxp) return fxp.exports;
 	hasRequiredFxp = 1;
-	(()=>{var t={d:(e,n)=>{for(var i in n)t.o(n,i)&&!t.o(e,i)&&Object.defineProperty(e,i,{enumerable:true,get:n[i]});},o:(t,e)=>Object.prototype.hasOwnProperty.call(t,e),r:t=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:true});}},e={};t.r(e),t.d(e,{XMLBuilder:()=>lt,XMLParser:()=>tt,XMLValidator:()=>pt});const n=":A-Za-z_\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD",i=new RegExp("^["+n+"]["+n+"\\-.\\d\\u00B7\\u0300-\\u036F\\u203F-\\u2040]*$");function r(t,e){const n=[];let i=e.exec(t);for(;i;){const r=[];r.startIndex=e.lastIndex-i[0].length;const s=i.length;for(let t=0;t<s;t++)r.push(i[t]);n.push(r),i=e.exec(t);}return n}const s=function(t){return !(null==i.exec(t))},o={allowBooleanAttributes:false,unpairedTags:[]};function a(t,e){e=Object.assign({},o,e);const n=[];let i=false,r=false;"\ufeff"===t[0]&&(t=t.substr(1));for(let o=0;o<t.length;o++)if("<"===t[o]&&"?"===t[o+1]){if(o+=2,o=u(t,o),o.err)return o}else {if("<"!==t[o]){if(l(t[o]))continue;return x("InvalidChar","char '"+t[o]+"' is not expected.",N(t,o))}{let a=o;if(o++,"!"===t[o]){o=h(t,o);continue}{let d=false;"/"===t[o]&&(d=true,o++);let p="";for(;o<t.length&&">"!==t[o]&&" "!==t[o]&&"\t"!==t[o]&&"\n"!==t[o]&&"\r"!==t[o];o++)p+=t[o];if(p=p.trim(),"/"===p[p.length-1]&&(p=p.substring(0,p.length-1),o--),!s(p)){let e;return e=0===p.trim().length?"Invalid space after '<'.":"Tag '"+p+"' is an invalid name.",x("InvalidTag",e,N(t,o))}const c=f(t,o);if(false===c)return x("InvalidAttr","Attributes for '"+p+"' have open quote.",N(t,o));let b=c.value;if(o=c.index,"/"===b[b.length-1]){const n=o-b.length;b=b.substring(0,b.length-1);const r=g(b,e);if(true!==r)return x(r.err.code,r.err.msg,N(t,n+r.err.line));i=true;}else if(d){if(!c.tagClosed)return x("InvalidTag","Closing tag '"+p+"' doesn't have proper closing.",N(t,o));if(b.trim().length>0)return x("InvalidTag","Closing tag '"+p+"' can't have attributes or invalid starting.",N(t,a));if(0===n.length)return x("InvalidTag","Closing tag '"+p+"' has not been opened.",N(t,a));{const e=n.pop();if(p!==e.tagName){let n=N(t,e.tagStartPos);return x("InvalidTag","Expected closing tag '"+e.tagName+"' (opened in line "+n.line+", col "+n.col+") instead of closing tag '"+p+"'.",N(t,a))}0==n.length&&(r=true);}}else {const s=g(b,e);if(true!==s)return x(s.err.code,s.err.msg,N(t,o-b.length+s.err.line));if(true===r)return x("InvalidXml","Multiple possible root nodes found.",N(t,o));-1!==e.unpairedTags.indexOf(p)||n.push({tagName:p,tagStartPos:a}),i=true;}for(o++;o<t.length;o++)if("<"===t[o]){if("!"===t[o+1]){o++,o=h(t,o);continue}if("?"!==t[o+1])break;if(o=u(t,++o),o.err)return o}else if("&"===t[o]){const e=m(t,o);if(-1==e)return x("InvalidChar","char '&' is not expected.",N(t,o));o=e;}else if(true===r&&!l(t[o]))return x("InvalidXml","Extra text at the end",N(t,o));"<"===t[o]&&o--;}}}return i?1==n.length?x("InvalidTag","Unclosed tag '"+n[0].tagName+"'.",N(t,n[0].tagStartPos)):!(n.length>0)||x("InvalidXml","Invalid '"+JSON.stringify(n.map((t=>t.tagName)),null,4).replace(/\r?\n/g,"")+"' found.",{line:1,col:1}):x("InvalidXml","Start tag expected.",1)}function l(t){return " "===t||"\t"===t||"\n"===t||"\r"===t}function u(t,e){const n=e;for(;e<t.length;e++)if("?"!=t[e]&&" "!=t[e]);else {const i=t.substr(n,e-n);if(e>5&&"xml"===i)return x("InvalidXml","XML declaration allowed only at the start of the document.",N(t,e));if("?"==t[e]&&">"==t[e+1]){e++;break}}return e}function h(t,e){if(t.length>e+5&&"-"===t[e+1]&&"-"===t[e+2]){for(e+=3;e<t.length;e++)if("-"===t[e]&&"-"===t[e+1]&&">"===t[e+2]){e+=2;break}}else if(t.length>e+8&&"D"===t[e+1]&&"O"===t[e+2]&&"C"===t[e+3]&&"T"===t[e+4]&&"Y"===t[e+5]&&"P"===t[e+6]&&"E"===t[e+7]){let n=1;for(e+=8;e<t.length;e++)if("<"===t[e])n++;else if(">"===t[e]&&(n--,0===n))break}else if(t.length>e+9&&"["===t[e+1]&&"C"===t[e+2]&&"D"===t[e+3]&&"A"===t[e+4]&&"T"===t[e+5]&&"A"===t[e+6]&&"["===t[e+7])for(e+=8;e<t.length;e++)if("]"===t[e]&&"]"===t[e+1]&&">"===t[e+2]){e+=2;break}return e}const d='"',p="'";function f(t,e){let n="",i="",r=false;for(;e<t.length;e++){if(t[e]===d||t[e]===p)""===i?i=t[e]:i!==t[e]||(i="");else if(">"===t[e]&&""===i){r=true;break}n+=t[e];}return ""===i&&{value:n,index:e,tagClosed:r}}const c=new RegExp("(\\s*)([^\\s=]+)(\\s*=)?(\\s*(['\"])(([\\s\\S])*?)\\5)?","g");function g(t,e){const n=r(t,c),i={};for(let t=0;t<n.length;t++){if(0===n[t][1].length)return x("InvalidAttr","Attribute '"+n[t][2]+"' has no space in starting.",E(n[t]));if(void 0!==n[t][3]&&void 0===n[t][4])return x("InvalidAttr","Attribute '"+n[t][2]+"' is without value.",E(n[t]));if(void 0===n[t][3]&&!e.allowBooleanAttributes)return x("InvalidAttr","boolean attribute '"+n[t][2]+"' is not allowed.",E(n[t]));const r=n[t][2];if(!b(r))return x("InvalidAttr","Attribute '"+r+"' is an invalid name.",E(n[t]));if(i.hasOwnProperty(r))return x("InvalidAttr","Attribute '"+r+"' is repeated.",E(n[t]));i[r]=1;}return  true}function m(t,e){if(";"===t[++e])return  -1;if("#"===t[e])return function(t,e){let n=/\d/;for("x"===t[e]&&(e++,n=/[\da-fA-F]/);e<t.length;e++){if(";"===t[e])return e;if(!t[e].match(n))break}return  -1}(t,++e);let n=0;for(;e<t.length;e++,n++)if(!(t[e].match(/\w/)&&n<20)){if(";"===t[e])break;return  -1}return e}function x(t,e,n){return {err:{code:t,msg:e,line:n.line||n,col:n.col}}}function b(t){return s(t)}function N(t,e){const n=t.substring(0,e).split(/\r?\n/);return {line:n.length,col:n[n.length-1].length+1}}function E(t){return t.startIndex+t[1].length}const v={preserveOrder:false,attributeNamePrefix:"@_",attributesGroupName:false,textNodeName:"#text",ignoreAttributes:true,removeNSPrefix:false,allowBooleanAttributes:false,parseTagValue:true,parseAttributeValue:false,trimValues:true,cdataPropName:false,numberParseOptions:{hex:true,leadingZeros:true,eNotation:true},tagValueProcessor:function(t,e){return e},attributeValueProcessor:function(t,e){return e},stopNodes:[],alwaysCreateTextNode:false,isArray:()=>false,commentPropName:false,unpairedTags:[],processEntities:true,htmlEntities:false,ignoreDeclaration:false,ignorePiTags:false,transformTagName:false,transformAttributeName:false,updateTag:function(t,e,n){return t},captureMetaData:false};let T;T="function"!=typeof Symbol?"@@xmlMetadata":Symbol("XML Node Metadata");class y{constructor(t){this.tagname=t,this.child=[],this[":@"]={};}add(t,e){"__proto__"===t&&(t="#__proto__"),this.child.push({[t]:e});}addChild(t,e){"__proto__"===t.tagname&&(t.tagname="#__proto__"),t[":@"]&&Object.keys(t[":@"]).length>0?this.child.push({[t.tagname]:t.child,":@":t[":@"]}):this.child.push({[t.tagname]:t.child}),void 0!==e&&(this.child[this.child.length-1][T]={startIndex:e});}static getMetaDataSymbol(){return T}}class w{constructor(t){this.suppressValidationErr=!t;}readDocType(t,e){const n={};if("O"!==t[e+3]||"C"!==t[e+4]||"T"!==t[e+5]||"Y"!==t[e+6]||"P"!==t[e+7]||"E"!==t[e+8])throw new Error("Invalid Tag instead of DOCTYPE");{e+=9;let i=1,r=false,s=false,o="";for(;e<t.length;e++)if("<"!==t[e]||s)if(">"===t[e]){if(s?"-"===t[e-1]&&"-"===t[e-2]&&(s=false,i--):i--,0===i)break}else "["===t[e]?r=true:o+=t[e];else {if(r&&P(t,"!ENTITY",e)){let i,r;e+=7,[i,r,e]=this.readEntityExp(t,e+1,this.suppressValidationErr),-1===r.indexOf("&")&&(n[i]={regx:RegExp(`&${i};`,"g"),val:r});}else if(r&&P(t,"!ELEMENT",e)){e+=8;const{index:n}=this.readElementExp(t,e+1);e=n;}else if(r&&P(t,"!ATTLIST",e))e+=8;else if(r&&P(t,"!NOTATION",e)){e+=9;const{index:n}=this.readNotationExp(t,e+1,this.suppressValidationErr);e=n;}else {if(!P(t,"!--",e))throw new Error("Invalid DOCTYPE");s=true;}i++,o="";}if(0!==i)throw new Error("Unclosed DOCTYPE")}return {entities:n,i:e}}readEntityExp(t,e){e=I(t,e);let n="";for(;e<t.length&&!/\s/.test(t[e])&&'"'!==t[e]&&"'"!==t[e];)n+=t[e],e++;if(O(n),e=I(t,e),!this.suppressValidationErr){if("SYSTEM"===t.substring(e,e+6).toUpperCase())throw new Error("External entities are not supported");if("%"===t[e])throw new Error("Parameter entities are not supported")}let i="";return [e,i]=this.readIdentifierVal(t,e,"entity"),[n,i,--e]}readNotationExp(t,e){e=I(t,e);let n="";for(;e<t.length&&!/\s/.test(t[e]);)n+=t[e],e++;!this.suppressValidationErr&&O(n),e=I(t,e);const i=t.substring(e,e+6).toUpperCase();if(!this.suppressValidationErr&&"SYSTEM"!==i&&"PUBLIC"!==i)throw new Error(`Expected SYSTEM or PUBLIC, found "${i}"`);e+=i.length,e=I(t,e);let r=null,s=null;if("PUBLIC"===i)[e,r]=this.readIdentifierVal(t,e,"publicIdentifier"),'"'!==t[e=I(t,e)]&&"'"!==t[e]||([e,s]=this.readIdentifierVal(t,e,"systemIdentifier"));else if("SYSTEM"===i&&([e,s]=this.readIdentifierVal(t,e,"systemIdentifier"),!this.suppressValidationErr&&!s))throw new Error("Missing mandatory system identifier for SYSTEM notation");return {notationName:n,publicIdentifier:r,systemIdentifier:s,index:--e}}readIdentifierVal(t,e,n){let i="";const r=t[e];if('"'!==r&&"'"!==r)throw new Error(`Expected quoted string, found "${r}"`);for(e++;e<t.length&&t[e]!==r;)i+=t[e],e++;if(t[e]!==r)throw new Error(`Unterminated ${n} value`);return [++e,i]}readElementExp(t,e){e=I(t,e);let n="";for(;e<t.length&&!/\s/.test(t[e]);)n+=t[e],e++;if(!this.suppressValidationErr&&!s(n))throw new Error(`Invalid element name: "${n}"`);let i="";if("E"===t[e=I(t,e)]&&P(t,"MPTY",e))e+=4;else if("A"===t[e]&&P(t,"NY",e))e+=2;else if("("===t[e]){for(e++;e<t.length&&")"!==t[e];)i+=t[e],e++;if(")"!==t[e])throw new Error("Unterminated content model")}else if(!this.suppressValidationErr)throw new Error(`Invalid Element Expression, found "${t[e]}"`);return {elementName:n,contentModel:i.trim(),index:e}}readAttlistExp(t,e){e=I(t,e);let n="";for(;e<t.length&&!/\s/.test(t[e]);)n+=t[e],e++;O(n),e=I(t,e);let i="";for(;e<t.length&&!/\s/.test(t[e]);)i+=t[e],e++;if(!O(i))throw new Error(`Invalid attribute name: "${i}"`);e=I(t,e);let r="";if("NOTATION"===t.substring(e,e+8).toUpperCase()){if(r="NOTATION","("!==t[e=I(t,e+=8)])throw new Error(`Expected '(', found "${t[e]}"`);e++;let n=[];for(;e<t.length&&")"!==t[e];){let i="";for(;e<t.length&&"|"!==t[e]&&")"!==t[e];)i+=t[e],e++;if(i=i.trim(),!O(i))throw new Error(`Invalid notation name: "${i}"`);n.push(i),"|"===t[e]&&(e++,e=I(t,e));}if(")"!==t[e])throw new Error("Unterminated list of notations");e++,r+=" ("+n.join("|")+")";}else {for(;e<t.length&&!/\s/.test(t[e]);)r+=t[e],e++;const n=["CDATA","ID","IDREF","IDREFS","ENTITY","ENTITIES","NMTOKEN","NMTOKENS"];if(!this.suppressValidationErr&&!n.includes(r.toUpperCase()))throw new Error(`Invalid attribute type: "${r}"`)}e=I(t,e);let s="";return "#REQUIRED"===t.substring(e,e+8).toUpperCase()?(s="#REQUIRED",e+=8):"#IMPLIED"===t.substring(e,e+7).toUpperCase()?(s="#IMPLIED",e+=7):[e,s]=this.readIdentifierVal(t,e,"ATTLIST"),{elementName:n,attributeName:i,attributeType:r,defaultValue:s,index:e}}}const I=(t,e)=>{for(;e<t.length&&/\s/.test(t[e]);)e++;return e};function P(t,e,n){for(let i=0;i<e.length;i++)if(e[i]!==t[n+i+1])return  false;return  true}function O(t){if(s(t))return t;throw new Error(`Invalid entity name ${t}`)}const A=/^[-+]?0x[a-fA-F0-9]+$/,S=/^([\-\+])?(0*)([0-9]*(\.[0-9]*)?)$/,C={hex:true,leadingZeros:true,decimalPoint:".",eNotation:true};const V=/^([-+])?(0*)(\d*(\.\d*)?[eE][-\+]?\d+)$/;function $(t){return "function"==typeof t?t:Array.isArray(t)?e=>{for(const n of t){if("string"==typeof n&&e===n)return  true;if(n instanceof RegExp&&n.test(e))return  true}}:()=>false}class D{constructor(t){this.options=t,this.currentNode=null,this.tagsNodeStack=[],this.docTypeEntities={},this.lastEntities={apos:{regex:/&(apos|#39|#x27);/g,val:"'"},gt:{regex:/&(gt|#62|#x3E);/g,val:">"},lt:{regex:/&(lt|#60|#x3C);/g,val:"<"},quot:{regex:/&(quot|#34|#x22);/g,val:'"'}},this.ampEntity={regex:/&(amp|#38|#x26);/g,val:"&"},this.htmlEntities={space:{regex:/&(nbsp|#160);/g,val:" "},cent:{regex:/&(cent|#162);/g,val:"¢"},pound:{regex:/&(pound|#163);/g,val:"£"},yen:{regex:/&(yen|#165);/g,val:"¥"},euro:{regex:/&(euro|#8364);/g,val:"€"},copyright:{regex:/&(copy|#169);/g,val:"©"},reg:{regex:/&(reg|#174);/g,val:"®"},inr:{regex:/&(inr|#8377);/g,val:"₹"},num_dec:{regex:/&#([0-9]{1,7});/g,val:(t,e)=>String.fromCodePoint(Number.parseInt(e,10))},num_hex:{regex:/&#x([0-9a-fA-F]{1,6});/g,val:(t,e)=>String.fromCodePoint(Number.parseInt(e,16))}},this.addExternalEntities=j,this.parseXml=L,this.parseTextData=M,this.resolveNameSpace=F,this.buildAttributesMap=k,this.isItStopNode=Y,this.replaceEntitiesValue=B,this.readStopNodeData=q,this.saveTextToParentTag=R,this.addChild=U,this.ignoreAttributesFn=$(this.options.ignoreAttributes);}}function j(t){const e=Object.keys(t);for(let n=0;n<e.length;n++){const i=e[n];this.lastEntities[i]={regex:new RegExp("&"+i+";","g"),val:t[i]};}}function M(t,e,n,i,r,s,o){if(void 0!==t&&(this.options.trimValues&&!i&&(t=t.trim()),t.length>0)){o||(t=this.replaceEntitiesValue(t));const i=this.options.tagValueProcessor(e,t,n,r,s);return null==i?t:typeof i!=typeof t||i!==t?i:this.options.trimValues||t.trim()===t?Z(t,this.options.parseTagValue,this.options.numberParseOptions):t}}function F(t){if(this.options.removeNSPrefix){const e=t.split(":"),n="/"===t.charAt(0)?"/":"";if("xmlns"===e[0])return "";2===e.length&&(t=n+e[1]);}return t}const _=new RegExp("([^\\s=]+)\\s*(=\\s*(['\"])([\\s\\S]*?)\\3)?","gm");function k(t,e,n){if(true!==this.options.ignoreAttributes&&"string"==typeof t){const n=r(t,_),i=n.length,s={};for(let t=0;t<i;t++){const i=this.resolveNameSpace(n[t][1]);if(this.ignoreAttributesFn(i,e))continue;let r=n[t][4],o=this.options.attributeNamePrefix+i;if(i.length)if(this.options.transformAttributeName&&(o=this.options.transformAttributeName(o)),"__proto__"===o&&(o="#__proto__"),void 0!==r){this.options.trimValues&&(r=r.trim()),r=this.replaceEntitiesValue(r);const t=this.options.attributeValueProcessor(i,r,e);s[o]=null==t?r:typeof t!=typeof r||t!==r?t:Z(r,this.options.parseAttributeValue,this.options.numberParseOptions);}else this.options.allowBooleanAttributes&&(s[o]=true);}if(!Object.keys(s).length)return;if(this.options.attributesGroupName){const t={};return t[this.options.attributesGroupName]=s,t}return s}}const L=function(t){t=t.replace(/\r\n?/g,"\n");const e=new y("!xml");let n=e,i="",r="";const s=new w(this.options.processEntities);for(let o=0;o<t.length;o++)if("<"===t[o])if("/"===t[o+1]){const e=G(t,">",o,"Closing Tag is not closed.");let s=t.substring(o+2,e).trim();if(this.options.removeNSPrefix){const t=s.indexOf(":");-1!==t&&(s=s.substr(t+1));}this.options.transformTagName&&(s=this.options.transformTagName(s)),n&&(i=this.saveTextToParentTag(i,n,r));const a=r.substring(r.lastIndexOf(".")+1);if(s&&-1!==this.options.unpairedTags.indexOf(s))throw new Error(`Unpaired tag can not be used as closing tag: </${s}>`);let l=0;a&&-1!==this.options.unpairedTags.indexOf(a)?(l=r.lastIndexOf(".",r.lastIndexOf(".")-1),this.tagsNodeStack.pop()):l=r.lastIndexOf("."),r=r.substring(0,l),n=this.tagsNodeStack.pop(),i="",o=e;}else if("?"===t[o+1]){let e=X(t,o,false,"?>");if(!e)throw new Error("Pi Tag is not closed.");if(i=this.saveTextToParentTag(i,n,r),this.options.ignoreDeclaration&&"?xml"===e.tagName||this.options.ignorePiTags);else {const t=new y(e.tagName);t.add(this.options.textNodeName,""),e.tagName!==e.tagExp&&e.attrExpPresent&&(t[":@"]=this.buildAttributesMap(e.tagExp,r,e.tagName)),this.addChild(n,t,r,o);}o=e.closeIndex+1;}else if("!--"===t.substr(o+1,3)){const e=G(t,"--\x3e",o+4,"Comment is not closed.");if(this.options.commentPropName){const s=t.substring(o+4,e-2);i=this.saveTextToParentTag(i,n,r),n.add(this.options.commentPropName,[{[this.options.textNodeName]:s}]);}o=e;}else if("!D"===t.substr(o+1,2)){const e=s.readDocType(t,o);this.docTypeEntities=e.entities,o=e.i;}else if("!["===t.substr(o+1,2)){const e=G(t,"]]>",o,"CDATA is not closed.")-2,s=t.substring(o+9,e);i=this.saveTextToParentTag(i,n,r);let a=this.parseTextData(s,n.tagname,r,true,false,true,true);null==a&&(a=""),this.options.cdataPropName?n.add(this.options.cdataPropName,[{[this.options.textNodeName]:s}]):n.add(this.options.textNodeName,a),o=e+2;}else {let s=X(t,o,this.options.removeNSPrefix),a=s.tagName;const l=s.rawTagName;let u=s.tagExp,h=s.attrExpPresent,d=s.closeIndex;this.options.transformTagName&&(a=this.options.transformTagName(a)),n&&i&&"!xml"!==n.tagname&&(i=this.saveTextToParentTag(i,n,r,false));const p=n;p&&-1!==this.options.unpairedTags.indexOf(p.tagname)&&(n=this.tagsNodeStack.pop(),r=r.substring(0,r.lastIndexOf("."))),a!==e.tagname&&(r+=r?"."+a:a);const f=o;if(this.isItStopNode(this.options.stopNodes,r,a)){let e="";if(u.length>0&&u.lastIndexOf("/")===u.length-1)"/"===a[a.length-1]?(a=a.substr(0,a.length-1),r=r.substr(0,r.length-1),u=a):u=u.substr(0,u.length-1),o=s.closeIndex;else if(-1!==this.options.unpairedTags.indexOf(a))o=s.closeIndex;else {const n=this.readStopNodeData(t,l,d+1);if(!n)throw new Error(`Unexpected end of ${l}`);o=n.i,e=n.tagContent;}const i=new y(a);a!==u&&h&&(i[":@"]=this.buildAttributesMap(u,r,a)),e&&(e=this.parseTextData(e,a,r,true,h,true,true)),r=r.substr(0,r.lastIndexOf(".")),i.add(this.options.textNodeName,e),this.addChild(n,i,r,f);}else {if(u.length>0&&u.lastIndexOf("/")===u.length-1){"/"===a[a.length-1]?(a=a.substr(0,a.length-1),r=r.substr(0,r.length-1),u=a):u=u.substr(0,u.length-1),this.options.transformTagName&&(a=this.options.transformTagName(a));const t=new y(a);a!==u&&h&&(t[":@"]=this.buildAttributesMap(u,r,a)),this.addChild(n,t,r,f),r=r.substr(0,r.lastIndexOf("."));}else {const t=new y(a);this.tagsNodeStack.push(n),a!==u&&h&&(t[":@"]=this.buildAttributesMap(u,r,a)),this.addChild(n,t,r,f),n=t;}i="",o=d;}}else i+=t[o];return e.child};function U(t,e,n,i){this.options.captureMetaData||(i=void 0);const r=this.options.updateTag(e.tagname,n,e[":@"]);false===r||("string"==typeof r?(e.tagname=r,t.addChild(e,i)):t.addChild(e,i));}const B=function(t){if(this.options.processEntities){for(let e in this.docTypeEntities){const n=this.docTypeEntities[e];t=t.replace(n.regx,n.val);}for(let e in this.lastEntities){const n=this.lastEntities[e];t=t.replace(n.regex,n.val);}if(this.options.htmlEntities)for(let e in this.htmlEntities){const n=this.htmlEntities[e];t=t.replace(n.regex,n.val);}t=t.replace(this.ampEntity.regex,this.ampEntity.val);}return t};function R(t,e,n,i){return t&&(void 0===i&&(i=0===e.child.length),void 0!==(t=this.parseTextData(t,e.tagname,n,false,!!e[":@"]&&0!==Object.keys(e[":@"]).length,i))&&""!==t&&e.add(this.options.textNodeName,t),t=""),t}function Y(t,e,n){const i="*."+n;for(const n in t){const r=t[n];if(i===r||e===r)return  true}return  false}function G(t,e,n,i){const r=t.indexOf(e,n);if(-1===r)throw new Error(i);return r+e.length-1}function X(t,e,n,i=">"){const r=function(t,e,n=">"){let i,r="";for(let s=e;s<t.length;s++){let e=t[s];if(i)e===i&&(i="");else if('"'===e||"'"===e)i=e;else if(e===n[0]){if(!n[1])return {data:r,index:s};if(t[s+1]===n[1])return {data:r,index:s}}else "\t"===e&&(e=" ");r+=e;}}(t,e+1,i);if(!r)return;let s=r.data;const o=r.index,a=s.search(/\s/);let l=s,u=true;-1!==a&&(l=s.substring(0,a),s=s.substring(a+1).trimStart());const h=l;if(n){const t=l.indexOf(":");-1!==t&&(l=l.substr(t+1),u=l!==r.data.substr(t+1));}return {tagName:l,tagExp:s,closeIndex:o,attrExpPresent:u,rawTagName:h}}function q(t,e,n){const i=n;let r=1;for(;n<t.length;n++)if("<"===t[n])if("/"===t[n+1]){const s=G(t,">",n,`${e} is not closed`);if(t.substring(n+2,s).trim()===e&&(r--,0===r))return {tagContent:t.substring(i,n),i:s};n=s;}else if("?"===t[n+1])n=G(t,"?>",n+1,"StopNode is not closed.");else if("!--"===t.substr(n+1,3))n=G(t,"--\x3e",n+3,"StopNode is not closed.");else if("!["===t.substr(n+1,2))n=G(t,"]]>",n,"StopNode is not closed.")-2;else {const i=X(t,n,">");i&&((i&&i.tagName)===e&&"/"!==i.tagExp[i.tagExp.length-1]&&r++,n=i.closeIndex);}}function Z(t,e,n){if(e&&"string"==typeof t){const e=t.trim();return "true"===e||"false"!==e&&function(t,e={}){if(e=Object.assign({},C,e),!t||"string"!=typeof t)return t;let n=t.trim();if(void 0!==e.skipLike&&e.skipLike.test(n))return t;if("0"===t)return 0;if(e.hex&&A.test(n))return function(t){if(parseInt)return parseInt(t,16);if(Number.parseInt)return Number.parseInt(t,16);if(window&&window.parseInt)return window.parseInt(t,16);throw new Error("parseInt, Number.parseInt, window.parseInt are not supported")}(n);if(-1!==n.search(/.+[eE].+/))return function(t,e,n){if(!n.eNotation)return t;const i=e.match(V);if(i){let r=i[1]||"";const s=-1===i[3].indexOf("e")?"E":"e",o=i[2],a=r?t[o.length+1]===s:t[o.length]===s;return o.length>1&&a?t:1!==o.length||!i[3].startsWith(`.${s}`)&&i[3][0]!==s?n.leadingZeros&&!a?(e=(i[1]||"")+i[3],Number(e)):t:Number(e)}return t}(t,n,e);{const r=S.exec(n);if(r){const s=r[1]||"",o=r[2];let a=(i=r[3])&&-1!==i.indexOf(".")?("."===(i=i.replace(/0+$/,""))?i="0":"."===i[0]?i="0"+i:"."===i[i.length-1]&&(i=i.substring(0,i.length-1)),i):i;const l=s?"."===t[o.length+1]:"."===t[o.length];if(!e.leadingZeros&&(o.length>1||1===o.length&&!l))return t;{const i=Number(n),r=String(i);if(0===i||-0===i)return i;if(-1!==r.search(/[eE]/))return e.eNotation?i:t;if(-1!==n.indexOf("."))return "0"===r||r===a||r===`${s}${a}`?i:t;let l=o?a:n;return o?l===r||s+l===r?i:t:l===r||l===s+r?i:t}}return t}var i;}(t,n)}return void 0!==t?t:""}const W=y.getMetaDataSymbol();function K(t,e){return Q(t,e)}function Q(t,e,n){let i;const r={};for(let s=0;s<t.length;s++){const o=t[s],a=z(o);let l="";if(l=void 0===n?a:n+"."+a,a===e.textNodeName) void 0===i?i=o[a]:i+=""+o[a];else {if(void 0===a)continue;if(o[a]){let t=Q(o[a],e,l);const n=H(t,e);void 0!==o[W]&&(t[W]=o[W]),o[":@"]?J(t,o[":@"],l,e):1!==Object.keys(t).length||void 0===t[e.textNodeName]||e.alwaysCreateTextNode?0===Object.keys(t).length&&(e.alwaysCreateTextNode?t[e.textNodeName]="":t=""):t=t[e.textNodeName],void 0!==r[a]&&r.hasOwnProperty(a)?(Array.isArray(r[a])||(r[a]=[r[a]]),r[a].push(t)):e.isArray(a,l,n)?r[a]=[t]:r[a]=t;}}}return "string"==typeof i?i.length>0&&(r[e.textNodeName]=i):void 0!==i&&(r[e.textNodeName]=i),r}function z(t){const e=Object.keys(t);for(let t=0;t<e.length;t++){const n=e[t];if(":@"!==n)return n}}function J(t,e,n,i){if(e){const r=Object.keys(e),s=r.length;for(let o=0;o<s;o++){const s=r[o];i.isArray(s,n+"."+s,true,true)?t[s]=[e[s]]:t[s]=e[s];}}}function H(t,e){const{textNodeName:n}=e,i=Object.keys(t).length;return 0===i||!(1!==i||!t[n]&&"boolean"!=typeof t[n]&&0!==t[n])}class tt{constructor(t){this.externalEntities={},this.options=function(t){return Object.assign({},v,t)}(t);}parse(t,e){if("string"!=typeof t&&t.toString)t=t.toString();else if("string"!=typeof t)throw new Error("XML data is accepted in String or Bytes[] form.");if(e){ true===e&&(e={});const n=a(t,e);if(true!==n)throw Error(`${n.err.msg}:${n.err.line}:${n.err.col}`)}const n=new D(this.options);n.addExternalEntities(this.externalEntities);const i=n.parseXml(t);return this.options.preserveOrder||void 0===i?i:K(i,this.options)}addEntity(t,e){if(-1!==e.indexOf("&"))throw new Error("Entity value can't have '&'");if(-1!==t.indexOf("&")||-1!==t.indexOf(";"))throw new Error("An entity must be set without '&' and ';'. Eg. use '#xD' for '&#xD;'");if("&"===e)throw new Error("An entity with value '&' is not permitted");this.externalEntities[t]=e;}static getMetaDataSymbol(){return y.getMetaDataSymbol()}}function et(t,e){let n="";return e.format&&e.indentBy.length>0&&(n="\n"),nt(t,e,"",n)}function nt(t,e,n,i){let r="",s=false;for(let o=0;o<t.length;o++){const a=t[o],l=it(a);if(void 0===l)continue;let u="";if(u=0===n.length?l:`${n}.${l}`,l===e.textNodeName){let t=a[l];st(u,e)||(t=e.tagValueProcessor(l,t),t=ot(t,e)),s&&(r+=i),r+=t,s=false;continue}if(l===e.cdataPropName){s&&(r+=i),r+=`<![CDATA[${a[l][0][e.textNodeName]}]]>`,s=false;continue}if(l===e.commentPropName){r+=i+`\x3c!--${a[l][0][e.textNodeName]}--\x3e`,s=true;continue}if("?"===l[0]){const t=rt(a[":@"],e),n="?xml"===l?"":i;let o=a[l][0][e.textNodeName];o=0!==o.length?" "+o:"",r+=n+`<${l}${o}${t}?>`,s=true;continue}let h=i;""!==h&&(h+=e.indentBy);const d=i+`<${l}${rt(a[":@"],e)}`,p=nt(a[l],e,u,h);-1!==e.unpairedTags.indexOf(l)?e.suppressUnpairedNode?r+=d+">":r+=d+"/>":p&&0!==p.length||!e.suppressEmptyNode?p&&p.endsWith(">")?r+=d+`>${p}${i}</${l}>`:(r+=d+">",p&&""!==i&&(p.includes("/>")||p.includes("</"))?r+=i+e.indentBy+p+i:r+=p,r+=`</${l}>`):r+=d+"/>",s=true;}return r}function it(t){const e=Object.keys(t);for(let n=0;n<e.length;n++){const i=e[n];if(t.hasOwnProperty(i)&&":@"!==i)return i}}function rt(t,e){let n="";if(t&&!e.ignoreAttributes)for(let i in t){if(!t.hasOwnProperty(i))continue;let r=e.attributeValueProcessor(i,t[i]);r=ot(r,e),true===r&&e.suppressBooleanAttributes?n+=` ${i.substr(e.attributeNamePrefix.length)}`:n+=` ${i.substr(e.attributeNamePrefix.length)}="${r}"`;}return n}function st(t,e){let n=(t=t.substr(0,t.length-e.textNodeName.length-1)).substr(t.lastIndexOf(".")+1);for(let i in e.stopNodes)if(e.stopNodes[i]===t||e.stopNodes[i]==="*."+n)return  true;return  false}function ot(t,e){if(t&&t.length>0&&e.processEntities)for(let n=0;n<e.entities.length;n++){const i=e.entities[n];t=t.replace(i.regex,i.val);}return t}const at={attributeNamePrefix:"@_",attributesGroupName:false,textNodeName:"#text",ignoreAttributes:true,cdataPropName:false,format:false,indentBy:"  ",suppressEmptyNode:false,suppressUnpairedNode:true,suppressBooleanAttributes:true,tagValueProcessor:function(t,e){return e},attributeValueProcessor:function(t,e){return e},preserveOrder:false,commentPropName:false,unpairedTags:[],entities:[{regex:new RegExp("&","g"),val:"&amp;"},{regex:new RegExp(">","g"),val:"&gt;"},{regex:new RegExp("<","g"),val:"&lt;"},{regex:new RegExp("'","g"),val:"&apos;"},{regex:new RegExp('"',"g"),val:"&quot;"}],processEntities:true,stopNodes:[],oneListGroup:false};function lt(t){this.options=Object.assign({},at,t),true===this.options.ignoreAttributes||this.options.attributesGroupName?this.isAttribute=function(){return  false}:(this.ignoreAttributesFn=$(this.options.ignoreAttributes),this.attrPrefixLen=this.options.attributeNamePrefix.length,this.isAttribute=dt),this.processTextOrObjNode=ut,this.options.format?(this.indentate=ht,this.tagEndChar=">\n",this.newLine="\n"):(this.indentate=function(){return ""},this.tagEndChar=">",this.newLine="");}function ut(t,e,n,i){const r=this.j2x(t,n+1,i.concat(e));return void 0!==t[this.options.textNodeName]&&1===Object.keys(t).length?this.buildTextValNode(t[this.options.textNodeName],e,r.attrStr,n):this.buildObjectNode(r.val,e,r.attrStr,n)}function ht(t){return this.options.indentBy.repeat(t)}function dt(t){return !(!t.startsWith(this.options.attributeNamePrefix)||t===this.options.textNodeName)&&t.substr(this.attrPrefixLen)}lt.prototype.build=function(t){return this.options.preserveOrder?et(t,this.options):(Array.isArray(t)&&this.options.arrayNodeName&&this.options.arrayNodeName.length>1&&(t={[this.options.arrayNodeName]:t}),this.j2x(t,0,[]).val)},lt.prototype.j2x=function(t,e,n){let i="",r="";const s=n.join(".");for(let o in t)if(Object.prototype.hasOwnProperty.call(t,o))if(void 0===t[o])this.isAttribute(o)&&(r+="");else if(null===t[o])this.isAttribute(o)||o===this.options.cdataPropName?r+="":"?"===o[0]?r+=this.indentate(e)+"<"+o+"?"+this.tagEndChar:r+=this.indentate(e)+"<"+o+"/"+this.tagEndChar;else if(t[o]instanceof Date)r+=this.buildTextValNode(t[o],o,"",e);else if("object"!=typeof t[o]){const n=this.isAttribute(o);if(n&&!this.ignoreAttributesFn(n,s))i+=this.buildAttrPairStr(n,""+t[o]);else if(!n)if(o===this.options.textNodeName){let e=this.options.tagValueProcessor(o,""+t[o]);r+=this.replaceEntitiesValue(e);}else r+=this.buildTextValNode(t[o],o,"",e);}else if(Array.isArray(t[o])){const i=t[o].length;let s="",a="";for(let l=0;l<i;l++){const i=t[o][l];if(void 0===i);else if(null===i)"?"===o[0]?r+=this.indentate(e)+"<"+o+"?"+this.tagEndChar:r+=this.indentate(e)+"<"+o+"/"+this.tagEndChar;else if("object"==typeof i)if(this.options.oneListGroup){const t=this.j2x(i,e+1,n.concat(o));s+=t.val,this.options.attributesGroupName&&i.hasOwnProperty(this.options.attributesGroupName)&&(a+=t.attrStr);}else s+=this.processTextOrObjNode(i,o,e,n);else if(this.options.oneListGroup){let t=this.options.tagValueProcessor(o,i);t=this.replaceEntitiesValue(t),s+=t;}else s+=this.buildTextValNode(i,o,"",e);}this.options.oneListGroup&&(s=this.buildObjectNode(s,o,a,e)),r+=s;}else if(this.options.attributesGroupName&&o===this.options.attributesGroupName){const e=Object.keys(t[o]),n=e.length;for(let r=0;r<n;r++)i+=this.buildAttrPairStr(e[r],""+t[o][e[r]]);}else r+=this.processTextOrObjNode(t[o],o,e,n);return {attrStr:i,val:r}},lt.prototype.buildAttrPairStr=function(t,e){return e=this.options.attributeValueProcessor(t,""+e),e=this.replaceEntitiesValue(e),this.options.suppressBooleanAttributes&&"true"===e?" "+t:" "+t+'="'+e+'"'},lt.prototype.buildObjectNode=function(t,e,n,i){if(""===t)return "?"===e[0]?this.indentate(i)+"<"+e+n+"?"+this.tagEndChar:this.indentate(i)+"<"+e+n+this.closeTag(e)+this.tagEndChar;{let r="</"+e+this.tagEndChar,s="";return "?"===e[0]&&(s="?",r=""),!n&&""!==n||-1!==t.indexOf("<")?false!==this.options.commentPropName&&e===this.options.commentPropName&&0===s.length?this.indentate(i)+`\x3c!--${t}--\x3e`+this.newLine:this.indentate(i)+"<"+e+n+s+this.tagEndChar+t+this.indentate(i)+r:this.indentate(i)+"<"+e+n+s+">"+t+r}},lt.prototype.closeTag=function(t){let e="";return  -1!==this.options.unpairedTags.indexOf(t)?this.options.suppressUnpairedNode||(e="/"):e=this.options.suppressEmptyNode?"/":`></${t}`,e},lt.prototype.buildTextValNode=function(t,e,n,i){if(false!==this.options.cdataPropName&&e===this.options.cdataPropName)return this.indentate(i)+`<![CDATA[${t}]]>`+this.newLine;if(false!==this.options.commentPropName&&e===this.options.commentPropName)return this.indentate(i)+`\x3c!--${t}--\x3e`+this.newLine;if("?"===e[0])return this.indentate(i)+"<"+e+n+"?"+this.tagEndChar;{let r=this.options.tagValueProcessor(e,t);return r=this.replaceEntitiesValue(r),""===r?this.indentate(i)+"<"+e+n+this.closeTag(e)+this.tagEndChar:this.indentate(i)+"<"+e+n+">"+r+"</"+e+this.tagEndChar}},lt.prototype.replaceEntitiesValue=function(t){if(t&&t.length>0&&this.options.processEntities)for(let e=0;e<this.options.entities.length;e++){const n=this.options.entities[e];t=t.replace(n.regex,n.val);}return t};const pt={validate:a};fxp.exports=e;})();
+	(()=>{var t={d:(e,n)=>{for(var i in n)t.o(n,i)&&!t.o(e,i)&&Object.defineProperty(e,i,{enumerable:true,get:n[i]});},o:(t,e)=>Object.prototype.hasOwnProperty.call(t,e),r:t=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:true});}},e={};t.r(e),t.d(e,{XMLBuilder:()=>dt,XMLParser:()=>it,XMLValidator:()=>gt});const n=":A-Za-z_\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD",i=new RegExp("^["+n+"]["+n+"\\-.\\d\\u00B7\\u0300-\\u036F\\u203F-\\u2040]*$");function s(t,e){const n=[];let i=e.exec(t);for(;i;){const s=[];s.startIndex=e.lastIndex-i[0].length;const r=i.length;for(let t=0;t<r;t++)s.push(i[t]);n.push(s),i=e.exec(t);}return n}const r=function(t){return !(null==i.exec(t))},o={allowBooleanAttributes:false,unpairedTags:[]};function a(t,e){e=Object.assign({},o,e);const n=[];let i=false,s=false;"\ufeff"===t[0]&&(t=t.substr(1));for(let o=0;o<t.length;o++)if("<"===t[o]&&"?"===t[o+1]){if(o+=2,o=u(t,o),o.err)return o}else {if("<"!==t[o]){if(l(t[o]))continue;return m("InvalidChar","char '"+t[o]+"' is not expected.",b(t,o))}{let a=o;if(o++,"!"===t[o]){o=h(t,o);continue}{let d=false;"/"===t[o]&&(d=true,o++);let p="";for(;o<t.length&&">"!==t[o]&&" "!==t[o]&&"\t"!==t[o]&&"\n"!==t[o]&&"\r"!==t[o];o++)p+=t[o];if(p=p.trim(),"/"===p[p.length-1]&&(p=p.substring(0,p.length-1),o--),!r(p)){let e;return e=0===p.trim().length?"Invalid space after '<'.":"Tag '"+p+"' is an invalid name.",m("InvalidTag",e,b(t,o))}const c=f(t,o);if(false===c)return m("InvalidAttr","Attributes for '"+p+"' have open quote.",b(t,o));let E=c.value;if(o=c.index,"/"===E[E.length-1]){const n=o-E.length;E=E.substring(0,E.length-1);const s=g(E,e);if(true!==s)return m(s.err.code,s.err.msg,b(t,n+s.err.line));i=true;}else if(d){if(!c.tagClosed)return m("InvalidTag","Closing tag '"+p+"' doesn't have proper closing.",b(t,o));if(E.trim().length>0)return m("InvalidTag","Closing tag '"+p+"' can't have attributes or invalid starting.",b(t,a));if(0===n.length)return m("InvalidTag","Closing tag '"+p+"' has not been opened.",b(t,a));{const e=n.pop();if(p!==e.tagName){let n=b(t,e.tagStartPos);return m("InvalidTag","Expected closing tag '"+e.tagName+"' (opened in line "+n.line+", col "+n.col+") instead of closing tag '"+p+"'.",b(t,a))}0==n.length&&(s=true);}}else {const r=g(E,e);if(true!==r)return m(r.err.code,r.err.msg,b(t,o-E.length+r.err.line));if(true===s)return m("InvalidXml","Multiple possible root nodes found.",b(t,o));-1!==e.unpairedTags.indexOf(p)||n.push({tagName:p,tagStartPos:a}),i=true;}for(o++;o<t.length;o++)if("<"===t[o]){if("!"===t[o+1]){o++,o=h(t,o);continue}if("?"!==t[o+1])break;if(o=u(t,++o),o.err)return o}else if("&"===t[o]){const e=x(t,o);if(-1==e)return m("InvalidChar","char '&' is not expected.",b(t,o));o=e;}else if(true===s&&!l(t[o]))return m("InvalidXml","Extra text at the end",b(t,o));"<"===t[o]&&o--;}}}return i?1==n.length?m("InvalidTag","Unclosed tag '"+n[0].tagName+"'.",b(t,n[0].tagStartPos)):!(n.length>0)||m("InvalidXml","Invalid '"+JSON.stringify(n.map((t=>t.tagName)),null,4).replace(/\r?\n/g,"")+"' found.",{line:1,col:1}):m("InvalidXml","Start tag expected.",1)}function l(t){return " "===t||"\t"===t||"\n"===t||"\r"===t}function u(t,e){const n=e;for(;e<t.length;e++)if("?"!=t[e]&&" "!=t[e]);else {const i=t.substr(n,e-n);if(e>5&&"xml"===i)return m("InvalidXml","XML declaration allowed only at the start of the document.",b(t,e));if("?"==t[e]&&">"==t[e+1]){e++;break}}return e}function h(t,e){if(t.length>e+5&&"-"===t[e+1]&&"-"===t[e+2]){for(e+=3;e<t.length;e++)if("-"===t[e]&&"-"===t[e+1]&&">"===t[e+2]){e+=2;break}}else if(t.length>e+8&&"D"===t[e+1]&&"O"===t[e+2]&&"C"===t[e+3]&&"T"===t[e+4]&&"Y"===t[e+5]&&"P"===t[e+6]&&"E"===t[e+7]){let n=1;for(e+=8;e<t.length;e++)if("<"===t[e])n++;else if(">"===t[e]&&(n--,0===n))break}else if(t.length>e+9&&"["===t[e+1]&&"C"===t[e+2]&&"D"===t[e+3]&&"A"===t[e+4]&&"T"===t[e+5]&&"A"===t[e+6]&&"["===t[e+7])for(e+=8;e<t.length;e++)if("]"===t[e]&&"]"===t[e+1]&&">"===t[e+2]){e+=2;break}return e}const d='"',p="'";function f(t,e){let n="",i="",s=false;for(;e<t.length;e++){if(t[e]===d||t[e]===p)""===i?i=t[e]:i!==t[e]||(i="");else if(">"===t[e]&&""===i){s=true;break}n+=t[e];}return ""===i&&{value:n,index:e,tagClosed:s}}const c=new RegExp("(\\s*)([^\\s=]+)(\\s*=)?(\\s*(['\"])(([\\s\\S])*?)\\5)?","g");function g(t,e){const n=s(t,c),i={};for(let t=0;t<n.length;t++){if(0===n[t][1].length)return m("InvalidAttr","Attribute '"+n[t][2]+"' has no space in starting.",N(n[t]));if(void 0!==n[t][3]&&void 0===n[t][4])return m("InvalidAttr","Attribute '"+n[t][2]+"' is without value.",N(n[t]));if(void 0===n[t][3]&&!e.allowBooleanAttributes)return m("InvalidAttr","boolean attribute '"+n[t][2]+"' is not allowed.",N(n[t]));const s=n[t][2];if(!E(s))return m("InvalidAttr","Attribute '"+s+"' is an invalid name.",N(n[t]));if(i.hasOwnProperty(s))return m("InvalidAttr","Attribute '"+s+"' is repeated.",N(n[t]));i[s]=1;}return  true}function x(t,e){if(";"===t[++e])return  -1;if("#"===t[e])return function(t,e){let n=/\d/;for("x"===t[e]&&(e++,n=/[\da-fA-F]/);e<t.length;e++){if(";"===t[e])return e;if(!t[e].match(n))break}return  -1}(t,++e);let n=0;for(;e<t.length;e++,n++)if(!(t[e].match(/\w/)&&n<20)){if(";"===t[e])break;return  -1}return e}function m(t,e,n){return {err:{code:t,msg:e,line:n.line||n,col:n.col}}}function E(t){return r(t)}function b(t,e){const n=t.substring(0,e).split(/\r?\n/);return {line:n.length,col:n[n.length-1].length+1}}function N(t){return t.startIndex+t[1].length}const y={preserveOrder:false,attributeNamePrefix:"@_",attributesGroupName:false,textNodeName:"#text",ignoreAttributes:true,removeNSPrefix:false,allowBooleanAttributes:false,parseTagValue:true,parseAttributeValue:false,trimValues:true,cdataPropName:false,numberParseOptions:{hex:true,leadingZeros:true,eNotation:true},tagValueProcessor:function(t,e){return e},attributeValueProcessor:function(t,e){return e},stopNodes:[],alwaysCreateTextNode:false,isArray:()=>false,commentPropName:false,unpairedTags:[],processEntities:true,htmlEntities:false,ignoreDeclaration:false,ignorePiTags:false,transformTagName:false,transformAttributeName:false,updateTag:function(t,e,n){return t},captureMetaData:false};function T(t){return "boolean"==typeof t?{enabled:t,maxEntitySize:1e4,maxExpansionDepth:10,maxTotalExpansions:1e3,maxExpandedLength:1e5,allowedTags:null,tagFilter:null}:"object"==typeof t&&null!==t?{enabled:false!==t.enabled,maxEntitySize:t.maxEntitySize??1e4,maxExpansionDepth:t.maxExpansionDepth??10,maxTotalExpansions:t.maxTotalExpansions??1e3,maxExpandedLength:t.maxExpandedLength??1e5,allowedTags:t.allowedTags??null,tagFilter:t.tagFilter??null}:T(true)}const w=function(t){const e=Object.assign({},y,t);return e.processEntities=T(e.processEntities),e};let v;v="function"!=typeof Symbol?"@@xmlMetadata":Symbol("XML Node Metadata");class I{constructor(t){this.tagname=t,this.child=[],this[":@"]={};}add(t,e){"__proto__"===t&&(t="#__proto__"),this.child.push({[t]:e});}addChild(t,e){"__proto__"===t.tagname&&(t.tagname="#__proto__"),t[":@"]&&Object.keys(t[":@"]).length>0?this.child.push({[t.tagname]:t.child,":@":t[":@"]}):this.child.push({[t.tagname]:t.child}),void 0!==e&&(this.child[this.child.length-1][v]={startIndex:e});}static getMetaDataSymbol(){return v}}class O{constructor(t){this.suppressValidationErr=!t,this.options=t;}readDocType(t,e){const n={};if("O"!==t[e+3]||"C"!==t[e+4]||"T"!==t[e+5]||"Y"!==t[e+6]||"P"!==t[e+7]||"E"!==t[e+8])throw new Error("Invalid Tag instead of DOCTYPE");{e+=9;let i=1,s=false,r=false,o="";for(;e<t.length;e++)if("<"!==t[e]||r)if(">"===t[e]){if(r?"-"===t[e-1]&&"-"===t[e-2]&&(r=false,i--):i--,0===i)break}else "["===t[e]?s=true:o+=t[e];else {if(s&&A(t,"!ENTITY",e)){let i,s;if(e+=7,[i,s,e]=this.readEntityExp(t,e+1,this.suppressValidationErr),-1===s.indexOf("&")){const t=i.replace(/[.\-+*:]/g,"\\.");n[i]={regx:RegExp(`&${t};`,"g"),val:s};}}else if(s&&A(t,"!ELEMENT",e)){e+=8;const{index:n}=this.readElementExp(t,e+1);e=n;}else if(s&&A(t,"!ATTLIST",e))e+=8;else if(s&&A(t,"!NOTATION",e)){e+=9;const{index:n}=this.readNotationExp(t,e+1,this.suppressValidationErr);e=n;}else {if(!A(t,"!--",e))throw new Error("Invalid DOCTYPE");r=true;}i++,o="";}if(0!==i)throw new Error("Unclosed DOCTYPE")}return {entities:n,i:e}}readEntityExp(t,e){e=P(t,e);let n="";for(;e<t.length&&!/\s/.test(t[e])&&'"'!==t[e]&&"'"!==t[e];)n+=t[e],e++;if(S(n),e=P(t,e),!this.suppressValidationErr){if("SYSTEM"===t.substring(e,e+6).toUpperCase())throw new Error("External entities are not supported");if("%"===t[e])throw new Error("Parameter entities are not supported")}let i="";if([e,i]=this.readIdentifierVal(t,e,"entity"),false!==this.options.enabled&&this.options.maxEntitySize&&i.length>this.options.maxEntitySize)throw new Error(`Entity "${n}" size (${i.length}) exceeds maximum allowed size (${this.options.maxEntitySize})`);return [n,i,--e]}readNotationExp(t,e){e=P(t,e);let n="";for(;e<t.length&&!/\s/.test(t[e]);)n+=t[e],e++;!this.suppressValidationErr&&S(n),e=P(t,e);const i=t.substring(e,e+6).toUpperCase();if(!this.suppressValidationErr&&"SYSTEM"!==i&&"PUBLIC"!==i)throw new Error(`Expected SYSTEM or PUBLIC, found "${i}"`);e+=i.length,e=P(t,e);let s=null,r=null;if("PUBLIC"===i)[e,s]=this.readIdentifierVal(t,e,"publicIdentifier"),'"'!==t[e=P(t,e)]&&"'"!==t[e]||([e,r]=this.readIdentifierVal(t,e,"systemIdentifier"));else if("SYSTEM"===i&&([e,r]=this.readIdentifierVal(t,e,"systemIdentifier"),!this.suppressValidationErr&&!r))throw new Error("Missing mandatory system identifier for SYSTEM notation");return {notationName:n,publicIdentifier:s,systemIdentifier:r,index:--e}}readIdentifierVal(t,e,n){let i="";const s=t[e];if('"'!==s&&"'"!==s)throw new Error(`Expected quoted string, found "${s}"`);for(e++;e<t.length&&t[e]!==s;)i+=t[e],e++;if(t[e]!==s)throw new Error(`Unterminated ${n} value`);return [++e,i]}readElementExp(t,e){e=P(t,e);let n="";for(;e<t.length&&!/\s/.test(t[e]);)n+=t[e],e++;if(!this.suppressValidationErr&&!r(n))throw new Error(`Invalid element name: "${n}"`);let i="";if("E"===t[e=P(t,e)]&&A(t,"MPTY",e))e+=4;else if("A"===t[e]&&A(t,"NY",e))e+=2;else if("("===t[e]){for(e++;e<t.length&&")"!==t[e];)i+=t[e],e++;if(")"!==t[e])throw new Error("Unterminated content model")}else if(!this.suppressValidationErr)throw new Error(`Invalid Element Expression, found "${t[e]}"`);return {elementName:n,contentModel:i.trim(),index:e}}readAttlistExp(t,e){e=P(t,e);let n="";for(;e<t.length&&!/\s/.test(t[e]);)n+=t[e],e++;S(n),e=P(t,e);let i="";for(;e<t.length&&!/\s/.test(t[e]);)i+=t[e],e++;if(!S(i))throw new Error(`Invalid attribute name: "${i}"`);e=P(t,e);let s="";if("NOTATION"===t.substring(e,e+8).toUpperCase()){if(s="NOTATION","("!==t[e=P(t,e+=8)])throw new Error(`Expected '(', found "${t[e]}"`);e++;let n=[];for(;e<t.length&&")"!==t[e];){let i="";for(;e<t.length&&"|"!==t[e]&&")"!==t[e];)i+=t[e],e++;if(i=i.trim(),!S(i))throw new Error(`Invalid notation name: "${i}"`);n.push(i),"|"===t[e]&&(e++,e=P(t,e));}if(")"!==t[e])throw new Error("Unterminated list of notations");e++,s+=" ("+n.join("|")+")";}else {for(;e<t.length&&!/\s/.test(t[e]);)s+=t[e],e++;const n=["CDATA","ID","IDREF","IDREFS","ENTITY","ENTITIES","NMTOKEN","NMTOKENS"];if(!this.suppressValidationErr&&!n.includes(s.toUpperCase()))throw new Error(`Invalid attribute type: "${s}"`)}e=P(t,e);let r="";return "#REQUIRED"===t.substring(e,e+8).toUpperCase()?(r="#REQUIRED",e+=8):"#IMPLIED"===t.substring(e,e+7).toUpperCase()?(r="#IMPLIED",e+=7):[e,r]=this.readIdentifierVal(t,e,"ATTLIST"),{elementName:n,attributeName:i,attributeType:s,defaultValue:r,index:e}}}const P=(t,e)=>{for(;e<t.length&&/\s/.test(t[e]);)e++;return e};function A(t,e,n){for(let i=0;i<e.length;i++)if(e[i]!==t[n+i+1])return  false;return  true}function S(t){if(r(t))return t;throw new Error(`Invalid entity name ${t}`)}const C=/^[-+]?0x[a-fA-F0-9]+$/,$=/^([\-\+])?(0*)([0-9]*(\.[0-9]*)?)$/,V={hex:true,leadingZeros:true,decimalPoint:".",eNotation:true};const D=/^([-+])?(0*)(\d*(\.\d*)?[eE][-\+]?\d+)$/;function L(t){return "function"==typeof t?t:Array.isArray(t)?e=>{for(const n of t){if("string"==typeof n&&e===n)return  true;if(n instanceof RegExp&&n.test(e))return  true}}:()=>false}class F{constructor(t){if(this.options=t,this.currentNode=null,this.tagsNodeStack=[],this.docTypeEntities={},this.lastEntities={apos:{regex:/&(apos|#39|#x27);/g,val:"'"},gt:{regex:/&(gt|#62|#x3E);/g,val:">"},lt:{regex:/&(lt|#60|#x3C);/g,val:"<"},quot:{regex:/&(quot|#34|#x22);/g,val:'"'}},this.ampEntity={regex:/&(amp|#38|#x26);/g,val:"&"},this.htmlEntities={space:{regex:/&(nbsp|#160);/g,val:" "},cent:{regex:/&(cent|#162);/g,val:"¢"},pound:{regex:/&(pound|#163);/g,val:"£"},yen:{regex:/&(yen|#165);/g,val:"¥"},euro:{regex:/&(euro|#8364);/g,val:"€"},copyright:{regex:/&(copy|#169);/g,val:"©"},reg:{regex:/&(reg|#174);/g,val:"®"},inr:{regex:/&(inr|#8377);/g,val:"₹"},num_dec:{regex:/&#([0-9]{1,7});/g,val:(t,e)=>K(e,10,"&#")},num_hex:{regex:/&#x([0-9a-fA-F]{1,6});/g,val:(t,e)=>K(e,16,"&#x")}},this.addExternalEntities=j,this.parseXml=B,this.parseTextData=M,this.resolveNameSpace=_,this.buildAttributesMap=U,this.isItStopNode=X,this.replaceEntitiesValue=Y,this.readStopNodeData=q,this.saveTextToParentTag=G,this.addChild=R,this.ignoreAttributesFn=L(this.options.ignoreAttributes),this.entityExpansionCount=0,this.currentExpandedLength=0,this.options.stopNodes&&this.options.stopNodes.length>0){this.stopNodesExact=new Set,this.stopNodesWildcard=new Set;for(let t=0;t<this.options.stopNodes.length;t++){const e=this.options.stopNodes[t];"string"==typeof e&&(e.startsWith("*.")?this.stopNodesWildcard.add(e.substring(2)):this.stopNodesExact.add(e));}}}}function j(t){const e=Object.keys(t);for(let n=0;n<e.length;n++){const i=e[n],s=i.replace(/[.\-+*:]/g,"\\.");this.lastEntities[i]={regex:new RegExp("&"+s+";","g"),val:t[i]};}}function M(t,e,n,i,s,r,o){if(void 0!==t&&(this.options.trimValues&&!i&&(t=t.trim()),t.length>0)){o||(t=this.replaceEntitiesValue(t,e,n));const i=this.options.tagValueProcessor(e,t,n,s,r);return null==i?t:typeof i!=typeof t||i!==t?i:this.options.trimValues||t.trim()===t?Z(t,this.options.parseTagValue,this.options.numberParseOptions):t}}function _(t){if(this.options.removeNSPrefix){const e=t.split(":"),n="/"===t.charAt(0)?"/":"";if("xmlns"===e[0])return "";2===e.length&&(t=n+e[1]);}return t}const k=new RegExp("([^\\s=]+)\\s*(=\\s*(['\"])([\\s\\S]*?)\\3)?","gm");function U(t,e,n){if(true!==this.options.ignoreAttributes&&"string"==typeof t){const i=s(t,k),r=i.length,o={};for(let t=0;t<r;t++){const s=this.resolveNameSpace(i[t][1]);if(this.ignoreAttributesFn(s,e))continue;let r=i[t][4],a=this.options.attributeNamePrefix+s;if(s.length)if(this.options.transformAttributeName&&(a=this.options.transformAttributeName(a)),"__proto__"===a&&(a="#__proto__"),void 0!==r){this.options.trimValues&&(r=r.trim()),r=this.replaceEntitiesValue(r,n,e);const t=this.options.attributeValueProcessor(s,r,e);o[a]=null==t?r:typeof t!=typeof r||t!==r?t:Z(r,this.options.parseAttributeValue,this.options.numberParseOptions);}else this.options.allowBooleanAttributes&&(o[a]=true);}if(!Object.keys(o).length)return;if(this.options.attributesGroupName){const t={};return t[this.options.attributesGroupName]=o,t}return o}}const B=function(t){t=t.replace(/\r\n?/g,"\n");const e=new I("!xml");let n=e,i="",s="";this.entityExpansionCount=0,this.currentExpandedLength=0;const r=new O(this.options.processEntities);for(let o=0;o<t.length;o++)if("<"===t[o])if("/"===t[o+1]){const e=z(t,">",o,"Closing Tag is not closed.");let r=t.substring(o+2,e).trim();if(this.options.removeNSPrefix){const t=r.indexOf(":");-1!==t&&(r=r.substr(t+1));}this.options.transformTagName&&(r=this.options.transformTagName(r)),n&&(i=this.saveTextToParentTag(i,n,s));const a=s.substring(s.lastIndexOf(".")+1);if(r&&-1!==this.options.unpairedTags.indexOf(r))throw new Error(`Unpaired tag can not be used as closing tag: </${r}>`);let l=0;a&&-1!==this.options.unpairedTags.indexOf(a)?(l=s.lastIndexOf(".",s.lastIndexOf(".")-1),this.tagsNodeStack.pop()):l=s.lastIndexOf("."),s=s.substring(0,l),n=this.tagsNodeStack.pop(),i="",o=e;}else if("?"===t[o+1]){let e=W(t,o,false,"?>");if(!e)throw new Error("Pi Tag is not closed.");if(i=this.saveTextToParentTag(i,n,s),this.options.ignoreDeclaration&&"?xml"===e.tagName||this.options.ignorePiTags);else {const t=new I(e.tagName);t.add(this.options.textNodeName,""),e.tagName!==e.tagExp&&e.attrExpPresent&&(t[":@"]=this.buildAttributesMap(e.tagExp,s,e.tagName)),this.addChild(n,t,s,o);}o=e.closeIndex+1;}else if("!--"===t.substr(o+1,3)){const e=z(t,"--\x3e",o+4,"Comment is not closed.");if(this.options.commentPropName){const r=t.substring(o+4,e-2);i=this.saveTextToParentTag(i,n,s),n.add(this.options.commentPropName,[{[this.options.textNodeName]:r}]);}o=e;}else if("!D"===t.substr(o+1,2)){const e=r.readDocType(t,o);this.docTypeEntities=e.entities,o=e.i;}else if("!["===t.substr(o+1,2)){const e=z(t,"]]>",o,"CDATA is not closed.")-2,r=t.substring(o+9,e);i=this.saveTextToParentTag(i,n,s);let a=this.parseTextData(r,n.tagname,s,true,false,true,true);null==a&&(a=""),this.options.cdataPropName?n.add(this.options.cdataPropName,[{[this.options.textNodeName]:r}]):n.add(this.options.textNodeName,a),o=e+2;}else {let r=W(t,o,this.options.removeNSPrefix),a=r.tagName;const l=r.rawTagName;let u=r.tagExp,h=r.attrExpPresent,d=r.closeIndex;if(this.options.transformTagName){const t=this.options.transformTagName(a);u===a&&(u=t),a=t;}n&&i&&"!xml"!==n.tagname&&(i=this.saveTextToParentTag(i,n,s,false));const p=n;p&&-1!==this.options.unpairedTags.indexOf(p.tagname)&&(n=this.tagsNodeStack.pop(),s=s.substring(0,s.lastIndexOf("."))),a!==e.tagname&&(s+=s?"."+a:a);const f=o;if(this.isItStopNode(this.stopNodesExact,this.stopNodesWildcard,s,a)){let e="";if(u.length>0&&u.lastIndexOf("/")===u.length-1)"/"===a[a.length-1]?(a=a.substr(0,a.length-1),s=s.substr(0,s.length-1),u=a):u=u.substr(0,u.length-1),o=r.closeIndex;else if(-1!==this.options.unpairedTags.indexOf(a))o=r.closeIndex;else {const n=this.readStopNodeData(t,l,d+1);if(!n)throw new Error(`Unexpected end of ${l}`);o=n.i,e=n.tagContent;}const i=new I(a);a!==u&&h&&(i[":@"]=this.buildAttributesMap(u,s,a)),e&&(e=this.parseTextData(e,a,s,true,h,true,true)),s=s.substr(0,s.lastIndexOf(".")),i.add(this.options.textNodeName,e),this.addChild(n,i,s,f);}else {if(u.length>0&&u.lastIndexOf("/")===u.length-1){if("/"===a[a.length-1]?(a=a.substr(0,a.length-1),s=s.substr(0,s.length-1),u=a):u=u.substr(0,u.length-1),this.options.transformTagName){const t=this.options.transformTagName(a);u===a&&(u=t),a=t;}const t=new I(a);a!==u&&h&&(t[":@"]=this.buildAttributesMap(u,s,a)),this.addChild(n,t,s,f),s=s.substr(0,s.lastIndexOf("."));}else {const t=new I(a);this.tagsNodeStack.push(n),a!==u&&h&&(t[":@"]=this.buildAttributesMap(u,s,a)),this.addChild(n,t,s,f),n=t;}i="",o=d;}}else i+=t[o];return e.child};function R(t,e,n,i){this.options.captureMetaData||(i=void 0);const s=this.options.updateTag(e.tagname,n,e[":@"]);false===s||("string"==typeof s?(e.tagname=s,t.addChild(e,i)):t.addChild(e,i));}const Y=function(t,e,n){if(-1===t.indexOf("&"))return t;const i=this.options.processEntities;if(!i.enabled)return t;if(i.allowedTags&&!i.allowedTags.includes(e))return t;if(i.tagFilter&&!i.tagFilter(e,n))return t;for(let e in this.docTypeEntities){const n=this.docTypeEntities[e],s=t.match(n.regx);if(s){if(this.entityExpansionCount+=s.length,i.maxTotalExpansions&&this.entityExpansionCount>i.maxTotalExpansions)throw new Error(`Entity expansion limit exceeded: ${this.entityExpansionCount} > ${i.maxTotalExpansions}`);const e=t.length;if(t=t.replace(n.regx,n.val),i.maxExpandedLength&&(this.currentExpandedLength+=t.length-e,this.currentExpandedLength>i.maxExpandedLength))throw new Error(`Total expanded content size exceeded: ${this.currentExpandedLength} > ${i.maxExpandedLength}`)}}if(-1===t.indexOf("&"))return t;for(let e in this.lastEntities){const n=this.lastEntities[e];t=t.replace(n.regex,n.val);}if(-1===t.indexOf("&"))return t;if(this.options.htmlEntities)for(let e in this.htmlEntities){const n=this.htmlEntities[e];t=t.replace(n.regex,n.val);}return t.replace(this.ampEntity.regex,this.ampEntity.val)};function G(t,e,n,i){return t&&(void 0===i&&(i=0===e.child.length),void 0!==(t=this.parseTextData(t,e.tagname,n,false,!!e[":@"]&&0!==Object.keys(e[":@"]).length,i))&&""!==t&&e.add(this.options.textNodeName,t),t=""),t}function X(t,e,n,i){return !(!e||!e.has(i))||!(!t||!t.has(n))}function z(t,e,n,i){const s=t.indexOf(e,n);if(-1===s)throw new Error(i);return s+e.length-1}function W(t,e,n,i=">"){const s=function(t,e,n=">"){let i,s="";for(let r=e;r<t.length;r++){let e=t[r];if(i)e===i&&(i="");else if('"'===e||"'"===e)i=e;else if(e===n[0]){if(!n[1])return {data:s,index:r};if(t[r+1]===n[1])return {data:s,index:r}}else "\t"===e&&(e=" ");s+=e;}}(t,e+1,i);if(!s)return;let r=s.data;const o=s.index,a=r.search(/\s/);let l=r,u=true;-1!==a&&(l=r.substring(0,a),r=r.substring(a+1).trimStart());const h=l;if(n){const t=l.indexOf(":");-1!==t&&(l=l.substr(t+1),u=l!==s.data.substr(t+1));}return {tagName:l,tagExp:r,closeIndex:o,attrExpPresent:u,rawTagName:h}}function q(t,e,n){const i=n;let s=1;for(;n<t.length;n++)if("<"===t[n])if("/"===t[n+1]){const r=z(t,">",n,`${e} is not closed`);if(t.substring(n+2,r).trim()===e&&(s--,0===s))return {tagContent:t.substring(i,n),i:r};n=r;}else if("?"===t[n+1])n=z(t,"?>",n+1,"StopNode is not closed.");else if("!--"===t.substr(n+1,3))n=z(t,"--\x3e",n+3,"StopNode is not closed.");else if("!["===t.substr(n+1,2))n=z(t,"]]>",n,"StopNode is not closed.")-2;else {const i=W(t,n,">");i&&((i&&i.tagName)===e&&"/"!==i.tagExp[i.tagExp.length-1]&&s++,n=i.closeIndex);}}function Z(t,e,n){if(e&&"string"==typeof t){const e=t.trim();return "true"===e||"false"!==e&&function(t,e={}){if(e=Object.assign({},V,e),!t||"string"!=typeof t)return t;let n=t.trim();if(void 0!==e.skipLike&&e.skipLike.test(n))return t;if("0"===t)return 0;if(e.hex&&C.test(n))return function(t){if(parseInt)return parseInt(t,16);if(Number.parseInt)return Number.parseInt(t,16);if(window&&window.parseInt)return window.parseInt(t,16);throw new Error("parseInt, Number.parseInt, window.parseInt are not supported")}(n);if(-1!==n.search(/.+[eE].+/))return function(t,e,n){if(!n.eNotation)return t;const i=e.match(D);if(i){let s=i[1]||"";const r=-1===i[3].indexOf("e")?"E":"e",o=i[2],a=s?t[o.length+1]===r:t[o.length]===r;return o.length>1&&a?t:1!==o.length||!i[3].startsWith(`.${r}`)&&i[3][0]!==r?n.leadingZeros&&!a?(e=(i[1]||"")+i[3],Number(e)):t:Number(e)}return t}(t,n,e);{const s=$.exec(n);if(s){const r=s[1]||"",o=s[2];let a=(i=s[3])&&-1!==i.indexOf(".")?("."===(i=i.replace(/0+$/,""))?i="0":"."===i[0]?i="0"+i:"."===i[i.length-1]&&(i=i.substring(0,i.length-1)),i):i;const l=r?"."===t[o.length+1]:"."===t[o.length];if(!e.leadingZeros&&(o.length>1||1===o.length&&!l))return t;{const i=Number(n),s=String(i);if(0===i||-0===i)return i;if(-1!==s.search(/[eE]/))return e.eNotation?i:t;if(-1!==n.indexOf("."))return "0"===s||s===a||s===`${r}${a}`?i:t;let l=o?a:n;return o?l===s||r+l===s?i:t:l===s||l===r+s?i:t}}return t}var i;}(t,n)}return void 0!==t?t:""}function K(t,e,n){const i=Number.parseInt(t,e);return i>=0&&i<=1114111?String.fromCodePoint(i):n+t+";"}const Q=I.getMetaDataSymbol();function J(t,e){return H(t,e)}function H(t,e,n){let i;const s={};for(let r=0;r<t.length;r++){const o=t[r],a=tt(o);let l="";if(l=void 0===n?a:n+"."+a,a===e.textNodeName) void 0===i?i=o[a]:i+=""+o[a];else {if(void 0===a)continue;if(o[a]){let t=H(o[a],e,l);const n=nt(t,e);void 0!==o[Q]&&(t[Q]=o[Q]),o[":@"]?et(t,o[":@"],l,e):1!==Object.keys(t).length||void 0===t[e.textNodeName]||e.alwaysCreateTextNode?0===Object.keys(t).length&&(e.alwaysCreateTextNode?t[e.textNodeName]="":t=""):t=t[e.textNodeName],void 0!==s[a]&&s.hasOwnProperty(a)?(Array.isArray(s[a])||(s[a]=[s[a]]),s[a].push(t)):e.isArray(a,l,n)?s[a]=[t]:s[a]=t;}}}return "string"==typeof i?i.length>0&&(s[e.textNodeName]=i):void 0!==i&&(s[e.textNodeName]=i),s}function tt(t){const e=Object.keys(t);for(let t=0;t<e.length;t++){const n=e[t];if(":@"!==n)return n}}function et(t,e,n,i){if(e){const s=Object.keys(e),r=s.length;for(let o=0;o<r;o++){const r=s[o];i.isArray(r,n+"."+r,true,true)?t[r]=[e[r]]:t[r]=e[r];}}}function nt(t,e){const{textNodeName:n}=e,i=Object.keys(t).length;return 0===i||!(1!==i||!t[n]&&"boolean"!=typeof t[n]&&0!==t[n])}class it{constructor(t){this.externalEntities={},this.options=w(t);}parse(t,e){if("string"!=typeof t&&t.toString)t=t.toString();else if("string"!=typeof t)throw new Error("XML data is accepted in String or Bytes[] form.");if(e){ true===e&&(e={});const n=a(t,e);if(true!==n)throw Error(`${n.err.msg}:${n.err.line}:${n.err.col}`)}const n=new F(this.options);n.addExternalEntities(this.externalEntities);const i=n.parseXml(t);return this.options.preserveOrder||void 0===i?i:J(i,this.options)}addEntity(t,e){if(-1!==e.indexOf("&"))throw new Error("Entity value can't have '&'");if(-1!==t.indexOf("&")||-1!==t.indexOf(";"))throw new Error("An entity must be set without '&' and ';'. Eg. use '#xD' for '&#xD;'");if("&"===e)throw new Error("An entity with value '&' is not permitted");this.externalEntities[t]=e;}static getMetaDataSymbol(){return I.getMetaDataSymbol()}}function st(t,e){let n="";return e.format&&e.indentBy.length>0&&(n="\n"),rt(t,e,"",n)}function rt(t,e,n,i){let s="",r=false;for(let o=0;o<t.length;o++){const a=t[o],l=ot(a);if(void 0===l)continue;let u="";if(u=0===n.length?l:`${n}.${l}`,l===e.textNodeName){let t=a[l];lt(u,e)||(t=e.tagValueProcessor(l,t),t=ut(t,e)),r&&(s+=i),s+=t,r=false;continue}if(l===e.cdataPropName){r&&(s+=i),s+=`<![CDATA[${a[l][0][e.textNodeName]}]]>`,r=false;continue}if(l===e.commentPropName){s+=i+`\x3c!--${a[l][0][e.textNodeName]}--\x3e`,r=true;continue}if("?"===l[0]){const t=at(a[":@"],e),n="?xml"===l?"":i;let o=a[l][0][e.textNodeName];o=0!==o.length?" "+o:"",s+=n+`<${l}${o}${t}?>`,r=true;continue}let h=i;""!==h&&(h+=e.indentBy);const d=i+`<${l}${at(a[":@"],e)}`,p=rt(a[l],e,u,h);-1!==e.unpairedTags.indexOf(l)?e.suppressUnpairedNode?s+=d+">":s+=d+"/>":p&&0!==p.length||!e.suppressEmptyNode?p&&p.endsWith(">")?s+=d+`>${p}${i}</${l}>`:(s+=d+">",p&&""!==i&&(p.includes("/>")||p.includes("</"))?s+=i+e.indentBy+p+i:s+=p,s+=`</${l}>`):s+=d+"/>",r=true;}return s}function ot(t){const e=Object.keys(t);for(let n=0;n<e.length;n++){const i=e[n];if(t.hasOwnProperty(i)&&":@"!==i)return i}}function at(t,e){let n="";if(t&&!e.ignoreAttributes)for(let i in t){if(!t.hasOwnProperty(i))continue;let s=e.attributeValueProcessor(i,t[i]);s=ut(s,e),true===s&&e.suppressBooleanAttributes?n+=` ${i.substr(e.attributeNamePrefix.length)}`:n+=` ${i.substr(e.attributeNamePrefix.length)}="${s}"`;}return n}function lt(t,e){let n=(t=t.substr(0,t.length-e.textNodeName.length-1)).substr(t.lastIndexOf(".")+1);for(let i in e.stopNodes)if(e.stopNodes[i]===t||e.stopNodes[i]==="*."+n)return  true;return  false}function ut(t,e){if(t&&t.length>0&&e.processEntities)for(let n=0;n<e.entities.length;n++){const i=e.entities[n];t=t.replace(i.regex,i.val);}return t}const ht={attributeNamePrefix:"@_",attributesGroupName:false,textNodeName:"#text",ignoreAttributes:true,cdataPropName:false,format:false,indentBy:"  ",suppressEmptyNode:false,suppressUnpairedNode:true,suppressBooleanAttributes:true,tagValueProcessor:function(t,e){return e},attributeValueProcessor:function(t,e){return e},preserveOrder:false,commentPropName:false,unpairedTags:[],entities:[{regex:new RegExp("&","g"),val:"&amp;"},{regex:new RegExp(">","g"),val:"&gt;"},{regex:new RegExp("<","g"),val:"&lt;"},{regex:new RegExp("'","g"),val:"&apos;"},{regex:new RegExp('"',"g"),val:"&quot;"}],processEntities:true,stopNodes:[],oneListGroup:false};function dt(t){this.options=Object.assign({},ht,t),true===this.options.ignoreAttributes||this.options.attributesGroupName?this.isAttribute=function(){return  false}:(this.ignoreAttributesFn=L(this.options.ignoreAttributes),this.attrPrefixLen=this.options.attributeNamePrefix.length,this.isAttribute=ct),this.processTextOrObjNode=pt,this.options.format?(this.indentate=ft,this.tagEndChar=">\n",this.newLine="\n"):(this.indentate=function(){return ""},this.tagEndChar=">",this.newLine="");}function pt(t,e,n,i){const s=this.j2x(t,n+1,i.concat(e));return void 0!==t[this.options.textNodeName]&&1===Object.keys(t).length?this.buildTextValNode(t[this.options.textNodeName],e,s.attrStr,n):this.buildObjectNode(s.val,e,s.attrStr,n)}function ft(t){return this.options.indentBy.repeat(t)}function ct(t){return !(!t.startsWith(this.options.attributeNamePrefix)||t===this.options.textNodeName)&&t.substr(this.attrPrefixLen)}dt.prototype.build=function(t){return this.options.preserveOrder?st(t,this.options):(Array.isArray(t)&&this.options.arrayNodeName&&this.options.arrayNodeName.length>1&&(t={[this.options.arrayNodeName]:t}),this.j2x(t,0,[]).val)},dt.prototype.j2x=function(t,e,n){let i="",s="";const r=n.join(".");for(let o in t)if(Object.prototype.hasOwnProperty.call(t,o))if(void 0===t[o])this.isAttribute(o)&&(s+="");else if(null===t[o])this.isAttribute(o)||o===this.options.cdataPropName?s+="":"?"===o[0]?s+=this.indentate(e)+"<"+o+"?"+this.tagEndChar:s+=this.indentate(e)+"<"+o+"/"+this.tagEndChar;else if(t[o]instanceof Date)s+=this.buildTextValNode(t[o],o,"",e);else if("object"!=typeof t[o]){const n=this.isAttribute(o);if(n&&!this.ignoreAttributesFn(n,r))i+=this.buildAttrPairStr(n,""+t[o]);else if(!n)if(o===this.options.textNodeName){let e=this.options.tagValueProcessor(o,""+t[o]);s+=this.replaceEntitiesValue(e);}else s+=this.buildTextValNode(t[o],o,"",e);}else if(Array.isArray(t[o])){const i=t[o].length;let r="",a="";for(let l=0;l<i;l++){const i=t[o][l];if(void 0===i);else if(null===i)"?"===o[0]?s+=this.indentate(e)+"<"+o+"?"+this.tagEndChar:s+=this.indentate(e)+"<"+o+"/"+this.tagEndChar;else if("object"==typeof i)if(this.options.oneListGroup){const t=this.j2x(i,e+1,n.concat(o));r+=t.val,this.options.attributesGroupName&&i.hasOwnProperty(this.options.attributesGroupName)&&(a+=t.attrStr);}else r+=this.processTextOrObjNode(i,o,e,n);else if(this.options.oneListGroup){let t=this.options.tagValueProcessor(o,i);t=this.replaceEntitiesValue(t),r+=t;}else r+=this.buildTextValNode(i,o,"",e);}this.options.oneListGroup&&(r=this.buildObjectNode(r,o,a,e)),s+=r;}else if(this.options.attributesGroupName&&o===this.options.attributesGroupName){const e=Object.keys(t[o]),n=e.length;for(let s=0;s<n;s++)i+=this.buildAttrPairStr(e[s],""+t[o][e[s]]);}else s+=this.processTextOrObjNode(t[o],o,e,n);return {attrStr:i,val:s}},dt.prototype.buildAttrPairStr=function(t,e){return e=this.options.attributeValueProcessor(t,""+e),e=this.replaceEntitiesValue(e),this.options.suppressBooleanAttributes&&"true"===e?" "+t:" "+t+'="'+e+'"'},dt.prototype.buildObjectNode=function(t,e,n,i){if(""===t)return "?"===e[0]?this.indentate(i)+"<"+e+n+"?"+this.tagEndChar:this.indentate(i)+"<"+e+n+this.closeTag(e)+this.tagEndChar;{let s="</"+e+this.tagEndChar,r="";return "?"===e[0]&&(r="?",s=""),!n&&""!==n||-1!==t.indexOf("<")?false!==this.options.commentPropName&&e===this.options.commentPropName&&0===r.length?this.indentate(i)+`\x3c!--${t}--\x3e`+this.newLine:this.indentate(i)+"<"+e+n+r+this.tagEndChar+t+this.indentate(i)+s:this.indentate(i)+"<"+e+n+r+">"+t+s}},dt.prototype.closeTag=function(t){let e="";return  -1!==this.options.unpairedTags.indexOf(t)?this.options.suppressUnpairedNode||(e="/"):e=this.options.suppressEmptyNode?"/":`></${t}`,e},dt.prototype.buildTextValNode=function(t,e,n,i){if(false!==this.options.cdataPropName&&e===this.options.cdataPropName)return this.indentate(i)+`<![CDATA[${t}]]>`+this.newLine;if(false!==this.options.commentPropName&&e===this.options.commentPropName)return this.indentate(i)+`\x3c!--${t}--\x3e`+this.newLine;if("?"===e[0])return this.indentate(i)+"<"+e+n+"?"+this.tagEndChar;{let s=this.options.tagValueProcessor(e,t);return s=this.replaceEntitiesValue(s),""===s?this.indentate(i)+"<"+e+n+this.closeTag(e)+this.tagEndChar:this.indentate(i)+"<"+e+n+">"+s+"</"+e+this.tagEndChar}},dt.prototype.replaceEntitiesValue=function(t){if(t&&t.length>0&&this.options.processEntities)for(let e=0;e<this.options.entities.length;e++){const n=this.options.entities[e];t=t.replace(n.regex,n.val);}return t};const gt={validate:a};fxp.exports=e;})();
 	return fxp.exports;
 }
 
@@ -44602,17 +44604,17 @@ var hasRequiredCommonjs$5;
 function requireCommonjs$5 () {
 	if (hasRequiredCommonjs$5) return commonjs$4;
 	hasRequiredCommonjs$5 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.XML_CHARKEY = exports.XML_ATTRKEY = exports.parseXML = exports.stringifyXML = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.XML_CHARKEY = exports$1.XML_ATTRKEY = exports$1.parseXML = exports$1.stringifyXML = void 0;
 		var xml_js_1 = requireXml();
-		Object.defineProperty(exports, "stringifyXML", { enumerable: true, get: function () { return xml_js_1.stringifyXML; } });
-		Object.defineProperty(exports, "parseXML", { enumerable: true, get: function () { return xml_js_1.parseXML; } });
+		Object.defineProperty(exports$1, "stringifyXML", { enumerable: true, get: function () { return xml_js_1.stringifyXML; } });
+		Object.defineProperty(exports$1, "parseXML", { enumerable: true, get: function () { return xml_js_1.parseXML; } });
 		var xml_common_js_1 = requireXml_common();
-		Object.defineProperty(exports, "XML_ATTRKEY", { enumerable: true, get: function () { return xml_common_js_1.XML_ATTRKEY; } });
-		Object.defineProperty(exports, "XML_CHARKEY", { enumerable: true, get: function () { return xml_common_js_1.XML_CHARKEY; } });
+		Object.defineProperty(exports$1, "XML_ATTRKEY", { enumerable: true, get: function () { return xml_common_js_1.XML_ATTRKEY; } });
+		Object.defineProperty(exports$1, "XML_CHARKEY", { enumerable: true, get: function () { return xml_common_js_1.XML_CHARKEY; } });
 		
 	} (commonjs$4));
 	return commonjs$4;
@@ -44638,1928 +44640,7 @@ function requireLog$1 () {
 	return log$1;
 }
 
-var StorageRetryPolicyFactory$1 = {};
-
-var StorageRetryPolicy$1 = {};
-
 var commonjs$3 = {};
-
-var AbortError$2 = {};
-
-var hasRequiredAbortError$1;
-
-function requireAbortError$1 () {
-	if (hasRequiredAbortError$1) return AbortError$2;
-	hasRequiredAbortError$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT license.
-	Object.defineProperty(AbortError$2, "__esModule", { value: true });
-	AbortError$2.AbortError = void 0;
-	/**
-	 * This error is thrown when an asynchronous operation has been aborted.
-	 * Check for this error by testing the `name` that the name property of the
-	 * error matches `"AbortError"`.
-	 *
-	 * @example
-	 * ```ts
-	 * const controller = new AbortController();
-	 * controller.abort();
-	 * try {
-	 *   doAsyncWork(controller.signal)
-	 * } catch (e) {
-	 *   if (e.name === 'AbortError') {
-	 *     // handle abort error here.
-	 *   }
-	 * }
-	 * ```
-	 */
-	class AbortError extends Error {
-	    constructor(message) {
-	        super(message);
-	        this.name = "AbortError";
-	    }
-	}
-	AbortError$2.AbortError = AbortError;
-	
-	return AbortError$2;
-}
-
-var hasRequiredCommonjs$4;
-
-function requireCommonjs$4 () {
-	if (hasRequiredCommonjs$4) return commonjs$3;
-	hasRequiredCommonjs$4 = 1;
-	(function (exports) {
-		// Copyright (c) Microsoft Corporation.
-		// Licensed under the MIT license.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.AbortError = void 0;
-		var AbortError_js_1 = requireAbortError$1();
-		Object.defineProperty(exports, "AbortError", { enumerable: true, get: function () { return AbortError_js_1.AbortError; } });
-		
-	} (commonjs$3));
-	return commonjs$3;
-}
-
-var RequestPolicy$1 = {};
-
-var hasRequiredRequestPolicy$1;
-
-function requireRequestPolicy$1 () {
-	if (hasRequiredRequestPolicy$1) return RequestPolicy$1;
-	hasRequiredRequestPolicy$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(RequestPolicy$1, "__esModule", { value: true });
-	RequestPolicy$1.BaseRequestPolicy = void 0;
-	/**
-	 * The base class from which all request policies derive.
-	 */
-	class BaseRequestPolicy {
-	    _nextPolicy;
-	    _options;
-	    /**
-	     * The main method to implement that manipulates a request/response.
-	     */
-	    constructor(
-	    /**
-	     * The next policy in the pipeline. Each policy is responsible for executing the next one if the request is to continue through the pipeline.
-	     */
-	    _nextPolicy, 
-	    /**
-	     * The options that can be passed to a given request policy.
-	     */
-	    _options) {
-	        this._nextPolicy = _nextPolicy;
-	        this._options = _options;
-	    }
-	    /**
-	     * Get whether or not a log with the provided log level should be logged.
-	     * @param logLevel - The log level of the log that will be logged.
-	     * @returns Whether or not a log with the provided log level should be logged.
-	     */
-	    shouldLog(logLevel) {
-	        return this._options.shouldLog(logLevel);
-	    }
-	    /**
-	     * Attempt to log the provided message to the provided logger. If no logger was provided or if
-	     * the log level does not meat the logger's threshold, then nothing will be logged.
-	     * @param logLevel - The log level of this log.
-	     * @param message - The message of this log.
-	     */
-	    log(logLevel, message) {
-	        this._options.log(logLevel, message);
-	    }
-	}
-	RequestPolicy$1.BaseRequestPolicy = BaseRequestPolicy;
-	
-	return RequestPolicy$1;
-}
-
-var constants$2 = {};
-
-var hasRequiredConstants$2;
-
-function requireConstants$2 () {
-	if (hasRequiredConstants$2) return constants$2;
-	hasRequiredConstants$2 = 1;
-	(function (exports) {
-		// Copyright (c) Microsoft Corporation.
-		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.PathStylePorts = exports.BlobDoesNotUseCustomerSpecifiedEncryption = exports.BlobUsesCustomerSpecifiedEncryptionMsg = exports.StorageBlobLoggingAllowedQueryParameters = exports.StorageBlobLoggingAllowedHeaderNames = exports.DevelopmentConnectionString = exports.EncryptionAlgorithmAES25 = exports.HTTP_VERSION_1_1 = exports.HTTP_LINE_ENDING = exports.BATCH_MAX_PAYLOAD_IN_BYTES = exports.BATCH_MAX_REQUEST = exports.SIZE_1_MB = exports.ETagAny = exports.ETagNone = exports.HeaderConstants = exports.HTTPURLConnection = exports.URLConstants = exports.StorageOAuthScopes = exports.REQUEST_TIMEOUT = exports.DEFAULT_MAX_DOWNLOAD_RETRY_REQUESTS = exports.DEFAULT_BLOB_DOWNLOAD_BLOCK_BYTES = exports.DEFAULT_BLOCK_BUFFER_SIZE_BYTES = exports.BLOCK_BLOB_MAX_BLOCKS = exports.BLOCK_BLOB_MAX_STAGE_BLOCK_BYTES = exports.BLOCK_BLOB_MAX_UPLOAD_BLOB_BYTES = exports.SERVICE_VERSION = exports.SDK_VERSION = void 0;
-		exports.SDK_VERSION = "12.29.1";
-		exports.SERVICE_VERSION = "2025-11-05";
-		exports.BLOCK_BLOB_MAX_UPLOAD_BLOB_BYTES = 256 * 1024 * 1024; // 256MB
-		exports.BLOCK_BLOB_MAX_STAGE_BLOCK_BYTES = 4000 * 1024 * 1024; // 4000MB
-		exports.BLOCK_BLOB_MAX_BLOCKS = 50000;
-		exports.DEFAULT_BLOCK_BUFFER_SIZE_BYTES = 8 * 1024 * 1024; // 8MB
-		exports.DEFAULT_BLOB_DOWNLOAD_BLOCK_BYTES = 4 * 1024 * 1024; // 4MB
-		exports.DEFAULT_MAX_DOWNLOAD_RETRY_REQUESTS = 5;
-		exports.REQUEST_TIMEOUT = 100 * 1000; // In ms
-		/**
-		 * The OAuth scope to use with Azure Storage.
-		 */
-		exports.StorageOAuthScopes = "https://storage.azure.com/.default";
-		exports.URLConstants = {
-		    Parameters: {
-		        FORCE_BROWSER_NO_CACHE: "_",
-		        SIGNATURE: "sig",
-		        SNAPSHOT: "snapshot",
-		        VERSIONID: "versionid",
-		        TIMEOUT: "timeout",
-		    },
-		};
-		exports.HTTPURLConnection = {
-		    HTTP_ACCEPTED: 202,
-		    HTTP_CONFLICT: 409,
-		    HTTP_NOT_FOUND: 404,
-		    HTTP_PRECON_FAILED: 412,
-		    HTTP_RANGE_NOT_SATISFIABLE: 416,
-		};
-		exports.HeaderConstants = {
-		    AUTHORIZATION: "Authorization",
-		    AUTHORIZATION_SCHEME: "Bearer",
-		    CONTENT_ENCODING: "Content-Encoding",
-		    CONTENT_ID: "Content-ID",
-		    CONTENT_LANGUAGE: "Content-Language",
-		    CONTENT_LENGTH: "Content-Length",
-		    CONTENT_MD5: "Content-Md5",
-		    CONTENT_TRANSFER_ENCODING: "Content-Transfer-Encoding",
-		    CONTENT_TYPE: "Content-Type",
-		    COOKIE: "Cookie",
-		    DATE: "date",
-		    IF_MATCH: "if-match",
-		    IF_MODIFIED_SINCE: "if-modified-since",
-		    IF_NONE_MATCH: "if-none-match",
-		    IF_UNMODIFIED_SINCE: "if-unmodified-since",
-		    PREFIX_FOR_STORAGE: "x-ms-",
-		    RANGE: "Range",
-		    USER_AGENT: "User-Agent",
-		    X_MS_CLIENT_REQUEST_ID: "x-ms-client-request-id",
-		    X_MS_COPY_SOURCE: "x-ms-copy-source",
-		    X_MS_DATE: "x-ms-date",
-		    X_MS_ERROR_CODE: "x-ms-error-code",
-		    X_MS_VERSION: "x-ms-version",
-		    X_MS_CopySourceErrorCode: "x-ms-copy-source-error-code",
-		};
-		exports.ETagNone = "";
-		exports.ETagAny = "*";
-		exports.SIZE_1_MB = 1 * 1024 * 1024;
-		exports.BATCH_MAX_REQUEST = 256;
-		exports.BATCH_MAX_PAYLOAD_IN_BYTES = 4 * exports.SIZE_1_MB;
-		exports.HTTP_LINE_ENDING = "\r\n";
-		exports.HTTP_VERSION_1_1 = "HTTP/1.1";
-		exports.EncryptionAlgorithmAES25 = "AES256";
-		exports.DevelopmentConnectionString = `DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;`;
-		exports.StorageBlobLoggingAllowedHeaderNames = [
-		    "Access-Control-Allow-Origin",
-		    "Cache-Control",
-		    "Content-Length",
-		    "Content-Type",
-		    "Date",
-		    "Request-Id",
-		    "traceparent",
-		    "Transfer-Encoding",
-		    "User-Agent",
-		    "x-ms-client-request-id",
-		    "x-ms-date",
-		    "x-ms-error-code",
-		    "x-ms-request-id",
-		    "x-ms-return-client-request-id",
-		    "x-ms-version",
-		    "Accept-Ranges",
-		    "Content-Disposition",
-		    "Content-Encoding",
-		    "Content-Language",
-		    "Content-MD5",
-		    "Content-Range",
-		    "ETag",
-		    "Last-Modified",
-		    "Server",
-		    "Vary",
-		    "x-ms-content-crc64",
-		    "x-ms-copy-action",
-		    "x-ms-copy-completion-time",
-		    "x-ms-copy-id",
-		    "x-ms-copy-progress",
-		    "x-ms-copy-status",
-		    "x-ms-has-immutability-policy",
-		    "x-ms-has-legal-hold",
-		    "x-ms-lease-state",
-		    "x-ms-lease-status",
-		    "x-ms-range",
-		    "x-ms-request-server-encrypted",
-		    "x-ms-server-encrypted",
-		    "x-ms-snapshot",
-		    "x-ms-source-range",
-		    "If-Match",
-		    "If-Modified-Since",
-		    "If-None-Match",
-		    "If-Unmodified-Since",
-		    "x-ms-access-tier",
-		    "x-ms-access-tier-change-time",
-		    "x-ms-access-tier-inferred",
-		    "x-ms-account-kind",
-		    "x-ms-archive-status",
-		    "x-ms-blob-append-offset",
-		    "x-ms-blob-cache-control",
-		    "x-ms-blob-committed-block-count",
-		    "x-ms-blob-condition-appendpos",
-		    "x-ms-blob-condition-maxsize",
-		    "x-ms-blob-content-disposition",
-		    "x-ms-blob-content-encoding",
-		    "x-ms-blob-content-language",
-		    "x-ms-blob-content-length",
-		    "x-ms-blob-content-md5",
-		    "x-ms-blob-content-type",
-		    "x-ms-blob-public-access",
-		    "x-ms-blob-sequence-number",
-		    "x-ms-blob-type",
-		    "x-ms-copy-destination-snapshot",
-		    "x-ms-creation-time",
-		    "x-ms-default-encryption-scope",
-		    "x-ms-delete-snapshots",
-		    "x-ms-delete-type-permanent",
-		    "x-ms-deny-encryption-scope-override",
-		    "x-ms-encryption-algorithm",
-		    "x-ms-if-sequence-number-eq",
-		    "x-ms-if-sequence-number-le",
-		    "x-ms-if-sequence-number-lt",
-		    "x-ms-incremental-copy",
-		    "x-ms-lease-action",
-		    "x-ms-lease-break-period",
-		    "x-ms-lease-duration",
-		    "x-ms-lease-id",
-		    "x-ms-lease-time",
-		    "x-ms-page-write",
-		    "x-ms-proposed-lease-id",
-		    "x-ms-range-get-content-md5",
-		    "x-ms-rehydrate-priority",
-		    "x-ms-sequence-number-action",
-		    "x-ms-sku-name",
-		    "x-ms-source-content-md5",
-		    "x-ms-source-if-match",
-		    "x-ms-source-if-modified-since",
-		    "x-ms-source-if-none-match",
-		    "x-ms-source-if-unmodified-since",
-		    "x-ms-tag-count",
-		    "x-ms-encryption-key-sha256",
-		    "x-ms-copy-source-error-code",
-		    "x-ms-copy-source-status-code",
-		    "x-ms-if-tags",
-		    "x-ms-source-if-tags",
-		];
-		exports.StorageBlobLoggingAllowedQueryParameters = [
-		    "comp",
-		    "maxresults",
-		    "rscc",
-		    "rscd",
-		    "rsce",
-		    "rscl",
-		    "rsct",
-		    "se",
-		    "si",
-		    "sip",
-		    "sp",
-		    "spr",
-		    "sr",
-		    "srt",
-		    "ss",
-		    "st",
-		    "sv",
-		    "include",
-		    "marker",
-		    "prefix",
-		    "copyid",
-		    "restype",
-		    "blockid",
-		    "blocklisttype",
-		    "delimiter",
-		    "prevsnapshot",
-		    "ske",
-		    "skoid",
-		    "sks",
-		    "skt",
-		    "sktid",
-		    "skv",
-		    "snapshot",
-		];
-		exports.BlobUsesCustomerSpecifiedEncryptionMsg = "BlobUsesCustomerSpecifiedEncryption";
-		exports.BlobDoesNotUseCustomerSpecifiedEncryption = "BlobDoesNotUseCustomerSpecifiedEncryption";
-		/// List of ports used for path style addressing.
-		/// Path style addressing means that storage account is put in URI's Path segment in instead of in host.
-		exports.PathStylePorts = [
-		    "10000",
-		    "10001",
-		    "10002",
-		    "10003",
-		    "10004",
-		    "10100",
-		    "10101",
-		    "10102",
-		    "10103",
-		    "10104",
-		    "11000",
-		    "11001",
-		    "11002",
-		    "11003",
-		    "11004",
-		    "11100",
-		    "11101",
-		    "11102",
-		    "11103",
-		    "11104",
-		];
-		
-	} (constants$2));
-	return constants$2;
-}
-
-var utils_common$2 = {};
-
-var hasRequiredUtils_common$2;
-
-function requireUtils_common$2 () {
-	if (hasRequiredUtils_common$2) return utils_common$2;
-	hasRequiredUtils_common$2 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(utils_common$2, "__esModule", { value: true });
-	utils_common$2.escapeURLPath = escapeURLPath;
-	utils_common$2.getValueInConnString = getValueInConnString;
-	utils_common$2.extractConnectionStringParts = extractConnectionStringParts;
-	utils_common$2.appendToURLPath = appendToURLPath;
-	utils_common$2.setURLParameter = setURLParameter;
-	utils_common$2.getURLParameter = getURLParameter;
-	utils_common$2.setURLHost = setURLHost;
-	utils_common$2.getURLPath = getURLPath;
-	utils_common$2.getURLScheme = getURLScheme;
-	utils_common$2.getURLPathAndQuery = getURLPathAndQuery;
-	utils_common$2.getURLQueries = getURLQueries;
-	utils_common$2.appendToURLQuery = appendToURLQuery;
-	utils_common$2.truncatedISO8061Date = truncatedISO8061Date;
-	utils_common$2.base64encode = base64encode;
-	utils_common$2.base64decode = base64decode;
-	utils_common$2.generateBlockID = generateBlockID;
-	utils_common$2.delay = delay;
-	utils_common$2.padStart = padStart;
-	utils_common$2.sanitizeURL = sanitizeURL;
-	utils_common$2.sanitizeHeaders = sanitizeHeaders;
-	utils_common$2.iEqual = iEqual;
-	utils_common$2.getAccountNameFromUrl = getAccountNameFromUrl;
-	utils_common$2.isIpEndpointStyle = isIpEndpointStyle;
-	utils_common$2.toBlobTagsString = toBlobTagsString;
-	utils_common$2.toBlobTags = toBlobTags;
-	utils_common$2.toTags = toTags;
-	utils_common$2.toQuerySerialization = toQuerySerialization;
-	utils_common$2.parseObjectReplicationRecord = parseObjectReplicationRecord;
-	utils_common$2.attachCredential = attachCredential;
-	utils_common$2.httpAuthorizationToString = httpAuthorizationToString;
-	utils_common$2.BlobNameToString = BlobNameToString;
-	utils_common$2.ConvertInternalResponseOfListBlobFlat = ConvertInternalResponseOfListBlobFlat;
-	utils_common$2.ConvertInternalResponseOfListBlobHierarchy = ConvertInternalResponseOfListBlobHierarchy;
-	utils_common$2.ExtractPageRangeInfoItems = ExtractPageRangeInfoItems;
-	utils_common$2.EscapePath = EscapePath;
-	utils_common$2.assertResponse = assertResponse;
-	const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
-	const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
-	const constants_js_1 = requireConstants$2();
-	/**
-	 * Reserved URL characters must be properly escaped for Storage services like Blob or File.
-	 *
-	 * ## URL encode and escape strategy for JS SDKs
-	 *
-	 * When customers pass a URL string into XxxClient classes constructor, the URL string may already be URL encoded or not.
-	 * But before sending to Azure Storage server, the URL must be encoded. However, it's hard for a SDK to guess whether the URL
-	 * string has been encoded or not. We have 2 potential strategies, and chose strategy two for the XxxClient constructors.
-	 *
-	 * ### Strategy One: Assume the customer URL string is not encoded, and always encode URL string in SDK.
-	 *
-	 * This is what legacy V2 SDK does, simple and works for most of the cases.
-	 * - When customer URL string is "http://account.blob.core.windows.net/con/b:",
-	 *   SDK will encode it to "http://account.blob.core.windows.net/con/b%3A" and send to server. A blob named "b:" will be created.
-	 * - When customer URL string is "http://account.blob.core.windows.net/con/b%3A",
-	 *   SDK will encode it to "http://account.blob.core.windows.net/con/b%253A" and send to server. A blob named "b%3A" will be created.
-	 *
-	 * But this strategy will make it not possible to create a blob with "?" in it's name. Because when customer URL string is
-	 * "http://account.blob.core.windows.net/con/blob?name", the "?name" will be treated as URL paramter instead of blob name.
-	 * If customer URL string is "http://account.blob.core.windows.net/con/blob%3Fname", a blob named "blob%3Fname" will be created.
-	 * V2 SDK doesn't have this issue because it doesn't allow customer pass in a full URL, it accepts a separate blob name and encodeURIComponent for it.
-	 * We cannot accept a SDK cannot create a blob name with "?". So we implement strategy two:
-	 *
-	 * ### Strategy Two: SDK doesn't assume the URL has been encoded or not. It will just escape the special characters.
-	 *
-	 * This is what V10 Blob Go SDK does. It accepts a URL type in Go, and call url.EscapedPath() to escape the special chars unescaped.
-	 * - When customer URL string is "http://account.blob.core.windows.net/con/b:",
-	 *   SDK will escape ":" like "http://account.blob.core.windows.net/con/b%3A" and send to server. A blob named "b:" will be created.
-	 * - When customer URL string is "http://account.blob.core.windows.net/con/b%3A",
-	 *   There is no special characters, so send "http://account.blob.core.windows.net/con/b%3A" to server. A blob named "b:" will be created.
-	 * - When customer URL string is "http://account.blob.core.windows.net/con/b%253A",
-	 *   There is no special characters, so send "http://account.blob.core.windows.net/con/b%253A" to server. A blob named "b%3A" will be created.
-	 *
-	 * This strategy gives us flexibility to create with any special characters. But "%" will be treated as a special characters, if the URL string
-	 * is not encoded, there shouldn't a "%" in the URL string, otherwise the URL is not a valid URL.
-	 * If customer needs to create a blob with "%" in it's blob name, use "%25" instead of "%". Just like above 3rd sample.
-	 * And following URL strings are invalid:
-	 * - "http://account.blob.core.windows.net/con/b%"
-	 * - "http://account.blob.core.windows.net/con/b%2"
-	 * - "http://account.blob.core.windows.net/con/b%G"
-	 *
-	 * Another special character is "?", use "%2F" to represent a blob name with "?" in a URL string.
-	 *
-	 * ### Strategy for containerName, blobName or other specific XXXName parameters in methods such as `containerClient.getBlobClient(blobName)`
-	 *
-	 * We will apply strategy one, and call encodeURIComponent for these parameters like blobName. Because what customers passes in is a plain name instead of a URL.
-	 *
-	 * @see https://learn.microsoft.com/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata
-	 * @see https://learn.microsoft.com/rest/api/storageservices/naming-and-referencing-shares--directories--files--and-metadata
-	 *
-	 * @param url -
-	 */
-	function escapeURLPath(url) {
-	    const urlParsed = new URL(url);
-	    let path = urlParsed.pathname;
-	    path = path || "/";
-	    path = escape(path);
-	    urlParsed.pathname = path;
-	    return urlParsed.toString();
-	}
-	function getProxyUriFromDevConnString(connectionString) {
-	    // Development Connection String
-	    // https://learn.microsoft.com/azure/storage/common/storage-configure-connection-string#connect-to-the-emulator-account-using-the-well-known-account-name-and-key
-	    let proxyUri = "";
-	    if (connectionString.search("DevelopmentStorageProxyUri=") !== -1) {
-	        // CONNECTION_STRING=UseDevelopmentStorage=true;DevelopmentStorageProxyUri=http://myProxyUri
-	        const matchCredentials = connectionString.split(";");
-	        for (const element of matchCredentials) {
-	            if (element.trim().startsWith("DevelopmentStorageProxyUri=")) {
-	                proxyUri = element.trim().match("DevelopmentStorageProxyUri=(.*)")[1];
-	            }
-	        }
-	    }
-	    return proxyUri;
-	}
-	function getValueInConnString(connectionString, argument) {
-	    const elements = connectionString.split(";");
-	    for (const element of elements) {
-	        if (element.trim().startsWith(argument)) {
-	            return element.trim().match(argument + "=(.*)")[1];
-	        }
-	    }
-	    return "";
-	}
-	/**
-	 * Extracts the parts of an Azure Storage account connection string.
-	 *
-	 * @param connectionString - Connection string.
-	 * @returns String key value pairs of the storage account's url and credentials.
-	 */
-	function extractConnectionStringParts(connectionString) {
-	    let proxyUri = "";
-	    if (connectionString.startsWith("UseDevelopmentStorage=true")) {
-	        // Development connection string
-	        proxyUri = getProxyUriFromDevConnString(connectionString);
-	        connectionString = constants_js_1.DevelopmentConnectionString;
-	    }
-	    // Matching BlobEndpoint in the Account connection string
-	    let blobEndpoint = getValueInConnString(connectionString, "BlobEndpoint");
-	    // Slicing off '/' at the end if exists
-	    // (The methods that use `extractConnectionStringParts` expect the url to not have `/` at the end)
-	    blobEndpoint = blobEndpoint.endsWith("/") ? blobEndpoint.slice(0, -1) : blobEndpoint;
-	    if (connectionString.search("DefaultEndpointsProtocol=") !== -1 &&
-	        connectionString.search("AccountKey=") !== -1) {
-	        // Account connection string
-	        let defaultEndpointsProtocol = "";
-	        let accountName = "";
-	        let accountKey = Buffer.from("accountKey", "base64");
-	        let endpointSuffix = "";
-	        // Get account name and key
-	        accountName = getValueInConnString(connectionString, "AccountName");
-	        accountKey = Buffer.from(getValueInConnString(connectionString, "AccountKey"), "base64");
-	        if (!blobEndpoint) {
-	            // BlobEndpoint is not present in the Account connection string
-	            // Can be obtained from `${defaultEndpointsProtocol}://${accountName}.blob.${endpointSuffix}`
-	            defaultEndpointsProtocol = getValueInConnString(connectionString, "DefaultEndpointsProtocol");
-	            const protocol = defaultEndpointsProtocol.toLowerCase();
-	            if (protocol !== "https" && protocol !== "http") {
-	                throw new Error("Invalid DefaultEndpointsProtocol in the provided Connection String. Expecting 'https' or 'http'");
-	            }
-	            endpointSuffix = getValueInConnString(connectionString, "EndpointSuffix");
-	            if (!endpointSuffix) {
-	                throw new Error("Invalid EndpointSuffix in the provided Connection String");
-	            }
-	            blobEndpoint = `${defaultEndpointsProtocol}://${accountName}.blob.${endpointSuffix}`;
-	        }
-	        if (!accountName) {
-	            throw new Error("Invalid AccountName in the provided Connection String");
-	        }
-	        else if (accountKey.length === 0) {
-	            throw new Error("Invalid AccountKey in the provided Connection String");
-	        }
-	        return {
-	            kind: "AccountConnString",
-	            url: blobEndpoint,
-	            accountName,
-	            accountKey,
-	            proxyUri,
-	        };
-	    }
-	    else {
-	        // SAS connection string
-	        let accountSas = getValueInConnString(connectionString, "SharedAccessSignature");
-	        let accountName = getValueInConnString(connectionString, "AccountName");
-	        // if accountName is empty, try to read it from BlobEndpoint
-	        if (!accountName) {
-	            accountName = getAccountNameFromUrl(blobEndpoint);
-	        }
-	        if (!blobEndpoint) {
-	            throw new Error("Invalid BlobEndpoint in the provided SAS Connection String");
-	        }
-	        else if (!accountSas) {
-	            throw new Error("Invalid SharedAccessSignature in the provided SAS Connection String");
-	        }
-	        // client constructors assume accountSas does *not* start with ?
-	        if (accountSas.startsWith("?")) {
-	            accountSas = accountSas.substring(1);
-	        }
-	        return { kind: "SASConnString", url: blobEndpoint, accountName, accountSas };
-	    }
-	}
-	/**
-	 * Internal escape method implemented Strategy Two mentioned in escapeURL() description.
-	 *
-	 * @param text -
-	 */
-	function escape(text) {
-	    return encodeURIComponent(text)
-	        .replace(/%2F/g, "/") // Don't escape for "/"
-	        .replace(/'/g, "%27") // Escape for "'"
-	        .replace(/\+/g, "%20")
-	        .replace(/%25/g, "%"); // Revert encoded "%"
-	}
-	/**
-	 * Append a string to URL path. Will remove duplicated "/" in front of the string
-	 * when URL path ends with a "/".
-	 *
-	 * @param url - Source URL string
-	 * @param name - String to be appended to URL
-	 * @returns An updated URL string
-	 */
-	function appendToURLPath(url, name) {
-	    const urlParsed = new URL(url);
-	    let path = urlParsed.pathname;
-	    path = path ? (path.endsWith("/") ? `${path}${name}` : `${path}/${name}`) : name;
-	    urlParsed.pathname = path;
-	    return urlParsed.toString();
-	}
-	/**
-	 * Set URL parameter name and value. If name exists in URL parameters, old value
-	 * will be replaced by name key. If not provide value, the parameter will be deleted.
-	 *
-	 * @param url - Source URL string
-	 * @param name - Parameter name
-	 * @param value - Parameter value
-	 * @returns An updated URL string
-	 */
-	function setURLParameter(url, name, value) {
-	    const urlParsed = new URL(url);
-	    const encodedName = encodeURIComponent(name);
-	    const encodedValue = value ? encodeURIComponent(value) : undefined;
-	    // mutating searchParams will change the encoding, so we have to do this ourselves
-	    const searchString = urlParsed.search === "" ? "?" : urlParsed.search;
-	    const searchPieces = [];
-	    for (const pair of searchString.slice(1).split("&")) {
-	        if (pair) {
-	            const [key] = pair.split("=", 2);
-	            if (key !== encodedName) {
-	                searchPieces.push(pair);
-	            }
-	        }
-	    }
-	    if (encodedValue) {
-	        searchPieces.push(`${encodedName}=${encodedValue}`);
-	    }
-	    urlParsed.search = searchPieces.length ? `?${searchPieces.join("&")}` : "";
-	    return urlParsed.toString();
-	}
-	/**
-	 * Get URL parameter by name.
-	 *
-	 * @param url -
-	 * @param name -
-	 */
-	function getURLParameter(url, name) {
-	    const urlParsed = new URL(url);
-	    return urlParsed.searchParams.get(name) ?? undefined;
-	}
-	/**
-	 * Set URL host.
-	 *
-	 * @param url - Source URL string
-	 * @param host - New host string
-	 * @returns An updated URL string
-	 */
-	function setURLHost(url, host) {
-	    const urlParsed = new URL(url);
-	    urlParsed.hostname = host;
-	    return urlParsed.toString();
-	}
-	/**
-	 * Get URL path from an URL string.
-	 *
-	 * @param url - Source URL string
-	 */
-	function getURLPath(url) {
-	    try {
-	        const urlParsed = new URL(url);
-	        return urlParsed.pathname;
-	    }
-	    catch (e) {
-	        return undefined;
-	    }
-	}
-	/**
-	 * Get URL scheme from an URL string.
-	 *
-	 * @param url - Source URL string
-	 */
-	function getURLScheme(url) {
-	    try {
-	        const urlParsed = new URL(url);
-	        return urlParsed.protocol.endsWith(":") ? urlParsed.protocol.slice(0, -1) : urlParsed.protocol;
-	    }
-	    catch (e) {
-	        return undefined;
-	    }
-	}
-	/**
-	 * Get URL path and query from an URL string.
-	 *
-	 * @param url - Source URL string
-	 */
-	function getURLPathAndQuery(url) {
-	    const urlParsed = new URL(url);
-	    const pathString = urlParsed.pathname;
-	    if (!pathString) {
-	        throw new RangeError("Invalid url without valid path.");
-	    }
-	    let queryString = urlParsed.search || "";
-	    queryString = queryString.trim();
-	    if (queryString !== "") {
-	        queryString = queryString.startsWith("?") ? queryString : `?${queryString}`; // Ensure query string start with '?'
-	    }
-	    return `${pathString}${queryString}`;
-	}
-	/**
-	 * Get URL query key value pairs from an URL string.
-	 *
-	 * @param url -
-	 */
-	function getURLQueries(url) {
-	    let queryString = new URL(url).search;
-	    if (!queryString) {
-	        return {};
-	    }
-	    queryString = queryString.trim();
-	    queryString = queryString.startsWith("?") ? queryString.substring(1) : queryString;
-	    let querySubStrings = queryString.split("&");
-	    querySubStrings = querySubStrings.filter((value) => {
-	        const indexOfEqual = value.indexOf("=");
-	        const lastIndexOfEqual = value.lastIndexOf("=");
-	        return (indexOfEqual > 0 && indexOfEqual === lastIndexOfEqual && lastIndexOfEqual < value.length - 1);
-	    });
-	    const queries = {};
-	    for (const querySubString of querySubStrings) {
-	        const splitResults = querySubString.split("=");
-	        const key = splitResults[0];
-	        const value = splitResults[1];
-	        queries[key] = value;
-	    }
-	    return queries;
-	}
-	/**
-	 * Append a string to URL query.
-	 *
-	 * @param url - Source URL string.
-	 * @param queryParts - String to be appended to the URL query.
-	 * @returns An updated URL string.
-	 */
-	function appendToURLQuery(url, queryParts) {
-	    const urlParsed = new URL(url);
-	    let query = urlParsed.search;
-	    if (query) {
-	        query += "&" + queryParts;
-	    }
-	    else {
-	        query = queryParts;
-	    }
-	    urlParsed.search = query;
-	    return urlParsed.toString();
-	}
-	/**
-	 * Rounds a date off to seconds.
-	 *
-	 * @param date -
-	 * @param withMilliseconds - If true, YYYY-MM-DDThh:mm:ss.fffffffZ will be returned;
-	 *                                          If false, YYYY-MM-DDThh:mm:ssZ will be returned.
-	 * @returns Date string in ISO8061 format, with or without 7 milliseconds component
-	 */
-	function truncatedISO8061Date(date, withMilliseconds = true) {
-	    // Date.toISOString() will return like "2018-10-29T06:34:36.139Z"
-	    const dateString = date.toISOString();
-	    return withMilliseconds
-	        ? dateString.substring(0, dateString.length - 1) + "0000" + "Z"
-	        : dateString.substring(0, dateString.length - 5) + "Z";
-	}
-	/**
-	 * Base64 encode.
-	 *
-	 * @param content -
-	 */
-	function base64encode(content) {
-	    return !core_util_1.isNodeLike ? btoa(content) : Buffer.from(content).toString("base64");
-	}
-	/**
-	 * Base64 decode.
-	 *
-	 * @param encodedString -
-	 */
-	function base64decode(encodedString) {
-	    return !core_util_1.isNodeLike ? atob(encodedString) : Buffer.from(encodedString, "base64").toString();
-	}
-	/**
-	 * Generate a 64 bytes base64 block ID string.
-	 *
-	 * @param blockIndex -
-	 */
-	function generateBlockID(blockIDPrefix, blockIndex) {
-	    // To generate a 64 bytes base64 string, source string should be 48
-	    const maxSourceStringLength = 48;
-	    // A blob can have a maximum of 100,000 uncommitted blocks at any given time
-	    const maxBlockIndexLength = 6;
-	    const maxAllowedBlockIDPrefixLength = maxSourceStringLength - maxBlockIndexLength;
-	    if (blockIDPrefix.length > maxAllowedBlockIDPrefixLength) {
-	        blockIDPrefix = blockIDPrefix.slice(0, maxAllowedBlockIDPrefixLength);
-	    }
-	    const res = blockIDPrefix +
-	        padStart(blockIndex.toString(), maxSourceStringLength - blockIDPrefix.length, "0");
-	    return base64encode(res);
-	}
-	/**
-	 * Delay specified time interval.
-	 *
-	 * @param timeInMs -
-	 * @param aborter -
-	 * @param abortError -
-	 */
-	async function delay(timeInMs, aborter, abortError) {
-	    return new Promise((resolve, reject) => {
-	        /* eslint-disable-next-line prefer-const */
-	        let timeout;
-	        const abortHandler = () => {
-	            if (timeout !== undefined) {
-	                clearTimeout(timeout);
-	            }
-	            reject(abortError);
-	        };
-	        const resolveHandler = () => {
-	            if (aborter !== undefined) {
-	                aborter.removeEventListener("abort", abortHandler);
-	            }
-	            resolve();
-	        };
-	        timeout = setTimeout(resolveHandler, timeInMs);
-	        if (aborter !== undefined) {
-	            aborter.addEventListener("abort", abortHandler);
-	        }
-	    });
-	}
-	/**
-	 * String.prototype.padStart()
-	 *
-	 * @param currentString -
-	 * @param targetLength -
-	 * @param padString -
-	 */
-	function padStart(currentString, targetLength, padString = " ") {
-	    // @ts-expect-error: TS doesn't know this code needs to run downlevel sometimes
-	    if (String.prototype.padStart) {
-	        return currentString.padStart(targetLength, padString);
-	    }
-	    padString = padString || " ";
-	    if (currentString.length > targetLength) {
-	        return currentString;
-	    }
-	    else {
-	        targetLength = targetLength - currentString.length;
-	        if (targetLength > padString.length) {
-	            padString += padString.repeat(targetLength / padString.length);
-	        }
-	        return padString.slice(0, targetLength) + currentString;
-	    }
-	}
-	function sanitizeURL(url) {
-	    let safeURL = url;
-	    if (getURLParameter(safeURL, constants_js_1.URLConstants.Parameters.SIGNATURE)) {
-	        safeURL = setURLParameter(safeURL, constants_js_1.URLConstants.Parameters.SIGNATURE, "*****");
-	    }
-	    return safeURL;
-	}
-	function sanitizeHeaders(originalHeader) {
-	    const headers = (0, core_rest_pipeline_1.createHttpHeaders)();
-	    for (const [name, value] of originalHeader) {
-	        if (name.toLowerCase() === constants_js_1.HeaderConstants.AUTHORIZATION.toLowerCase()) {
-	            headers.set(name, "*****");
-	        }
-	        else if (name.toLowerCase() === constants_js_1.HeaderConstants.X_MS_COPY_SOURCE) {
-	            headers.set(name, sanitizeURL(value));
-	        }
-	        else {
-	            headers.set(name, value);
-	        }
-	    }
-	    return headers;
-	}
-	/**
-	 * If two strings are equal when compared case insensitive.
-	 *
-	 * @param str1 -
-	 * @param str2 -
-	 */
-	function iEqual(str1, str2) {
-	    return str1.toLocaleLowerCase() === str2.toLocaleLowerCase();
-	}
-	/**
-	 * Extracts account name from the url
-	 * @param url - url to extract the account name from
-	 * @returns with the account name
-	 */
-	function getAccountNameFromUrl(url) {
-	    const parsedUrl = new URL(url);
-	    let accountName;
-	    try {
-	        if (parsedUrl.hostname.split(".")[1] === "blob") {
-	            // `${defaultEndpointsProtocol}://${accountName}.blob.${endpointSuffix}`;
-	            accountName = parsedUrl.hostname.split(".")[0];
-	        }
-	        else if (isIpEndpointStyle(parsedUrl)) {
-	            // IPv4/IPv6 address hosts... Example - http://192.0.0.10:10001/devstoreaccount1/
-	            // Single word domain without a [dot] in the endpoint... Example - http://localhost:10001/devstoreaccount1/
-	            // .getPath() -> /devstoreaccount1/
-	            accountName = parsedUrl.pathname.split("/")[1];
-	        }
-	        else {
-	            // Custom domain case: "https://customdomain.com/containername/blob".
-	            accountName = "";
-	        }
-	        return accountName;
-	    }
-	    catch (error) {
-	        throw new Error("Unable to extract accountName with provided information.");
-	    }
-	}
-	function isIpEndpointStyle(parsedUrl) {
-	    const host = parsedUrl.host;
-	    // Case 1: Ipv6, use a broad regex to find out candidates whose host contains two ':'.
-	    // Case 2: localhost(:port) or host.docker.internal, use broad regex to match port part.
-	    // Case 3: Ipv4, use broad regex which just check if host contains Ipv4.
-	    // For valid host please refer to https://man7.org/linux/man-pages/man7/hostname.7.html.
-	    return (/^.*:.*:.*$|^(localhost|host.docker.internal)(:[0-9]+)?$|^(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])(\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])){3}(:[0-9]+)?$/.test(host) ||
-	        (Boolean(parsedUrl.port) && constants_js_1.PathStylePorts.includes(parsedUrl.port)));
-	}
-	/**
-	 * Convert Tags to encoded string.
-	 *
-	 * @param tags -
-	 */
-	function toBlobTagsString(tags) {
-	    if (tags === undefined) {
-	        return undefined;
-	    }
-	    const tagPairs = [];
-	    for (const key in tags) {
-	        if (Object.prototype.hasOwnProperty.call(tags, key)) {
-	            const value = tags[key];
-	            tagPairs.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`);
-	        }
-	    }
-	    return tagPairs.join("&");
-	}
-	/**
-	 * Convert Tags type to BlobTags.
-	 *
-	 * @param tags -
-	 */
-	function toBlobTags(tags) {
-	    if (tags === undefined) {
-	        return undefined;
-	    }
-	    const res = {
-	        blobTagSet: [],
-	    };
-	    for (const key in tags) {
-	        if (Object.prototype.hasOwnProperty.call(tags, key)) {
-	            const value = tags[key];
-	            res.blobTagSet.push({
-	                key,
-	                value,
-	            });
-	        }
-	    }
-	    return res;
-	}
-	/**
-	 * Covert BlobTags to Tags type.
-	 *
-	 * @param tags -
-	 */
-	function toTags(tags) {
-	    if (tags === undefined) {
-	        return undefined;
-	    }
-	    const res = {};
-	    for (const blobTag of tags.blobTagSet) {
-	        res[blobTag.key] = blobTag.value;
-	    }
-	    return res;
-	}
-	/**
-	 * Convert BlobQueryTextConfiguration to QuerySerialization type.
-	 *
-	 * @param textConfiguration -
-	 */
-	function toQuerySerialization(textConfiguration) {
-	    if (textConfiguration === undefined) {
-	        return undefined;
-	    }
-	    switch (textConfiguration.kind) {
-	        case "csv":
-	            return {
-	                format: {
-	                    type: "delimited",
-	                    delimitedTextConfiguration: {
-	                        columnSeparator: textConfiguration.columnSeparator || ",",
-	                        fieldQuote: textConfiguration.fieldQuote || "",
-	                        recordSeparator: textConfiguration.recordSeparator,
-	                        escapeChar: textConfiguration.escapeCharacter || "",
-	                        headersPresent: textConfiguration.hasHeaders || false,
-	                    },
-	                },
-	            };
-	        case "json":
-	            return {
-	                format: {
-	                    type: "json",
-	                    jsonTextConfiguration: {
-	                        recordSeparator: textConfiguration.recordSeparator,
-	                    },
-	                },
-	            };
-	        case "arrow":
-	            return {
-	                format: {
-	                    type: "arrow",
-	                    arrowConfiguration: {
-	                        schema: textConfiguration.schema,
-	                    },
-	                },
-	            };
-	        case "parquet":
-	            return {
-	                format: {
-	                    type: "parquet",
-	                },
-	            };
-	        default:
-	            throw Error("Invalid BlobQueryTextConfiguration.");
-	    }
-	}
-	function parseObjectReplicationRecord(objectReplicationRecord) {
-	    if (!objectReplicationRecord) {
-	        return undefined;
-	    }
-	    if ("policy-id" in objectReplicationRecord) {
-	        // If the dictionary contains a key with policy id, we are not required to do any parsing since
-	        // the policy id should already be stored in the ObjectReplicationDestinationPolicyId.
-	        return undefined;
-	    }
-	    const orProperties = [];
-	    for (const key in objectReplicationRecord) {
-	        const ids = key.split("_");
-	        const policyPrefix = "or-";
-	        if (ids[0].startsWith(policyPrefix)) {
-	            ids[0] = ids[0].substring(policyPrefix.length);
-	        }
-	        const rule = {
-	            ruleId: ids[1],
-	            replicationStatus: objectReplicationRecord[key],
-	        };
-	        const policyIndex = orProperties.findIndex((policy) => policy.policyId === ids[0]);
-	        if (policyIndex > -1) {
-	            orProperties[policyIndex].rules.push(rule);
-	        }
-	        else {
-	            orProperties.push({
-	                policyId: ids[0],
-	                rules: [rule],
-	            });
-	        }
-	    }
-	    return orProperties;
-	}
-	/**
-	 * Attach a TokenCredential to an object.
-	 *
-	 * @param thing -
-	 * @param credential -
-	 */
-	function attachCredential(thing, credential) {
-	    thing.credential = credential;
-	    return thing;
-	}
-	function httpAuthorizationToString(httpAuthorization) {
-	    return httpAuthorization ? httpAuthorization.scheme + " " + httpAuthorization.value : undefined;
-	}
-	function BlobNameToString(name) {
-	    if (name.encoded) {
-	        return decodeURIComponent(name.content);
-	    }
-	    else {
-	        return name.content;
-	    }
-	}
-	function ConvertInternalResponseOfListBlobFlat(internalResponse) {
-	    return {
-	        ...internalResponse,
-	        segment: {
-	            blobItems: internalResponse.segment.blobItems.map((blobItemInteral) => {
-	                const blobItem = {
-	                    ...blobItemInteral,
-	                    name: BlobNameToString(blobItemInteral.name),
-	                };
-	                return blobItem;
-	            }),
-	        },
-	    };
-	}
-	function ConvertInternalResponseOfListBlobHierarchy(internalResponse) {
-	    return {
-	        ...internalResponse,
-	        segment: {
-	            blobPrefixes: internalResponse.segment.blobPrefixes?.map((blobPrefixInternal) => {
-	                const blobPrefix = {
-	                    ...blobPrefixInternal,
-	                    name: BlobNameToString(blobPrefixInternal.name),
-	                };
-	                return blobPrefix;
-	            }),
-	            blobItems: internalResponse.segment.blobItems.map((blobItemInteral) => {
-	                const blobItem = {
-	                    ...blobItemInteral,
-	                    name: BlobNameToString(blobItemInteral.name),
-	                };
-	                return blobItem;
-	            }),
-	        },
-	    };
-	}
-	function* ExtractPageRangeInfoItems(getPageRangesSegment) {
-	    let pageRange = [];
-	    let clearRange = [];
-	    if (getPageRangesSegment.pageRange)
-	        pageRange = getPageRangesSegment.pageRange;
-	    if (getPageRangesSegment.clearRange)
-	        clearRange = getPageRangesSegment.clearRange;
-	    let pageRangeIndex = 0;
-	    let clearRangeIndex = 0;
-	    while (pageRangeIndex < pageRange.length && clearRangeIndex < clearRange.length) {
-	        if (pageRange[pageRangeIndex].start < clearRange[clearRangeIndex].start) {
-	            yield {
-	                start: pageRange[pageRangeIndex].start,
-	                end: pageRange[pageRangeIndex].end,
-	                isClear: false,
-	            };
-	            ++pageRangeIndex;
-	        }
-	        else {
-	            yield {
-	                start: clearRange[clearRangeIndex].start,
-	                end: clearRange[clearRangeIndex].end,
-	                isClear: true,
-	            };
-	            ++clearRangeIndex;
-	        }
-	    }
-	    for (; pageRangeIndex < pageRange.length; ++pageRangeIndex) {
-	        yield {
-	            start: pageRange[pageRangeIndex].start,
-	            end: pageRange[pageRangeIndex].end,
-	            isClear: false,
-	        };
-	    }
-	    for (; clearRangeIndex < clearRange.length; ++clearRangeIndex) {
-	        yield {
-	            start: clearRange[clearRangeIndex].start,
-	            end: clearRange[clearRangeIndex].end,
-	            isClear: true,
-	        };
-	    }
-	}
-	/**
-	 * Escape the blobName but keep path separator ('/').
-	 */
-	function EscapePath(blobName) {
-	    const split = blobName.split("/");
-	    for (let i = 0; i < split.length; i++) {
-	        split[i] = encodeURIComponent(split[i]);
-	    }
-	    return split.join("/");
-	}
-	/**
-	 * A typesafe helper for ensuring that a given response object has
-	 * the original _response attached.
-	 * @param response - A response object from calling a client operation
-	 * @returns The same object, but with known _response property
-	 */
-	function assertResponse(response) {
-	    if (`_response` in response) {
-	        return response;
-	    }
-	    throw new TypeError(`Unexpected response object ${response}`);
-	}
-	
-	return utils_common$2;
-}
-
-var StorageRetryPolicyType$1 = {};
-
-var hasRequiredStorageRetryPolicyType$1;
-
-function requireStorageRetryPolicyType$1 () {
-	if (hasRequiredStorageRetryPolicyType$1) return StorageRetryPolicyType$1;
-	hasRequiredStorageRetryPolicyType$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(StorageRetryPolicyType$1, "__esModule", { value: true });
-	StorageRetryPolicyType$1.StorageRetryPolicyType = void 0;
-	/**
-	 * RetryPolicy types.
-	 */
-	var StorageRetryPolicyType;
-	(function (StorageRetryPolicyType) {
-	    /**
-	     * Exponential retry. Retry time delay grows exponentially.
-	     */
-	    StorageRetryPolicyType[StorageRetryPolicyType["EXPONENTIAL"] = 0] = "EXPONENTIAL";
-	    /**
-	     * Linear retry. Retry time delay grows linearly.
-	     */
-	    StorageRetryPolicyType[StorageRetryPolicyType["FIXED"] = 1] = "FIXED";
-	})(StorageRetryPolicyType || (StorageRetryPolicyType$1.StorageRetryPolicyType = StorageRetryPolicyType = {}));
-	
-	return StorageRetryPolicyType$1;
-}
-
-var hasRequiredStorageRetryPolicy$1;
-
-function requireStorageRetryPolicy$1 () {
-	if (hasRequiredStorageRetryPolicy$1) return StorageRetryPolicy$1;
-	hasRequiredStorageRetryPolicy$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(StorageRetryPolicy$1, "__esModule", { value: true });
-	StorageRetryPolicy$1.StorageRetryPolicy = void 0;
-	StorageRetryPolicy$1.NewRetryPolicyFactory = NewRetryPolicyFactory;
-	const abort_controller_1 = /*@__PURE__*/ requireCommonjs$4();
-	const RequestPolicy_js_1 = requireRequestPolicy$1();
-	const constants_js_1 = requireConstants$2();
-	const utils_common_js_1 = requireUtils_common$2();
-	const log_js_1 = requireLog$1();
-	const StorageRetryPolicyType_js_1 = requireStorageRetryPolicyType$1();
-	/**
-	 * A factory method used to generated a RetryPolicy factory.
-	 *
-	 * @param retryOptions -
-	 */
-	function NewRetryPolicyFactory(retryOptions) {
-	    return {
-	        create: (nextPolicy, options) => {
-	            return new StorageRetryPolicy(nextPolicy, options, retryOptions);
-	        },
-	    };
-	}
-	// Default values of StorageRetryOptions
-	const DEFAULT_RETRY_OPTIONS = {
-	    maxRetryDelayInMs: 120 * 1000,
-	    maxTries: 4,
-	    retryDelayInMs: 4 * 1000,
-	    retryPolicyType: StorageRetryPolicyType_js_1.StorageRetryPolicyType.EXPONENTIAL,
-	    secondaryHost: "",
-	    tryTimeoutInMs: undefined, // Use server side default timeout strategy
-	};
-	const RETRY_ABORT_ERROR = new abort_controller_1.AbortError("The operation was aborted.");
-	/**
-	 * Retry policy with exponential retry and linear retry implemented.
-	 */
-	class StorageRetryPolicy extends RequestPolicy_js_1.BaseRequestPolicy {
-	    /**
-	     * RetryOptions.
-	     */
-	    retryOptions;
-	    /**
-	     * Creates an instance of RetryPolicy.
-	     *
-	     * @param nextPolicy -
-	     * @param options -
-	     * @param retryOptions -
-	     */
-	    constructor(nextPolicy, options, retryOptions = DEFAULT_RETRY_OPTIONS) {
-	        super(nextPolicy, options);
-	        // Initialize retry options
-	        this.retryOptions = {
-	            retryPolicyType: retryOptions.retryPolicyType
-	                ? retryOptions.retryPolicyType
-	                : DEFAULT_RETRY_OPTIONS.retryPolicyType,
-	            maxTries: retryOptions.maxTries && retryOptions.maxTries >= 1
-	                ? Math.floor(retryOptions.maxTries)
-	                : DEFAULT_RETRY_OPTIONS.maxTries,
-	            tryTimeoutInMs: retryOptions.tryTimeoutInMs && retryOptions.tryTimeoutInMs >= 0
-	                ? retryOptions.tryTimeoutInMs
-	                : DEFAULT_RETRY_OPTIONS.tryTimeoutInMs,
-	            retryDelayInMs: retryOptions.retryDelayInMs && retryOptions.retryDelayInMs >= 0
-	                ? Math.min(retryOptions.retryDelayInMs, retryOptions.maxRetryDelayInMs
-	                    ? retryOptions.maxRetryDelayInMs
-	                    : DEFAULT_RETRY_OPTIONS.maxRetryDelayInMs)
-	                : DEFAULT_RETRY_OPTIONS.retryDelayInMs,
-	            maxRetryDelayInMs: retryOptions.maxRetryDelayInMs && retryOptions.maxRetryDelayInMs >= 0
-	                ? retryOptions.maxRetryDelayInMs
-	                : DEFAULT_RETRY_OPTIONS.maxRetryDelayInMs,
-	            secondaryHost: retryOptions.secondaryHost
-	                ? retryOptions.secondaryHost
-	                : DEFAULT_RETRY_OPTIONS.secondaryHost,
-	        };
-	    }
-	    /**
-	     * Sends request.
-	     *
-	     * @param request -
-	     */
-	    async sendRequest(request) {
-	        return this.attemptSendRequest(request, false, 1);
-	    }
-	    /**
-	     * Decide and perform next retry. Won't mutate request parameter.
-	     *
-	     * @param request -
-	     * @param secondaryHas404 -  If attempt was against the secondary & it returned a StatusNotFound (404), then
-	     *                                   the resource was not found. This may be due to replication delay. So, in this
-	     *                                   case, we'll never try the secondary again for this operation.
-	     * @param attempt -           How many retries has been attempted to performed, starting from 1, which includes
-	     *                                   the attempt will be performed by this method call.
-	     */
-	    async attemptSendRequest(request, secondaryHas404, attempt) {
-	        const newRequest = request.clone();
-	        const isPrimaryRetry = secondaryHas404 ||
-	            !this.retryOptions.secondaryHost ||
-	            !(request.method === "GET" || request.method === "HEAD" || request.method === "OPTIONS") ||
-	            attempt % 2 === 1;
-	        if (!isPrimaryRetry) {
-	            newRequest.url = (0, utils_common_js_1.setURLHost)(newRequest.url, this.retryOptions.secondaryHost);
-	        }
-	        // Set the server-side timeout query parameter "timeout=[seconds]"
-	        if (this.retryOptions.tryTimeoutInMs) {
-	            newRequest.url = (0, utils_common_js_1.setURLParameter)(newRequest.url, constants_js_1.URLConstants.Parameters.TIMEOUT, Math.floor(this.retryOptions.tryTimeoutInMs / 1000).toString());
-	        }
-	        let response;
-	        try {
-	            log_js_1.logger.info(`RetryPolicy: =====> Try=${attempt} ${isPrimaryRetry ? "Primary" : "Secondary"}`);
-	            response = await this._nextPolicy.sendRequest(newRequest);
-	            if (!this.shouldRetry(isPrimaryRetry, attempt, response)) {
-	                return response;
-	            }
-	            secondaryHas404 = secondaryHas404 || (!isPrimaryRetry && response.status === 404);
-	        }
-	        catch (err) {
-	            log_js_1.logger.error(`RetryPolicy: Caught error, message: ${err.message}, code: ${err.code}`);
-	            if (!this.shouldRetry(isPrimaryRetry, attempt, response, err)) {
-	                throw err;
-	            }
-	        }
-	        await this.delay(isPrimaryRetry, attempt, request.abortSignal);
-	        return this.attemptSendRequest(request, secondaryHas404, ++attempt);
-	    }
-	    /**
-	     * Decide whether to retry according to last HTTP response and retry counters.
-	     *
-	     * @param isPrimaryRetry -
-	     * @param attempt -
-	     * @param response -
-	     * @param err -
-	     */
-	    shouldRetry(isPrimaryRetry, attempt, response, err) {
-	        if (attempt >= this.retryOptions.maxTries) {
-	            log_js_1.logger.info(`RetryPolicy: Attempt(s) ${attempt} >= maxTries ${this.retryOptions
-	                .maxTries}, no further try.`);
-	            return false;
-	        }
-	        // Handle network failures, you may need to customize the list when you implement
-	        // your own http client
-	        const retriableErrors = [
-	            "ETIMEDOUT",
-	            "ESOCKETTIMEDOUT",
-	            "ECONNREFUSED",
-	            "ECONNRESET",
-	            "ENOENT",
-	            "ENOTFOUND",
-	            "TIMEOUT",
-	            "EPIPE",
-	            "REQUEST_SEND_ERROR", // For default xhr based http client provided in ms-rest-js
-	        ];
-	        if (err) {
-	            for (const retriableError of retriableErrors) {
-	                if (err.name.toUpperCase().includes(retriableError) ||
-	                    err.message.toUpperCase().includes(retriableError) ||
-	                    (err.code && err.code.toString().toUpperCase() === retriableError)) {
-	                    log_js_1.logger.info(`RetryPolicy: Network error ${retriableError} found, will retry.`);
-	                    return true;
-	                }
-	            }
-	        }
-	        // If attempt was against the secondary & it returned a StatusNotFound (404), then
-	        // the resource was not found. This may be due to replication delay. So, in this
-	        // case, we'll never try the secondary again for this operation.
-	        if (response || err) {
-	            const statusCode = response ? response.status : err ? err.statusCode : 0;
-	            if (!isPrimaryRetry && statusCode === 404) {
-	                log_js_1.logger.info(`RetryPolicy: Secondary access with 404, will retry.`);
-	                return true;
-	            }
-	            // Server internal error or server timeout
-	            if (statusCode === 503 || statusCode === 500) {
-	                log_js_1.logger.info(`RetryPolicy: Will retry for status code ${statusCode}.`);
-	                return true;
-	            }
-	        }
-	        if (response) {
-	            // Retry select Copy Source Error Codes.
-	            if (response?.status >= 400) {
-	                const copySourceError = response.headers.get(constants_js_1.HeaderConstants.X_MS_CopySourceErrorCode);
-	                if (copySourceError !== undefined) {
-	                    switch (copySourceError) {
-	                        case "InternalError":
-	                        case "OperationTimedOut":
-	                        case "ServerBusy":
-	                            return true;
-	                    }
-	                }
-	            }
-	        }
-	        if (err?.code === "PARSE_ERROR" && err?.message.startsWith(`Error "Error: Unclosed root tag`)) {
-	            log_js_1.logger.info("RetryPolicy: Incomplete XML response likely due to service timeout, will retry.");
-	            return true;
-	        }
-	        return false;
-	    }
-	    /**
-	     * Delay a calculated time between retries.
-	     *
-	     * @param isPrimaryRetry -
-	     * @param attempt -
-	     * @param abortSignal -
-	     */
-	    async delay(isPrimaryRetry, attempt, abortSignal) {
-	        let delayTimeInMs = 0;
-	        if (isPrimaryRetry) {
-	            switch (this.retryOptions.retryPolicyType) {
-	                case StorageRetryPolicyType_js_1.StorageRetryPolicyType.EXPONENTIAL:
-	                    delayTimeInMs = Math.min((Math.pow(2, attempt - 1) - 1) * this.retryOptions.retryDelayInMs, this.retryOptions.maxRetryDelayInMs);
-	                    break;
-	                case StorageRetryPolicyType_js_1.StorageRetryPolicyType.FIXED:
-	                    delayTimeInMs = this.retryOptions.retryDelayInMs;
-	                    break;
-	            }
-	        }
-	        else {
-	            delayTimeInMs = Math.random() * 1000;
-	        }
-	        log_js_1.logger.info(`RetryPolicy: Delay for ${delayTimeInMs}ms`);
-	        return (0, utils_common_js_1.delay)(delayTimeInMs, abortSignal, RETRY_ABORT_ERROR);
-	    }
-	}
-	StorageRetryPolicy$1.StorageRetryPolicy = StorageRetryPolicy;
-	
-	return StorageRetryPolicy$1;
-}
-
-var hasRequiredStorageRetryPolicyFactory$1;
-
-function requireStorageRetryPolicyFactory$1 () {
-	if (hasRequiredStorageRetryPolicyFactory$1) return StorageRetryPolicyFactory$1;
-	hasRequiredStorageRetryPolicyFactory$1 = 1;
-	(function (exports) {
-		// Copyright (c) Microsoft Corporation.
-		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.StorageRetryPolicyFactory = exports.StorageRetryPolicy = exports.StorageRetryPolicyType = void 0;
-		const StorageRetryPolicy_js_1 = requireStorageRetryPolicy$1();
-		Object.defineProperty(exports, "StorageRetryPolicy", { enumerable: true, get: function () { return StorageRetryPolicy_js_1.StorageRetryPolicy; } });
-		const StorageRetryPolicyType_js_1 = requireStorageRetryPolicyType$1();
-		Object.defineProperty(exports, "StorageRetryPolicyType", { enumerable: true, get: function () { return StorageRetryPolicyType_js_1.StorageRetryPolicyType; } });
-		/**
-		 * StorageRetryPolicyFactory is a factory class helping generating {@link StorageRetryPolicy} objects.
-		 */
-		class StorageRetryPolicyFactory {
-		    retryOptions;
-		    /**
-		     * Creates an instance of StorageRetryPolicyFactory.
-		     * @param retryOptions -
-		     */
-		    constructor(retryOptions) {
-		        this.retryOptions = retryOptions;
-		    }
-		    /**
-		     * Creates a StorageRetryPolicy object.
-		     *
-		     * @param nextPolicy -
-		     * @param options -
-		     */
-		    create(nextPolicy, options) {
-		        return new StorageRetryPolicy_js_1.StorageRetryPolicy(nextPolicy, options, this.retryOptions);
-		    }
-		}
-		exports.StorageRetryPolicyFactory = StorageRetryPolicyFactory;
-		
-	} (StorageRetryPolicyFactory$1));
-	return StorageRetryPolicyFactory$1;
-}
-
-var StorageSharedKeyCredential$1 = {};
-
-var StorageSharedKeyCredentialPolicy$1 = {};
-
-var CredentialPolicy$1 = {};
-
-var hasRequiredCredentialPolicy$1;
-
-function requireCredentialPolicy$1 () {
-	if (hasRequiredCredentialPolicy$1) return CredentialPolicy$1;
-	hasRequiredCredentialPolicy$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(CredentialPolicy$1, "__esModule", { value: true });
-	CredentialPolicy$1.CredentialPolicy = void 0;
-	const RequestPolicy_js_1 = requireRequestPolicy$1();
-	/**
-	 * Credential policy used to sign HTTP(S) requests before sending. This is an
-	 * abstract class.
-	 */
-	class CredentialPolicy extends RequestPolicy_js_1.BaseRequestPolicy {
-	    /**
-	     * Sends out request.
-	     *
-	     * @param request -
-	     */
-	    sendRequest(request) {
-	        return this._nextPolicy.sendRequest(this.signRequest(request));
-	    }
-	    /**
-	     * Child classes must implement this method with request signing. This method
-	     * will be executed in {@link sendRequest}.
-	     *
-	     * @param request -
-	     */
-	    signRequest(request) {
-	        // Child classes must override this method with request signing. This method
-	        // will be executed in sendRequest().
-	        return request;
-	    }
-	}
-	CredentialPolicy$1.CredentialPolicy = CredentialPolicy;
-	
-	return CredentialPolicy$1;
-}
-
-var SharedKeyComparator$1 = {};
-
-var hasRequiredSharedKeyComparator$1;
-
-function requireSharedKeyComparator$1 () {
-	if (hasRequiredSharedKeyComparator$1) return SharedKeyComparator$1;
-	hasRequiredSharedKeyComparator$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(SharedKeyComparator$1, "__esModule", { value: true });
-	SharedKeyComparator$1.compareHeader = compareHeader;
-	/*
-	 * We need to imitate .Net culture-aware sorting, which is used in storage service.
-	 * Below tables contain sort-keys for en-US culture.
-	 */
-	const table_lv0 = new Uint32Array([
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x71c, 0x0, 0x71f, 0x721,
-	    0x723, 0x725, 0x0, 0x0, 0x0, 0x72d, 0x803, 0x0, 0x0, 0x733, 0x0, 0xd03, 0xd1a, 0xd1c, 0xd1e,
-	    0xd20, 0xd22, 0xd24, 0xd26, 0xd28, 0xd2a, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xe02, 0xe09, 0xe0a,
-	    0xe1a, 0xe21, 0xe23, 0xe25, 0xe2c, 0xe32, 0xe35, 0xe36, 0xe48, 0xe51, 0xe70, 0xe7c, 0xe7e, 0xe89,
-	    0xe8a, 0xe91, 0xe99, 0xe9f, 0xea2, 0xea4, 0xea6, 0xea7, 0xea9, 0x0, 0x0, 0x0, 0x743, 0x744, 0x748,
-	    0xe02, 0xe09, 0xe0a, 0xe1a, 0xe21, 0xe23, 0xe25, 0xe2c, 0xe32, 0xe35, 0xe36, 0xe48, 0xe51, 0xe70,
-	    0xe7c, 0xe7e, 0xe89, 0xe8a, 0xe91, 0xe99, 0xe9f, 0xea2, 0xea4, 0xea6, 0xea7, 0xea9, 0x0, 0x74c,
-	    0x0, 0x750, 0x0,
-	]);
-	const table_lv2 = new Uint32Array([
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12,
-	    0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12,
-	    0x12, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	]);
-	const table_lv4 = new Uint32Array([
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x8012, 0x0, 0x0, 0x0, 0x0, 0x0, 0x8212, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
-	]);
-	function compareHeader(lhs, rhs) {
-	    if (isLessThan(lhs, rhs))
-	        return -1;
-	    return 1;
-	}
-	function isLessThan(lhs, rhs) {
-	    const tables = [table_lv0, table_lv2, table_lv4];
-	    let curr_level = 0;
-	    let i = 0;
-	    let j = 0;
-	    while (curr_level < tables.length) {
-	        if (curr_level === tables.length - 1 && i !== j) {
-	            return i > j;
-	        }
-	        const weight1 = i < lhs.length ? tables[curr_level][lhs[i].charCodeAt(0)] : 0x1;
-	        const weight2 = j < rhs.length ? tables[curr_level][rhs[j].charCodeAt(0)] : 0x1;
-	        if (weight1 === 0x1 && weight2 === 0x1) {
-	            i = 0;
-	            j = 0;
-	            ++curr_level;
-	        }
-	        else if (weight1 === weight2) {
-	            ++i;
-	            ++j;
-	        }
-	        else if (weight1 === 0) {
-	            ++i;
-	        }
-	        else if (weight2 === 0) {
-	            ++j;
-	        }
-	        else {
-	            return weight1 < weight2;
-	        }
-	    }
-	    return false;
-	}
-	
-	return SharedKeyComparator$1;
-}
-
-var hasRequiredStorageSharedKeyCredentialPolicy$1;
-
-function requireStorageSharedKeyCredentialPolicy$1 () {
-	if (hasRequiredStorageSharedKeyCredentialPolicy$1) return StorageSharedKeyCredentialPolicy$1;
-	hasRequiredStorageSharedKeyCredentialPolicy$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(StorageSharedKeyCredentialPolicy$1, "__esModule", { value: true });
-	StorageSharedKeyCredentialPolicy$1.StorageSharedKeyCredentialPolicy = void 0;
-	const constants_js_1 = requireConstants$2();
-	const utils_common_js_1 = requireUtils_common$2();
-	const CredentialPolicy_js_1 = requireCredentialPolicy$1();
-	const SharedKeyComparator_js_1 = requireSharedKeyComparator$1();
-	/**
-	 * StorageSharedKeyCredentialPolicy is a policy used to sign HTTP request with a shared key.
-	 */
-	class StorageSharedKeyCredentialPolicy extends CredentialPolicy_js_1.CredentialPolicy {
-	    /**
-	     * Reference to StorageSharedKeyCredential which generates StorageSharedKeyCredentialPolicy
-	     */
-	    factory;
-	    /**
-	     * Creates an instance of StorageSharedKeyCredentialPolicy.
-	     * @param nextPolicy -
-	     * @param options -
-	     * @param factory -
-	     */
-	    constructor(nextPolicy, options, factory) {
-	        super(nextPolicy, options);
-	        this.factory = factory;
-	    }
-	    /**
-	     * Signs request.
-	     *
-	     * @param request -
-	     */
-	    signRequest(request) {
-	        request.headers.set(constants_js_1.HeaderConstants.X_MS_DATE, new Date().toUTCString());
-	        if (request.body &&
-	            (typeof request.body === "string" || request.body !== undefined) &&
-	            request.body.length > 0) {
-	            request.headers.set(constants_js_1.HeaderConstants.CONTENT_LENGTH, Buffer.byteLength(request.body));
-	        }
-	        const stringToSign = [
-	            request.method.toUpperCase(),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.CONTENT_LANGUAGE),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.CONTENT_ENCODING),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.CONTENT_LENGTH),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.CONTENT_MD5),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.CONTENT_TYPE),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.DATE),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.IF_MODIFIED_SINCE),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.IF_MATCH),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.IF_NONE_MATCH),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.IF_UNMODIFIED_SINCE),
-	            this.getHeaderValueToSign(request, constants_js_1.HeaderConstants.RANGE),
-	        ].join("\n") +
-	            "\n" +
-	            this.getCanonicalizedHeadersString(request) +
-	            this.getCanonicalizedResourceString(request);
-	        const signature = this.factory.computeHMACSHA256(stringToSign);
-	        request.headers.set(constants_js_1.HeaderConstants.AUTHORIZATION, `SharedKey ${this.factory.accountName}:${signature}`);
-	        // console.log(`[URL]:${request.url}`);
-	        // console.log(`[HEADERS]:${request.headers.toString()}`);
-	        // console.log(`[STRING TO SIGN]:${JSON.stringify(stringToSign)}`);
-	        // console.log(`[KEY]: ${request.headers.get(HeaderConstants.AUTHORIZATION)}`);
-	        return request;
-	    }
-	    /**
-	     * Retrieve header value according to shared key sign rules.
-	     * @see https://learn.microsoft.com/rest/api/storageservices/authenticate-with-shared-key
-	     *
-	     * @param request -
-	     * @param headerName -
-	     */
-	    getHeaderValueToSign(request, headerName) {
-	        const value = request.headers.get(headerName);
-	        if (!value) {
-	            return "";
-	        }
-	        // When using version 2015-02-21 or later, if Content-Length is zero, then
-	        // set the Content-Length part of the StringToSign to an empty string.
-	        // https://learn.microsoft.com/rest/api/storageservices/authenticate-with-shared-key
-	        if (headerName === constants_js_1.HeaderConstants.CONTENT_LENGTH && value === "0") {
-	            return "";
-	        }
-	        return value;
-	    }
-	    /**
-	     * To construct the CanonicalizedHeaders portion of the signature string, follow these steps:
-	     * 1. Retrieve all headers for the resource that begin with x-ms-, including the x-ms-date header.
-	     * 2. Convert each HTTP header name to lowercase.
-	     * 3. Sort the headers lexicographically by header name, in ascending order.
-	     *    Each header may appear only once in the string.
-	     * 4. Replace any linear whitespace in the header value with a single space.
-	     * 5. Trim any whitespace around the colon in the header.
-	     * 6. Finally, append a new-line character to each canonicalized header in the resulting list.
-	     *    Construct the CanonicalizedHeaders string by concatenating all headers in this list into a single string.
-	     *
-	     * @param request -
-	     */
-	    getCanonicalizedHeadersString(request) {
-	        let headersArray = request.headers.headersArray().filter((value) => {
-	            return value.name.toLowerCase().startsWith(constants_js_1.HeaderConstants.PREFIX_FOR_STORAGE);
-	        });
-	        headersArray.sort((a, b) => {
-	            return (0, SharedKeyComparator_js_1.compareHeader)(a.name.toLowerCase(), b.name.toLowerCase());
-	        });
-	        // Remove duplicate headers
-	        headersArray = headersArray.filter((value, index, array) => {
-	            if (index > 0 && value.name.toLowerCase() === array[index - 1].name.toLowerCase()) {
-	                return false;
-	            }
-	            return true;
-	        });
-	        let canonicalizedHeadersStringToSign = "";
-	        headersArray.forEach((header) => {
-	            canonicalizedHeadersStringToSign += `${header.name
-	                .toLowerCase()
-	                .trimRight()}:${header.value.trimLeft()}\n`;
-	        });
-	        return canonicalizedHeadersStringToSign;
-	    }
-	    /**
-	     * Retrieves the webResource canonicalized resource string.
-	     *
-	     * @param request -
-	     */
-	    getCanonicalizedResourceString(request) {
-	        const path = (0, utils_common_js_1.getURLPath)(request.url) || "/";
-	        let canonicalizedResourceString = "";
-	        canonicalizedResourceString += `/${this.factory.accountName}${path}`;
-	        const queries = (0, utils_common_js_1.getURLQueries)(request.url);
-	        const lowercaseQueries = {};
-	        if (queries) {
-	            const queryKeys = [];
-	            for (const key in queries) {
-	                if (Object.prototype.hasOwnProperty.call(queries, key)) {
-	                    const lowercaseKey = key.toLowerCase();
-	                    lowercaseQueries[lowercaseKey] = queries[key];
-	                    queryKeys.push(lowercaseKey);
-	                }
-	            }
-	            queryKeys.sort();
-	            for (const key of queryKeys) {
-	                canonicalizedResourceString += `\n${key}:${decodeURIComponent(lowercaseQueries[key])}`;
-	            }
-	        }
-	        return canonicalizedResourceString;
-	    }
-	}
-	StorageSharedKeyCredentialPolicy$1.StorageSharedKeyCredentialPolicy = StorageSharedKeyCredentialPolicy;
-	
-	return StorageSharedKeyCredentialPolicy$1;
-}
-
-var Credential$1 = {};
-
-var hasRequiredCredential$1;
-
-function requireCredential$1 () {
-	if (hasRequiredCredential$1) return Credential$1;
-	hasRequiredCredential$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(Credential$1, "__esModule", { value: true });
-	Credential$1.Credential = void 0;
-	/**
-	 * Credential is an abstract class for Azure Storage HTTP requests signing. This
-	 * class will host an credentialPolicyCreator factory which generates CredentialPolicy.
-	 */
-	class Credential {
-	    /**
-	     * Creates a RequestPolicy object.
-	     *
-	     * @param _nextPolicy -
-	     * @param _options -
-	     */
-	    create(_nextPolicy, _options) {
-	        throw new Error("Method should be implemented in children classes.");
-	    }
-	}
-	Credential$1.Credential = Credential;
-	
-	return Credential$1;
-}
-
-var hasRequiredStorageSharedKeyCredential$1;
-
-function requireStorageSharedKeyCredential$1 () {
-	if (hasRequiredStorageSharedKeyCredential$1) return StorageSharedKeyCredential$1;
-	hasRequiredStorageSharedKeyCredential$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(StorageSharedKeyCredential$1, "__esModule", { value: true });
-	StorageSharedKeyCredential$1.StorageSharedKeyCredential = void 0;
-	const node_crypto_1 = __require$5();
-	const StorageSharedKeyCredentialPolicy_js_1 = requireStorageSharedKeyCredentialPolicy$1();
-	const Credential_js_1 = requireCredential$1();
-	/**
-	 * ONLY AVAILABLE IN NODE.JS RUNTIME.
-	 *
-	 * StorageSharedKeyCredential for account key authorization of Azure Storage service.
-	 */
-	class StorageSharedKeyCredential extends Credential_js_1.Credential {
-	    /**
-	     * Azure Storage account name; readonly.
-	     */
-	    accountName;
-	    /**
-	     * Azure Storage account key; readonly.
-	     */
-	    accountKey;
-	    /**
-	     * Creates an instance of StorageSharedKeyCredential.
-	     * @param accountName -
-	     * @param accountKey -
-	     */
-	    constructor(accountName, accountKey) {
-	        super();
-	        this.accountName = accountName;
-	        this.accountKey = Buffer.from(accountKey, "base64");
-	    }
-	    /**
-	     * Creates a StorageSharedKeyCredentialPolicy object.
-	     *
-	     * @param nextPolicy -
-	     * @param options -
-	     */
-	    create(nextPolicy, options) {
-	        return new StorageSharedKeyCredentialPolicy_js_1.StorageSharedKeyCredentialPolicy(nextPolicy, options, this);
-	    }
-	    /**
-	     * Generates a hash signature for an HTTP request or for a SAS.
-	     *
-	     * @param stringToSign -
-	     */
-	    computeHMACSHA256(stringToSign) {
-	        return (0, node_crypto_1.createHmac)("sha256", this.accountKey).update(stringToSign, "utf8").digest("base64");
-	    }
-	}
-	StorageSharedKeyCredential$1.StorageSharedKeyCredential = StorageSharedKeyCredential;
-	
-	return StorageSharedKeyCredential$1;
-}
-
-var AnonymousCredential$1 = {};
-
-var AnonymousCredentialPolicy$1 = {};
-
-var hasRequiredAnonymousCredentialPolicy$1;
-
-function requireAnonymousCredentialPolicy$1 () {
-	if (hasRequiredAnonymousCredentialPolicy$1) return AnonymousCredentialPolicy$1;
-	hasRequiredAnonymousCredentialPolicy$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(AnonymousCredentialPolicy$1, "__esModule", { value: true });
-	AnonymousCredentialPolicy$1.AnonymousCredentialPolicy = void 0;
-	const CredentialPolicy_js_1 = requireCredentialPolicy$1();
-	/**
-	 * AnonymousCredentialPolicy is used with HTTP(S) requests that read public resources
-	 * or for use with Shared Access Signatures (SAS).
-	 */
-	class AnonymousCredentialPolicy extends CredentialPolicy_js_1.CredentialPolicy {
-	    /**
-	     * Creates an instance of AnonymousCredentialPolicy.
-	     * @param nextPolicy -
-	     * @param options -
-	     */
-	    // The base class has a protected constructor. Adding a public one to enable constructing of this class.
-	    /* eslint-disable-next-line @typescript-eslint/no-useless-constructor*/
-	    constructor(nextPolicy, options) {
-	        super(nextPolicy, options);
-	    }
-	}
-	AnonymousCredentialPolicy$1.AnonymousCredentialPolicy = AnonymousCredentialPolicy;
-	
-	return AnonymousCredentialPolicy$1;
-}
-
-var hasRequiredAnonymousCredential$1;
-
-function requireAnonymousCredential$1 () {
-	if (hasRequiredAnonymousCredential$1) return AnonymousCredential$1;
-	hasRequiredAnonymousCredential$1 = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(AnonymousCredential$1, "__esModule", { value: true });
-	AnonymousCredential$1.AnonymousCredential = void 0;
-	const AnonymousCredentialPolicy_js_1 = requireAnonymousCredentialPolicy$1();
-	const Credential_js_1 = requireCredential$1();
-	/**
-	 * AnonymousCredential provides a credentialPolicyCreator member used to create
-	 * AnonymousCredentialPolicy objects. AnonymousCredentialPolicy is used with
-	 * HTTP(S) requests that read public resources or for use with Shared Access
-	 * Signatures (SAS).
-	 */
-	class AnonymousCredential extends Credential_js_1.Credential {
-	    /**
-	     * Creates an {@link AnonymousCredentialPolicy} object.
-	     *
-	     * @param nextPolicy -
-	     * @param options -
-	     */
-	    create(nextPolicy, options) {
-	        return new AnonymousCredentialPolicy_js_1.AnonymousCredentialPolicy(nextPolicy, options);
-	    }
-	}
-	AnonymousCredential$1.AnonymousCredential = AnonymousCredential;
-	
-	return AnonymousCredential$1;
-}
-
-var commonjs$2 = {};
 
 var BufferScheduler = {};
 
@@ -47097,9 +45178,23 @@ function requireCache$1 () {
 	return cache;
 }
 
-var StorageBrowserPolicyFactory$1 = {};
+var interfaces = {};
 
-var StorageBrowserPolicy$1 = {};
+var hasRequiredInterfaces;
+
+function requireInterfaces () {
+	if (hasRequiredInterfaces) return interfaces;
+	hasRequiredInterfaces = 1;
+	// Copyright (c) Microsoft Corporation.
+	// Licensed under the MIT License.
+	Object.defineProperty(interfaces, "__esModule", { value: true });
+	
+	return interfaces;
+}
+
+var StorageBrowserPolicyFactory = {};
+
+var StorageBrowserPolicy = {};
 
 var RequestPolicy = {};
 
@@ -47156,19 +45251,19 @@ function requireRequestPolicy () {
 	return RequestPolicy;
 }
 
-var constants$1 = {};
+var constants$2 = {};
 
-var hasRequiredConstants$1;
+var hasRequiredConstants$2;
 
-function requireConstants$1 () {
-	if (hasRequiredConstants$1) return constants$1;
-	hasRequiredConstants$1 = 1;
+function requireConstants$2 () {
+	if (hasRequiredConstants$2) return constants$2;
+	hasRequiredConstants$2 = 1;
 	// Copyright (c) Microsoft Corporation.
 	// Licensed under the MIT License.
-	Object.defineProperty(constants$1, "__esModule", { value: true });
-	constants$1.PathStylePorts = constants$1.DevelopmentConnectionString = constants$1.HeaderConstants = constants$1.URLConstants = constants$1.SDK_VERSION = void 0;
-	constants$1.SDK_VERSION = "1.0.0";
-	constants$1.URLConstants = {
+	Object.defineProperty(constants$2, "__esModule", { value: true });
+	constants$2.PathStylePorts = constants$2.DevelopmentConnectionString = constants$2.HeaderConstants = constants$2.URLConstants = constants$2.SDK_VERSION = void 0;
+	constants$2.SDK_VERSION = "1.0.0";
+	constants$2.URLConstants = {
 	    Parameters: {
 	        FORCE_BROWSER_NO_CACHE: "_",
 	        SIGNATURE: "sig",
@@ -47177,7 +45272,7 @@ function requireConstants$1 () {
 	        TIMEOUT: "timeout",
 	    },
 	};
-	constants$1.HeaderConstants = {
+	constants$2.HeaderConstants = {
 	    AUTHORIZATION: "Authorization",
 	    AUTHORIZATION_SCHEME: "Bearer",
 	    CONTENT_ENCODING: "Content-Encoding",
@@ -47203,10 +45298,10 @@ function requireConstants$1 () {
 	    X_MS_VERSION: "x-ms-version",
 	    X_MS_CopySourceErrorCode: "x-ms-copy-source-error-code",
 	};
-	constants$1.DevelopmentConnectionString = `DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;`;
+	constants$2.DevelopmentConnectionString = `DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;`;
 	/// List of ports used for path style addressing.
 	/// Path style addressing means that storage account is put in URI's Path segment in instead of in host.
-	constants$1.PathStylePorts = [
+	constants$2.PathStylePorts = [
 	    "10000",
 	    "10001",
 	    "10002",
@@ -47229,49 +45324,49 @@ function requireConstants$1 () {
 	    "11104",
 	];
 	
-	return constants$1;
+	return constants$2;
 }
 
-var utils_common$1 = {};
+var utils_common$2 = {};
 
-var hasRequiredUtils_common$1;
+var hasRequiredUtils_common$2;
 
-function requireUtils_common$1 () {
-	if (hasRequiredUtils_common$1) return utils_common$1;
-	hasRequiredUtils_common$1 = 1;
+function requireUtils_common$2 () {
+	if (hasRequiredUtils_common$2) return utils_common$2;
+	hasRequiredUtils_common$2 = 1;
 	// Copyright (c) Microsoft Corporation.
 	// Licensed under the MIT License.
-	Object.defineProperty(utils_common$1, "__esModule", { value: true });
-	utils_common$1.escapeURLPath = escapeURLPath;
-	utils_common$1.getValueInConnString = getValueInConnString;
-	utils_common$1.extractConnectionStringParts = extractConnectionStringParts;
-	utils_common$1.appendToURLPath = appendToURLPath;
-	utils_common$1.setURLParameter = setURLParameter;
-	utils_common$1.getURLParameter = getURLParameter;
-	utils_common$1.setURLHost = setURLHost;
-	utils_common$1.getURLPath = getURLPath;
-	utils_common$1.getURLScheme = getURLScheme;
-	utils_common$1.getURLPathAndQuery = getURLPathAndQuery;
-	utils_common$1.getURLQueries = getURLQueries;
-	utils_common$1.appendToURLQuery = appendToURLQuery;
-	utils_common$1.truncatedISO8061Date = truncatedISO8061Date;
-	utils_common$1.base64encode = base64encode;
-	utils_common$1.base64decode = base64decode;
-	utils_common$1.generateBlockID = generateBlockID;
-	utils_common$1.delay = delay;
-	utils_common$1.padStart = padStart;
-	utils_common$1.sanitizeURL = sanitizeURL;
-	utils_common$1.sanitizeHeaders = sanitizeHeaders;
-	utils_common$1.iEqual = iEqual;
-	utils_common$1.getAccountNameFromUrl = getAccountNameFromUrl;
-	utils_common$1.isIpEndpointStyle = isIpEndpointStyle;
-	utils_common$1.attachCredential = attachCredential;
-	utils_common$1.httpAuthorizationToString = httpAuthorizationToString;
-	utils_common$1.EscapePath = EscapePath;
-	utils_common$1.assertResponse = assertResponse;
+	Object.defineProperty(utils_common$2, "__esModule", { value: true });
+	utils_common$2.escapeURLPath = escapeURLPath;
+	utils_common$2.getValueInConnString = getValueInConnString;
+	utils_common$2.extractConnectionStringParts = extractConnectionStringParts;
+	utils_common$2.appendToURLPath = appendToURLPath;
+	utils_common$2.setURLParameter = setURLParameter;
+	utils_common$2.getURLParameter = getURLParameter;
+	utils_common$2.setURLHost = setURLHost;
+	utils_common$2.getURLPath = getURLPath;
+	utils_common$2.getURLScheme = getURLScheme;
+	utils_common$2.getURLPathAndQuery = getURLPathAndQuery;
+	utils_common$2.getURLQueries = getURLQueries;
+	utils_common$2.appendToURLQuery = appendToURLQuery;
+	utils_common$2.truncatedISO8061Date = truncatedISO8061Date;
+	utils_common$2.base64encode = base64encode;
+	utils_common$2.base64decode = base64decode;
+	utils_common$2.generateBlockID = generateBlockID;
+	utils_common$2.delay = delay;
+	utils_common$2.padStart = padStart;
+	utils_common$2.sanitizeURL = sanitizeURL;
+	utils_common$2.sanitizeHeaders = sanitizeHeaders;
+	utils_common$2.iEqual = iEqual;
+	utils_common$2.getAccountNameFromUrl = getAccountNameFromUrl;
+	utils_common$2.isIpEndpointStyle = isIpEndpointStyle;
+	utils_common$2.attachCredential = attachCredential;
+	utils_common$2.httpAuthorizationToString = httpAuthorizationToString;
+	utils_common$2.EscapePath = EscapePath;
+	utils_common$2.assertResponse = assertResponse;
 	const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
 	const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
-	const constants_js_1 = requireConstants$1();
+	const constants_js_1 = requireConstants$2();
 	/**
 	 * Reserved URL characters must be properly escaped for Storage services like Blob or File.
 	 *
@@ -47319,8 +45414,8 @@ function requireUtils_common$1 () {
 	 *
 	 * We will apply strategy one, and call encodeURIComponent for these parameters like blobName. Because what customers passes in is a plain name instead of a URL.
 	 *
-	 * @see https://learn.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata
-	 * @see https://learn.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-shares--directories--files--and-metadata
+	 * @see https://learn.microsoft.com/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata
+	 * @see https://learn.microsoft.com/rest/api/storageservices/naming-and-referencing-shares--directories--files--and-metadata
 	 *
 	 * @param url -
 	 */
@@ -47334,7 +45429,7 @@ function requireUtils_common$1 () {
 	}
 	function getProxyUriFromDevConnString(connectionString) {
 	    // Development Connection String
-	    // https://learn.microsoft.com/en-us/azure/storage/common/storage-configure-connection-string#connect-to-the-emulator-account-using-the-well-known-account-name-and-key
+	    // https://learn.microsoft.com/azure/storage/common/storage-configure-connection-string#connect-to-the-emulator-account-using-the-well-known-account-name-and-key
 	    let proxyUri = "";
 	    if (connectionString.search("DevelopmentStorageProxyUri=") !== -1) {
 	        // CONNECTION_STRING=UseDevelopmentStorage=true;DevelopmentStorageProxyUri=http://myProxyUri
@@ -47811,22 +45906,22 @@ function requireUtils_common$1 () {
 	    throw new TypeError(`Unexpected response object ${response}`);
 	}
 	
-	return utils_common$1;
+	return utils_common$2;
 }
 
-var hasRequiredStorageBrowserPolicy$1;
+var hasRequiredStorageBrowserPolicy;
 
-function requireStorageBrowserPolicy$1 () {
-	if (hasRequiredStorageBrowserPolicy$1) return StorageBrowserPolicy$1;
-	hasRequiredStorageBrowserPolicy$1 = 1;
+function requireStorageBrowserPolicy () {
+	if (hasRequiredStorageBrowserPolicy) return StorageBrowserPolicy;
+	hasRequiredStorageBrowserPolicy = 1;
 	// Copyright (c) Microsoft Corporation.
 	// Licensed under the MIT License.
-	Object.defineProperty(StorageBrowserPolicy$1, "__esModule", { value: true });
-	StorageBrowserPolicy$1.StorageBrowserPolicy = void 0;
+	Object.defineProperty(StorageBrowserPolicy, "__esModule", { value: true });
+	StorageBrowserPolicy.StorageBrowserPolicy = void 0;
 	const RequestPolicy_js_1 = requireRequestPolicy();
 	const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
-	const constants_js_1 = requireConstants$1();
-	const utils_common_js_1 = requireUtils_common$1();
+	const constants_js_1 = requireConstants$2();
+	const utils_common_js_1 = requireUtils_common$2();
 	/**
 	 * StorageBrowserPolicy will handle differences between Node.js and browser runtime, including:
 	 *
@@ -47838,7 +45933,7 @@ function requireStorageBrowserPolicy$1 () {
 	 *
 	 * 3. Remove content-length header to avoid browsers warning
 	 */
-	class StorageBrowserPolicy extends RequestPolicy_js_1.BaseRequestPolicy {
+	let StorageBrowserPolicy$1 = class StorageBrowserPolicy extends RequestPolicy_js_1.BaseRequestPolicy {
 	    /**
 	     * Creates an instance of StorageBrowserPolicy.
 	     * @param nextPolicy -
@@ -47866,24 +45961,24 @@ function requireStorageBrowserPolicy$1 () {
 	        request.headers.remove(constants_js_1.HeaderConstants.CONTENT_LENGTH);
 	        return this._nextPolicy.sendRequest(request);
 	    }
-	}
-	StorageBrowserPolicy$1.StorageBrowserPolicy = StorageBrowserPolicy;
+	};
+	StorageBrowserPolicy.StorageBrowserPolicy = StorageBrowserPolicy$1;
 	
-	return StorageBrowserPolicy$1;
+	return StorageBrowserPolicy;
 }
 
-var hasRequiredStorageBrowserPolicyFactory$1;
+var hasRequiredStorageBrowserPolicyFactory;
 
-function requireStorageBrowserPolicyFactory$1 () {
-	if (hasRequiredStorageBrowserPolicyFactory$1) return StorageBrowserPolicyFactory$1;
-	hasRequiredStorageBrowserPolicyFactory$1 = 1;
-	(function (exports) {
+function requireStorageBrowserPolicyFactory () {
+	if (hasRequiredStorageBrowserPolicyFactory) return StorageBrowserPolicyFactory;
+	hasRequiredStorageBrowserPolicyFactory = 1;
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.StorageBrowserPolicyFactory = exports.StorageBrowserPolicy = void 0;
-		const StorageBrowserPolicy_js_1 = requireStorageBrowserPolicy$1();
-		Object.defineProperty(exports, "StorageBrowserPolicy", { enumerable: true, get: function () { return StorageBrowserPolicy_js_1.StorageBrowserPolicy; } });
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.StorageBrowserPolicyFactory = exports$1.StorageBrowserPolicy = void 0;
+		const StorageBrowserPolicy_js_1 = requireStorageBrowserPolicy();
+		Object.defineProperty(exports$1, "StorageBrowserPolicy", { enumerable: true, get: function () { return StorageBrowserPolicy_js_1.StorageBrowserPolicy; } });
 		/**
 		 * StorageBrowserPolicyFactory is a factory class helping generating StorageBrowserPolicy objects.
 		 */
@@ -47898,10 +45993,10 @@ function requireStorageBrowserPolicyFactory$1 () {
 		        return new StorageBrowserPolicy_js_1.StorageBrowserPolicy(nextPolicy, options);
 		    }
 		}
-		exports.StorageBrowserPolicyFactory = StorageBrowserPolicyFactory;
+		exports$1.StorageBrowserPolicyFactory = StorageBrowserPolicyFactory;
 		
-	} (StorageBrowserPolicyFactory$1));
-	return StorageBrowserPolicyFactory$1;
+	} (StorageBrowserPolicyFactory));
+	return StorageBrowserPolicyFactory;
 }
 
 var AnonymousCredential = {};
@@ -48143,8 +46238,8 @@ function requireStorageSharedKeyCredentialPolicy () {
 	// Licensed under the MIT License.
 	Object.defineProperty(StorageSharedKeyCredentialPolicy, "__esModule", { value: true });
 	StorageSharedKeyCredentialPolicy.StorageSharedKeyCredentialPolicy = void 0;
-	const constants_js_1 = requireConstants$1();
-	const utils_common_js_1 = requireUtils_common$1();
+	const constants_js_1 = requireConstants$2();
+	const utils_common_js_1 = requireUtils_common$2();
 	const CredentialPolicy_js_1 = requireCredentialPolicy();
 	const SharedKeyComparator_js_1 = requireSharedKeyComparator();
 	/**
@@ -48204,7 +46299,7 @@ function requireStorageSharedKeyCredentialPolicy () {
 	    }
 	    /**
 	     * Retrieve header value according to shared key sign rules.
-	     * @see https://learn.microsoft.com/en-us/rest/api/storageservices/authenticate-with-shared-key
+	     * @see https://learn.microsoft.com/rest/api/storageservices/authenticate-with-shared-key
 	     *
 	     * @param request -
 	     * @param headerName -
@@ -48216,7 +46311,7 @@ function requireStorageSharedKeyCredentialPolicy () {
 	        }
 	        // When using version 2015-02-21 or later, if Content-Length is zero, then
 	        // set the Content-Length part of the StringToSign to an empty string.
-	        // https://learn.microsoft.com/en-us/rest/api/storageservices/authenticate-with-shared-key
+	        // https://learn.microsoft.com/rest/api/storageservices/authenticate-with-shared-key
 	        if (headerName === constants_js_1.HeaderConstants.CONTENT_LENGTH && value === "0") {
 	            return "";
 	        }
@@ -48299,7 +46394,7 @@ function requireStorageSharedKeyCredential () {
 	// Licensed under the MIT License.
 	Object.defineProperty(StorageSharedKeyCredential, "__esModule", { value: true });
 	StorageSharedKeyCredential.StorageSharedKeyCredential = void 0;
-	const node_crypto_1 = __require$5();
+	const node_crypto_1 = __require$2();
 	const StorageSharedKeyCredentialPolicy_js_1 = requireStorageSharedKeyCredentialPolicy();
 	const Credential_js_1 = requireCredential();
 	/**
@@ -48353,19 +46448,19 @@ var StorageRetryPolicyFactory = {};
 
 var StorageRetryPolicy = {};
 
-var commonjs$1 = {};
+var commonjs$2 = {};
 
-var AbortError$1 = {};
+var AbortError$2 = {};
 
-var hasRequiredAbortError;
+var hasRequiredAbortError$1;
 
-function requireAbortError () {
-	if (hasRequiredAbortError) return AbortError$1;
-	hasRequiredAbortError = 1;
+function requireAbortError$1 () {
+	if (hasRequiredAbortError$1) return AbortError$2;
+	hasRequiredAbortError$1 = 1;
 	// Copyright (c) Microsoft Corporation.
 	// Licensed under the MIT license.
-	Object.defineProperty(AbortError$1, "__esModule", { value: true });
-	AbortError$1.AbortError = void 0;
+	Object.defineProperty(AbortError$2, "__esModule", { value: true });
+	AbortError$2.AbortError = void 0;
 	/**
 	 * This error is thrown when an asynchronous operation has been aborted.
 	 * Check for this error by testing the `name` that the name property of the
@@ -48390,26 +46485,26 @@ function requireAbortError () {
 	        this.name = "AbortError";
 	    }
 	}
-	AbortError$1.AbortError = AbortError;
+	AbortError$2.AbortError = AbortError;
 	
-	return AbortError$1;
+	return AbortError$2;
 }
 
-var hasRequiredCommonjs$3;
+var hasRequiredCommonjs$4;
 
-function requireCommonjs$3 () {
-	if (hasRequiredCommonjs$3) return commonjs$1;
-	hasRequiredCommonjs$3 = 1;
-	(function (exports) {
+function requireCommonjs$4 () {
+	if (hasRequiredCommonjs$4) return commonjs$2;
+	hasRequiredCommonjs$4 = 1;
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT license.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.AbortError = void 0;
-		var AbortError_js_1 = requireAbortError();
-		Object.defineProperty(exports, "AbortError", { enumerable: true, get: function () { return AbortError_js_1.AbortError; } });
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.AbortError = void 0;
+		var AbortError_js_1 = requireAbortError$1();
+		Object.defineProperty(exports$1, "AbortError", { enumerable: true, get: function () { return AbortError_js_1.AbortError; } });
 		
-	} (commonjs$1));
-	return commonjs$1;
+	} (commonjs$2));
+	return commonjs$2;
 }
 
 var log = {};
@@ -48471,10 +46566,10 @@ function requireStorageRetryPolicy () {
 	Object.defineProperty(StorageRetryPolicy, "__esModule", { value: true });
 	StorageRetryPolicy.StorageRetryPolicy = void 0;
 	StorageRetryPolicy.NewRetryPolicyFactory = NewRetryPolicyFactory;
-	const abort_controller_1 = /*@__PURE__*/ requireCommonjs$3();
+	const abort_controller_1 = /*@__PURE__*/ requireCommonjs$4();
 	const RequestPolicy_js_1 = requireRequestPolicy();
-	const constants_js_1 = requireConstants$1();
-	const utils_common_js_1 = requireUtils_common$1();
+	const constants_js_1 = requireConstants$2();
+	const utils_common_js_1 = requireUtils_common$2();
 	const log_js_1 = requireLog();
 	const StorageRetryPolicyType_js_1 = requireStorageRetryPolicyType();
 	/**
@@ -48697,15 +46792,16 @@ var hasRequiredStorageRetryPolicyFactory;
 function requireStorageRetryPolicyFactory () {
 	if (hasRequiredStorageRetryPolicyFactory) return StorageRetryPolicyFactory;
 	hasRequiredStorageRetryPolicyFactory = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.StorageRetryPolicyFactory = exports.StorageRetryPolicy = exports.StorageRetryPolicyType = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.StorageRetryPolicyFactory = exports$1.NewRetryPolicyFactory = exports$1.StorageRetryPolicy = exports$1.StorageRetryPolicyType = void 0;
 		const StorageRetryPolicy_js_1 = requireStorageRetryPolicy();
-		Object.defineProperty(exports, "StorageRetryPolicy", { enumerable: true, get: function () { return StorageRetryPolicy_js_1.StorageRetryPolicy; } });
+		Object.defineProperty(exports$1, "StorageRetryPolicy", { enumerable: true, get: function () { return StorageRetryPolicy_js_1.StorageRetryPolicy; } });
+		Object.defineProperty(exports$1, "NewRetryPolicyFactory", { enumerable: true, get: function () { return StorageRetryPolicy_js_1.NewRetryPolicyFactory; } });
 		const StorageRetryPolicyType_js_1 = requireStorageRetryPolicyType();
-		Object.defineProperty(exports, "StorageRetryPolicyType", { enumerable: true, get: function () { return StorageRetryPolicyType_js_1.StorageRetryPolicyType; } });
+		Object.defineProperty(exports$1, "StorageRetryPolicyType", { enumerable: true, get: function () { return StorageRetryPolicyType_js_1.StorageRetryPolicyType; } });
 		/**
 		 * StorageRetryPolicyFactory is a factory class helping generating {@link StorageRetryPolicy} objects.
 		 */
@@ -48728,511 +46824,10 @@ function requireStorageRetryPolicyFactory () {
 		        return new StorageRetryPolicy_js_1.StorageRetryPolicy(nextPolicy, options, this.retryOptions);
 		    }
 		}
-		exports.StorageRetryPolicyFactory = StorageRetryPolicyFactory;
+		exports$1.StorageRetryPolicyFactory = StorageRetryPolicyFactory;
 		
 	} (StorageRetryPolicyFactory));
 	return StorageRetryPolicyFactory;
-}
-
-var StorageBrowserPolicyV2$1 = {};
-
-var hasRequiredStorageBrowserPolicyV2$1;
-
-function requireStorageBrowserPolicyV2$1 () {
-	if (hasRequiredStorageBrowserPolicyV2$1) return StorageBrowserPolicyV2$1;
-	hasRequiredStorageBrowserPolicyV2$1 = 1;
-	(function (exports) {
-		// Copyright (c) Microsoft Corporation.
-		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.storageBrowserPolicyName = void 0;
-		exports.storageBrowserPolicy = storageBrowserPolicy;
-		const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
-		const constants_js_1 = requireConstants$1();
-		const utils_common_js_1 = requireUtils_common$1();
-		/**
-		 * The programmatic identifier of the StorageBrowserPolicy.
-		 */
-		exports.storageBrowserPolicyName = "storageBrowserPolicy";
-		/**
-		 * storageBrowserPolicy is a policy used to prevent browsers from caching requests
-		 * and to remove cookies and explicit content-length headers.
-		 */
-		function storageBrowserPolicy() {
-		    return {
-		        name: exports.storageBrowserPolicyName,
-		        async sendRequest(request, next) {
-		            if (core_util_1.isNodeLike) {
-		                return next(request);
-		            }
-		            if (request.method === "GET" || request.method === "HEAD") {
-		                request.url = (0, utils_common_js_1.setURLParameter)(request.url, constants_js_1.URLConstants.Parameters.FORCE_BROWSER_NO_CACHE, new Date().getTime().toString());
-		            }
-		            request.headers.delete(constants_js_1.HeaderConstants.COOKIE);
-		            // According to XHR standards, content-length should be fully controlled by browsers
-		            request.headers.delete(constants_js_1.HeaderConstants.CONTENT_LENGTH);
-		            return next(request);
-		        },
-		    };
-		}
-		
-	} (StorageBrowserPolicyV2$1));
-	return StorageBrowserPolicyV2$1;
-}
-
-var StorageCorrectContentLengthPolicy$1 = {};
-
-var hasRequiredStorageCorrectContentLengthPolicy$1;
-
-function requireStorageCorrectContentLengthPolicy$1 () {
-	if (hasRequiredStorageCorrectContentLengthPolicy$1) return StorageCorrectContentLengthPolicy$1;
-	hasRequiredStorageCorrectContentLengthPolicy$1 = 1;
-	(function (exports) {
-		// Copyright (c) Microsoft Corporation.
-		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.storageCorrectContentLengthPolicyName = void 0;
-		exports.storageCorrectContentLengthPolicy = storageCorrectContentLengthPolicy;
-		const constants_js_1 = requireConstants$1();
-		/**
-		 * The programmatic identifier of the storageCorrectContentLengthPolicy.
-		 */
-		exports.storageCorrectContentLengthPolicyName = "StorageCorrectContentLengthPolicy";
-		/**
-		 * storageCorrectContentLengthPolicy to correctly set Content-Length header with request body length.
-		 */
-		function storageCorrectContentLengthPolicy() {
-		    function correctContentLength(request) {
-		        if (request.body &&
-		            (typeof request.body === "string" || Buffer.isBuffer(request.body)) &&
-		            request.body.length > 0) {
-		            request.headers.set(constants_js_1.HeaderConstants.CONTENT_LENGTH, Buffer.byteLength(request.body));
-		        }
-		    }
-		    return {
-		        name: exports.storageCorrectContentLengthPolicyName,
-		        async sendRequest(request, next) {
-		            correctContentLength(request);
-		            return next(request);
-		        },
-		    };
-		}
-		
-	} (StorageCorrectContentLengthPolicy$1));
-	return StorageCorrectContentLengthPolicy$1;
-}
-
-var StorageRetryPolicyV2$1 = {};
-
-var hasRequiredStorageRetryPolicyV2$1;
-
-function requireStorageRetryPolicyV2$1 () {
-	if (hasRequiredStorageRetryPolicyV2$1) return StorageRetryPolicyV2$1;
-	hasRequiredStorageRetryPolicyV2$1 = 1;
-	(function (exports) {
-		// Copyright (c) Microsoft Corporation.
-		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.storageRetryPolicyName = void 0;
-		exports.storageRetryPolicy = storageRetryPolicy;
-		const abort_controller_1 = /*@__PURE__*/ requireCommonjs$3();
-		const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
-		const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
-		const StorageRetryPolicyFactory_js_1 = requireStorageRetryPolicyFactory();
-		const constants_js_1 = requireConstants$1();
-		const utils_common_js_1 = requireUtils_common$1();
-		const log_js_1 = requireLog();
-		/**
-		 * Name of the {@link storageRetryPolicy}
-		 */
-		exports.storageRetryPolicyName = "storageRetryPolicy";
-		// Default values of StorageRetryOptions
-		const DEFAULT_RETRY_OPTIONS = {
-		    maxRetryDelayInMs: 120 * 1000,
-		    maxTries: 4,
-		    retryDelayInMs: 4 * 1000,
-		    retryPolicyType: StorageRetryPolicyFactory_js_1.StorageRetryPolicyType.EXPONENTIAL,
-		    secondaryHost: "",
-		    tryTimeoutInMs: undefined, // Use server side default timeout strategy
-		};
-		const retriableErrors = [
-		    "ETIMEDOUT",
-		    "ESOCKETTIMEDOUT",
-		    "ECONNREFUSED",
-		    "ECONNRESET",
-		    "ENOENT",
-		    "ENOTFOUND",
-		    "TIMEOUT",
-		    "EPIPE",
-		    "REQUEST_SEND_ERROR",
-		];
-		const RETRY_ABORT_ERROR = new abort_controller_1.AbortError("The operation was aborted.");
-		/**
-		 * Retry policy with exponential retry and linear retry implemented.
-		 */
-		function storageRetryPolicy(options = {}) {
-		    const retryPolicyType = options.retryPolicyType ?? DEFAULT_RETRY_OPTIONS.retryPolicyType;
-		    const maxTries = options.maxTries ?? DEFAULT_RETRY_OPTIONS.maxTries;
-		    const retryDelayInMs = options.retryDelayInMs ?? DEFAULT_RETRY_OPTIONS.retryDelayInMs;
-		    const maxRetryDelayInMs = options.maxRetryDelayInMs ?? DEFAULT_RETRY_OPTIONS.maxRetryDelayInMs;
-		    const secondaryHost = options.secondaryHost ?? DEFAULT_RETRY_OPTIONS.secondaryHost;
-		    const tryTimeoutInMs = options.tryTimeoutInMs ?? DEFAULT_RETRY_OPTIONS.tryTimeoutInMs;
-		    function shouldRetry({ isPrimaryRetry, attempt, response, error, }) {
-		        if (attempt >= maxTries) {
-		            log_js_1.logger.info(`RetryPolicy: Attempt(s) ${attempt} >= maxTries ${maxTries}, no further try.`);
-		            return false;
-		        }
-		        if (error) {
-		            for (const retriableError of retriableErrors) {
-		                if (error.name.toUpperCase().includes(retriableError) ||
-		                    error.message.toUpperCase().includes(retriableError) ||
-		                    (error.code && error.code.toString().toUpperCase() === retriableError)) {
-		                    log_js_1.logger.info(`RetryPolicy: Network error ${retriableError} found, will retry.`);
-		                    return true;
-		                }
-		            }
-		            if (error?.code === "PARSE_ERROR" &&
-		                error?.message.startsWith(`Error "Error: Unclosed root tag`)) {
-		                log_js_1.logger.info("RetryPolicy: Incomplete XML response likely due to service timeout, will retry.");
-		                return true;
-		            }
-		        }
-		        // If attempt was against the secondary & it returned a StatusNotFound (404), then
-		        // the resource was not found. This may be due to replication delay. So, in this
-		        // case, we'll never try the secondary again for this operation.
-		        if (response || error) {
-		            const statusCode = response?.status ?? error?.statusCode ?? 0;
-		            if (!isPrimaryRetry && statusCode === 404) {
-		                log_js_1.logger.info(`RetryPolicy: Secondary access with 404, will retry.`);
-		                return true;
-		            }
-		            // Server internal error or server timeout
-		            if (statusCode === 503 || statusCode === 500) {
-		                log_js_1.logger.info(`RetryPolicy: Will retry for status code ${statusCode}.`);
-		                return true;
-		            }
-		        }
-		        if (response) {
-		            // Retry select Copy Source Error Codes.
-		            if (response?.status >= 400) {
-		                const copySourceError = response.headers.get(constants_js_1.HeaderConstants.X_MS_CopySourceErrorCode);
-		                if (copySourceError !== undefined) {
-		                    switch (copySourceError) {
-		                        case "InternalError":
-		                        case "OperationTimedOut":
-		                        case "ServerBusy":
-		                            return true;
-		                    }
-		                }
-		            }
-		        }
-		        return false;
-		    }
-		    function calculateDelay(isPrimaryRetry, attempt) {
-		        let delayTimeInMs = 0;
-		        if (isPrimaryRetry) {
-		            switch (retryPolicyType) {
-		                case StorageRetryPolicyFactory_js_1.StorageRetryPolicyType.EXPONENTIAL:
-		                    delayTimeInMs = Math.min((Math.pow(2, attempt - 1) - 1) * retryDelayInMs, maxRetryDelayInMs);
-		                    break;
-		                case StorageRetryPolicyFactory_js_1.StorageRetryPolicyType.FIXED:
-		                    delayTimeInMs = retryDelayInMs;
-		                    break;
-		            }
-		        }
-		        else {
-		            delayTimeInMs = Math.random() * 1000;
-		        }
-		        log_js_1.logger.info(`RetryPolicy: Delay for ${delayTimeInMs}ms`);
-		        return delayTimeInMs;
-		    }
-		    return {
-		        name: exports.storageRetryPolicyName,
-		        async sendRequest(request, next) {
-		            // Set the server-side timeout query parameter "timeout=[seconds]"
-		            if (tryTimeoutInMs) {
-		                request.url = (0, utils_common_js_1.setURLParameter)(request.url, constants_js_1.URLConstants.Parameters.TIMEOUT, String(Math.floor(tryTimeoutInMs / 1000)));
-		            }
-		            const primaryUrl = request.url;
-		            const secondaryUrl = secondaryHost ? (0, utils_common_js_1.setURLHost)(request.url, secondaryHost) : undefined;
-		            let secondaryHas404 = false;
-		            let attempt = 1;
-		            let retryAgain = true;
-		            let response;
-		            let error;
-		            while (retryAgain) {
-		                const isPrimaryRetry = secondaryHas404 ||
-		                    !secondaryUrl ||
-		                    !["GET", "HEAD", "OPTIONS"].includes(request.method) ||
-		                    attempt % 2 === 1;
-		                request.url = isPrimaryRetry ? primaryUrl : secondaryUrl;
-		                response = undefined;
-		                error = undefined;
-		                try {
-		                    log_js_1.logger.info(`RetryPolicy: =====> Try=${attempt} ${isPrimaryRetry ? "Primary" : "Secondary"}`);
-		                    response = await next(request);
-		                    secondaryHas404 = secondaryHas404 || (!isPrimaryRetry && response.status === 404);
-		                }
-		                catch (e) {
-		                    if ((0, core_rest_pipeline_1.isRestError)(e)) {
-		                        log_js_1.logger.error(`RetryPolicy: Caught error, message: ${e.message}, code: ${e.code}`);
-		                        error = e;
-		                    }
-		                    else {
-		                        log_js_1.logger.error(`RetryPolicy: Caught error, message: ${(0, core_util_1.getErrorMessage)(e)}`);
-		                        throw e;
-		                    }
-		                }
-		                retryAgain = shouldRetry({ isPrimaryRetry, attempt, response, error });
-		                if (retryAgain) {
-		                    await (0, utils_common_js_1.delay)(calculateDelay(isPrimaryRetry, attempt), request.abortSignal, RETRY_ABORT_ERROR);
-		                }
-		                attempt++;
-		            }
-		            if (response) {
-		                return response;
-		            }
-		            throw error ?? new core_rest_pipeline_1.RestError("RetryPolicy failed without known error.");
-		        },
-		    };
-		}
-		
-	} (StorageRetryPolicyV2$1));
-	return StorageRetryPolicyV2$1;
-}
-
-var StorageSharedKeyCredentialPolicyV2$1 = {};
-
-var hasRequiredStorageSharedKeyCredentialPolicyV2$1;
-
-function requireStorageSharedKeyCredentialPolicyV2$1 () {
-	if (hasRequiredStorageSharedKeyCredentialPolicyV2$1) return StorageSharedKeyCredentialPolicyV2$1;
-	hasRequiredStorageSharedKeyCredentialPolicyV2$1 = 1;
-	(function (exports) {
-		// Copyright (c) Microsoft Corporation.
-		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.storageSharedKeyCredentialPolicyName = void 0;
-		exports.storageSharedKeyCredentialPolicy = storageSharedKeyCredentialPolicy;
-		const node_crypto_1 = __require$5();
-		const constants_js_1 = requireConstants$1();
-		const utils_common_js_1 = requireUtils_common$1();
-		const SharedKeyComparator_js_1 = requireSharedKeyComparator();
-		/**
-		 * The programmatic identifier of the storageSharedKeyCredentialPolicy.
-		 */
-		exports.storageSharedKeyCredentialPolicyName = "storageSharedKeyCredentialPolicy";
-		/**
-		 * storageSharedKeyCredentialPolicy handles signing requests using storage account keys.
-		 */
-		function storageSharedKeyCredentialPolicy(options) {
-		    function signRequest(request) {
-		        request.headers.set(constants_js_1.HeaderConstants.X_MS_DATE, new Date().toUTCString());
-		        if (request.body &&
-		            (typeof request.body === "string" || Buffer.isBuffer(request.body)) &&
-		            request.body.length > 0) {
-		            request.headers.set(constants_js_1.HeaderConstants.CONTENT_LENGTH, Buffer.byteLength(request.body));
-		        }
-		        const stringToSign = [
-		            request.method.toUpperCase(),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.CONTENT_LANGUAGE),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.CONTENT_ENCODING),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.CONTENT_LENGTH),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.CONTENT_MD5),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.CONTENT_TYPE),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.DATE),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.IF_MODIFIED_SINCE),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.IF_MATCH),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.IF_NONE_MATCH),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.IF_UNMODIFIED_SINCE),
-		            getHeaderValueToSign(request, constants_js_1.HeaderConstants.RANGE),
-		        ].join("\n") +
-		            "\n" +
-		            getCanonicalizedHeadersString(request) +
-		            getCanonicalizedResourceString(request);
-		        const signature = (0, node_crypto_1.createHmac)("sha256", options.accountKey)
-		            .update(stringToSign, "utf8")
-		            .digest("base64");
-		        request.headers.set(constants_js_1.HeaderConstants.AUTHORIZATION, `SharedKey ${options.accountName}:${signature}`);
-		        // console.log(`[URL]:${request.url}`);
-		        // console.log(`[HEADERS]:${request.headers.toString()}`);
-		        // console.log(`[STRING TO SIGN]:${JSON.stringify(stringToSign)}`);
-		        // console.log(`[KEY]: ${request.headers.get(HeaderConstants.AUTHORIZATION)}`);
-		    }
-		    /**
-		     * Retrieve header value according to shared key sign rules.
-		     * @see https://learn.microsoft.com/en-us/rest/api/storageservices/authenticate-with-shared-key
-		     */
-		    function getHeaderValueToSign(request, headerName) {
-		        const value = request.headers.get(headerName);
-		        if (!value) {
-		            return "";
-		        }
-		        // When using version 2015-02-21 or later, if Content-Length is zero, then
-		        // set the Content-Length part of the StringToSign to an empty string.
-		        // https://learn.microsoft.com/en-us/rest/api/storageservices/authenticate-with-shared-key
-		        if (headerName === constants_js_1.HeaderConstants.CONTENT_LENGTH && value === "0") {
-		            return "";
-		        }
-		        return value;
-		    }
-		    /**
-		     * To construct the CanonicalizedHeaders portion of the signature string, follow these steps:
-		     * 1. Retrieve all headers for the resource that begin with x-ms-, including the x-ms-date header.
-		     * 2. Convert each HTTP header name to lowercase.
-		     * 3. Sort the headers lexicographically by header name, in ascending order.
-		     *    Each header may appear only once in the string.
-		     * 4. Replace any linear whitespace in the header value with a single space.
-		     * 5. Trim any whitespace around the colon in the header.
-		     * 6. Finally, append a new-line character to each canonicalized header in the resulting list.
-		     *    Construct the CanonicalizedHeaders string by concatenating all headers in this list into a single string.
-		     *
-		     */
-		    function getCanonicalizedHeadersString(request) {
-		        let headersArray = [];
-		        for (const [name, value] of request.headers) {
-		            if (name.toLowerCase().startsWith(constants_js_1.HeaderConstants.PREFIX_FOR_STORAGE)) {
-		                headersArray.push({ name, value });
-		            }
-		        }
-		        headersArray.sort((a, b) => {
-		            return (0, SharedKeyComparator_js_1.compareHeader)(a.name.toLowerCase(), b.name.toLowerCase());
-		        });
-		        // Remove duplicate headers
-		        headersArray = headersArray.filter((value, index, array) => {
-		            if (index > 0 && value.name.toLowerCase() === array[index - 1].name.toLowerCase()) {
-		                return false;
-		            }
-		            return true;
-		        });
-		        let canonicalizedHeadersStringToSign = "";
-		        headersArray.forEach((header) => {
-		            canonicalizedHeadersStringToSign += `${header.name
-		                .toLowerCase()
-		                .trimRight()}:${header.value.trimLeft()}\n`;
-		        });
-		        return canonicalizedHeadersStringToSign;
-		    }
-		    function getCanonicalizedResourceString(request) {
-		        const path = (0, utils_common_js_1.getURLPath)(request.url) || "/";
-		        let canonicalizedResourceString = "";
-		        canonicalizedResourceString += `/${options.accountName}${path}`;
-		        const queries = (0, utils_common_js_1.getURLQueries)(request.url);
-		        const lowercaseQueries = {};
-		        if (queries) {
-		            const queryKeys = [];
-		            for (const key in queries) {
-		                if (Object.prototype.hasOwnProperty.call(queries, key)) {
-		                    const lowercaseKey = key.toLowerCase();
-		                    lowercaseQueries[lowercaseKey] = queries[key];
-		                    queryKeys.push(lowercaseKey);
-		                }
-		            }
-		            queryKeys.sort();
-		            for (const key of queryKeys) {
-		                canonicalizedResourceString += `\n${key}:${decodeURIComponent(lowercaseQueries[key])}`;
-		            }
-		        }
-		        return canonicalizedResourceString;
-		    }
-		    return {
-		        name: exports.storageSharedKeyCredentialPolicyName,
-		        async sendRequest(request, next) {
-		            signRequest(request);
-		            return next(request);
-		        },
-		    };
-		}
-		
-	} (StorageSharedKeyCredentialPolicyV2$1));
-	return StorageSharedKeyCredentialPolicyV2$1;
-}
-
-var StorageRequestFailureDetailsParserPolicy = {};
-
-var hasRequiredStorageRequestFailureDetailsParserPolicy;
-
-function requireStorageRequestFailureDetailsParserPolicy () {
-	if (hasRequiredStorageRequestFailureDetailsParserPolicy) return StorageRequestFailureDetailsParserPolicy;
-	hasRequiredStorageRequestFailureDetailsParserPolicy = 1;
-	(function (exports) {
-		// Copyright (c) Microsoft Corporation.
-		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.storageRequestFailureDetailsParserPolicyName = void 0;
-		exports.storageRequestFailureDetailsParserPolicy = storageRequestFailureDetailsParserPolicy;
-		/**
-		 * The programmatic identifier of the StorageRequestFailureDetailsParserPolicy.
-		 */
-		exports.storageRequestFailureDetailsParserPolicyName = "storageRequestFailureDetailsParserPolicy";
-		/**
-		 * StorageRequestFailureDetailsParserPolicy
-		 */
-		function storageRequestFailureDetailsParserPolicy() {
-		    return {
-		        name: exports.storageRequestFailureDetailsParserPolicyName,
-		        async sendRequest(request, next) {
-		            try {
-		                const response = await next(request);
-		                return response;
-		            }
-		            catch (err) {
-		                if (typeof err === "object" &&
-		                    err !== null &&
-		                    err.response &&
-		                    err.response.parsedBody) {
-		                    if (err.response.parsedBody.code === "InvalidHeaderValue" &&
-		                        err.response.parsedBody.HeaderName === "x-ms-version") {
-		                        err.message =
-		                            "The provided service version is not enabled on this storage account. Please see https://learn.microsoft.com/rest/api/storageservices/versioning-for-the-azure-storage-services for additional information.\n";
-		                    }
-		                }
-		                throw err;
-		            }
-		        },
-		    };
-		}
-		
-	} (StorageRequestFailureDetailsParserPolicy));
-	return StorageRequestFailureDetailsParserPolicy;
-}
-
-var hasRequiredCommonjs$2;
-
-function requireCommonjs$2 () {
-	if (hasRequiredCommonjs$2) return commonjs$2;
-	hasRequiredCommonjs$2 = 1;
-	(function (exports) {
-		// Copyright (c) Microsoft Corporation.
-		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.BaseRequestPolicy = exports.getCachedDefaultHttpClient = void 0;
-		const tslib_1 = require$$0;
-		tslib_1.__exportStar(requireBufferScheduler(), exports);
-		var cache_js_1 = requireCache$1();
-		Object.defineProperty(exports, "getCachedDefaultHttpClient", { enumerable: true, get: function () { return cache_js_1.getCachedDefaultHttpClient; } });
-		tslib_1.__exportStar(requireStorageBrowserPolicyFactory$1(), exports);
-		tslib_1.__exportStar(requireAnonymousCredential(), exports);
-		tslib_1.__exportStar(requireCredential(), exports);
-		tslib_1.__exportStar(requireStorageSharedKeyCredential(), exports);
-		tslib_1.__exportStar(requireStorageRetryPolicyFactory(), exports);
-		var RequestPolicy_js_1 = requireRequestPolicy();
-		Object.defineProperty(exports, "BaseRequestPolicy", { enumerable: true, get: function () { return RequestPolicy_js_1.BaseRequestPolicy; } });
-		tslib_1.__exportStar(requireAnonymousCredentialPolicy(), exports);
-		tslib_1.__exportStar(requireCredentialPolicy(), exports);
-		tslib_1.__exportStar(requireStorageBrowserPolicy$1(), exports);
-		tslib_1.__exportStar(requireStorageBrowserPolicyV2$1(), exports);
-		tslib_1.__exportStar(requireStorageCorrectContentLengthPolicy$1(), exports);
-		tslib_1.__exportStar(requireStorageRetryPolicyType(), exports);
-		tslib_1.__exportStar(requireStorageRetryPolicy(), exports);
-		tslib_1.__exportStar(requireStorageRetryPolicyV2$1(), exports);
-		tslib_1.__exportStar(requireStorageSharedKeyCredentialPolicy(), exports);
-		tslib_1.__exportStar(requireStorageSharedKeyCredentialPolicyV2$1(), exports);
-		tslib_1.__exportStar(requireStorageRetryPolicyFactory(), exports);
-		tslib_1.__exportStar(requireStorageRequestFailureDetailsParserPolicy(), exports);
-		
-	} (commonjs$2));
-	return commonjs$2;
 }
 
 var StorageBrowserPolicyV2 = {};
@@ -49242,26 +46837,26 @@ var hasRequiredStorageBrowserPolicyV2;
 function requireStorageBrowserPolicyV2 () {
 	if (hasRequiredStorageBrowserPolicyV2) return StorageBrowserPolicyV2;
 	hasRequiredStorageBrowserPolicyV2 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.storageBrowserPolicyName = void 0;
-		exports.storageBrowserPolicy = storageBrowserPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.storageBrowserPolicyName = void 0;
+		exports$1.storageBrowserPolicy = storageBrowserPolicy;
 		const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
 		const constants_js_1 = requireConstants$2();
 		const utils_common_js_1 = requireUtils_common$2();
 		/**
 		 * The programmatic identifier of the StorageBrowserPolicy.
 		 */
-		exports.storageBrowserPolicyName = "storageBrowserPolicy";
+		exports$1.storageBrowserPolicyName = "storageBrowserPolicy";
 		/**
 		 * storageBrowserPolicy is a policy used to prevent browsers from caching requests
 		 * and to remove cookies and explicit content-length headers.
 		 */
 		function storageBrowserPolicy() {
 		    return {
-		        name: exports.storageBrowserPolicyName,
+		        name: exports$1.storageBrowserPolicyName,
 		        async sendRequest(request, next) {
 		            if (core_util_1.isNodeLike) {
 		                return next(request);
@@ -49281,6 +46876,48 @@ function requireStorageBrowserPolicyV2 () {
 	return StorageBrowserPolicyV2;
 }
 
+var StorageCorrectContentLengthPolicy = {};
+
+var hasRequiredStorageCorrectContentLengthPolicy;
+
+function requireStorageCorrectContentLengthPolicy () {
+	if (hasRequiredStorageCorrectContentLengthPolicy) return StorageCorrectContentLengthPolicy;
+	hasRequiredStorageCorrectContentLengthPolicy = 1;
+	(function (exports$1) {
+		// Copyright (c) Microsoft Corporation.
+		// Licensed under the MIT License.
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.storageCorrectContentLengthPolicyName = void 0;
+		exports$1.storageCorrectContentLengthPolicy = storageCorrectContentLengthPolicy;
+		const constants_js_1 = requireConstants$2();
+		/**
+		 * The programmatic identifier of the storageCorrectContentLengthPolicy.
+		 */
+		exports$1.storageCorrectContentLengthPolicyName = "StorageCorrectContentLengthPolicy";
+		/**
+		 * storageCorrectContentLengthPolicy to correctly set Content-Length header with request body length.
+		 */
+		function storageCorrectContentLengthPolicy() {
+		    function correctContentLength(request) {
+		        if (request.body &&
+		            (typeof request.body === "string" || Buffer.isBuffer(request.body)) &&
+		            request.body.length > 0) {
+		            request.headers.set(constants_js_1.HeaderConstants.CONTENT_LENGTH, Buffer.byteLength(request.body));
+		        }
+		    }
+		    return {
+		        name: exports$1.storageCorrectContentLengthPolicyName,
+		        async sendRequest(request, next) {
+		            correctContentLength(request);
+		            return next(request);
+		        },
+		    };
+		}
+		
+	} (StorageCorrectContentLengthPolicy));
+	return StorageCorrectContentLengthPolicy;
+}
+
 var StorageRetryPolicyV2 = {};
 
 var hasRequiredStorageRetryPolicyV2;
@@ -49288,23 +46925,23 @@ var hasRequiredStorageRetryPolicyV2;
 function requireStorageRetryPolicyV2 () {
 	if (hasRequiredStorageRetryPolicyV2) return StorageRetryPolicyV2;
 	hasRequiredStorageRetryPolicyV2 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.storageRetryPolicyName = void 0;
-		exports.storageRetryPolicy = storageRetryPolicy;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.storageRetryPolicyName = void 0;
+		exports$1.storageRetryPolicy = storageRetryPolicy;
 		const abort_controller_1 = /*@__PURE__*/ requireCommonjs$4();
 		const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
 		const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
-		const StorageRetryPolicyFactory_js_1 = requireStorageRetryPolicyFactory$1();
+		const StorageRetryPolicyFactory_js_1 = requireStorageRetryPolicyFactory();
 		const constants_js_1 = requireConstants$2();
 		const utils_common_js_1 = requireUtils_common$2();
-		const log_js_1 = requireLog$1();
+		const log_js_1 = requireLog();
 		/**
 		 * Name of the {@link storageRetryPolicy}
 		 */
-		exports.storageRetryPolicyName = "storageRetryPolicy";
+		exports$1.storageRetryPolicyName = "storageRetryPolicy";
 		// Default values of StorageRetryOptions
 		const DEFAULT_RETRY_OPTIONS = {
 		    maxRetryDelayInMs: 120 * 1000,
@@ -49406,7 +47043,7 @@ function requireStorageRetryPolicyV2 () {
 		        return delayTimeInMs;
 		    }
 		    return {
-		        name: exports.storageRetryPolicyName,
+		        name: exports$1.storageRetryPolicyName,
 		        async sendRequest(request, next) {
 		            // Set the server-side timeout query parameter "timeout=[seconds]"
 		            if (tryTimeoutInMs) {
@@ -49467,20 +47104,20 @@ var hasRequiredStorageSharedKeyCredentialPolicyV2;
 function requireStorageSharedKeyCredentialPolicyV2 () {
 	if (hasRequiredStorageSharedKeyCredentialPolicyV2) return StorageSharedKeyCredentialPolicyV2;
 	hasRequiredStorageSharedKeyCredentialPolicyV2 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.storageSharedKeyCredentialPolicyName = void 0;
-		exports.storageSharedKeyCredentialPolicy = storageSharedKeyCredentialPolicy;
-		const node_crypto_1 = __require$5();
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.storageSharedKeyCredentialPolicyName = void 0;
+		exports$1.storageSharedKeyCredentialPolicy = storageSharedKeyCredentialPolicy;
+		const node_crypto_1 = __require$2();
 		const constants_js_1 = requireConstants$2();
 		const utils_common_js_1 = requireUtils_common$2();
-		const SharedKeyComparator_js_1 = requireSharedKeyComparator$1();
+		const SharedKeyComparator_js_1 = requireSharedKeyComparator();
 		/**
 		 * The programmatic identifier of the storageSharedKeyCredentialPolicy.
 		 */
-		exports.storageSharedKeyCredentialPolicyName = "storageSharedKeyCredentialPolicy";
+		exports$1.storageSharedKeyCredentialPolicyName = "storageSharedKeyCredentialPolicy";
 		/**
 		 * storageSharedKeyCredentialPolicy handles signing requests using storage account keys.
 		 */
@@ -49595,7 +47232,7 @@ function requireStorageSharedKeyCredentialPolicyV2 () {
 		        return canonicalizedResourceString;
 		    }
 		    return {
-		        name: exports.storageSharedKeyCredentialPolicyName,
+		        name: exports$1.storageSharedKeyCredentialPolicyName,
 		        async sendRequest(request, next) {
 		            signRequest(request);
 		            return next(request);
@@ -49607,140 +47244,385 @@ function requireStorageSharedKeyCredentialPolicyV2 () {
 	return StorageSharedKeyCredentialPolicyV2;
 }
 
-var StorageBrowserPolicyFactory = {};
+var StorageRequestFailureDetailsParserPolicy = {};
 
-var StorageBrowserPolicy = {};
+var hasRequiredStorageRequestFailureDetailsParserPolicy;
 
-var hasRequiredStorageBrowserPolicy;
-
-function requireStorageBrowserPolicy () {
-	if (hasRequiredStorageBrowserPolicy) return StorageBrowserPolicy;
-	hasRequiredStorageBrowserPolicy = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(StorageBrowserPolicy, "__esModule", { value: true });
-	StorageBrowserPolicy.StorageBrowserPolicy = void 0;
-	const RequestPolicy_js_1 = requireRequestPolicy$1();
-	const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
-	const constants_js_1 = requireConstants$2();
-	const utils_common_js_1 = requireUtils_common$2();
-	/**
-	 * StorageBrowserPolicy will handle differences between Node.js and browser runtime, including:
-	 *
-	 * 1. Browsers cache GET/HEAD requests by adding conditional headers such as 'IF_MODIFIED_SINCE'.
-	 * StorageBrowserPolicy is a policy used to add a timestamp query to GET/HEAD request URL
-	 * thus avoid the browser cache.
-	 *
-	 * 2. Remove cookie header for security
-	 *
-	 * 3. Remove content-length header to avoid browsers warning
-	 */
-	let StorageBrowserPolicy$1 = class StorageBrowserPolicy extends RequestPolicy_js_1.BaseRequestPolicy {
-	    /**
-	     * Creates an instance of StorageBrowserPolicy.
-	     * @param nextPolicy -
-	     * @param options -
-	     */
-	    // The base class has a protected constructor. Adding a public one to enable constructing of this class.
-	    /* eslint-disable-next-line @typescript-eslint/no-useless-constructor*/
-	    constructor(nextPolicy, options) {
-	        super(nextPolicy, options);
-	    }
-	    /**
-	     * Sends out request.
-	     *
-	     * @param request -
-	     */
-	    async sendRequest(request) {
-	        if (core_util_1.isNodeLike) {
-	            return this._nextPolicy.sendRequest(request);
-	        }
-	        if (request.method.toUpperCase() === "GET" || request.method.toUpperCase() === "HEAD") {
-	            request.url = (0, utils_common_js_1.setURLParameter)(request.url, constants_js_1.URLConstants.Parameters.FORCE_BROWSER_NO_CACHE, new Date().getTime().toString());
-	        }
-	        request.headers.remove(constants_js_1.HeaderConstants.COOKIE);
-	        // According to XHR standards, content-length should be fully controlled by browsers
-	        request.headers.remove(constants_js_1.HeaderConstants.CONTENT_LENGTH);
-	        return this._nextPolicy.sendRequest(request);
-	    }
-	};
-	StorageBrowserPolicy.StorageBrowserPolicy = StorageBrowserPolicy$1;
-	
-	return StorageBrowserPolicy;
-}
-
-var hasRequiredStorageBrowserPolicyFactory;
-
-function requireStorageBrowserPolicyFactory () {
-	if (hasRequiredStorageBrowserPolicyFactory) return StorageBrowserPolicyFactory;
-	hasRequiredStorageBrowserPolicyFactory = 1;
-	(function (exports) {
+function requireStorageRequestFailureDetailsParserPolicy () {
+	if (hasRequiredStorageRequestFailureDetailsParserPolicy) return StorageRequestFailureDetailsParserPolicy;
+	hasRequiredStorageRequestFailureDetailsParserPolicy = 1;
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.StorageBrowserPolicyFactory = exports.StorageBrowserPolicy = void 0;
-		const StorageBrowserPolicy_js_1 = requireStorageBrowserPolicy();
-		Object.defineProperty(exports, "StorageBrowserPolicy", { enumerable: true, get: function () { return StorageBrowserPolicy_js_1.StorageBrowserPolicy; } });
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.storageRequestFailureDetailsParserPolicyName = void 0;
+		exports$1.storageRequestFailureDetailsParserPolicy = storageRequestFailureDetailsParserPolicy;
 		/**
-		 * StorageBrowserPolicyFactory is a factory class helping generating StorageBrowserPolicy objects.
+		 * The programmatic identifier of the StorageRequestFailureDetailsParserPolicy.
 		 */
-		class StorageBrowserPolicyFactory {
-		    /**
-		     * Creates a StorageBrowserPolicyFactory object.
-		     *
-		     * @param nextPolicy -
-		     * @param options -
-		     */
-		    create(nextPolicy, options) {
-		        return new StorageBrowserPolicy_js_1.StorageBrowserPolicy(nextPolicy, options);
-		    }
-		}
-		exports.StorageBrowserPolicyFactory = StorageBrowserPolicyFactory;
-		
-	} (StorageBrowserPolicyFactory));
-	return StorageBrowserPolicyFactory;
-}
-
-var StorageCorrectContentLengthPolicy = {};
-
-var hasRequiredStorageCorrectContentLengthPolicy;
-
-function requireStorageCorrectContentLengthPolicy () {
-	if (hasRequiredStorageCorrectContentLengthPolicy) return StorageCorrectContentLengthPolicy;
-	hasRequiredStorageCorrectContentLengthPolicy = 1;
-	(function (exports) {
-		// Copyright (c) Microsoft Corporation.
-		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.storageCorrectContentLengthPolicyName = void 0;
-		exports.storageCorrectContentLengthPolicy = storageCorrectContentLengthPolicy;
-		const constants_js_1 = requireConstants$2();
+		exports$1.storageRequestFailureDetailsParserPolicyName = "storageRequestFailureDetailsParserPolicy";
 		/**
-		 * The programmatic identifier of the storageCorrectContentLengthPolicy.
+		 * StorageRequestFailureDetailsParserPolicy
 		 */
-		exports.storageCorrectContentLengthPolicyName = "StorageCorrectContentLengthPolicy";
-		/**
-		 * storageCorrectContentLengthPolicy to correctly set Content-Length header with request body length.
-		 */
-		function storageCorrectContentLengthPolicy() {
-		    function correctContentLength(request) {
-		        if (request.body &&
-		            (typeof request.body === "string" || Buffer.isBuffer(request.body)) &&
-		            request.body.length > 0) {
-		            request.headers.set(constants_js_1.HeaderConstants.CONTENT_LENGTH, Buffer.byteLength(request.body));
-		        }
-		    }
+		function storageRequestFailureDetailsParserPolicy() {
 		    return {
-		        name: exports.storageCorrectContentLengthPolicyName,
+		        name: exports$1.storageRequestFailureDetailsParserPolicyName,
 		        async sendRequest(request, next) {
-		            correctContentLength(request);
-		            return next(request);
+		            try {
+		                const response = await next(request);
+		                return response;
+		            }
+		            catch (err) {
+		                if (typeof err === "object" &&
+		                    err !== null &&
+		                    err.response &&
+		                    err.response.parsedBody) {
+		                    if (err.response.parsedBody.code === "InvalidHeaderValue" &&
+		                        err.response.parsedBody.HeaderName === "x-ms-version") {
+		                        err.message =
+		                            "The provided service version is not enabled on this storage account. Please see https://learn.microsoft.com/rest/api/storageservices/versioning-for-the-azure-storage-services for additional information.\n";
+		                    }
+		                }
+		                throw err;
+		            }
 		        },
 		    };
 		}
 		
-	} (StorageCorrectContentLengthPolicy));
-	return StorageCorrectContentLengthPolicy;
+	} (StorageRequestFailureDetailsParserPolicy));
+	return StorageRequestFailureDetailsParserPolicy;
+}
+
+var UserDelegationKeyCredential = {};
+
+var hasRequiredUserDelegationKeyCredential;
+
+function requireUserDelegationKeyCredential () {
+	if (hasRequiredUserDelegationKeyCredential) return UserDelegationKeyCredential;
+	hasRequiredUserDelegationKeyCredential = 1;
+	// Copyright (c) Microsoft Corporation.
+	// Licensed under the MIT License.
+	Object.defineProperty(UserDelegationKeyCredential, "__esModule", { value: true });
+	UserDelegationKeyCredential.UserDelegationKeyCredential = void 0;
+	const node_crypto_1 = __require$2();
+	/**
+	 * ONLY AVAILABLE IN NODE.JS RUNTIME.
+	 *
+	 * UserDelegationKeyCredential is only used for generation of user delegation SAS.
+	 * @see https://learn.microsoft.com/rest/api/storageservices/create-user-delegation-sas
+	 */
+	let UserDelegationKeyCredential$1 = class UserDelegationKeyCredential {
+	    /**
+	     * Azure Storage account name; readonly.
+	     */
+	    accountName;
+	    /**
+	     * Azure Storage user delegation key; readonly.
+	     */
+	    userDelegationKey;
+	    /**
+	     * Key value in Buffer type.
+	     */
+	    key;
+	    /**
+	     * Creates an instance of UserDelegationKeyCredential.
+	     * @param accountName -
+	     * @param userDelegationKey -
+	     */
+	    constructor(accountName, userDelegationKey) {
+	        this.accountName = accountName;
+	        this.userDelegationKey = userDelegationKey;
+	        this.key = Buffer.from(userDelegationKey.value, "base64");
+	    }
+	    /**
+	     * Generates a hash signature for an HTTP request or for a SAS.
+	     *
+	     * @param stringToSign -
+	     */
+	    computeHMACSHA256(stringToSign) {
+	        // console.log(`stringToSign: ${JSON.stringify(stringToSign)}`);
+	        return (0, node_crypto_1.createHmac)("sha256", this.key).update(stringToSign, "utf8").digest("base64");
+	    }
+	};
+	UserDelegationKeyCredential.UserDelegationKeyCredential = UserDelegationKeyCredential$1;
+	
+	return UserDelegationKeyCredential;
+}
+
+var hasRequiredCommonjs$3;
+
+function requireCommonjs$3 () {
+	if (hasRequiredCommonjs$3) return commonjs$3;
+	hasRequiredCommonjs$3 = 1;
+	(function (exports$1) {
+		// Copyright (c) Microsoft Corporation.
+		// Licensed under the MIT License.
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.BaseRequestPolicy = exports$1.getCachedDefaultHttpClient = void 0;
+		const tslib_1 = require$$0;
+		tslib_1.__exportStar(requireBufferScheduler(), exports$1);
+		var cache_js_1 = requireCache$1();
+		Object.defineProperty(exports$1, "getCachedDefaultHttpClient", { enumerable: true, get: function () { return cache_js_1.getCachedDefaultHttpClient; } });
+		tslib_1.__exportStar(requireInterfaces(), exports$1);
+		tslib_1.__exportStar(requireStorageBrowserPolicyFactory(), exports$1);
+		tslib_1.__exportStar(requireAnonymousCredential(), exports$1);
+		tslib_1.__exportStar(requireCredential(), exports$1);
+		tslib_1.__exportStar(requireStorageSharedKeyCredential(), exports$1);
+		tslib_1.__exportStar(requireStorageRetryPolicyFactory(), exports$1);
+		var RequestPolicy_js_1 = requireRequestPolicy();
+		Object.defineProperty(exports$1, "BaseRequestPolicy", { enumerable: true, get: function () { return RequestPolicy_js_1.BaseRequestPolicy; } });
+		tslib_1.__exportStar(requireAnonymousCredentialPolicy(), exports$1);
+		tslib_1.__exportStar(requireCredentialPolicy(), exports$1);
+		tslib_1.__exportStar(requireStorageBrowserPolicyV2(), exports$1);
+		tslib_1.__exportStar(requireStorageCorrectContentLengthPolicy(), exports$1);
+		tslib_1.__exportStar(requireStorageRetryPolicyV2(), exports$1);
+		tslib_1.__exportStar(requireStorageSharedKeyCredentialPolicy(), exports$1);
+		tslib_1.__exportStar(requireStorageSharedKeyCredentialPolicyV2(), exports$1);
+		tslib_1.__exportStar(requireStorageRequestFailureDetailsParserPolicy(), exports$1);
+		tslib_1.__exportStar(requireUserDelegationKeyCredential(), exports$1);
+		
+	} (commonjs$3));
+	return commonjs$3;
+}
+
+var constants$1 = {};
+
+var hasRequiredConstants$1;
+
+function requireConstants$1 () {
+	if (hasRequiredConstants$1) return constants$1;
+	hasRequiredConstants$1 = 1;
+	(function (exports$1) {
+		// Copyright (c) Microsoft Corporation.
+		// Licensed under the MIT License.
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.PathStylePorts = exports$1.BlobDoesNotUseCustomerSpecifiedEncryption = exports$1.BlobUsesCustomerSpecifiedEncryptionMsg = exports$1.StorageBlobLoggingAllowedQueryParameters = exports$1.StorageBlobLoggingAllowedHeaderNames = exports$1.DevelopmentConnectionString = exports$1.EncryptionAlgorithmAES25 = exports$1.HTTP_VERSION_1_1 = exports$1.HTTP_LINE_ENDING = exports$1.BATCH_MAX_PAYLOAD_IN_BYTES = exports$1.BATCH_MAX_REQUEST = exports$1.SIZE_1_MB = exports$1.ETagAny = exports$1.ETagNone = exports$1.HeaderConstants = exports$1.HTTPURLConnection = exports$1.URLConstants = exports$1.StorageOAuthScopes = exports$1.REQUEST_TIMEOUT = exports$1.DEFAULT_MAX_DOWNLOAD_RETRY_REQUESTS = exports$1.DEFAULT_BLOB_DOWNLOAD_BLOCK_BYTES = exports$1.DEFAULT_BLOCK_BUFFER_SIZE_BYTES = exports$1.BLOCK_BLOB_MAX_BLOCKS = exports$1.BLOCK_BLOB_MAX_STAGE_BLOCK_BYTES = exports$1.BLOCK_BLOB_MAX_UPLOAD_BLOB_BYTES = exports$1.SERVICE_VERSION = exports$1.SDK_VERSION = void 0;
+		exports$1.SDK_VERSION = "12.31.0";
+		exports$1.SERVICE_VERSION = "2026-02-06";
+		exports$1.BLOCK_BLOB_MAX_UPLOAD_BLOB_BYTES = 256 * 1024 * 1024; // 256MB
+		exports$1.BLOCK_BLOB_MAX_STAGE_BLOCK_BYTES = 4000 * 1024 * 1024; // 4000MB
+		exports$1.BLOCK_BLOB_MAX_BLOCKS = 50000;
+		exports$1.DEFAULT_BLOCK_BUFFER_SIZE_BYTES = 8 * 1024 * 1024; // 8MB
+		exports$1.DEFAULT_BLOB_DOWNLOAD_BLOCK_BYTES = 4 * 1024 * 1024; // 4MB
+		exports$1.DEFAULT_MAX_DOWNLOAD_RETRY_REQUESTS = 5;
+		exports$1.REQUEST_TIMEOUT = 100 * 1000; // In ms
+		/**
+		 * The OAuth scope to use with Azure Storage.
+		 */
+		exports$1.StorageOAuthScopes = "https://storage.azure.com/.default";
+		exports$1.URLConstants = {
+		    Parameters: {
+		        FORCE_BROWSER_NO_CACHE: "_",
+		        SIGNATURE: "sig",
+		        SNAPSHOT: "snapshot",
+		        VERSIONID: "versionid",
+		        TIMEOUT: "timeout",
+		    },
+		};
+		exports$1.HTTPURLConnection = {
+		    HTTP_ACCEPTED: 202,
+		    HTTP_CONFLICT: 409,
+		    HTTP_NOT_FOUND: 404,
+		    HTTP_PRECON_FAILED: 412,
+		    HTTP_RANGE_NOT_SATISFIABLE: 416,
+		};
+		exports$1.HeaderConstants = {
+		    AUTHORIZATION: "Authorization",
+		    AUTHORIZATION_SCHEME: "Bearer",
+		    CONTENT_ENCODING: "Content-Encoding",
+		    CONTENT_ID: "Content-ID",
+		    CONTENT_LANGUAGE: "Content-Language",
+		    CONTENT_LENGTH: "Content-Length",
+		    CONTENT_MD5: "Content-Md5",
+		    CONTENT_TRANSFER_ENCODING: "Content-Transfer-Encoding",
+		    CONTENT_TYPE: "Content-Type",
+		    COOKIE: "Cookie",
+		    DATE: "date",
+		    IF_MATCH: "if-match",
+		    IF_MODIFIED_SINCE: "if-modified-since",
+		    IF_NONE_MATCH: "if-none-match",
+		    IF_UNMODIFIED_SINCE: "if-unmodified-since",
+		    PREFIX_FOR_STORAGE: "x-ms-",
+		    RANGE: "Range",
+		    USER_AGENT: "User-Agent",
+		    X_MS_CLIENT_REQUEST_ID: "x-ms-client-request-id",
+		    X_MS_COPY_SOURCE: "x-ms-copy-source",
+		    X_MS_DATE: "x-ms-date",
+		    X_MS_ERROR_CODE: "x-ms-error-code",
+		    X_MS_VERSION: "x-ms-version",
+		    X_MS_CopySourceErrorCode: "x-ms-copy-source-error-code",
+		};
+		exports$1.ETagNone = "";
+		exports$1.ETagAny = "*";
+		exports$1.SIZE_1_MB = 1 * 1024 * 1024;
+		exports$1.BATCH_MAX_REQUEST = 256;
+		exports$1.BATCH_MAX_PAYLOAD_IN_BYTES = 4 * exports$1.SIZE_1_MB;
+		exports$1.HTTP_LINE_ENDING = "\r\n";
+		exports$1.HTTP_VERSION_1_1 = "HTTP/1.1";
+		exports$1.EncryptionAlgorithmAES25 = "AES256";
+		exports$1.DevelopmentConnectionString = `DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;`;
+		exports$1.StorageBlobLoggingAllowedHeaderNames = [
+		    "Access-Control-Allow-Origin",
+		    "Cache-Control",
+		    "Content-Length",
+		    "Content-Type",
+		    "Date",
+		    "Request-Id",
+		    "traceparent",
+		    "Transfer-Encoding",
+		    "User-Agent",
+		    "x-ms-client-request-id",
+		    "x-ms-date",
+		    "x-ms-error-code",
+		    "x-ms-request-id",
+		    "x-ms-return-client-request-id",
+		    "x-ms-version",
+		    "Accept-Ranges",
+		    "Content-Disposition",
+		    "Content-Encoding",
+		    "Content-Language",
+		    "Content-MD5",
+		    "Content-Range",
+		    "ETag",
+		    "Last-Modified",
+		    "Server",
+		    "Vary",
+		    "x-ms-content-crc64",
+		    "x-ms-copy-action",
+		    "x-ms-copy-completion-time",
+		    "x-ms-copy-id",
+		    "x-ms-copy-progress",
+		    "x-ms-copy-status",
+		    "x-ms-has-immutability-policy",
+		    "x-ms-has-legal-hold",
+		    "x-ms-lease-state",
+		    "x-ms-lease-status",
+		    "x-ms-range",
+		    "x-ms-request-server-encrypted",
+		    "x-ms-server-encrypted",
+		    "x-ms-snapshot",
+		    "x-ms-source-range",
+		    "If-Match",
+		    "If-Modified-Since",
+		    "If-None-Match",
+		    "If-Unmodified-Since",
+		    "x-ms-access-tier",
+		    "x-ms-access-tier-change-time",
+		    "x-ms-access-tier-inferred",
+		    "x-ms-account-kind",
+		    "x-ms-archive-status",
+		    "x-ms-blob-append-offset",
+		    "x-ms-blob-cache-control",
+		    "x-ms-blob-committed-block-count",
+		    "x-ms-blob-condition-appendpos",
+		    "x-ms-blob-condition-maxsize",
+		    "x-ms-blob-content-disposition",
+		    "x-ms-blob-content-encoding",
+		    "x-ms-blob-content-language",
+		    "x-ms-blob-content-length",
+		    "x-ms-blob-content-md5",
+		    "x-ms-blob-content-type",
+		    "x-ms-blob-public-access",
+		    "x-ms-blob-sequence-number",
+		    "x-ms-blob-type",
+		    "x-ms-copy-destination-snapshot",
+		    "x-ms-creation-time",
+		    "x-ms-default-encryption-scope",
+		    "x-ms-delete-snapshots",
+		    "x-ms-delete-type-permanent",
+		    "x-ms-deny-encryption-scope-override",
+		    "x-ms-encryption-algorithm",
+		    "x-ms-if-sequence-number-eq",
+		    "x-ms-if-sequence-number-le",
+		    "x-ms-if-sequence-number-lt",
+		    "x-ms-incremental-copy",
+		    "x-ms-lease-action",
+		    "x-ms-lease-break-period",
+		    "x-ms-lease-duration",
+		    "x-ms-lease-id",
+		    "x-ms-lease-time",
+		    "x-ms-page-write",
+		    "x-ms-proposed-lease-id",
+		    "x-ms-range-get-content-md5",
+		    "x-ms-rehydrate-priority",
+		    "x-ms-sequence-number-action",
+		    "x-ms-sku-name",
+		    "x-ms-source-content-md5",
+		    "x-ms-source-if-match",
+		    "x-ms-source-if-modified-since",
+		    "x-ms-source-if-none-match",
+		    "x-ms-source-if-unmodified-since",
+		    "x-ms-tag-count",
+		    "x-ms-encryption-key-sha256",
+		    "x-ms-copy-source-error-code",
+		    "x-ms-copy-source-status-code",
+		    "x-ms-if-tags",
+		    "x-ms-source-if-tags",
+		];
+		exports$1.StorageBlobLoggingAllowedQueryParameters = [
+		    "comp",
+		    "maxresults",
+		    "rscc",
+		    "rscd",
+		    "rsce",
+		    "rscl",
+		    "rsct",
+		    "se",
+		    "si",
+		    "sip",
+		    "sp",
+		    "spr",
+		    "sr",
+		    "srt",
+		    "ss",
+		    "st",
+		    "sv",
+		    "include",
+		    "marker",
+		    "prefix",
+		    "copyid",
+		    "restype",
+		    "blockid",
+		    "blocklisttype",
+		    "delimiter",
+		    "prevsnapshot",
+		    "ske",
+		    "skoid",
+		    "sks",
+		    "skt",
+		    "sktid",
+		    "skv",
+		    "snapshot",
+		];
+		exports$1.BlobUsesCustomerSpecifiedEncryptionMsg = "BlobUsesCustomerSpecifiedEncryption";
+		exports$1.BlobDoesNotUseCustomerSpecifiedEncryption = "BlobDoesNotUseCustomerSpecifiedEncryption";
+		/// List of ports used for path style addressing.
+		/// Path style addressing means that storage account is put in URI's Path segment in instead of in host.
+		exports$1.PathStylePorts = [
+		    "10000",
+		    "10001",
+		    "10002",
+		    "10003",
+		    "10004",
+		    "10100",
+		    "10101",
+		    "10102",
+		    "10103",
+		    "10104",
+		    "11000",
+		    "11001",
+		    "11002",
+		    "11003",
+		    "11004",
+		    "11100",
+		    "11101",
+		    "11102",
+		    "11103",
+		    "11104",
+		];
+		
+	} (constants$1));
+	return constants$1;
 }
 
 var hasRequiredPipeline;
@@ -49748,32 +47630,24 @@ var hasRequiredPipeline;
 function requirePipeline () {
 	if (hasRequiredPipeline) return Pipeline;
 	hasRequiredPipeline = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.Pipeline = exports.StorageOAuthScopes = void 0;
-		exports.isPipelineLike = isPipelineLike;
-		exports.newPipeline = newPipeline;
-		exports.getCoreClientOptions = getCoreClientOptions;
-		exports.getCredentialFromPipeline = getCredentialFromPipeline;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.Pipeline = exports$1.StorageOAuthScopes = void 0;
+		exports$1.isPipelineLike = isPipelineLike;
+		exports$1.newPipeline = newPipeline;
+		exports$1.getCoreClientOptions = getCoreClientOptions;
+		exports$1.getCredentialFromPipeline = getCredentialFromPipeline;
 		const core_http_compat_1 = /*@__PURE__*/ requireCommonjs$6();
 		const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
 		const core_client_1 = /*@__PURE__*/ requireCommonjs$7();
 		const core_xml_1 = /*@__PURE__*/ requireCommonjs$5();
 		const core_auth_1 = /*@__PURE__*/ requireCommonjs$8();
 		const log_js_1 = requireLog$1();
-		const StorageRetryPolicyFactory_js_1 = requireStorageRetryPolicyFactory$1();
-		const StorageSharedKeyCredential_js_1 = requireStorageSharedKeyCredential$1();
-		const AnonymousCredential_js_1 = requireAnonymousCredential$1();
-		const constants_js_1 = requireConstants$2();
-		Object.defineProperty(exports, "StorageOAuthScopes", { enumerable: true, get: function () { return constants_js_1.StorageOAuthScopes; } });
-		const storage_common_1 = /*@__PURE__*/ requireCommonjs$2();
-		const StorageBrowserPolicyV2_js_1 = requireStorageBrowserPolicyV2();
-		const StorageRetryPolicyV2_js_1 = requireStorageRetryPolicyV2();
-		const StorageSharedKeyCredentialPolicyV2_js_1 = requireStorageSharedKeyCredentialPolicyV2();
-		const StorageBrowserPolicyFactory_js_1 = requireStorageBrowserPolicyFactory();
-		const StorageCorrectContentLengthPolicy_js_1 = requireStorageCorrectContentLengthPolicy();
+		const storage_common_1 = /*@__PURE__*/ requireCommonjs$3();
+		const constants_js_1 = requireConstants$1();
+		Object.defineProperty(exports$1, "StorageOAuthScopes", { enumerable: true, get: function () { return constants_js_1.StorageOAuthScopes; } });
 		/**
 		 * A helper to decide if a given argument satisfies the Pipeline contract
 		 * @param pipeline - An argument that may be a Pipeline
@@ -49828,7 +47702,7 @@ function requirePipeline () {
 		        };
 		    }
 		}
-		exports.Pipeline = Pipeline;
+		exports$1.Pipeline = Pipeline;
 		/**
 		 * Creates a new Pipeline object with Credential provided.
 		 *
@@ -49838,7 +47712,7 @@ function requirePipeline () {
 		 */
 		function newPipeline(credential, pipelineOptions = {}) {
 		    if (!credential) {
-		        credential = new AnonymousCredential_js_1.AnonymousCredential();
+		        credential = new storage_common_1.AnonymousCredential();
 		    }
 		    const pipeline = new Pipeline([], pipelineOptions);
 		    pipeline._credential = credential;
@@ -49915,10 +47789,10 @@ function requirePipeline () {
 		        });
 		        corePipeline.removePolicy({ phase: "Retry" });
 		        corePipeline.removePolicy({ name: core_rest_pipeline_1.decompressResponsePolicyName });
-		        corePipeline.addPolicy((0, StorageCorrectContentLengthPolicy_js_1.storageCorrectContentLengthPolicy)());
-		        corePipeline.addPolicy((0, StorageRetryPolicyV2_js_1.storageRetryPolicy)(restOptions.retryOptions), { phase: "Retry" });
+		        corePipeline.addPolicy((0, storage_common_1.storageCorrectContentLengthPolicy)());
+		        corePipeline.addPolicy((0, storage_common_1.storageRetryPolicy)(restOptions.retryOptions), { phase: "Retry" });
 		        corePipeline.addPolicy((0, storage_common_1.storageRequestFailureDetailsParserPolicy)());
-		        corePipeline.addPolicy((0, StorageBrowserPolicyV2_js_1.storageBrowserPolicy)());
+		        corePipeline.addPolicy((0, storage_common_1.storageBrowserPolicy)());
 		        const downlevelResults = processDownlevelPipeline(pipeline);
 		        if (downlevelResults) {
 		            corePipeline.addPolicy(downlevelResults.wrappedPolicies, downlevelResults.afterRetry ? { afterPhase: "Retry" } : undefined);
@@ -49931,8 +47805,8 @@ function requirePipeline () {
 		                challengeCallbacks: { authorizeRequestOnChallenge: core_client_1.authorizeRequestOnTenantChallenge },
 		            }), { phase: "Sign" });
 		        }
-		        else if (credential instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) {
-		            corePipeline.addPolicy((0, StorageSharedKeyCredentialPolicyV2_js_1.storageSharedKeyCredentialPolicy)({
+		        else if (credential instanceof storage_common_1.StorageSharedKeyCredential) {
+		            corePipeline.addPolicy((0, storage_common_1.storageSharedKeyCredentialPolicy)({
 		                accountName: credential.accountName,
 		                accountKey: credential.accountKey,
 		            }), { phase: "Sign" });
@@ -49952,7 +47826,7 @@ function requirePipeline () {
 		        return pipeline._credential;
 		    }
 		    // if it came from another package, loop over the factories and look for one like before
-		    let credential = new AnonymousCredential_js_1.AnonymousCredential();
+		    let credential = new storage_common_1.AnonymousCredential();
 		    for (const factory of pipeline.factories) {
 		        if ((0, core_auth_1.isTokenCredential)(factory.credential)) {
 		            // Only works if the factory has been attached a "credential" property.
@@ -49966,13 +47840,13 @@ function requirePipeline () {
 		    return credential;
 		}
 		function isStorageSharedKeyCredential(factory) {
-		    if (factory instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) {
+		    if (factory instanceof storage_common_1.StorageSharedKeyCredential) {
 		        return true;
 		    }
 		    return factory.constructor.name === "StorageSharedKeyCredential";
 		}
 		function isAnonymousCredential(factory) {
-		    if (factory instanceof AnonymousCredential_js_1.AnonymousCredential) {
+		    if (factory instanceof storage_common_1.AnonymousCredential) {
 		        return true;
 		    }
 		    return factory.constructor.name === "AnonymousCredential";
@@ -49981,13 +47855,13 @@ function requirePipeline () {
 		    return (0, core_auth_1.isTokenCredential)(factory.credential);
 		}
 		function isStorageBrowserPolicyFactory(factory) {
-		    if (factory instanceof StorageBrowserPolicyFactory_js_1.StorageBrowserPolicyFactory) {
+		    if (factory instanceof storage_common_1.StorageBrowserPolicyFactory) {
 		        return true;
 		    }
 		    return factory.constructor.name === "StorageBrowserPolicyFactory";
 		}
 		function isStorageRetryPolicyFactory(factory) {
-		    if (factory instanceof StorageRetryPolicyFactory_js_1.StorageRetryPolicyFactory) {
+		    if (factory instanceof storage_common_1.StorageRetryPolicyFactory) {
 		        return true;
 		    }
 		    return factory.constructor.name === "StorageRetryPolicyFactory";
@@ -58688,8 +56562,8 @@ function requireParameters () {
 	 */
 	Object.defineProperty(parameters, "__esModule", { value: true });
 	parameters.action3 = parameters.action2 = parameters.leaseId1 = parameters.action1 = parameters.proposedLeaseId = parameters.duration = parameters.action = parameters.comp10 = parameters.sourceLeaseId = parameters.sourceContainerName = parameters.comp9 = parameters.deletedContainerVersion = parameters.deletedContainerName = parameters.comp8 = parameters.containerAcl = parameters.comp7 = parameters.comp6 = parameters.ifUnmodifiedSince = parameters.ifModifiedSince = parameters.leaseId = parameters.preventEncryptionScopeOverride = parameters.defaultEncryptionScope = parameters.access = parameters.metadata = parameters.restype2 = parameters.where = parameters.comp5 = parameters.multipartContentType = parameters.contentLength = parameters.comp4 = parameters.body = parameters.restype1 = parameters.comp3 = parameters.keyInfo = parameters.include = parameters.maxPageSize = parameters.marker = parameters.prefix = parameters.comp2 = parameters.comp1 = parameters.accept1 = parameters.requestId = parameters.version = parameters.timeoutInSeconds = parameters.comp = parameters.restype = parameters.url = parameters.accept = parameters.blobServiceProperties = parameters.contentType = void 0;
-	parameters.fileRequestIntent = parameters.copySourceTags = parameters.copySourceAuthorization = parameters.sourceContentMD5 = parameters.xMsRequiresSync = parameters.legalHold1 = parameters.sealBlob = parameters.blobTagsString = parameters.copySource = parameters.sourceIfTags = parameters.sourceIfNoneMatch = parameters.sourceIfMatch = parameters.sourceIfUnmodifiedSince = parameters.sourceIfModifiedSince = parameters.rehydratePriority = parameters.tier = parameters.comp14 = parameters.encryptionScope = parameters.legalHold = parameters.comp13 = parameters.immutabilityPolicyMode = parameters.immutabilityPolicyExpiry = parameters.comp12 = parameters.blobContentDisposition = parameters.blobContentLanguage = parameters.blobContentEncoding = parameters.blobContentMD5 = parameters.blobContentType = parameters.blobCacheControl = parameters.expiresOn = parameters.expiryOptions = parameters.comp11 = parameters.blobDeleteType = parameters.deleteSnapshots = parameters.ifTags = parameters.ifNoneMatch = parameters.ifMatch = parameters.encryptionAlgorithm = parameters.encryptionKeySha256 = parameters.encryptionKey = parameters.rangeGetContentCRC64 = parameters.rangeGetContentMD5 = parameters.range = parameters.versionId = parameters.snapshot = parameters.delimiter = parameters.include1 = parameters.proposedLeaseId1 = parameters.action4 = parameters.breakPeriod = void 0;
-	parameters.listType = parameters.comp25 = parameters.blocks = parameters.blockId = parameters.comp24 = parameters.copySourceBlobProperties = parameters.blobType2 = parameters.comp23 = parameters.sourceRange1 = parameters.appendPosition = parameters.maxSize = parameters.comp22 = parameters.blobType1 = parameters.comp21 = parameters.sequenceNumberAction = parameters.prevSnapshotUrl = parameters.prevsnapshot = parameters.comp20 = parameters.range1 = parameters.sourceContentCrc64 = parameters.sourceRange = parameters.sourceUrl = parameters.pageWrite1 = parameters.ifSequenceNumberEqualTo = parameters.ifSequenceNumberLessThan = parameters.ifSequenceNumberLessThanOrEqualTo = parameters.pageWrite = parameters.comp19 = parameters.accept2 = parameters.body1 = parameters.contentType1 = parameters.blobSequenceNumber = parameters.blobContentLength = parameters.blobType = parameters.transactionalContentCrc64 = parameters.transactionalContentMD5 = parameters.tags = parameters.comp18 = parameters.comp17 = parameters.queryRequest = parameters.tier1 = parameters.comp16 = parameters.copyId = parameters.copyActionAbortConstant = parameters.comp15 = void 0;
+	parameters.copySourceTags = parameters.copySourceAuthorization = parameters.sourceContentMD5 = parameters.xMsRequiresSync = parameters.legalHold1 = parameters.sealBlob = parameters.blobTagsString = parameters.copySource = parameters.sourceIfTags = parameters.sourceIfNoneMatch = parameters.sourceIfMatch = parameters.sourceIfUnmodifiedSince = parameters.sourceIfModifiedSince = parameters.rehydratePriority = parameters.tier = parameters.comp14 = parameters.encryptionScope = parameters.legalHold = parameters.comp13 = parameters.immutabilityPolicyMode = parameters.immutabilityPolicyExpiry = parameters.comp12 = parameters.blobContentDisposition = parameters.blobContentLanguage = parameters.blobContentEncoding = parameters.blobContentMD5 = parameters.blobContentType = parameters.blobCacheControl = parameters.expiresOn = parameters.expiryOptions = parameters.comp11 = parameters.blobDeleteType = parameters.deleteSnapshots = parameters.ifTags = parameters.ifNoneMatch = parameters.ifMatch = parameters.encryptionAlgorithm = parameters.encryptionKeySha256 = parameters.encryptionKey = parameters.rangeGetContentCRC64 = parameters.rangeGetContentMD5 = parameters.range = parameters.versionId = parameters.snapshot = parameters.delimiter = parameters.startFrom = parameters.include1 = parameters.proposedLeaseId1 = parameters.action4 = parameters.breakPeriod = void 0;
+	parameters.listType = parameters.comp25 = parameters.blocks = parameters.blockId = parameters.comp24 = parameters.copySourceBlobProperties = parameters.blobType2 = parameters.comp23 = parameters.sourceRange1 = parameters.appendPosition = parameters.maxSize = parameters.comp22 = parameters.blobType1 = parameters.comp21 = parameters.sequenceNumberAction = parameters.prevSnapshotUrl = parameters.prevsnapshot = parameters.comp20 = parameters.range1 = parameters.sourceContentCrc64 = parameters.sourceRange = parameters.sourceUrl = parameters.pageWrite1 = parameters.ifSequenceNumberEqualTo = parameters.ifSequenceNumberLessThan = parameters.ifSequenceNumberLessThanOrEqualTo = parameters.pageWrite = parameters.comp19 = parameters.accept2 = parameters.body1 = parameters.contentType1 = parameters.blobSequenceNumber = parameters.blobContentLength = parameters.blobType = parameters.transactionalContentCrc64 = parameters.transactionalContentMD5 = parameters.tags = parameters.ifNoneMatch1 = parameters.ifMatch1 = parameters.ifUnmodifiedSince1 = parameters.ifModifiedSince1 = parameters.comp18 = parameters.comp17 = parameters.queryRequest = parameters.tier1 = parameters.comp16 = parameters.copyId = parameters.copyActionAbortConstant = parameters.comp15 = parameters.fileRequestIntent = void 0;
 	const mappers_js_1 = requireMappers();
 	parameters.contentType = {
 	    parameterPath: ["options", "contentType"],
@@ -58767,7 +56641,7 @@ function requireParameters () {
 	parameters.version = {
 	    parameterPath: "version",
 	    mapper: {
-	        defaultValue: "2025-11-05",
+	        defaultValue: "2026-02-06",
 	        isConstant: true,
 	        serializedName: "x-ms-version",
 	        type: {
@@ -59301,6 +57175,16 @@ function requireParameters () {
 	        },
 	    },
 	    collectionFormat: "CSV",
+	};
+	parameters.startFrom = {
+	    parameterPath: ["options", "startFrom"],
+	    mapper: {
+	        serializedName: "startFrom",
+	        xmlName: "startFrom",
+	        type: {
+	            name: "String",
+	        },
+	    },
 	};
 	parameters.delimiter = {
 	    parameterPath: "delimiter",
@@ -59897,6 +57781,50 @@ function requireParameters () {
 	        defaultValue: "tags",
 	        isConstant: true,
 	        serializedName: "comp",
+	        type: {
+	            name: "String",
+	        },
+	    },
+	};
+	parameters.ifModifiedSince1 = {
+	    parameterPath: ["options", "blobModifiedAccessConditions", "ifModifiedSince"],
+	    mapper: {
+	        serializedName: "x-ms-blob-if-modified-since",
+	        xmlName: "x-ms-blob-if-modified-since",
+	        type: {
+	            name: "DateTimeRfc1123",
+	        },
+	    },
+	};
+	parameters.ifUnmodifiedSince1 = {
+	    parameterPath: [
+	        "options",
+	        "blobModifiedAccessConditions",
+	        "ifUnmodifiedSince",
+	    ],
+	    mapper: {
+	        serializedName: "x-ms-blob-if-unmodified-since",
+	        xmlName: "x-ms-blob-if-unmodified-since",
+	        type: {
+	            name: "DateTimeRfc1123",
+	        },
+	    },
+	};
+	parameters.ifMatch1 = {
+	    parameterPath: ["options", "blobModifiedAccessConditions", "ifMatch"],
+	    mapper: {
+	        serializedName: "x-ms-blob-if-match",
+	        xmlName: "x-ms-blob-if-match",
+	        type: {
+	            name: "String",
+	        },
+	    },
+	};
+	parameters.ifNoneMatch1 = {
+	    parameterPath: ["options", "blobModifiedAccessConditions", "ifNoneMatch"],
+	    mapper: {
+	        serializedName: "x-ms-blob-if-none-match",
+	        xmlName: "x-ms-blob-if-none-match",
 	        type: {
 	            name: "String",
 	        },
@@ -61298,6 +59226,7 @@ function requireContainer$1 () {
 	        Parameters.maxPageSize,
 	        Parameters.restype2,
 	        Parameters.include1,
+	        Parameters.startFrom,
 	    ],
 	    urlParameters: [Parameters.url],
 	    headerParameters: [
@@ -61329,6 +59258,7 @@ function requireContainer$1 () {
 	        Parameters.maxPageSize,
 	        Parameters.restype2,
 	        Parameters.include1,
+	        Parameters.startFrom,
 	        Parameters.delimiter,
 	    ],
 	    urlParameters: [Parameters.url],
@@ -62364,6 +60294,10 @@ function requireBlob$1 () {
 	        Parameters.accept1,
 	        Parameters.leaseId,
 	        Parameters.ifTags,
+	        Parameters.ifModifiedSince1,
+	        Parameters.ifUnmodifiedSince1,
+	        Parameters.ifMatch1,
+	        Parameters.ifNoneMatch1,
 	    ],
 	    isXML: true,
 	    serializer: xmlSerializer,
@@ -62394,6 +60328,10 @@ function requireBlob$1 () {
 	        Parameters.requestId,
 	        Parameters.leaseId,
 	        Parameters.ifTags,
+	        Parameters.ifModifiedSince1,
+	        Parameters.ifUnmodifiedSince1,
+	        Parameters.ifMatch1,
+	        Parameters.ifNoneMatch1,
 	        Parameters.transactionalContentMD5,
 	        Parameters.transactionalContentCrc64,
 	    ],
@@ -63502,7 +61440,7 @@ var hasRequiredOperations;
 function requireOperations () {
 	if (hasRequiredOperations) return operations;
 	hasRequiredOperations = 1;
-	(function (exports) {
+	(function (exports$1) {
 		/*
 		 * Copyright (c) Microsoft Corporation.
 		 * Licensed under the MIT License.
@@ -63510,14 +61448,14 @@ function requireOperations () {
 		 * Code generated by Microsoft (R) AutoRest Code Generator.
 		 * Changes may cause incorrect behavior and will be lost if the code is regenerated.
 		 */
-		Object.defineProperty(exports, "__esModule", { value: true });
+		Object.defineProperty(exports$1, "__esModule", { value: true });
 		const tslib_1 = require$$0;
-		tslib_1.__exportStar(requireService$1(), exports);
-		tslib_1.__exportStar(requireContainer$1(), exports);
-		tslib_1.__exportStar(requireBlob$1(), exports);
-		tslib_1.__exportStar(requirePageBlob$1(), exports);
-		tslib_1.__exportStar(requireAppendBlob$1(), exports);
-		tslib_1.__exportStar(requireBlockBlob$1(), exports);
+		tslib_1.__exportStar(requireService$1(), exports$1);
+		tslib_1.__exportStar(requireContainer$1(), exports$1);
+		tslib_1.__exportStar(requireBlob$1(), exports$1);
+		tslib_1.__exportStar(requirePageBlob$1(), exports$1);
+		tslib_1.__exportStar(requireAppendBlob$1(), exports$1);
+		tslib_1.__exportStar(requireBlockBlob$1(), exports$1);
 		
 	} (operations));
 	return operations;
@@ -63560,7 +61498,7 @@ function requireStorageClient$1 () {
 	        const defaults = {
 	            requestContentType: "application/json; charset=utf-8",
 	        };
-	        const packageDetails = `azsdk-js-azure-storage-blob/12.29.1`;
+	        const packageDetails = `azsdk-js-azure-storage-blob/12.30.0`;
 	        const userAgentPrefix = options.userAgentOptions && options.userAgentOptions.userAgentPrefix
 	            ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
 	            : `${packageDetails}`;
@@ -63576,7 +61514,7 @@ function requireStorageClient$1 () {
 	        // Parameter assignments
 	        this.url = url;
 	        // Assigning values to Constant parameters
-	        this.version = options.version || "2025-11-05";
+	        this.version = options.version || "2026-02-06";
 	        this.service = new index_js_1.ServiceImpl(this);
 	        this.container = new index_js_1.ContainerImpl(this);
 	        this.blob = new index_js_1.BlobImpl(this);
@@ -63717,7 +61655,7 @@ var hasRequiredOperationsInterfaces;
 function requireOperationsInterfaces () {
 	if (hasRequiredOperationsInterfaces) return operationsInterfaces;
 	hasRequiredOperationsInterfaces = 1;
-	(function (exports) {
+	(function (exports$1) {
 		/*
 		 * Copyright (c) Microsoft Corporation.
 		 * Licensed under the MIT License.
@@ -63725,14 +61663,14 @@ function requireOperationsInterfaces () {
 		 * Code generated by Microsoft (R) AutoRest Code Generator.
 		 * Changes may cause incorrect behavior and will be lost if the code is regenerated.
 		 */
-		Object.defineProperty(exports, "__esModule", { value: true });
+		Object.defineProperty(exports$1, "__esModule", { value: true });
 		const tslib_1 = require$$0;
-		tslib_1.__exportStar(requireService(), exports);
-		tslib_1.__exportStar(requireContainer(), exports);
-		tslib_1.__exportStar(requireBlob(), exports);
-		tslib_1.__exportStar(requirePageBlob(), exports);
-		tslib_1.__exportStar(requireAppendBlob(), exports);
-		tslib_1.__exportStar(requireBlockBlob(), exports);
+		tslib_1.__exportStar(requireService(), exports$1);
+		tslib_1.__exportStar(requireContainer(), exports$1);
+		tslib_1.__exportStar(requireBlob(), exports$1);
+		tslib_1.__exportStar(requirePageBlob(), exports$1);
+		tslib_1.__exportStar(requireAppendBlob(), exports$1);
+		tslib_1.__exportStar(requireBlockBlob(), exports$1);
 		
 	} (operationsInterfaces));
 	return operationsInterfaces;
@@ -63743,7 +61681,7 @@ var hasRequiredSrc;
 function requireSrc () {
 	if (hasRequiredSrc) return src$1;
 	hasRequiredSrc = 1;
-	(function (exports) {
+	(function (exports$1) {
 		/*
 		 * Copyright (c) Microsoft Corporation.
 		 * Licensed under the MIT License.
@@ -63751,13 +61689,13 @@ function requireSrc () {
 		 * Code generated by Microsoft (R) AutoRest Code Generator.
 		 * Changes may cause incorrect behavior and will be lost if the code is regenerated.
 		 */
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.StorageClient = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.StorageClient = void 0;
 		const tslib_1 = require$$0;
-		tslib_1.__exportStar(requireModels$1(), exports);
+		tslib_1.__exportStar(requireModels$1(), exports$1);
 		var storageClient_js_1 = requireStorageClient$1();
-		Object.defineProperty(exports, "StorageClient", { enumerable: true, get: function () { return storageClient_js_1.StorageClient; } });
-		tslib_1.__exportStar(requireOperationsInterfaces(), exports);
+		Object.defineProperty(exports$1, "StorageClient", { enumerable: true, get: function () { return storageClient_js_1.StorageClient; } });
+		tslib_1.__exportStar(requireOperationsInterfaces(), exports$1);
 		
 	} (src$1));
 	return src$1;
@@ -63791,6 +61729,822 @@ function requireStorageContextClient () {
 	return StorageContextClient;
 }
 
+var utils_common$1 = {};
+
+var hasRequiredUtils_common$1;
+
+function requireUtils_common$1 () {
+	if (hasRequiredUtils_common$1) return utils_common$1;
+	hasRequiredUtils_common$1 = 1;
+	// Copyright (c) Microsoft Corporation.
+	// Licensed under the MIT License.
+	Object.defineProperty(utils_common$1, "__esModule", { value: true });
+	utils_common$1.escapeURLPath = escapeURLPath;
+	utils_common$1.getValueInConnString = getValueInConnString;
+	utils_common$1.extractConnectionStringParts = extractConnectionStringParts;
+	utils_common$1.appendToURLPath = appendToURLPath;
+	utils_common$1.setURLParameter = setURLParameter;
+	utils_common$1.getURLParameter = getURLParameter;
+	utils_common$1.setURLHost = setURLHost;
+	utils_common$1.getURLPath = getURLPath;
+	utils_common$1.getURLScheme = getURLScheme;
+	utils_common$1.getURLPathAndQuery = getURLPathAndQuery;
+	utils_common$1.getURLQueries = getURLQueries;
+	utils_common$1.appendToURLQuery = appendToURLQuery;
+	utils_common$1.truncatedISO8061Date = truncatedISO8061Date;
+	utils_common$1.base64encode = base64encode;
+	utils_common$1.base64decode = base64decode;
+	utils_common$1.generateBlockID = generateBlockID;
+	utils_common$1.delay = delay;
+	utils_common$1.padStart = padStart;
+	utils_common$1.sanitizeURL = sanitizeURL;
+	utils_common$1.sanitizeHeaders = sanitizeHeaders;
+	utils_common$1.iEqual = iEqual;
+	utils_common$1.getAccountNameFromUrl = getAccountNameFromUrl;
+	utils_common$1.isIpEndpointStyle = isIpEndpointStyle;
+	utils_common$1.toBlobTagsString = toBlobTagsString;
+	utils_common$1.toBlobTags = toBlobTags;
+	utils_common$1.toTags = toTags;
+	utils_common$1.toQuerySerialization = toQuerySerialization;
+	utils_common$1.parseObjectReplicationRecord = parseObjectReplicationRecord;
+	utils_common$1.attachCredential = attachCredential;
+	utils_common$1.httpAuthorizationToString = httpAuthorizationToString;
+	utils_common$1.BlobNameToString = BlobNameToString;
+	utils_common$1.ConvertInternalResponseOfListBlobFlat = ConvertInternalResponseOfListBlobFlat;
+	utils_common$1.ConvertInternalResponseOfListBlobHierarchy = ConvertInternalResponseOfListBlobHierarchy;
+	utils_common$1.ExtractPageRangeInfoItems = ExtractPageRangeInfoItems;
+	utils_common$1.EscapePath = EscapePath;
+	utils_common$1.assertResponse = assertResponse;
+	const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
+	const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
+	const constants_js_1 = requireConstants$1();
+	/**
+	 * Reserved URL characters must be properly escaped for Storage services like Blob or File.
+	 *
+	 * ## URL encode and escape strategy for JS SDKs
+	 *
+	 * When customers pass a URL string into XxxClient classes constructor, the URL string may already be URL encoded or not.
+	 * But before sending to Azure Storage server, the URL must be encoded. However, it's hard for a SDK to guess whether the URL
+	 * string has been encoded or not. We have 2 potential strategies, and chose strategy two for the XxxClient constructors.
+	 *
+	 * ### Strategy One: Assume the customer URL string is not encoded, and always encode URL string in SDK.
+	 *
+	 * This is what legacy V2 SDK does, simple and works for most of the cases.
+	 * - When customer URL string is "http://account.blob.core.windows.net/con/b:",
+	 *   SDK will encode it to "http://account.blob.core.windows.net/con/b%3A" and send to server. A blob named "b:" will be created.
+	 * - When customer URL string is "http://account.blob.core.windows.net/con/b%3A",
+	 *   SDK will encode it to "http://account.blob.core.windows.net/con/b%253A" and send to server. A blob named "b%3A" will be created.
+	 *
+	 * But this strategy will make it not possible to create a blob with "?" in it's name. Because when customer URL string is
+	 * "http://account.blob.core.windows.net/con/blob?name", the "?name" will be treated as URL paramter instead of blob name.
+	 * If customer URL string is "http://account.blob.core.windows.net/con/blob%3Fname", a blob named "blob%3Fname" will be created.
+	 * V2 SDK doesn't have this issue because it doesn't allow customer pass in a full URL, it accepts a separate blob name and encodeURIComponent for it.
+	 * We cannot accept a SDK cannot create a blob name with "?". So we implement strategy two:
+	 *
+	 * ### Strategy Two: SDK doesn't assume the URL has been encoded or not. It will just escape the special characters.
+	 *
+	 * This is what V10 Blob Go SDK does. It accepts a URL type in Go, and call url.EscapedPath() to escape the special chars unescaped.
+	 * - When customer URL string is "http://account.blob.core.windows.net/con/b:",
+	 *   SDK will escape ":" like "http://account.blob.core.windows.net/con/b%3A" and send to server. A blob named "b:" will be created.
+	 * - When customer URL string is "http://account.blob.core.windows.net/con/b%3A",
+	 *   There is no special characters, so send "http://account.blob.core.windows.net/con/b%3A" to server. A blob named "b:" will be created.
+	 * - When customer URL string is "http://account.blob.core.windows.net/con/b%253A",
+	 *   There is no special characters, so send "http://account.blob.core.windows.net/con/b%253A" to server. A blob named "b%3A" will be created.
+	 *
+	 * This strategy gives us flexibility to create with any special characters. But "%" will be treated as a special characters, if the URL string
+	 * is not encoded, there shouldn't a "%" in the URL string, otherwise the URL is not a valid URL.
+	 * If customer needs to create a blob with "%" in it's blob name, use "%25" instead of "%". Just like above 3rd sample.
+	 * And following URL strings are invalid:
+	 * - "http://account.blob.core.windows.net/con/b%"
+	 * - "http://account.blob.core.windows.net/con/b%2"
+	 * - "http://account.blob.core.windows.net/con/b%G"
+	 *
+	 * Another special character is "?", use "%2F" to represent a blob name with "?" in a URL string.
+	 *
+	 * ### Strategy for containerName, blobName or other specific XXXName parameters in methods such as `containerClient.getBlobClient(blobName)`
+	 *
+	 * We will apply strategy one, and call encodeURIComponent for these parameters like blobName. Because what customers passes in is a plain name instead of a URL.
+	 *
+	 * @see https://learn.microsoft.com/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata
+	 * @see https://learn.microsoft.com/rest/api/storageservices/naming-and-referencing-shares--directories--files--and-metadata
+	 *
+	 * @param url -
+	 */
+	function escapeURLPath(url) {
+	    const urlParsed = new URL(url);
+	    let path = urlParsed.pathname;
+	    path = path || "/";
+	    path = escape(path);
+	    urlParsed.pathname = path;
+	    return urlParsed.toString();
+	}
+	function getProxyUriFromDevConnString(connectionString) {
+	    // Development Connection String
+	    // https://learn.microsoft.com/azure/storage/common/storage-configure-connection-string#connect-to-the-emulator-account-using-the-well-known-account-name-and-key
+	    let proxyUri = "";
+	    if (connectionString.search("DevelopmentStorageProxyUri=") !== -1) {
+	        // CONNECTION_STRING=UseDevelopmentStorage=true;DevelopmentStorageProxyUri=http://myProxyUri
+	        const matchCredentials = connectionString.split(";");
+	        for (const element of matchCredentials) {
+	            if (element.trim().startsWith("DevelopmentStorageProxyUri=")) {
+	                proxyUri = element.trim().match("DevelopmentStorageProxyUri=(.*)")[1];
+	            }
+	        }
+	    }
+	    return proxyUri;
+	}
+	function getValueInConnString(connectionString, argument) {
+	    const elements = connectionString.split(";");
+	    for (const element of elements) {
+	        if (element.trim().startsWith(argument)) {
+	            return element.trim().match(argument + "=(.*)")[1];
+	        }
+	    }
+	    return "";
+	}
+	/**
+	 * Extracts the parts of an Azure Storage account connection string.
+	 *
+	 * @param connectionString - Connection string.
+	 * @returns String key value pairs of the storage account's url and credentials.
+	 */
+	function extractConnectionStringParts(connectionString) {
+	    let proxyUri = "";
+	    if (connectionString.startsWith("UseDevelopmentStorage=true")) {
+	        // Development connection string
+	        proxyUri = getProxyUriFromDevConnString(connectionString);
+	        connectionString = constants_js_1.DevelopmentConnectionString;
+	    }
+	    // Matching BlobEndpoint in the Account connection string
+	    let blobEndpoint = getValueInConnString(connectionString, "BlobEndpoint");
+	    // Slicing off '/' at the end if exists
+	    // (The methods that use `extractConnectionStringParts` expect the url to not have `/` at the end)
+	    blobEndpoint = blobEndpoint.endsWith("/") ? blobEndpoint.slice(0, -1) : blobEndpoint;
+	    if (connectionString.search("DefaultEndpointsProtocol=") !== -1 &&
+	        connectionString.search("AccountKey=") !== -1) {
+	        // Account connection string
+	        let defaultEndpointsProtocol = "";
+	        let accountName = "";
+	        let accountKey = Buffer.from("accountKey", "base64");
+	        let endpointSuffix = "";
+	        // Get account name and key
+	        accountName = getValueInConnString(connectionString, "AccountName");
+	        accountKey = Buffer.from(getValueInConnString(connectionString, "AccountKey"), "base64");
+	        if (!blobEndpoint) {
+	            // BlobEndpoint is not present in the Account connection string
+	            // Can be obtained from `${defaultEndpointsProtocol}://${accountName}.blob.${endpointSuffix}`
+	            defaultEndpointsProtocol = getValueInConnString(connectionString, "DefaultEndpointsProtocol");
+	            const protocol = defaultEndpointsProtocol.toLowerCase();
+	            if (protocol !== "https" && protocol !== "http") {
+	                throw new Error("Invalid DefaultEndpointsProtocol in the provided Connection String. Expecting 'https' or 'http'");
+	            }
+	            endpointSuffix = getValueInConnString(connectionString, "EndpointSuffix");
+	            if (!endpointSuffix) {
+	                throw new Error("Invalid EndpointSuffix in the provided Connection String");
+	            }
+	            blobEndpoint = `${defaultEndpointsProtocol}://${accountName}.blob.${endpointSuffix}`;
+	        }
+	        if (!accountName) {
+	            throw new Error("Invalid AccountName in the provided Connection String");
+	        }
+	        else if (accountKey.length === 0) {
+	            throw new Error("Invalid AccountKey in the provided Connection String");
+	        }
+	        return {
+	            kind: "AccountConnString",
+	            url: blobEndpoint,
+	            accountName,
+	            accountKey,
+	            proxyUri,
+	        };
+	    }
+	    else {
+	        // SAS connection string
+	        let accountSas = getValueInConnString(connectionString, "SharedAccessSignature");
+	        let accountName = getValueInConnString(connectionString, "AccountName");
+	        // if accountName is empty, try to read it from BlobEndpoint
+	        if (!accountName) {
+	            accountName = getAccountNameFromUrl(blobEndpoint);
+	        }
+	        if (!blobEndpoint) {
+	            throw new Error("Invalid BlobEndpoint in the provided SAS Connection String");
+	        }
+	        else if (!accountSas) {
+	            throw new Error("Invalid SharedAccessSignature in the provided SAS Connection String");
+	        }
+	        // client constructors assume accountSas does *not* start with ?
+	        if (accountSas.startsWith("?")) {
+	            accountSas = accountSas.substring(1);
+	        }
+	        return { kind: "SASConnString", url: blobEndpoint, accountName, accountSas };
+	    }
+	}
+	/**
+	 * Internal escape method implemented Strategy Two mentioned in escapeURL() description.
+	 *
+	 * @param text -
+	 */
+	function escape(text) {
+	    return encodeURIComponent(text)
+	        .replace(/%2F/g, "/") // Don't escape for "/"
+	        .replace(/'/g, "%27") // Escape for "'"
+	        .replace(/\+/g, "%20")
+	        .replace(/%25/g, "%"); // Revert encoded "%"
+	}
+	/**
+	 * Append a string to URL path. Will remove duplicated "/" in front of the string
+	 * when URL path ends with a "/".
+	 *
+	 * @param url - Source URL string
+	 * @param name - String to be appended to URL
+	 * @returns An updated URL string
+	 */
+	function appendToURLPath(url, name) {
+	    const urlParsed = new URL(url);
+	    let path = urlParsed.pathname;
+	    path = path ? (path.endsWith("/") ? `${path}${name}` : `${path}/${name}`) : name;
+	    urlParsed.pathname = path;
+	    return urlParsed.toString();
+	}
+	/**
+	 * Set URL parameter name and value. If name exists in URL parameters, old value
+	 * will be replaced by name key. If not provide value, the parameter will be deleted.
+	 *
+	 * @param url - Source URL string
+	 * @param name - Parameter name
+	 * @param value - Parameter value
+	 * @returns An updated URL string
+	 */
+	function setURLParameter(url, name, value) {
+	    const urlParsed = new URL(url);
+	    const encodedName = encodeURIComponent(name);
+	    const encodedValue = value ? encodeURIComponent(value) : undefined;
+	    // mutating searchParams will change the encoding, so we have to do this ourselves
+	    const searchString = urlParsed.search === "" ? "?" : urlParsed.search;
+	    const searchPieces = [];
+	    for (const pair of searchString.slice(1).split("&")) {
+	        if (pair) {
+	            const [key] = pair.split("=", 2);
+	            if (key !== encodedName) {
+	                searchPieces.push(pair);
+	            }
+	        }
+	    }
+	    if (encodedValue) {
+	        searchPieces.push(`${encodedName}=${encodedValue}`);
+	    }
+	    urlParsed.search = searchPieces.length ? `?${searchPieces.join("&")}` : "";
+	    return urlParsed.toString();
+	}
+	/**
+	 * Get URL parameter by name.
+	 *
+	 * @param url -
+	 * @param name -
+	 */
+	function getURLParameter(url, name) {
+	    const urlParsed = new URL(url);
+	    return urlParsed.searchParams.get(name) ?? undefined;
+	}
+	/**
+	 * Set URL host.
+	 *
+	 * @param url - Source URL string
+	 * @param host - New host string
+	 * @returns An updated URL string
+	 */
+	function setURLHost(url, host) {
+	    const urlParsed = new URL(url);
+	    urlParsed.hostname = host;
+	    return urlParsed.toString();
+	}
+	/**
+	 * Get URL path from an URL string.
+	 *
+	 * @param url - Source URL string
+	 */
+	function getURLPath(url) {
+	    try {
+	        const urlParsed = new URL(url);
+	        return urlParsed.pathname;
+	    }
+	    catch (e) {
+	        return undefined;
+	    }
+	}
+	/**
+	 * Get URL scheme from an URL string.
+	 *
+	 * @param url - Source URL string
+	 */
+	function getURLScheme(url) {
+	    try {
+	        const urlParsed = new URL(url);
+	        return urlParsed.protocol.endsWith(":") ? urlParsed.protocol.slice(0, -1) : urlParsed.protocol;
+	    }
+	    catch (e) {
+	        return undefined;
+	    }
+	}
+	/**
+	 * Get URL path and query from an URL string.
+	 *
+	 * @param url - Source URL string
+	 */
+	function getURLPathAndQuery(url) {
+	    const urlParsed = new URL(url);
+	    const pathString = urlParsed.pathname;
+	    if (!pathString) {
+	        throw new RangeError("Invalid url without valid path.");
+	    }
+	    let queryString = urlParsed.search || "";
+	    queryString = queryString.trim();
+	    if (queryString !== "") {
+	        queryString = queryString.startsWith("?") ? queryString : `?${queryString}`; // Ensure query string start with '?'
+	    }
+	    return `${pathString}${queryString}`;
+	}
+	/**
+	 * Get URL query key value pairs from an URL string.
+	 *
+	 * @param url -
+	 */
+	function getURLQueries(url) {
+	    let queryString = new URL(url).search;
+	    if (!queryString) {
+	        return {};
+	    }
+	    queryString = queryString.trim();
+	    queryString = queryString.startsWith("?") ? queryString.substring(1) : queryString;
+	    let querySubStrings = queryString.split("&");
+	    querySubStrings = querySubStrings.filter((value) => {
+	        const indexOfEqual = value.indexOf("=");
+	        const lastIndexOfEqual = value.lastIndexOf("=");
+	        return (indexOfEqual > 0 && indexOfEqual === lastIndexOfEqual && lastIndexOfEqual < value.length - 1);
+	    });
+	    const queries = {};
+	    for (const querySubString of querySubStrings) {
+	        const splitResults = querySubString.split("=");
+	        const key = splitResults[0];
+	        const value = splitResults[1];
+	        queries[key] = value;
+	    }
+	    return queries;
+	}
+	/**
+	 * Append a string to URL query.
+	 *
+	 * @param url - Source URL string.
+	 * @param queryParts - String to be appended to the URL query.
+	 * @returns An updated URL string.
+	 */
+	function appendToURLQuery(url, queryParts) {
+	    const urlParsed = new URL(url);
+	    let query = urlParsed.search;
+	    if (query) {
+	        query += "&" + queryParts;
+	    }
+	    else {
+	        query = queryParts;
+	    }
+	    urlParsed.search = query;
+	    return urlParsed.toString();
+	}
+	/**
+	 * Rounds a date off to seconds.
+	 *
+	 * @param date -
+	 * @param withMilliseconds - If true, YYYY-MM-DDThh:mm:ss.fffffffZ will be returned;
+	 *                                          If false, YYYY-MM-DDThh:mm:ssZ will be returned.
+	 * @returns Date string in ISO8061 format, with or without 7 milliseconds component
+	 */
+	function truncatedISO8061Date(date, withMilliseconds = true) {
+	    // Date.toISOString() will return like "2018-10-29T06:34:36.139Z"
+	    const dateString = date.toISOString();
+	    return withMilliseconds
+	        ? dateString.substring(0, dateString.length - 1) + "0000" + "Z"
+	        : dateString.substring(0, dateString.length - 5) + "Z";
+	}
+	/**
+	 * Base64 encode.
+	 *
+	 * @param content -
+	 */
+	function base64encode(content) {
+	    return !core_util_1.isNodeLike ? btoa(content) : Buffer.from(content).toString("base64");
+	}
+	/**
+	 * Base64 decode.
+	 *
+	 * @param encodedString -
+	 */
+	function base64decode(encodedString) {
+	    return !core_util_1.isNodeLike ? atob(encodedString) : Buffer.from(encodedString, "base64").toString();
+	}
+	/**
+	 * Generate a 64 bytes base64 block ID string.
+	 *
+	 * @param blockIndex -
+	 */
+	function generateBlockID(blockIDPrefix, blockIndex) {
+	    // To generate a 64 bytes base64 string, source string should be 48
+	    const maxSourceStringLength = 48;
+	    // A blob can have a maximum of 100,000 uncommitted blocks at any given time
+	    const maxBlockIndexLength = 6;
+	    const maxAllowedBlockIDPrefixLength = maxSourceStringLength - maxBlockIndexLength;
+	    if (blockIDPrefix.length > maxAllowedBlockIDPrefixLength) {
+	        blockIDPrefix = blockIDPrefix.slice(0, maxAllowedBlockIDPrefixLength);
+	    }
+	    const res = blockIDPrefix +
+	        padStart(blockIndex.toString(), maxSourceStringLength - blockIDPrefix.length, "0");
+	    return base64encode(res);
+	}
+	/**
+	 * Delay specified time interval.
+	 *
+	 * @param timeInMs -
+	 * @param aborter -
+	 * @param abortError -
+	 */
+	async function delay(timeInMs, aborter, abortError) {
+	    return new Promise((resolve, reject) => {
+	        /* eslint-disable-next-line prefer-const */
+	        let timeout;
+	        const abortHandler = () => {
+	            if (timeout !== undefined) {
+	                clearTimeout(timeout);
+	            }
+	            reject(abortError);
+	        };
+	        const resolveHandler = () => {
+	            if (aborter !== undefined) {
+	                aborter.removeEventListener("abort", abortHandler);
+	            }
+	            resolve();
+	        };
+	        timeout = setTimeout(resolveHandler, timeInMs);
+	        if (aborter !== undefined) {
+	            aborter.addEventListener("abort", abortHandler);
+	        }
+	    });
+	}
+	/**
+	 * String.prototype.padStart()
+	 *
+	 * @param currentString -
+	 * @param targetLength -
+	 * @param padString -
+	 */
+	function padStart(currentString, targetLength, padString = " ") {
+	    // @ts-expect-error: TS doesn't know this code needs to run downlevel sometimes
+	    if (String.prototype.padStart) {
+	        return currentString.padStart(targetLength, padString);
+	    }
+	    padString = padString || " ";
+	    if (currentString.length > targetLength) {
+	        return currentString;
+	    }
+	    else {
+	        targetLength = targetLength - currentString.length;
+	        if (targetLength > padString.length) {
+	            padString += padString.repeat(targetLength / padString.length);
+	        }
+	        return padString.slice(0, targetLength) + currentString;
+	    }
+	}
+	function sanitizeURL(url) {
+	    let safeURL = url;
+	    if (getURLParameter(safeURL, constants_js_1.URLConstants.Parameters.SIGNATURE)) {
+	        safeURL = setURLParameter(safeURL, constants_js_1.URLConstants.Parameters.SIGNATURE, "*****");
+	    }
+	    return safeURL;
+	}
+	function sanitizeHeaders(originalHeader) {
+	    const headers = (0, core_rest_pipeline_1.createHttpHeaders)();
+	    for (const [name, value] of originalHeader) {
+	        if (name.toLowerCase() === constants_js_1.HeaderConstants.AUTHORIZATION.toLowerCase()) {
+	            headers.set(name, "*****");
+	        }
+	        else if (name.toLowerCase() === constants_js_1.HeaderConstants.X_MS_COPY_SOURCE) {
+	            headers.set(name, sanitizeURL(value));
+	        }
+	        else {
+	            headers.set(name, value);
+	        }
+	    }
+	    return headers;
+	}
+	/**
+	 * If two strings are equal when compared case insensitive.
+	 *
+	 * @param str1 -
+	 * @param str2 -
+	 */
+	function iEqual(str1, str2) {
+	    return str1.toLocaleLowerCase() === str2.toLocaleLowerCase();
+	}
+	/**
+	 * Extracts account name from the url
+	 * @param url - url to extract the account name from
+	 * @returns with the account name
+	 */
+	function getAccountNameFromUrl(url) {
+	    const parsedUrl = new URL(url);
+	    let accountName;
+	    try {
+	        if (parsedUrl.hostname.split(".")[1] === "blob") {
+	            // `${defaultEndpointsProtocol}://${accountName}.blob.${endpointSuffix}`;
+	            accountName = parsedUrl.hostname.split(".")[0];
+	        }
+	        else if (isIpEndpointStyle(parsedUrl)) {
+	            // IPv4/IPv6 address hosts... Example - http://192.0.0.10:10001/devstoreaccount1/
+	            // Single word domain without a [dot] in the endpoint... Example - http://localhost:10001/devstoreaccount1/
+	            // .getPath() -> /devstoreaccount1/
+	            accountName = parsedUrl.pathname.split("/")[1];
+	        }
+	        else {
+	            // Custom domain case: "https://customdomain.com/containername/blob".
+	            accountName = "";
+	        }
+	        return accountName;
+	    }
+	    catch (error) {
+	        throw new Error("Unable to extract accountName with provided information.");
+	    }
+	}
+	function isIpEndpointStyle(parsedUrl) {
+	    const host = parsedUrl.host;
+	    // Case 1: Ipv6, use a broad regex to find out candidates whose host contains two ':'.
+	    // Case 2: localhost(:port) or host.docker.internal, use broad regex to match port part.
+	    // Case 3: Ipv4, use broad regex which just check if host contains Ipv4.
+	    // For valid host please refer to https://man7.org/linux/man-pages/man7/hostname.7.html.
+	    return (/^.*:.*:.*$|^(localhost|host.docker.internal)(:[0-9]+)?$|^(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])(\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])){3}(:[0-9]+)?$/.test(host) ||
+	        (Boolean(parsedUrl.port) && constants_js_1.PathStylePorts.includes(parsedUrl.port)));
+	}
+	/**
+	 * Convert Tags to encoded string.
+	 *
+	 * @param tags -
+	 */
+	function toBlobTagsString(tags) {
+	    if (tags === undefined) {
+	        return undefined;
+	    }
+	    const tagPairs = [];
+	    for (const key in tags) {
+	        if (Object.prototype.hasOwnProperty.call(tags, key)) {
+	            const value = tags[key];
+	            tagPairs.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`);
+	        }
+	    }
+	    return tagPairs.join("&");
+	}
+	/**
+	 * Convert Tags type to BlobTags.
+	 *
+	 * @param tags -
+	 */
+	function toBlobTags(tags) {
+	    if (tags === undefined) {
+	        return undefined;
+	    }
+	    const res = {
+	        blobTagSet: [],
+	    };
+	    for (const key in tags) {
+	        if (Object.prototype.hasOwnProperty.call(tags, key)) {
+	            const value = tags[key];
+	            res.blobTagSet.push({
+	                key,
+	                value,
+	            });
+	        }
+	    }
+	    return res;
+	}
+	/**
+	 * Covert BlobTags to Tags type.
+	 *
+	 * @param tags -
+	 */
+	function toTags(tags) {
+	    if (tags === undefined) {
+	        return undefined;
+	    }
+	    const res = {};
+	    for (const blobTag of tags.blobTagSet) {
+	        res[blobTag.key] = blobTag.value;
+	    }
+	    return res;
+	}
+	/**
+	 * Convert BlobQueryTextConfiguration to QuerySerialization type.
+	 *
+	 * @param textConfiguration -
+	 */
+	function toQuerySerialization(textConfiguration) {
+	    if (textConfiguration === undefined) {
+	        return undefined;
+	    }
+	    switch (textConfiguration.kind) {
+	        case "csv":
+	            return {
+	                format: {
+	                    type: "delimited",
+	                    delimitedTextConfiguration: {
+	                        columnSeparator: textConfiguration.columnSeparator || ",",
+	                        fieldQuote: textConfiguration.fieldQuote || "",
+	                        recordSeparator: textConfiguration.recordSeparator,
+	                        escapeChar: textConfiguration.escapeCharacter || "",
+	                        headersPresent: textConfiguration.hasHeaders || false,
+	                    },
+	                },
+	            };
+	        case "json":
+	            return {
+	                format: {
+	                    type: "json",
+	                    jsonTextConfiguration: {
+	                        recordSeparator: textConfiguration.recordSeparator,
+	                    },
+	                },
+	            };
+	        case "arrow":
+	            return {
+	                format: {
+	                    type: "arrow",
+	                    arrowConfiguration: {
+	                        schema: textConfiguration.schema,
+	                    },
+	                },
+	            };
+	        case "parquet":
+	            return {
+	                format: {
+	                    type: "parquet",
+	                },
+	            };
+	        default:
+	            throw Error("Invalid BlobQueryTextConfiguration.");
+	    }
+	}
+	function parseObjectReplicationRecord(objectReplicationRecord) {
+	    if (!objectReplicationRecord) {
+	        return undefined;
+	    }
+	    if ("policy-id" in objectReplicationRecord) {
+	        // If the dictionary contains a key with policy id, we are not required to do any parsing since
+	        // the policy id should already be stored in the ObjectReplicationDestinationPolicyId.
+	        return undefined;
+	    }
+	    const orProperties = [];
+	    for (const key in objectReplicationRecord) {
+	        const ids = key.split("_");
+	        const policyPrefix = "or-";
+	        if (ids[0].startsWith(policyPrefix)) {
+	            ids[0] = ids[0].substring(policyPrefix.length);
+	        }
+	        const rule = {
+	            ruleId: ids[1],
+	            replicationStatus: objectReplicationRecord[key],
+	        };
+	        const policyIndex = orProperties.findIndex((policy) => policy.policyId === ids[0]);
+	        if (policyIndex > -1) {
+	            orProperties[policyIndex].rules.push(rule);
+	        }
+	        else {
+	            orProperties.push({
+	                policyId: ids[0],
+	                rules: [rule],
+	            });
+	        }
+	    }
+	    return orProperties;
+	}
+	/**
+	 * Attach a TokenCredential to an object.
+	 *
+	 * @param thing -
+	 * @param credential -
+	 */
+	function attachCredential(thing, credential) {
+	    thing.credential = credential;
+	    return thing;
+	}
+	function httpAuthorizationToString(httpAuthorization) {
+	    return httpAuthorization ? httpAuthorization.scheme + " " + httpAuthorization.value : undefined;
+	}
+	function BlobNameToString(name) {
+	    if (name.encoded) {
+	        return decodeURIComponent(name.content);
+	    }
+	    else {
+	        return name.content;
+	    }
+	}
+	function ConvertInternalResponseOfListBlobFlat(internalResponse) {
+	    return {
+	        ...internalResponse,
+	        segment: {
+	            blobItems: internalResponse.segment.blobItems.map((blobItemInteral) => {
+	                const blobItem = {
+	                    ...blobItemInteral,
+	                    name: BlobNameToString(blobItemInteral.name),
+	                };
+	                return blobItem;
+	            }),
+	        },
+	    };
+	}
+	function ConvertInternalResponseOfListBlobHierarchy(internalResponse) {
+	    return {
+	        ...internalResponse,
+	        segment: {
+	            blobPrefixes: internalResponse.segment.blobPrefixes?.map((blobPrefixInternal) => {
+	                const blobPrefix = {
+	                    ...blobPrefixInternal,
+	                    name: BlobNameToString(blobPrefixInternal.name),
+	                };
+	                return blobPrefix;
+	            }),
+	            blobItems: internalResponse.segment.blobItems.map((blobItemInteral) => {
+	                const blobItem = {
+	                    ...blobItemInteral,
+	                    name: BlobNameToString(blobItemInteral.name),
+	                };
+	                return blobItem;
+	            }),
+	        },
+	    };
+	}
+	function* ExtractPageRangeInfoItems(getPageRangesSegment) {
+	    let pageRange = [];
+	    let clearRange = [];
+	    if (getPageRangesSegment.pageRange)
+	        pageRange = getPageRangesSegment.pageRange;
+	    if (getPageRangesSegment.clearRange)
+	        clearRange = getPageRangesSegment.clearRange;
+	    let pageRangeIndex = 0;
+	    let clearRangeIndex = 0;
+	    while (pageRangeIndex < pageRange.length && clearRangeIndex < clearRange.length) {
+	        if (pageRange[pageRangeIndex].start < clearRange[clearRangeIndex].start) {
+	            yield {
+	                start: pageRange[pageRangeIndex].start,
+	                end: pageRange[pageRangeIndex].end,
+	                isClear: false,
+	            };
+	            ++pageRangeIndex;
+	        }
+	        else {
+	            yield {
+	                start: clearRange[clearRangeIndex].start,
+	                end: clearRange[clearRangeIndex].end,
+	                isClear: true,
+	            };
+	            ++clearRangeIndex;
+	        }
+	    }
+	    for (; pageRangeIndex < pageRange.length; ++pageRangeIndex) {
+	        yield {
+	            start: pageRange[pageRangeIndex].start,
+	            end: pageRange[pageRangeIndex].end,
+	            isClear: false,
+	        };
+	    }
+	    for (; clearRangeIndex < clearRange.length; ++clearRangeIndex) {
+	        yield {
+	            start: clearRange[clearRangeIndex].start,
+	            end: clearRange[clearRangeIndex].end,
+	            isClear: true,
+	        };
+	    }
+	}
+	/**
+	 * Escape the blobName but keep path separator ('/').
+	 */
+	function EscapePath(blobName) {
+	    const split = blobName.split("/");
+	    for (let i = 0; i < split.length; i++) {
+	        split[i] = encodeURIComponent(split[i]);
+	    }
+	    return split.join("/");
+	}
+	/**
+	 * A typesafe helper for ensuring that a given response object has
+	 * the original _response attached.
+	 * @param response - A response object from calling a client operation
+	 * @returns The same object, but with known _response property
+	 */
+	function assertResponse(response) {
+	    if (`_response` in response) {
+	        return response;
+	    }
+	    throw new TypeError(`Unexpected response object ${response}`);
+	}
+	
+	return utils_common$1;
+}
+
 var hasRequiredStorageClient;
 
 function requireStorageClient () {
@@ -63802,7 +62556,7 @@ function requireStorageClient () {
 	StorageClient.StorageClient = void 0;
 	const StorageContextClient_js_1 = requireStorageContextClient();
 	const Pipeline_js_1 = requirePipeline();
-	const utils_common_js_1 = requireUtils_common$2();
+	const utils_common_js_1 = requireUtils_common$1();
 	/**
 	 * A StorageClient represents a based URL class for {@link BlobServiceClient}, {@link ContainerClient}
 	 * and etc.
@@ -63866,7 +62620,7 @@ function requireTracing () {
 	Object.defineProperty(tracing, "__esModule", { value: true });
 	tracing.tracingClient = void 0;
 	const core_tracing_1 = /*@__PURE__*/ requireCommonjs$a();
-	const constants_js_1 = requireConstants$2();
+	const constants_js_1 = requireConstants$1();
 	/**
 	 * Creates a span using the global tracer.
 	 * @internal
@@ -64320,62 +63074,6 @@ function requireContainerSASPermissions () {
 	return ContainerSASPermissions;
 }
 
-var UserDelegationKeyCredential = {};
-
-var hasRequiredUserDelegationKeyCredential;
-
-function requireUserDelegationKeyCredential () {
-	if (hasRequiredUserDelegationKeyCredential) return UserDelegationKeyCredential;
-	hasRequiredUserDelegationKeyCredential = 1;
-	// Copyright (c) Microsoft Corporation.
-	// Licensed under the MIT License.
-	Object.defineProperty(UserDelegationKeyCredential, "__esModule", { value: true });
-	UserDelegationKeyCredential.UserDelegationKeyCredential = void 0;
-	const node_crypto_1 = __require$5();
-	/**
-	 * ONLY AVAILABLE IN NODE.JS RUNTIME.
-	 *
-	 * UserDelegationKeyCredential is only used for generation of user delegation SAS.
-	 * @see https://learn.microsoft.com/rest/api/storageservices/create-user-delegation-sas
-	 */
-	let UserDelegationKeyCredential$1 = class UserDelegationKeyCredential {
-	    /**
-	     * Azure Storage account name; readonly.
-	     */
-	    accountName;
-	    /**
-	     * Azure Storage user delegation key; readonly.
-	     */
-	    userDelegationKey;
-	    /**
-	     * Key value in Buffer type.
-	     */
-	    key;
-	    /**
-	     * Creates an instance of UserDelegationKeyCredential.
-	     * @param accountName -
-	     * @param userDelegationKey -
-	     */
-	    constructor(accountName, userDelegationKey) {
-	        this.accountName = accountName;
-	        this.userDelegationKey = userDelegationKey;
-	        this.key = Buffer.from(userDelegationKey.value, "base64");
-	    }
-	    /**
-	     * Generates a hash signature for an HTTP request or for a SAS.
-	     *
-	     * @param stringToSign -
-	     */
-	    computeHMACSHA256(stringToSign) {
-	        // console.log(`stringToSign: ${JSON.stringify(stringToSign)}`);
-	        return (0, node_crypto_1.createHmac)("sha256", this.key).update(stringToSign, "utf8").digest("base64");
-	    }
-	};
-	UserDelegationKeyCredential.UserDelegationKeyCredential = UserDelegationKeyCredential$1;
-	
-	return UserDelegationKeyCredential;
-}
-
 var SasIPRange = {};
 
 var hasRequiredSasIPRange;
@@ -64413,7 +63111,7 @@ function requireSASQueryParameters () {
 	Object.defineProperty(SASQueryParameters, "__esModule", { value: true });
 	SASQueryParameters.SASQueryParameters = SASQueryParameters.SASProtocol = void 0;
 	const SasIPRange_js_1 = requireSasIPRange();
-	const utils_common_js_1 = requireUtils_common$2();
+	const utils_common_js_1 = requireUtils_common$1();
 	/**
 	 * Protocols for generated SAS.
 	 */
@@ -64476,6 +63174,12 @@ function requireSASQueryParameters () {
 	     * @see https://learn.microsoft.com/rest/api/storageservices/establishing-a-stored-access-policy
 	     */
 	    identifier;
+	    /**
+	     * Optional. Beginning in version 2025-07-05, this value specifies the Entra ID of the user would is authorized to
+	     * use the resulting SAS URL.  The resulting SAS URL must be used in conjunction with an Entra ID token that has been
+	     * issued to the user specified in this value.
+	     */
+	    delegatedUserObjectId;
 	    /**
 	     * Optional. Encryption scope to use when sending requests authorized with this SAS URI.
 	     */
@@ -64569,7 +63273,7 @@ function requireSASQueryParameters () {
 	        }
 	        return undefined;
 	    }
-	    constructor(version, signature, permissionsOrOptions, services, resourceTypes, protocol, startsOn, expiresOn, ipRange, identifier, resource, cacheControl, contentDisposition, contentEncoding, contentLanguage, contentType, userDelegationKey, preauthorizedAgentObjectId, correlationId, encryptionScope) {
+	    constructor(version, signature, permissionsOrOptions, services, resourceTypes, protocol, startsOn, expiresOn, ipRange, identifier, resource, cacheControl, contentDisposition, contentEncoding, contentLanguage, contentType, userDelegationKey, preauthorizedAgentObjectId, correlationId, encryptionScope, delegatedUserObjectId) {
 	        this.version = version;
 	        this.signature = signature;
 	        if (permissionsOrOptions !== undefined && typeof permissionsOrOptions !== "string") {
@@ -64582,6 +63286,7 @@ function requireSASQueryParameters () {
 	            this.expiresOn = permissionsOrOptions.expiresOn;
 	            this.ipRangeInner = permissionsOrOptions.ipRange;
 	            this.identifier = permissionsOrOptions.identifier;
+	            this.delegatedUserObjectId = permissionsOrOptions.delegatedUserObjectId;
 	            this.encryptionScope = permissionsOrOptions.encryptionScope;
 	            this.resource = permissionsOrOptions.resource;
 	            this.cacheControl = permissionsOrOptions.cacheControl;
@@ -64608,6 +63313,7 @@ function requireSASQueryParameters () {
 	            this.protocol = protocol;
 	            this.startsOn = startsOn;
 	            this.ipRangeInner = ipRange;
+	            this.delegatedUserObjectId = delegatedUserObjectId;
 	            this.encryptionScope = encryptionScope;
 	            this.identifier = identifier;
 	            this.resource = resource;
@@ -64659,6 +63365,7 @@ function requireSASQueryParameters () {
 	            "rsct",
 	            "saoid",
 	            "scid",
+	            "sduoid", // Signed key user delegation object ID
 	        ];
 	        const queries = [];
 	        for (const param of params) {
@@ -64738,6 +63445,9 @@ function requireSASQueryParameters () {
 	                case "scid":
 	                    this.tryAppendQueryParameter(queries, param, this.correlationId);
 	                    break;
+	                case "sduoid":
+	                    this.tryAppendQueryParameter(queries, param, this.delegatedUserObjectId);
+	                    break;
 	            }
 	        }
 	        return queries.join("&");
@@ -64777,23 +63487,23 @@ function requireBlobSASSignatureValues () {
 	// Licensed under the MIT License.
 	const BlobSASPermissions_js_1 = requireBlobSASPermissions();
 	const ContainerSASPermissions_js_1 = requireContainerSASPermissions();
-	const StorageSharedKeyCredential_js_1 = requireStorageSharedKeyCredential$1();
-	const UserDelegationKeyCredential_js_1 = requireUserDelegationKeyCredential();
+	const storage_common_1 = /*@__PURE__*/ requireCommonjs$3();
 	const SasIPRange_js_1 = requireSasIPRange();
 	const SASQueryParameters_js_1 = requireSASQueryParameters();
-	const constants_js_1 = requireConstants$2();
-	const utils_common_js_1 = requireUtils_common$2();
+	const constants_js_1 = requireConstants$1();
+	const utils_common_js_1 = requireUtils_common$1();
+	const storage_common_2 = /*@__PURE__*/ requireCommonjs$3();
 	function generateBlobSASQueryParameters(blobSASSignatureValues, sharedKeyCredentialOrUserDelegationKey, accountName) {
 	    return generateBlobSASQueryParametersInternal(blobSASSignatureValues, sharedKeyCredentialOrUserDelegationKey, accountName).sasQueryParameters;
 	}
 	function generateBlobSASQueryParametersInternal(blobSASSignatureValues, sharedKeyCredentialOrUserDelegationKey, accountName) {
 	    const version = blobSASSignatureValues.version ? blobSASSignatureValues.version : constants_js_1.SERVICE_VERSION;
-	    const sharedKeyCredential = sharedKeyCredentialOrUserDelegationKey instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential
+	    const sharedKeyCredential = sharedKeyCredentialOrUserDelegationKey instanceof storage_common_1.StorageSharedKeyCredential
 	        ? sharedKeyCredentialOrUserDelegationKey
 	        : undefined;
 	    let userDelegationKeyCredential;
 	    if (sharedKeyCredential === undefined && accountName !== undefined) {
-	        userDelegationKeyCredential = new UserDelegationKeyCredential_js_1.UserDelegationKeyCredential(accountName, sharedKeyCredentialOrUserDelegationKey);
+	        userDelegationKeyCredential = new storage_common_2.UserDelegationKeyCredential(accountName, sharedKeyCredentialOrUserDelegationKey);
 	    }
 	    if (sharedKeyCredential === undefined && userDelegationKeyCredential === undefined) {
 	        throw TypeError("Invalid sharedKeyCredential, userDelegationKey or accountName.");
@@ -65356,7 +64066,7 @@ function requireBlobSASSignatureValues () {
 	        undefined, // agentObjectId
 	        blobSASSignatureValues.correlationId,
 	        undefined, // SignedKeyDelegatedUserTenantId, will be added in a future release.
-	        undefined, // SignedDelegatedUserObjectId, will be added in future release.
+	        blobSASSignatureValues.delegatedUserObjectId,
 	        blobSASSignatureValues.ipRange ? (0, SasIPRange_js_1.ipRangeToString)(blobSASSignatureValues.ipRange) : "",
 	        blobSASSignatureValues.protocol ? blobSASSignatureValues.protocol : "",
 	        blobSASSignatureValues.version,
@@ -65371,7 +64081,7 @@ function requireBlobSASSignatureValues () {
 	    ].join("\n");
 	    const signature = userDelegationKeyCredential.computeHMACSHA256(stringToSign);
 	    return {
-	        sasQueryParameters: new SASQueryParameters_js_1.SASQueryParameters(blobSASSignatureValues.version, signature, verifiedPermissions, undefined, undefined, blobSASSignatureValues.protocol, blobSASSignatureValues.startsOn, blobSASSignatureValues.expiresOn, blobSASSignatureValues.ipRange, blobSASSignatureValues.identifier, resource, blobSASSignatureValues.cacheControl, blobSASSignatureValues.contentDisposition, blobSASSignatureValues.contentEncoding, blobSASSignatureValues.contentLanguage, blobSASSignatureValues.contentType, userDelegationKeyCredential.userDelegationKey, blobSASSignatureValues.preauthorizedAgentObjectId, blobSASSignatureValues.correlationId, blobSASSignatureValues.encryptionScope),
+	        sasQueryParameters: new SASQueryParameters_js_1.SASQueryParameters(blobSASSignatureValues.version, signature, verifiedPermissions, undefined, undefined, blobSASSignatureValues.protocol, blobSASSignatureValues.startsOn, blobSASSignatureValues.expiresOn, blobSASSignatureValues.ipRange, blobSASSignatureValues.identifier, resource, blobSASSignatureValues.cacheControl, blobSASSignatureValues.contentDisposition, blobSASSignatureValues.contentEncoding, blobSASSignatureValues.contentLanguage, blobSASSignatureValues.contentType, userDelegationKeyCredential.userDelegationKey, blobSASSignatureValues.preauthorizedAgentObjectId, blobSASSignatureValues.correlationId, blobSASSignatureValues.encryptionScope, blobSASSignatureValues.delegatedUserObjectId),
 	        stringToSign: stringToSign,
 	    };
 	}
@@ -65454,9 +64164,9 @@ function requireBlobLeaseClient () {
 	Object.defineProperty(BlobLeaseClient, "__esModule", { value: true });
 	BlobLeaseClient.BlobLeaseClient = void 0;
 	const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
-	const constants_js_1 = requireConstants$2();
+	const constants_js_1 = requireConstants$1();
 	const tracing_js_1 = requireTracing();
-	const utils_common_js_1 = requireUtils_common$2();
+	const utils_common_js_1 = requireUtils_common$1();
 	/**
 	 * A client that manages leases for a {@link ContainerClient} or a {@link BlobClient}.
 	 */
@@ -65662,6 +64372,65 @@ var BlobDownloadResponse = {};
 
 var RetriableReadableStream = {};
 
+var commonjs$1 = {};
+
+var AbortError$1 = {};
+
+var hasRequiredAbortError;
+
+function requireAbortError () {
+	if (hasRequiredAbortError) return AbortError$1;
+	hasRequiredAbortError = 1;
+	// Copyright (c) Microsoft Corporation.
+	// Licensed under the MIT license.
+	Object.defineProperty(AbortError$1, "__esModule", { value: true });
+	AbortError$1.AbortError = void 0;
+	/**
+	 * This error is thrown when an asynchronous operation has been aborted.
+	 * Check for this error by testing the `name` that the name property of the
+	 * error matches `"AbortError"`.
+	 *
+	 * @example
+	 * ```ts
+	 * const controller = new AbortController();
+	 * controller.abort();
+	 * try {
+	 *   doAsyncWork(controller.signal)
+	 * } catch (e) {
+	 *   if (e.name === 'AbortError') {
+	 *     // handle abort error here.
+	 *   }
+	 * }
+	 * ```
+	 */
+	class AbortError extends Error {
+	    constructor(message) {
+	        super(message);
+	        this.name = "AbortError";
+	    }
+	}
+	AbortError$1.AbortError = AbortError;
+	
+	return AbortError$1;
+}
+
+var hasRequiredCommonjs$2;
+
+function requireCommonjs$2 () {
+	if (hasRequiredCommonjs$2) return commonjs$1;
+	hasRequiredCommonjs$2 = 1;
+	(function (exports$1) {
+		// Copyright (c) Microsoft Corporation.
+		// Licensed under the MIT license.
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.AbortError = void 0;
+		var AbortError_js_1 = requireAbortError();
+		Object.defineProperty(exports$1, "AbortError", { enumerable: true, get: function () { return AbortError_js_1.AbortError; } });
+		
+	} (commonjs$1));
+	return commonjs$1;
+}
+
 var hasRequiredRetriableReadableStream;
 
 function requireRetriableReadableStream () {
@@ -65671,7 +64440,7 @@ function requireRetriableReadableStream () {
 	// Licensed under the MIT License.
 	Object.defineProperty(RetriableReadableStream, "__esModule", { value: true });
 	RetriableReadableStream.RetriableReadableStream = void 0;
-	const abort_controller_1 = /*@__PURE__*/ requireCommonjs$4();
+	const abort_controller_1 = /*@__PURE__*/ requireCommonjs$2();
 	const node_stream_1 = __require$a();
 	/**
 	 * ONLY AVAILABLE IN NODE.JS RUNTIME.
@@ -66825,7 +65594,7 @@ function requireAvroReadableFromStream () {
 	Object.defineProperty(AvroReadableFromStream, "__esModule", { value: true });
 	AvroReadableFromStream.AvroReadableFromStream = void 0;
 	const AvroReadable_js_1 = requireAvroReadable();
-	const abort_controller_1 = /*@__PURE__*/ requireCommonjs$4();
+	const abort_controller_1 = /*@__PURE__*/ requireCommonjs$2();
 	const buffer_1 = require$$7;
 	const ABORT_ERROR = new abort_controller_1.AbortError("Reading from the avro stream was aborted.");
 	let AvroReadableFromStream$1 = class AvroReadableFromStream extends AvroReadable_js_1.AvroReadable {
@@ -66917,17 +65686,17 @@ var hasRequiredInternalAvro;
 function requireInternalAvro () {
 	if (hasRequiredInternalAvro) return internalAvro;
 	hasRequiredInternalAvro = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.AvroReadableFromStream = exports.AvroReadable = exports.AvroReader = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.AvroReadableFromStream = exports$1.AvroReadable = exports$1.AvroReader = void 0;
 		var AvroReader_js_1 = requireAvroReader();
-		Object.defineProperty(exports, "AvroReader", { enumerable: true, get: function () { return AvroReader_js_1.AvroReader; } });
+		Object.defineProperty(exports$1, "AvroReader", { enumerable: true, get: function () { return AvroReader_js_1.AvroReader; } });
 		var AvroReadable_js_1 = requireAvroReadable();
-		Object.defineProperty(exports, "AvroReadable", { enumerable: true, get: function () { return AvroReadable_js_1.AvroReadable; } });
+		Object.defineProperty(exports$1, "AvroReadable", { enumerable: true, get: function () { return AvroReadable_js_1.AvroReadable; } });
 		var AvroReadableFromStream_js_1 = requireAvroReadableFromStream();
-		Object.defineProperty(exports, "AvroReadableFromStream", { enumerable: true, get: function () { return AvroReadableFromStream_js_1.AvroReadableFromStream; } });
+		Object.defineProperty(exports$1, "AvroReadableFromStream", { enumerable: true, get: function () { return AvroReadableFromStream_js_1.AvroReadableFromStream; } });
 		
 	} (internalAvro));
 	return internalAvro;
@@ -67454,7 +66223,7 @@ function requireModels () {
 	models.toAccessTier = toAccessTier;
 	models.ensureCpkIfSpecified = ensureCpkIfSpecified;
 	models.getBlobServiceAccountAudience = getBlobServiceAccountAudience;
-	const constants_js_1 = requireConstants$2();
+	const constants_js_1 = requireConstants$1();
 	/**
 	 * Represents the access tier on a blob.
 	 * For detailed information about block blob level tiering see {@link https://learn.microsoft.com/azure/storage/blobs/storage-blob-storage-tiers|Hot, cool and archive storage tiers.}
@@ -68944,13 +67713,13 @@ var hasRequiredLroEngine;
 function requireLroEngine () {
 	if (hasRequiredLroEngine) return lroEngine$1;
 	hasRequiredLroEngine = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT license.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.LroEngine = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.LroEngine = void 0;
 		var lroEngine_js_1 = requireLroEngine$1();
-		Object.defineProperty(exports, "LroEngine", { enumerable: true, get: function () { return lroEngine_js_1.LroEngine; } });
+		Object.defineProperty(exports$1, "LroEngine", { enumerable: true, get: function () { return lroEngine_js_1.LroEngine; } });
 		
 	} (lroEngine$1));
 	return lroEngine$1;
@@ -68975,14 +67744,14 @@ var hasRequiredCommonjs$1;
 function requireCommonjs$1 () {
 	if (hasRequiredCommonjs$1) return commonjs;
 	hasRequiredCommonjs$1 = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT license.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.createHttpPoller = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.createHttpPoller = void 0;
 		const tslib_1 = require$$0;
 		var poller_js_1 = requirePoller$1();
-		Object.defineProperty(exports, "createHttpPoller", { enumerable: true, get: function () { return poller_js_1.createHttpPoller; } });
+		Object.defineProperty(exports$1, "createHttpPoller", { enumerable: true, get: function () { return poller_js_1.createHttpPoller; } });
 		/**
 		 * This can be uncommented to expose the protocol-agnostic poller
 		 */
@@ -68995,9 +67764,9 @@ function requireCommonjs$1 () {
 		// } from "./poller/models";
 		// export { buildCreatePoller } from "./poller/poller";
 		/** legacy */
-		tslib_1.__exportStar(requireLroEngine(), exports);
-		tslib_1.__exportStar(requirePoller(), exports);
-		tslib_1.__exportStar(requirePollOperation(), exports);
+		tslib_1.__exportStar(requireLroEngine(), exports$1);
+		tslib_1.__exportStar(requirePoller(), exports$1);
+		tslib_1.__exportStar(requirePollOperation(), exports$1);
 		
 	} (commonjs));
 	return commonjs;
@@ -69345,7 +68114,7 @@ function requireUtils () {
 	const tslib_1 = require$$0;
 	const node_fs_1 = tslib_1.__importDefault(__require());
 	const node_util_1 = tslib_1.__importDefault(__require$9());
-	const constants_js_1 = requireConstants$2();
+	const constants_js_1 = requireConstants$1();
 	/**
 	 * Reads a readable stream into buffer. Fill the buffer from offset to end.
 	 *
@@ -69491,8 +68260,7 @@ function requireClients () {
 	const core_util_2 = /*@__PURE__*/ requireCommonjs$b();
 	const BlobDownloadResponse_js_1 = requireBlobDownloadResponse();
 	const BlobQueryResponse_js_1 = requireBlobQueryResponse();
-	const AnonymousCredential_js_1 = requireAnonymousCredential$1();
-	const StorageSharedKeyCredential_js_1 = requireStorageSharedKeyCredential$1();
+	const storage_common_1 = /*@__PURE__*/ requireCommonjs$3();
 	const models_js_1 = requireModels();
 	const PageBlobRangeResponse_js_1 = requirePageBlobRangeResponse();
 	const Pipeline_js_1 = requirePipeline();
@@ -69500,10 +68268,10 @@ function requireClients () {
 	const Range_js_1 = requireRange();
 	const StorageClient_js_1 = requireStorageClient();
 	const Batch_js_1 = requireBatch();
-	const storage_common_1 = /*@__PURE__*/ requireCommonjs$2();
-	const constants_js_1 = requireConstants$2();
+	const storage_common_2 = /*@__PURE__*/ requireCommonjs$3();
+	const constants_js_1 = requireConstants$1();
 	const tracing_js_1 = requireTracing();
-	const utils_common_js_1 = requireUtils_common$2();
+	const utils_common_js_1 = requireUtils_common$1();
 	const utils_js_1 = requireUtils();
 	const BlobSASSignatureValues_js_1 = requireBlobSASSignatureValues();
 	const BlobLeaseClient_js_1 = requireBlobLeaseClient();
@@ -69544,8 +68312,8 @@ function requireClients () {
 	            url = urlOrConnectionString;
 	            pipeline = credentialOrPipelineOrContainerName;
 	        }
-	        else if ((core_util_1.isNodeLike && credentialOrPipelineOrContainerName instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) ||
-	            credentialOrPipelineOrContainerName instanceof AnonymousCredential_js_1.AnonymousCredential ||
+	        else if ((core_util_1.isNodeLike && credentialOrPipelineOrContainerName instanceof storage_common_1.StorageSharedKeyCredential) ||
+	            credentialOrPipelineOrContainerName instanceof storage_common_1.AnonymousCredential ||
 	            (0, core_auth_1.isTokenCredential)(credentialOrPipelineOrContainerName)) {
 	            // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)
 	            url = urlOrConnectionString;
@@ -69560,7 +68328,7 @@ function requireClients () {
 	            if (blobNameOrOptions && typeof blobNameOrOptions !== "string") {
 	                options = blobNameOrOptions;
 	            }
-	            pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	            pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	        }
 	        else if (credentialOrPipelineOrContainerName &&
 	            typeof credentialOrPipelineOrContainerName === "string" &&
@@ -69572,7 +68340,7 @@ function requireClients () {
 	            const extractedCreds = (0, utils_common_js_1.extractConnectionStringParts)(urlOrConnectionString);
 	            if (extractedCreds.kind === "AccountConnString") {
 	                if (core_util_1.isNodeLike) {
-	                    const sharedKeyCredential = new StorageSharedKeyCredential_js_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
+	                    const sharedKeyCredential = new storage_common_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
 	                    url = (0, utils_common_js_1.appendToURLPath)((0, utils_common_js_1.appendToURLPath)(extractedCreds.url, encodeURIComponent(containerName)), encodeURIComponent(blobName));
 	                    if (!options.proxyOptions) {
 	                        options.proxyOptions = (0, core_rest_pipeline_1.getDefaultProxySettings)(extractedCreds.proxyUri);
@@ -69588,7 +68356,7 @@ function requireClients () {
 	                    (0, utils_common_js_1.appendToURLPath)((0, utils_common_js_1.appendToURLPath)(extractedCreds.url, encodeURIComponent(containerName)), encodeURIComponent(blobName)) +
 	                        "?" +
 	                        extractedCreds.accountSas;
-	                pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	                pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	            }
 	            else {
 	                throw new Error("Connection string must be either an Account connection string or a SAS connection string");
@@ -69731,7 +68499,7 @@ function requireClients () {
 	        options.conditions = options.conditions || {};
 	        (0, models_js_1.ensureCpkIfSpecified)(options.customerProvidedKey, this.isHttps);
 	        return tracing_js_1.tracingClient.withSpan("BlobClient-download", options, async (updatedOptions) => {
-	            const res = (0, utils_common_js_1.assertResponse)(await this.blobContext.download({
+	            const res = (0, utils_common_js_1.assertResponse)((await this.blobContext.download({
 	                abortSignal: options.abortSignal,
 	                leaseAccessConditions: options.conditions,
 	                modifiedAccessConditions: {
@@ -69747,7 +68515,7 @@ function requireClients () {
 	                snapshot: options.snapshot,
 	                cpkInfo: options.customerProvidedKey,
 	                tracingOptions: updatedOptions.tracingOptions,
-	            }));
+	            })));
 	            const wrappedRes = {
 	                ...res,
 	                _response: res._response, // _response is made non-enumerable
@@ -70028,6 +68796,7 @@ function requireClients () {
 	                    ...options.conditions,
 	                    ifTags: options.conditions?.tagConditions,
 	                },
+	                blobModifiedAccessConditions: options.conditions,
 	                tracingOptions: updatedOptions.tracingOptions,
 	                tags: (0, utils_common_js_1.toBlobTags)(tags),
 	            }));
@@ -70047,6 +68816,7 @@ function requireClients () {
 	                    ...options.conditions,
 	                    ifTags: options.conditions?.tagConditions,
 	                },
+	                blobModifiedAccessConditions: options.conditions,
 	                tracingOptions: updatedOptions.tracingOptions,
 	            }));
 	            const wrappedResponse = {
@@ -70485,7 +69255,7 @@ function requireClients () {
 	     */
 	    generateSasUrl(options) {
 	        return new Promise((resolve) => {
-	            if (!(this.credential instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential)) {
+	            if (!(this.credential instanceof storage_common_1.StorageSharedKeyCredential)) {
 	                throw new RangeError("Can only generate the SAS when the client is initialized with a shared key credential");
 	            }
 	            const sas = (0, BlobSASSignatureValues_js_1.generateBlobSASQueryParameters)({
@@ -70511,7 +69281,7 @@ function requireClients () {
 	     */
 	    /* eslint-disable-next-line @azure/azure-sdk/ts-naming-options*/
 	    generateSasStringToSign(options) {
-	        if (!(this.credential instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential)) {
+	        if (!(this.credential instanceof storage_common_1.StorageSharedKeyCredential)) {
 	            throw new RangeError("Can only generate the SAS when the client is initialized with a shared key credential");
 	        }
 	        return (0, BlobSASSignatureValues_js_1.generateBlobSASQueryParametersInternal)({
@@ -70646,8 +69416,8 @@ function requireClients () {
 	            url = urlOrConnectionString;
 	            pipeline = credentialOrPipelineOrContainerName;
 	        }
-	        else if ((core_util_1.isNodeLike && credentialOrPipelineOrContainerName instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) ||
-	            credentialOrPipelineOrContainerName instanceof AnonymousCredential_js_1.AnonymousCredential ||
+	        else if ((core_util_1.isNodeLike && credentialOrPipelineOrContainerName instanceof storage_common_1.StorageSharedKeyCredential) ||
+	            credentialOrPipelineOrContainerName instanceof storage_common_1.AnonymousCredential ||
 	            (0, core_auth_1.isTokenCredential)(credentialOrPipelineOrContainerName)) {
 	            // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)      url = urlOrConnectionString;
 	            url = urlOrConnectionString;
@@ -70659,7 +69429,7 @@ function requireClients () {
 	            // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)
 	            url = urlOrConnectionString;
 	            // The second parameter is undefined. Use anonymous credential.
-	            pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	            pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	        }
 	        else if (credentialOrPipelineOrContainerName &&
 	            typeof credentialOrPipelineOrContainerName === "string" &&
@@ -70671,7 +69441,7 @@ function requireClients () {
 	            const extractedCreds = (0, utils_common_js_1.extractConnectionStringParts)(urlOrConnectionString);
 	            if (extractedCreds.kind === "AccountConnString") {
 	                if (core_util_1.isNodeLike) {
-	                    const sharedKeyCredential = new StorageSharedKeyCredential_js_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
+	                    const sharedKeyCredential = new storage_common_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
 	                    url = (0, utils_common_js_1.appendToURLPath)((0, utils_common_js_1.appendToURLPath)(extractedCreds.url, encodeURIComponent(containerName)), encodeURIComponent(blobName));
 	                    if (!options.proxyOptions) {
 	                        options.proxyOptions = (0, core_rest_pipeline_1.getDefaultProxySettings)(extractedCreds.proxyUri);
@@ -70687,7 +69457,7 @@ function requireClients () {
 	                    (0, utils_common_js_1.appendToURLPath)((0, utils_common_js_1.appendToURLPath)(extractedCreds.url, encodeURIComponent(containerName)), encodeURIComponent(blobName)) +
 	                        "?" +
 	                        extractedCreds.accountSas;
-	                pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	                pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	            }
 	            else {
 	                throw new Error("Connection string must be either an Account connection string or a SAS connection string");
@@ -70948,8 +69718,8 @@ function requireClients () {
 	            url = urlOrConnectionString;
 	            pipeline = credentialOrPipelineOrContainerName;
 	        }
-	        else if ((core_util_1.isNodeLike && credentialOrPipelineOrContainerName instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) ||
-	            credentialOrPipelineOrContainerName instanceof AnonymousCredential_js_1.AnonymousCredential ||
+	        else if ((core_util_1.isNodeLike && credentialOrPipelineOrContainerName instanceof storage_common_1.StorageSharedKeyCredential) ||
+	            credentialOrPipelineOrContainerName instanceof storage_common_1.AnonymousCredential ||
 	            (0, core_auth_1.isTokenCredential)(credentialOrPipelineOrContainerName)) {
 	            // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)
 	            url = urlOrConnectionString;
@@ -70964,7 +69734,7 @@ function requireClients () {
 	            if (blobNameOrOptions && typeof blobNameOrOptions !== "string") {
 	                options = blobNameOrOptions;
 	            }
-	            pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	            pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	        }
 	        else if (credentialOrPipelineOrContainerName &&
 	            typeof credentialOrPipelineOrContainerName === "string" &&
@@ -70976,7 +69746,7 @@ function requireClients () {
 	            const extractedCreds = (0, utils_common_js_1.extractConnectionStringParts)(urlOrConnectionString);
 	            if (extractedCreds.kind === "AccountConnString") {
 	                if (core_util_1.isNodeLike) {
-	                    const sharedKeyCredential = new StorageSharedKeyCredential_js_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
+	                    const sharedKeyCredential = new storage_common_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
 	                    url = (0, utils_common_js_1.appendToURLPath)((0, utils_common_js_1.appendToURLPath)(extractedCreds.url, encodeURIComponent(containerName)), encodeURIComponent(blobName));
 	                    if (!options.proxyOptions) {
 	                        options.proxyOptions = (0, core_rest_pipeline_1.getDefaultProxySettings)(extractedCreds.proxyUri);
@@ -70992,7 +69762,7 @@ function requireClients () {
 	                    (0, utils_common_js_1.appendToURLPath)((0, utils_common_js_1.appendToURLPath)(extractedCreds.url, encodeURIComponent(containerName)), encodeURIComponent(blobName)) +
 	                        "?" +
 	                        extractedCreds.accountSas;
-	                pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	                pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	            }
 	            else {
 	                throw new Error("Connection string must be either an Account connection string or a SAS connection string");
@@ -71069,7 +69839,7 @@ function requireClients () {
 	            throw new Error("This operation currently is only supported in Node.js.");
 	        }
 	        return tracing_js_1.tracingClient.withSpan("BlockBlobClient-query", options, async (updatedOptions) => {
-	            const response = (0, utils_common_js_1.assertResponse)(await this._blobContext.query({
+	            const response = (0, utils_common_js_1.assertResponse)((await this._blobContext.query({
 	                abortSignal: options.abortSignal,
 	                queryRequest: {
 	                    queryType: "SQL",
@@ -71084,7 +69854,7 @@ function requireClients () {
 	                },
 	                cpkInfo: options.customerProvidedKey,
 	                tracingOptions: updatedOptions.tracingOptions,
-	            }));
+	            })));
 	            return new BlobQueryResponse_js_1.BlobQueryResponse(response, {
 	                abortSignal: options.abortSignal,
 	                onProgress: options.onProgress,
@@ -71539,7 +70309,7 @@ function requireClients () {
 	            const blockIDPrefix = (0, core_util_2.randomUUID)();
 	            let transferProgress = 0;
 	            const blockList = [];
-	            const scheduler = new storage_common_1.BufferScheduler(stream, bufferSize, maxConcurrency, async (body, length) => {
+	            const scheduler = new storage_common_2.BufferScheduler(stream, bufferSize, maxConcurrency, async (body, length) => {
 	                const blockID = (0, utils_common_js_1.generateBlockID)(blockIDPrefix, blockNum);
 	                blockList.push(blockID);
 	                blockNum++;
@@ -71591,8 +70361,8 @@ function requireClients () {
 	            url = urlOrConnectionString;
 	            pipeline = credentialOrPipelineOrContainerName;
 	        }
-	        else if ((core_util_1.isNodeLike && credentialOrPipelineOrContainerName instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) ||
-	            credentialOrPipelineOrContainerName instanceof AnonymousCredential_js_1.AnonymousCredential ||
+	        else if ((core_util_1.isNodeLike && credentialOrPipelineOrContainerName instanceof storage_common_1.StorageSharedKeyCredential) ||
+	            credentialOrPipelineOrContainerName instanceof storage_common_1.AnonymousCredential ||
 	            (0, core_auth_1.isTokenCredential)(credentialOrPipelineOrContainerName)) {
 	            // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)
 	            url = urlOrConnectionString;
@@ -71604,7 +70374,7 @@ function requireClients () {
 	            // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)
 	            // The second parameter is undefined. Use anonymous credential.
 	            url = urlOrConnectionString;
-	            pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	            pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	        }
 	        else if (credentialOrPipelineOrContainerName &&
 	            typeof credentialOrPipelineOrContainerName === "string" &&
@@ -71616,7 +70386,7 @@ function requireClients () {
 	            const extractedCreds = (0, utils_common_js_1.extractConnectionStringParts)(urlOrConnectionString);
 	            if (extractedCreds.kind === "AccountConnString") {
 	                if (core_util_1.isNodeLike) {
-	                    const sharedKeyCredential = new StorageSharedKeyCredential_js_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
+	                    const sharedKeyCredential = new storage_common_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
 	                    url = (0, utils_common_js_1.appendToURLPath)((0, utils_common_js_1.appendToURLPath)(extractedCreds.url, encodeURIComponent(containerName)), encodeURIComponent(blobName));
 	                    if (!options.proxyOptions) {
 	                        options.proxyOptions = (0, core_rest_pipeline_1.getDefaultProxySettings)(extractedCreds.proxyUri);
@@ -71632,7 +70402,7 @@ function requireClients () {
 	                    (0, utils_common_js_1.appendToURLPath)((0, utils_common_js_1.appendToURLPath)(extractedCreds.url, encodeURIComponent(containerName)), encodeURIComponent(blobName)) +
 	                        "?" +
 	                        extractedCreds.accountSas;
-	                pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	                pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	            }
 	            else {
 	                throw new Error("Connection string must be either an Account connection string or a SAS connection string");
@@ -72351,7 +71121,7 @@ function requireBatchUtils () {
 	BatchUtils.getBodyAsText = getBodyAsText;
 	BatchUtils.utf8ByteLength = utf8ByteLength;
 	const utils_js_1 = requireUtils();
-	const constants_js_1 = requireConstants$2();
+	const constants_js_1 = requireConstants$1();
 	async function getBodyAsText(batchResponse) {
 	    let buffer = Buffer.alloc(constants_js_1.BATCH_MAX_PAYLOAD_IN_BYTES);
 	    const responseLength = await (0, utils_js_1.streamToBuffer2)(batchResponse.readableStreamBody, buffer);
@@ -72377,7 +71147,7 @@ function requireBatchResponseParser () {
 	BatchResponseParser.BatchResponseParser = void 0;
 	const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
 	const core_http_compat_1 = /*@__PURE__*/ requireCommonjs$6();
-	const constants_js_1 = requireConstants$2();
+	const constants_js_1 = requireConstants$1();
 	const BatchUtils_js_1 = requireBatchUtils();
 	const log_js_1 = requireLog$1();
 	const HTTP_HEADER_DELIMITER = ": ";
@@ -72612,17 +71382,15 @@ function requireBlobBatch () {
 	const core_auth_1 = /*@__PURE__*/ requireCommonjs$8();
 	const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
 	const core_util_2 = /*@__PURE__*/ requireCommonjs$b();
-	const AnonymousCredential_js_1 = requireAnonymousCredential$1();
+	const storage_common_1 = /*@__PURE__*/ requireCommonjs$3();
 	const Clients_js_1 = requireClients();
 	const Mutex_js_1 = requireMutex();
 	const Pipeline_js_1 = requirePipeline();
-	const utils_common_js_1 = requireUtils_common$2();
+	const utils_common_js_1 = requireUtils_common$1();
 	const core_xml_1 = /*@__PURE__*/ requireCommonjs$5();
-	const constants_js_1 = requireConstants$2();
-	const StorageSharedKeyCredential_js_1 = requireStorageSharedKeyCredential$1();
+	const constants_js_1 = requireConstants$1();
 	const tracing_js_1 = requireTracing();
 	const core_client_1 = /*@__PURE__*/ requireCommonjs$7();
-	const StorageSharedKeyCredentialPolicyV2_js_1 = requireStorageSharedKeyCredentialPolicyV2();
 	/**
 	 * A BlobBatch represents an aggregated set of operations on blobs.
 	 * Currently, only `delete` and `setAccessTier` are supported.
@@ -72677,8 +71445,8 @@ function requireBlobBatch () {
 	        let url;
 	        let credential;
 	        if (typeof urlOrBlobClient === "string" &&
-	            ((core_util_2.isNodeLike && credentialOrOptions instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) ||
-	                credentialOrOptions instanceof AnonymousCredential_js_1.AnonymousCredential ||
+	            ((core_util_2.isNodeLike && credentialOrOptions instanceof storage_common_1.StorageSharedKeyCredential) ||
+	                credentialOrOptions instanceof storage_common_1.AnonymousCredential ||
 	                (0, core_auth_1.isTokenCredential)(credentialOrOptions))) {
 	            // First overload
 	            url = urlOrBlobClient;
@@ -72711,8 +71479,8 @@ function requireBlobBatch () {
 	        let credential;
 	        let tier;
 	        if (typeof urlOrBlobClient === "string" &&
-	            ((core_util_2.isNodeLike && credentialOrTier instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) ||
-	                credentialOrTier instanceof AnonymousCredential_js_1.AnonymousCredential ||
+	            ((core_util_2.isNodeLike && credentialOrTier instanceof storage_common_1.StorageSharedKeyCredential) ||
+	                credentialOrTier instanceof storage_common_1.AnonymousCredential ||
 	                (0, core_auth_1.isTokenCredential)(credentialOrTier))) {
 	            // First overload
 	            url = urlOrBlobClient;
@@ -72800,8 +71568,8 @@ function requireBlobBatch () {
 	                challengeCallbacks: { authorizeRequestOnChallenge: core_client_1.authorizeRequestOnTenantChallenge },
 	            }), { phase: "Sign" });
 	        }
-	        else if (credential instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) {
-	            corePipeline.addPolicy((0, StorageSharedKeyCredentialPolicyV2_js_1.storageSharedKeyCredentialPolicy)({
+	        else if (credential instanceof storage_common_1.StorageSharedKeyCredential) {
+	            corePipeline.addPolicy((0, storage_common_1.storageSharedKeyCredentialPolicy)({
 	                accountName: credential.accountName,
 	                accountKey: credential.accountKey,
 	            }), { phase: "Sign" });
@@ -72899,10 +71667,10 @@ function requireBlobBatchClient () {
 	const BatchUtils_js_1 = requireBatchUtils();
 	const BlobBatch_js_1 = requireBlobBatch();
 	const tracing_js_1 = requireTracing();
-	const AnonymousCredential_js_1 = requireAnonymousCredential$1();
+	const storage_common_1 = /*@__PURE__*/ requireCommonjs$3();
 	const StorageContextClient_js_1 = requireStorageContextClient();
 	const Pipeline_js_1 = requirePipeline();
-	const utils_common_js_1 = requireUtils_common$2();
+	const utils_common_js_1 = requireUtils_common$1();
 	/**
 	 * A BlobBatchClient allows you to make batched requests to the Azure Storage Blob service.
 	 *
@@ -72920,7 +71688,7 @@ function requireBlobBatchClient () {
 	        }
 	        else if (!credentialOrPipeline) {
 	            // no credential provided
-	            pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	            pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	        }
 	        else {
 	            pipeline = (0, Pipeline_js_1.newPipeline)(credentialOrPipeline, options);
@@ -73043,9 +71811,9 @@ function requireBlobBatchClient () {
 	        return tracing_js_1.tracingClient.withSpan("BlobBatchClient-submitBatch", options, async (updatedOptions) => {
 	            const batchRequestBody = batchRequest.getHttpRequestBody();
 	            // ServiceSubmitBatchResponseModel and ContainerSubmitBatchResponse are compatible for now.
-	            const rawBatchResponse = (0, utils_common_js_1.assertResponse)(await this.serviceOrContainerContext.submitBatch((0, BatchUtils_js_1.utf8ByteLength)(batchRequestBody), batchRequest.getMultiPartContentType(), batchRequestBody, {
+	            const rawBatchResponse = (0, utils_common_js_1.assertResponse)((await this.serviceOrContainerContext.submitBatch((0, BatchUtils_js_1.utf8ByteLength)(batchRequestBody), batchRequest.getMultiPartContentType(), batchRequestBody, {
 	                ...updatedOptions,
-	            }));
+	            })));
 	            // Parse the sub responses result, if logic reaches here(i.e. the batch request succeeded with status code 202).
 	            const batchResponseParser = new BatchResponseParser_js_1.BatchResponseParser(rawBatchResponse, batchRequest.getSubRequests());
 	            const responseSummary = await batchResponseParser.parseBatchResponse();
@@ -73079,12 +71847,11 @@ function requireContainerClient () {
 	const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
 	const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
 	const core_auth_1 = /*@__PURE__*/ requireCommonjs$8();
-	const AnonymousCredential_js_1 = requireAnonymousCredential$1();
-	const StorageSharedKeyCredential_js_1 = requireStorageSharedKeyCredential$1();
+	const storage_common_1 = /*@__PURE__*/ requireCommonjs$3();
 	const Pipeline_js_1 = requirePipeline();
 	const StorageClient_js_1 = requireStorageClient();
 	const tracing_js_1 = requireTracing();
-	const utils_common_js_1 = requireUtils_common$2();
+	const utils_common_js_1 = requireUtils_common$1();
 	const BlobSASSignatureValues_js_1 = requireBlobSASSignatureValues();
 	const BlobLeaseClient_js_1 = requireBlobLeaseClient();
 	const Clients_js_1 = requireClients();
@@ -73116,8 +71883,8 @@ function requireContainerClient () {
 	            url = urlOrConnectionString;
 	            pipeline = credentialOrPipelineOrContainerName;
 	        }
-	        else if ((core_util_1.isNodeLike && credentialOrPipelineOrContainerName instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) ||
-	            credentialOrPipelineOrContainerName instanceof AnonymousCredential_js_1.AnonymousCredential ||
+	        else if ((core_util_1.isNodeLike && credentialOrPipelineOrContainerName instanceof storage_common_1.StorageSharedKeyCredential) ||
+	            credentialOrPipelineOrContainerName instanceof storage_common_1.AnonymousCredential ||
 	            (0, core_auth_1.isTokenCredential)(credentialOrPipelineOrContainerName)) {
 	            // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)
 	            url = urlOrConnectionString;
@@ -73128,7 +71895,7 @@ function requireContainerClient () {
 	            // (url: string, credential?: StorageSharedKeyCredential | AnonymousCredential | TokenCredential, options?: StoragePipelineOptions)
 	            // The second parameter is undefined. Use anonymous credential.
 	            url = urlOrConnectionString;
-	            pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	            pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	        }
 	        else if (credentialOrPipelineOrContainerName &&
 	            typeof credentialOrPipelineOrContainerName === "string") {
@@ -73137,7 +71904,7 @@ function requireContainerClient () {
 	            const extractedCreds = (0, utils_common_js_1.extractConnectionStringParts)(urlOrConnectionString);
 	            if (extractedCreds.kind === "AccountConnString") {
 	                if (core_util_1.isNodeLike) {
-	                    const sharedKeyCredential = new StorageSharedKeyCredential_js_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
+	                    const sharedKeyCredential = new storage_common_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
 	                    url = (0, utils_common_js_1.appendToURLPath)(extractedCreds.url, encodeURIComponent(containerName));
 	                    if (!options.proxyOptions) {
 	                        options.proxyOptions = (0, core_rest_pipeline_1.getDefaultProxySettings)(extractedCreds.proxyUri);
@@ -73153,7 +71920,7 @@ function requireContainerClient () {
 	                    (0, utils_common_js_1.appendToURLPath)(extractedCreds.url, encodeURIComponent(containerName)) +
 	                        "?" +
 	                        extractedCreds.accountSas;
-	                pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	                pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	            }
 	            else {
 	                throw new Error("Connection string must be either an Account connection string or a SAS connection string");
@@ -74292,7 +73059,7 @@ function requireContainerClient () {
 	     */
 	    generateSasUrl(options) {
 	        return new Promise((resolve) => {
-	            if (!(this.credential instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential)) {
+	            if (!(this.credential instanceof storage_common_1.StorageSharedKeyCredential)) {
 	                throw new RangeError("Can only generate the SAS when the client is initialized with a shared key credential");
 	            }
 	            const sas = (0, BlobSASSignatureValues_js_1.generateBlobSASQueryParameters)({
@@ -74315,7 +73082,7 @@ function requireContainerClient () {
 	     */
 	    /* eslint-disable-next-line @azure/azure-sdk/ts-naming-options*/
 	    generateSasStringToSign(options) {
-	        if (!(this.credential instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential)) {
+	        if (!(this.credential instanceof storage_common_1.StorageSharedKeyCredential)) {
 	            throw new RangeError("Can only generate the SAS when the client is initialized with a shared key credential");
 	        }
 	        return (0, BlobSASSignatureValues_js_1.generateBlobSASQueryParametersInternal)({
@@ -74803,8 +73570,8 @@ function requireAccountSASSignatureValues () {
 	const AccountSASServices_js_1 = requireAccountSASServices();
 	const SasIPRange_js_1 = requireSasIPRange();
 	const SASQueryParameters_js_1 = requireSASQueryParameters();
-	const constants_js_1 = requireConstants$2();
-	const utils_common_js_1 = requireUtils_common$2();
+	const constants_js_1 = requireConstants$1();
+	const utils_common_js_1 = requireUtils_common$1();
 	/**
 	 * ONLY AVAILABLE IN NODE.JS RUNTIME.
 	 *
@@ -74911,10 +73678,9 @@ function requireBlobServiceClient () {
 	const core_util_1 = /*@__PURE__*/ requireCommonjs$b();
 	const Pipeline_js_1 = requirePipeline();
 	const ContainerClient_js_1 = requireContainerClient();
-	const utils_common_js_1 = requireUtils_common$2();
-	const StorageSharedKeyCredential_js_1 = requireStorageSharedKeyCredential$1();
-	const AnonymousCredential_js_1 = requireAnonymousCredential$1();
-	const utils_common_js_2 = requireUtils_common$2();
+	const utils_common_js_1 = requireUtils_common$1();
+	const storage_common_1 = /*@__PURE__*/ requireCommonjs$3();
+	const utils_common_js_2 = requireUtils_common$1();
 	const tracing_js_1 = requireTracing();
 	const BlobBatchClient_js_1 = requireBlobBatchClient();
 	const StorageClient_js_1 = requireStorageClient();
@@ -74950,7 +73716,7 @@ function requireBlobServiceClient () {
 	        const extractedCreds = (0, utils_common_js_1.extractConnectionStringParts)(connectionString);
 	        if (extractedCreds.kind === "AccountConnString") {
 	            if (core_util_1.isNodeLike) {
-	                const sharedKeyCredential = new StorageSharedKeyCredential_js_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
+	                const sharedKeyCredential = new storage_common_1.StorageSharedKeyCredential(extractedCreds.accountName, extractedCreds.accountKey);
 	                if (!options.proxyOptions) {
 	                    options.proxyOptions = (0, core_rest_pipeline_1.getDefaultProxySettings)(extractedCreds.proxyUri);
 	                }
@@ -74962,7 +73728,7 @@ function requireBlobServiceClient () {
 	            }
 	        }
 	        else if (extractedCreds.kind === "SASConnString") {
-	            const pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	            const pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	            return new BlobServiceClient(extractedCreds.url + "?" + extractedCreds.accountSas, pipeline);
 	        }
 	        else {
@@ -74977,14 +73743,14 @@ function requireBlobServiceClient () {
 	        if ((0, Pipeline_js_1.isPipelineLike)(credentialOrPipeline)) {
 	            pipeline = credentialOrPipeline;
 	        }
-	        else if ((core_util_1.isNodeLike && credentialOrPipeline instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential) ||
-	            credentialOrPipeline instanceof AnonymousCredential_js_1.AnonymousCredential ||
+	        else if ((core_util_1.isNodeLike && credentialOrPipeline instanceof storage_common_1.StorageSharedKeyCredential) ||
+	            credentialOrPipeline instanceof storage_common_1.AnonymousCredential ||
 	            (0, core_auth_1.isTokenCredential)(credentialOrPipeline)) {
 	            pipeline = (0, Pipeline_js_1.newPipeline)(credentialOrPipeline, options);
 	        }
 	        else {
 	            // The second parameter is undefined. Use anonymous credential
-	            pipeline = (0, Pipeline_js_1.newPipeline)(new AnonymousCredential_js_1.AnonymousCredential(), options);
+	            pipeline = (0, Pipeline_js_1.newPipeline)(new storage_common_1.AnonymousCredential(), options);
 	        }
 	        super(url, pipeline);
 	        this.serviceContext = this.storageClientContext.service;
@@ -75561,7 +74327,7 @@ function requireBlobServiceClient () {
 	     * @returns An account SAS URI consisting of the URI to the resource represented by this client, followed by the generated SAS token.
 	     */
 	    generateAccountSasUrl(expiresOn, permissions = AccountSASPermissions_js_1.AccountSASPermissions.parse("r"), resourceTypes = "sco", options = {}) {
-	        if (!(this.credential instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential)) {
+	        if (!(this.credential instanceof storage_common_1.StorageSharedKeyCredential)) {
 	            throw RangeError("Can only generate the account SAS when the client is initialized with a shared key credential");
 	        }
 	        if (expiresOn === undefined) {
@@ -75592,7 +74358,7 @@ function requireBlobServiceClient () {
 	     * @returns An account SAS URI consisting of the URI to the resource represented by this client, followed by the generated SAS token.
 	     */
 	    generateSasStringToSign(expiresOn, permissions = AccountSASPermissions_js_1.AccountSASPermissions.parse("r"), resourceTypes = "sco", options = {}) {
-	        if (!(this.credential instanceof StorageSharedKeyCredential_js_1.StorageSharedKeyCredential)) {
+	        if (!(this.credential instanceof storage_common_1.StorageSharedKeyCredential)) {
 	            throw RangeError("Can only generate the account SAS when the client is initialized with a shared key credential");
 	        }
 	        if (expiresOn === undefined) {
@@ -75652,55 +74418,57 @@ var hasRequiredCommonjs;
 function requireCommonjs () {
 	if (hasRequiredCommonjs) return commonjs$e;
 	hasRequiredCommonjs = 1;
-	(function (exports) {
+	(function (exports$1) {
 		// Copyright (c) Microsoft Corporation.
 		// Licensed under the MIT License.
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports.logger = exports.RestError = exports.BaseRequestPolicy = exports.StorageOAuthScopes = exports.newPipeline = exports.isPipelineLike = exports.Pipeline = exports.getBlobServiceAccountAudience = exports.StorageBlobAudience = exports.PremiumPageBlobTier = exports.BlockBlobTier = exports.generateBlobSASQueryParameters = exports.generateAccountSASQueryParameters = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1.logger = exports$1.RestError = exports$1.StorageBrowserPolicyFactory = exports$1.StorageBrowserPolicy = exports$1.StorageSharedKeyCredentialPolicy = exports$1.StorageSharedKeyCredential = exports$1.StorageRetryPolicyFactory = exports$1.StorageRetryPolicy = exports$1.StorageRetryPolicyType = exports$1.Credential = exports$1.CredentialPolicy = exports$1.BaseRequestPolicy = exports$1.AnonymousCredentialPolicy = exports$1.AnonymousCredential = exports$1.StorageOAuthScopes = exports$1.newPipeline = exports$1.isPipelineLike = exports$1.Pipeline = exports$1.getBlobServiceAccountAudience = exports$1.StorageBlobAudience = exports$1.PremiumPageBlobTier = exports$1.BlockBlobTier = exports$1.generateBlobSASQueryParameters = exports$1.generateAccountSASQueryParameters = void 0;
 		const tslib_1 = require$$0;
 		const core_rest_pipeline_1 = /*@__PURE__*/ requireCommonjs$9();
-		Object.defineProperty(exports, "RestError", { enumerable: true, get: function () { return core_rest_pipeline_1.RestError; } });
-		tslib_1.__exportStar(requireBlobServiceClient(), exports);
-		tslib_1.__exportStar(requireClients(), exports);
-		tslib_1.__exportStar(requireContainerClient(), exports);
-		tslib_1.__exportStar(requireBlobLeaseClient(), exports);
-		tslib_1.__exportStar(requireAccountSASPermissions(), exports);
-		tslib_1.__exportStar(requireAccountSASResourceTypes(), exports);
-		tslib_1.__exportStar(requireAccountSASServices(), exports);
+		Object.defineProperty(exports$1, "RestError", { enumerable: true, get: function () { return core_rest_pipeline_1.RestError; } });
+		tslib_1.__exportStar(requireBlobServiceClient(), exports$1);
+		tslib_1.__exportStar(requireClients(), exports$1);
+		tslib_1.__exportStar(requireContainerClient(), exports$1);
+		tslib_1.__exportStar(requireBlobLeaseClient(), exports$1);
+		tslib_1.__exportStar(requireAccountSASPermissions(), exports$1);
+		tslib_1.__exportStar(requireAccountSASResourceTypes(), exports$1);
+		tslib_1.__exportStar(requireAccountSASServices(), exports$1);
 		var AccountSASSignatureValues_js_1 = requireAccountSASSignatureValues();
-		Object.defineProperty(exports, "generateAccountSASQueryParameters", { enumerable: true, get: function () { return AccountSASSignatureValues_js_1.generateAccountSASQueryParameters; } });
-		tslib_1.__exportStar(requireBlobBatch(), exports);
-		tslib_1.__exportStar(requireBlobBatchClient(), exports);
-		tslib_1.__exportStar(requireBatchResponse(), exports);
-		tslib_1.__exportStar(requireBlobSASPermissions(), exports);
+		Object.defineProperty(exports$1, "generateAccountSASQueryParameters", { enumerable: true, get: function () { return AccountSASSignatureValues_js_1.generateAccountSASQueryParameters; } });
+		tslib_1.__exportStar(requireBlobBatch(), exports$1);
+		tslib_1.__exportStar(requireBlobBatchClient(), exports$1);
+		tslib_1.__exportStar(requireBatchResponse(), exports$1);
+		tslib_1.__exportStar(requireBlobSASPermissions(), exports$1);
 		var BlobSASSignatureValues_js_1 = requireBlobSASSignatureValues();
-		Object.defineProperty(exports, "generateBlobSASQueryParameters", { enumerable: true, get: function () { return BlobSASSignatureValues_js_1.generateBlobSASQueryParameters; } });
-		tslib_1.__exportStar(requireStorageBrowserPolicyFactory(), exports);
-		tslib_1.__exportStar(requireContainerSASPermissions(), exports);
-		tslib_1.__exportStar(requireAnonymousCredential$1(), exports);
-		tslib_1.__exportStar(requireCredential$1(), exports);
-		tslib_1.__exportStar(requireStorageSharedKeyCredential$1(), exports);
+		Object.defineProperty(exports$1, "generateBlobSASQueryParameters", { enumerable: true, get: function () { return BlobSASSignatureValues_js_1.generateBlobSASQueryParameters; } });
+		tslib_1.__exportStar(requireContainerSASPermissions(), exports$1);
 		var models_js_1 = requireModels();
-		Object.defineProperty(exports, "BlockBlobTier", { enumerable: true, get: function () { return models_js_1.BlockBlobTier; } });
-		Object.defineProperty(exports, "PremiumPageBlobTier", { enumerable: true, get: function () { return models_js_1.PremiumPageBlobTier; } });
-		Object.defineProperty(exports, "StorageBlobAudience", { enumerable: true, get: function () { return models_js_1.StorageBlobAudience; } });
-		Object.defineProperty(exports, "getBlobServiceAccountAudience", { enumerable: true, get: function () { return models_js_1.getBlobServiceAccountAudience; } });
+		Object.defineProperty(exports$1, "BlockBlobTier", { enumerable: true, get: function () { return models_js_1.BlockBlobTier; } });
+		Object.defineProperty(exports$1, "PremiumPageBlobTier", { enumerable: true, get: function () { return models_js_1.PremiumPageBlobTier; } });
+		Object.defineProperty(exports$1, "StorageBlobAudience", { enumerable: true, get: function () { return models_js_1.StorageBlobAudience; } });
+		Object.defineProperty(exports$1, "getBlobServiceAccountAudience", { enumerable: true, get: function () { return models_js_1.getBlobServiceAccountAudience; } });
 		var Pipeline_js_1 = requirePipeline();
-		Object.defineProperty(exports, "Pipeline", { enumerable: true, get: function () { return Pipeline_js_1.Pipeline; } });
-		Object.defineProperty(exports, "isPipelineLike", { enumerable: true, get: function () { return Pipeline_js_1.isPipelineLike; } });
-		Object.defineProperty(exports, "newPipeline", { enumerable: true, get: function () { return Pipeline_js_1.newPipeline; } });
-		Object.defineProperty(exports, "StorageOAuthScopes", { enumerable: true, get: function () { return Pipeline_js_1.StorageOAuthScopes; } });
-		tslib_1.__exportStar(requireStorageRetryPolicyFactory$1(), exports);
-		var RequestPolicy_js_1 = requireRequestPolicy$1();
-		Object.defineProperty(exports, "BaseRequestPolicy", { enumerable: true, get: function () { return RequestPolicy_js_1.BaseRequestPolicy; } });
-		tslib_1.__exportStar(requireAnonymousCredentialPolicy$1(), exports);
-		tslib_1.__exportStar(requireCredentialPolicy$1(), exports);
-		tslib_1.__exportStar(requireStorageRetryPolicyFactory$1(), exports);
-		tslib_1.__exportStar(requireStorageSharedKeyCredentialPolicy$1(), exports);
-		tslib_1.__exportStar(requireSASQueryParameters(), exports);
-		tslib_1.__exportStar(requireGeneratedModels(), exports);
+		Object.defineProperty(exports$1, "Pipeline", { enumerable: true, get: function () { return Pipeline_js_1.Pipeline; } });
+		Object.defineProperty(exports$1, "isPipelineLike", { enumerable: true, get: function () { return Pipeline_js_1.isPipelineLike; } });
+		Object.defineProperty(exports$1, "newPipeline", { enumerable: true, get: function () { return Pipeline_js_1.newPipeline; } });
+		Object.defineProperty(exports$1, "StorageOAuthScopes", { enumerable: true, get: function () { return Pipeline_js_1.StorageOAuthScopes; } });
+		var storage_common_1 = /*@__PURE__*/ requireCommonjs$3();
+		Object.defineProperty(exports$1, "AnonymousCredential", { enumerable: true, get: function () { return storage_common_1.AnonymousCredential; } });
+		Object.defineProperty(exports$1, "AnonymousCredentialPolicy", { enumerable: true, get: function () { return storage_common_1.AnonymousCredentialPolicy; } });
+		Object.defineProperty(exports$1, "BaseRequestPolicy", { enumerable: true, get: function () { return storage_common_1.BaseRequestPolicy; } });
+		Object.defineProperty(exports$1, "CredentialPolicy", { enumerable: true, get: function () { return storage_common_1.CredentialPolicy; } });
+		Object.defineProperty(exports$1, "Credential", { enumerable: true, get: function () { return storage_common_1.Credential; } });
+		Object.defineProperty(exports$1, "StorageRetryPolicyType", { enumerable: true, get: function () { return storage_common_1.StorageRetryPolicyType; } });
+		Object.defineProperty(exports$1, "StorageRetryPolicy", { enumerable: true, get: function () { return storage_common_1.StorageRetryPolicy; } });
+		Object.defineProperty(exports$1, "StorageRetryPolicyFactory", { enumerable: true, get: function () { return storage_common_1.StorageRetryPolicyFactory; } });
+		Object.defineProperty(exports$1, "StorageSharedKeyCredential", { enumerable: true, get: function () { return storage_common_1.StorageSharedKeyCredential; } });
+		Object.defineProperty(exports$1, "StorageSharedKeyCredentialPolicy", { enumerable: true, get: function () { return storage_common_1.StorageSharedKeyCredentialPolicy; } });
+		Object.defineProperty(exports$1, "StorageBrowserPolicy", { enumerable: true, get: function () { return storage_common_1.StorageBrowserPolicy; } });
+		Object.defineProperty(exports$1, "StorageBrowserPolicyFactory", { enumerable: true, get: function () { return storage_common_1.StorageBrowserPolicyFactory; } });
+		tslib_1.__exportStar(requireSASQueryParameters(), exports$1);
+		tslib_1.__exportStar(requireGeneratedModels(), exports$1);
 		var log_js_1 = requireLog$1();
-		Object.defineProperty(exports, "logger", { enumerable: true, get: function () { return log_js_1.logger; } });
+		Object.defineProperty(exports$1, "logger", { enumerable: true, get: function () { return log_js_1.logger; } });
 		
 	} (commonjs$e));
 	return commonjs$e;
@@ -77456,1661 +76224,6 @@ var toolCache = {};
 
 var manifest$1 = {exports: {}};
 
-var semver = {exports: {}};
-
-var hasRequiredSemver;
-
-function requireSemver () {
-	if (hasRequiredSemver) return semver.exports;
-	hasRequiredSemver = 1;
-	(function (module, exports) {
-		exports = module.exports = SemVer;
-
-		var debug;
-		/* istanbul ignore next */
-		if (typeof process === 'object' &&
-		    process.env &&
-		    process.env.NODE_DEBUG &&
-		    /\bsemver\b/i.test(process.env.NODE_DEBUG)) {
-		  debug = function () {
-		    var args = Array.prototype.slice.call(arguments, 0);
-		    args.unshift('SEMVER');
-		    console.log.apply(console, args);
-		  };
-		} else {
-		  debug = function () {};
-		}
-
-		// Note: this is the semver.org version of the spec that it implements
-		// Not necessarily the package version of this code.
-		exports.SEMVER_SPEC_VERSION = '2.0.0';
-
-		var MAX_LENGTH = 256;
-		var MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER ||
-		  /* istanbul ignore next */ 9007199254740991;
-
-		// Max safe segment length for coercion.
-		var MAX_SAFE_COMPONENT_LENGTH = 16;
-
-		var MAX_SAFE_BUILD_LENGTH = MAX_LENGTH - 6;
-
-		// The actual regexps go on exports.re
-		var re = exports.re = [];
-		var safeRe = exports.safeRe = [];
-		var src = exports.src = [];
-		var t = exports.tokens = {};
-		var R = 0;
-
-		function tok (n) {
-		  t[n] = R++;
-		}
-
-		var LETTERDASHNUMBER = '[a-zA-Z0-9-]';
-
-		// Replace some greedy regex tokens to prevent regex dos issues. These regex are
-		// used internally via the safeRe object since all inputs in this library get
-		// normalized first to trim and collapse all extra whitespace. The original
-		// regexes are exported for userland consumption and lower level usage. A
-		// future breaking change could export the safer regex only with a note that
-		// all input should have extra whitespace removed.
-		var safeRegexReplacements = [
-		  ['\\s', 1],
-		  ['\\d', MAX_LENGTH],
-		  [LETTERDASHNUMBER, MAX_SAFE_BUILD_LENGTH],
-		];
-
-		function makeSafeRe (value) {
-		  for (var i = 0; i < safeRegexReplacements.length; i++) {
-		    var token = safeRegexReplacements[i][0];
-		    var max = safeRegexReplacements[i][1];
-		    value = value
-		      .split(token + '*').join(token + '{0,' + max + '}')
-		      .split(token + '+').join(token + '{1,' + max + '}');
-		  }
-		  return value
-		}
-
-		// The following Regular Expressions can be used for tokenizing,
-		// validating, and parsing SemVer version strings.
-
-		// ## Numeric Identifier
-		// A single `0`, or a non-zero digit followed by zero or more digits.
-
-		tok('NUMERICIDENTIFIER');
-		src[t.NUMERICIDENTIFIER] = '0|[1-9]\\d*';
-		tok('NUMERICIDENTIFIERLOOSE');
-		src[t.NUMERICIDENTIFIERLOOSE] = '\\d+';
-
-		// ## Non-numeric Identifier
-		// Zero or more digits, followed by a letter or hyphen, and then zero or
-		// more letters, digits, or hyphens.
-
-		tok('NONNUMERICIDENTIFIER');
-		src[t.NONNUMERICIDENTIFIER] = '\\d*[a-zA-Z-]' + LETTERDASHNUMBER + '*';
-
-		// ## Main Version
-		// Three dot-separated numeric identifiers.
-
-		tok('MAINVERSION');
-		src[t.MAINVERSION] = '(' + src[t.NUMERICIDENTIFIER] + ')\\.' +
-		                   '(' + src[t.NUMERICIDENTIFIER] + ')\\.' +
-		                   '(' + src[t.NUMERICIDENTIFIER] + ')';
-
-		tok('MAINVERSIONLOOSE');
-		src[t.MAINVERSIONLOOSE] = '(' + src[t.NUMERICIDENTIFIERLOOSE] + ')\\.' +
-		                        '(' + src[t.NUMERICIDENTIFIERLOOSE] + ')\\.' +
-		                        '(' + src[t.NUMERICIDENTIFIERLOOSE] + ')';
-
-		// ## Pre-release Version Identifier
-		// A numeric identifier, or a non-numeric identifier.
-
-		tok('PRERELEASEIDENTIFIER');
-		src[t.PRERELEASEIDENTIFIER] = '(?:' + src[t.NUMERICIDENTIFIER] +
-		                            '|' + src[t.NONNUMERICIDENTIFIER] + ')';
-
-		tok('PRERELEASEIDENTIFIERLOOSE');
-		src[t.PRERELEASEIDENTIFIERLOOSE] = '(?:' + src[t.NUMERICIDENTIFIERLOOSE] +
-		                                 '|' + src[t.NONNUMERICIDENTIFIER] + ')';
-
-		// ## Pre-release Version
-		// Hyphen, followed by one or more dot-separated pre-release version
-		// identifiers.
-
-		tok('PRERELEASE');
-		src[t.PRERELEASE] = '(?:-(' + src[t.PRERELEASEIDENTIFIER] +
-		                  '(?:\\.' + src[t.PRERELEASEIDENTIFIER] + ')*))';
-
-		tok('PRERELEASELOOSE');
-		src[t.PRERELEASELOOSE] = '(?:-?(' + src[t.PRERELEASEIDENTIFIERLOOSE] +
-		                       '(?:\\.' + src[t.PRERELEASEIDENTIFIERLOOSE] + ')*))';
-
-		// ## Build Metadata Identifier
-		// Any combination of digits, letters, or hyphens.
-
-		tok('BUILDIDENTIFIER');
-		src[t.BUILDIDENTIFIER] = LETTERDASHNUMBER + '+';
-
-		// ## Build Metadata
-		// Plus sign, followed by one or more period-separated build metadata
-		// identifiers.
-
-		tok('BUILD');
-		src[t.BUILD] = '(?:\\+(' + src[t.BUILDIDENTIFIER] +
-		             '(?:\\.' + src[t.BUILDIDENTIFIER] + ')*))';
-
-		// ## Full Version String
-		// A main version, followed optionally by a pre-release version and
-		// build metadata.
-
-		// Note that the only major, minor, patch, and pre-release sections of
-		// the version string are capturing groups.  The build metadata is not a
-		// capturing group, because it should not ever be used in version
-		// comparison.
-
-		tok('FULL');
-		tok('FULLPLAIN');
-		src[t.FULLPLAIN] = 'v?' + src[t.MAINVERSION] +
-		                  src[t.PRERELEASE] + '?' +
-		                  src[t.BUILD] + '?';
-
-		src[t.FULL] = '^' + src[t.FULLPLAIN] + '$';
-
-		// like full, but allows v1.2.3 and =1.2.3, which people do sometimes.
-		// also, 1.0.0alpha1 (prerelease without the hyphen) which is pretty
-		// common in the npm registry.
-		tok('LOOSEPLAIN');
-		src[t.LOOSEPLAIN] = '[v=\\s]*' + src[t.MAINVERSIONLOOSE] +
-		                  src[t.PRERELEASELOOSE] + '?' +
-		                  src[t.BUILD] + '?';
-
-		tok('LOOSE');
-		src[t.LOOSE] = '^' + src[t.LOOSEPLAIN] + '$';
-
-		tok('GTLT');
-		src[t.GTLT] = '((?:<|>)?=?)';
-
-		// Something like "2.*" or "1.2.x".
-		// Note that "x.x" is a valid xRange identifer, meaning "any version"
-		// Only the first item is strictly required.
-		tok('XRANGEIDENTIFIERLOOSE');
-		src[t.XRANGEIDENTIFIERLOOSE] = src[t.NUMERICIDENTIFIERLOOSE] + '|x|X|\\*';
-		tok('XRANGEIDENTIFIER');
-		src[t.XRANGEIDENTIFIER] = src[t.NUMERICIDENTIFIER] + '|x|X|\\*';
-
-		tok('XRANGEPLAIN');
-		src[t.XRANGEPLAIN] = '[v=\\s]*(' + src[t.XRANGEIDENTIFIER] + ')' +
-		                   '(?:\\.(' + src[t.XRANGEIDENTIFIER] + ')' +
-		                   '(?:\\.(' + src[t.XRANGEIDENTIFIER] + ')' +
-		                   '(?:' + src[t.PRERELEASE] + ')?' +
-		                   src[t.BUILD] + '?' +
-		                   ')?)?';
-
-		tok('XRANGEPLAINLOOSE');
-		src[t.XRANGEPLAINLOOSE] = '[v=\\s]*(' + src[t.XRANGEIDENTIFIERLOOSE] + ')' +
-		                        '(?:\\.(' + src[t.XRANGEIDENTIFIERLOOSE] + ')' +
-		                        '(?:\\.(' + src[t.XRANGEIDENTIFIERLOOSE] + ')' +
-		                        '(?:' + src[t.PRERELEASELOOSE] + ')?' +
-		                        src[t.BUILD] + '?' +
-		                        ')?)?';
-
-		tok('XRANGE');
-		src[t.XRANGE] = '^' + src[t.GTLT] + '\\s*' + src[t.XRANGEPLAIN] + '$';
-		tok('XRANGELOOSE');
-		src[t.XRANGELOOSE] = '^' + src[t.GTLT] + '\\s*' + src[t.XRANGEPLAINLOOSE] + '$';
-
-		// Coercion.
-		// Extract anything that could conceivably be a part of a valid semver
-		tok('COERCE');
-		src[t.COERCE] = '(^|[^\\d])' +
-		              '(\\d{1,' + MAX_SAFE_COMPONENT_LENGTH + '})' +
-		              '(?:\\.(\\d{1,' + MAX_SAFE_COMPONENT_LENGTH + '}))?' +
-		              '(?:\\.(\\d{1,' + MAX_SAFE_COMPONENT_LENGTH + '}))?' +
-		              '(?:$|[^\\d])';
-		tok('COERCERTL');
-		re[t.COERCERTL] = new RegExp(src[t.COERCE], 'g');
-		safeRe[t.COERCERTL] = new RegExp(makeSafeRe(src[t.COERCE]), 'g');
-
-		// Tilde ranges.
-		// Meaning is "reasonably at or greater than"
-		tok('LONETILDE');
-		src[t.LONETILDE] = '(?:~>?)';
-
-		tok('TILDETRIM');
-		src[t.TILDETRIM] = '(\\s*)' + src[t.LONETILDE] + '\\s+';
-		re[t.TILDETRIM] = new RegExp(src[t.TILDETRIM], 'g');
-		safeRe[t.TILDETRIM] = new RegExp(makeSafeRe(src[t.TILDETRIM]), 'g');
-		var tildeTrimReplace = '$1~';
-
-		tok('TILDE');
-		src[t.TILDE] = '^' + src[t.LONETILDE] + src[t.XRANGEPLAIN] + '$';
-		tok('TILDELOOSE');
-		src[t.TILDELOOSE] = '^' + src[t.LONETILDE] + src[t.XRANGEPLAINLOOSE] + '$';
-
-		// Caret ranges.
-		// Meaning is "at least and backwards compatible with"
-		tok('LONECARET');
-		src[t.LONECARET] = '(?:\\^)';
-
-		tok('CARETTRIM');
-		src[t.CARETTRIM] = '(\\s*)' + src[t.LONECARET] + '\\s+';
-		re[t.CARETTRIM] = new RegExp(src[t.CARETTRIM], 'g');
-		safeRe[t.CARETTRIM] = new RegExp(makeSafeRe(src[t.CARETTRIM]), 'g');
-		var caretTrimReplace = '$1^';
-
-		tok('CARET');
-		src[t.CARET] = '^' + src[t.LONECARET] + src[t.XRANGEPLAIN] + '$';
-		tok('CARETLOOSE');
-		src[t.CARETLOOSE] = '^' + src[t.LONECARET] + src[t.XRANGEPLAINLOOSE] + '$';
-
-		// A simple gt/lt/eq thing, or just "" to indicate "any version"
-		tok('COMPARATORLOOSE');
-		src[t.COMPARATORLOOSE] = '^' + src[t.GTLT] + '\\s*(' + src[t.LOOSEPLAIN] + ')$|^$';
-		tok('COMPARATOR');
-		src[t.COMPARATOR] = '^' + src[t.GTLT] + '\\s*(' + src[t.FULLPLAIN] + ')$|^$';
-
-		// An expression to strip any whitespace between the gtlt and the thing
-		// it modifies, so that `> 1.2.3` ==> `>1.2.3`
-		tok('COMPARATORTRIM');
-		src[t.COMPARATORTRIM] = '(\\s*)' + src[t.GTLT] +
-		                      '\\s*(' + src[t.LOOSEPLAIN] + '|' + src[t.XRANGEPLAIN] + ')';
-
-		// this one has to use the /g flag
-		re[t.COMPARATORTRIM] = new RegExp(src[t.COMPARATORTRIM], 'g');
-		safeRe[t.COMPARATORTRIM] = new RegExp(makeSafeRe(src[t.COMPARATORTRIM]), 'g');
-		var comparatorTrimReplace = '$1$2$3';
-
-		// Something like `1.2.3 - 1.2.4`
-		// Note that these all use the loose form, because they'll be
-		// checked against either the strict or loose comparator form
-		// later.
-		tok('HYPHENRANGE');
-		src[t.HYPHENRANGE] = '^\\s*(' + src[t.XRANGEPLAIN] + ')' +
-		                   '\\s+-\\s+' +
-		                   '(' + src[t.XRANGEPLAIN] + ')' +
-		                   '\\s*$';
-
-		tok('HYPHENRANGELOOSE');
-		src[t.HYPHENRANGELOOSE] = '^\\s*(' + src[t.XRANGEPLAINLOOSE] + ')' +
-		                        '\\s+-\\s+' +
-		                        '(' + src[t.XRANGEPLAINLOOSE] + ')' +
-		                        '\\s*$';
-
-		// Star ranges basically just allow anything at all.
-		tok('STAR');
-		src[t.STAR] = '(<|>)?=?\\s*\\*';
-
-		// Compile to actual regexp objects.
-		// All are flag-free, unless they were created above with a flag.
-		for (var i = 0; i < R; i++) {
-		  debug(i, src[i]);
-		  if (!re[i]) {
-		    re[i] = new RegExp(src[i]);
-
-		    // Replace all greedy whitespace to prevent regex dos issues. These regex are
-		    // used internally via the safeRe object since all inputs in this library get
-		    // normalized first to trim and collapse all extra whitespace. The original
-		    // regexes are exported for userland consumption and lower level usage. A
-		    // future breaking change could export the safer regex only with a note that
-		    // all input should have extra whitespace removed.
-		    safeRe[i] = new RegExp(makeSafeRe(src[i]));
-		  }
-		}
-
-		exports.parse = parse;
-		function parse (version, options) {
-		  if (!options || typeof options !== 'object') {
-		    options = {
-		      loose: !!options,
-		      includePrerelease: false
-		    };
-		  }
-
-		  if (version instanceof SemVer) {
-		    return version
-		  }
-
-		  if (typeof version !== 'string') {
-		    return null
-		  }
-
-		  if (version.length > MAX_LENGTH) {
-		    return null
-		  }
-
-		  var r = options.loose ? safeRe[t.LOOSE] : safeRe[t.FULL];
-		  if (!r.test(version)) {
-		    return null
-		  }
-
-		  try {
-		    return new SemVer(version, options)
-		  } catch (er) {
-		    return null
-		  }
-		}
-
-		exports.valid = valid;
-		function valid (version, options) {
-		  var v = parse(version, options);
-		  return v ? v.version : null
-		}
-
-		exports.clean = clean;
-		function clean (version, options) {
-		  var s = parse(version.trim().replace(/^[=v]+/, ''), options);
-		  return s ? s.version : null
-		}
-
-		exports.SemVer = SemVer;
-
-		function SemVer (version, options) {
-		  if (!options || typeof options !== 'object') {
-		    options = {
-		      loose: !!options,
-		      includePrerelease: false
-		    };
-		  }
-		  if (version instanceof SemVer) {
-		    if (version.loose === options.loose) {
-		      return version
-		    } else {
-		      version = version.version;
-		    }
-		  } else if (typeof version !== 'string') {
-		    throw new TypeError('Invalid Version: ' + version)
-		  }
-
-		  if (version.length > MAX_LENGTH) {
-		    throw new TypeError('version is longer than ' + MAX_LENGTH + ' characters')
-		  }
-
-		  if (!(this instanceof SemVer)) {
-		    return new SemVer(version, options)
-		  }
-
-		  debug('SemVer', version, options);
-		  this.options = options;
-		  this.loose = !!options.loose;
-
-		  var m = version.trim().match(options.loose ? safeRe[t.LOOSE] : safeRe[t.FULL]);
-
-		  if (!m) {
-		    throw new TypeError('Invalid Version: ' + version)
-		  }
-
-		  this.raw = version;
-
-		  // these are actually numbers
-		  this.major = +m[1];
-		  this.minor = +m[2];
-		  this.patch = +m[3];
-
-		  if (this.major > MAX_SAFE_INTEGER || this.major < 0) {
-		    throw new TypeError('Invalid major version')
-		  }
-
-		  if (this.minor > MAX_SAFE_INTEGER || this.minor < 0) {
-		    throw new TypeError('Invalid minor version')
-		  }
-
-		  if (this.patch > MAX_SAFE_INTEGER || this.patch < 0) {
-		    throw new TypeError('Invalid patch version')
-		  }
-
-		  // numberify any prerelease numeric ids
-		  if (!m[4]) {
-		    this.prerelease = [];
-		  } else {
-		    this.prerelease = m[4].split('.').map(function (id) {
-		      if (/^[0-9]+$/.test(id)) {
-		        var num = +id;
-		        if (num >= 0 && num < MAX_SAFE_INTEGER) {
-		          return num
-		        }
-		      }
-		      return id
-		    });
-		  }
-
-		  this.build = m[5] ? m[5].split('.') : [];
-		  this.format();
-		}
-
-		SemVer.prototype.format = function () {
-		  this.version = this.major + '.' + this.minor + '.' + this.patch;
-		  if (this.prerelease.length) {
-		    this.version += '-' + this.prerelease.join('.');
-		  }
-		  return this.version
-		};
-
-		SemVer.prototype.toString = function () {
-		  return this.version
-		};
-
-		SemVer.prototype.compare = function (other) {
-		  debug('SemVer.compare', this.version, this.options, other);
-		  if (!(other instanceof SemVer)) {
-		    other = new SemVer(other, this.options);
-		  }
-
-		  return this.compareMain(other) || this.comparePre(other)
-		};
-
-		SemVer.prototype.compareMain = function (other) {
-		  if (!(other instanceof SemVer)) {
-		    other = new SemVer(other, this.options);
-		  }
-
-		  return compareIdentifiers(this.major, other.major) ||
-		         compareIdentifiers(this.minor, other.minor) ||
-		         compareIdentifiers(this.patch, other.patch)
-		};
-
-		SemVer.prototype.comparePre = function (other) {
-		  if (!(other instanceof SemVer)) {
-		    other = new SemVer(other, this.options);
-		  }
-
-		  // NOT having a prerelease is > having one
-		  if (this.prerelease.length && !other.prerelease.length) {
-		    return -1
-		  } else if (!this.prerelease.length && other.prerelease.length) {
-		    return 1
-		  } else if (!this.prerelease.length && !other.prerelease.length) {
-		    return 0
-		  }
-
-		  var i = 0;
-		  do {
-		    var a = this.prerelease[i];
-		    var b = other.prerelease[i];
-		    debug('prerelease compare', i, a, b);
-		    if (a === undefined && b === undefined) {
-		      return 0
-		    } else if (b === undefined) {
-		      return 1
-		    } else if (a === undefined) {
-		      return -1
-		    } else if (a === b) {
-		      continue
-		    } else {
-		      return compareIdentifiers(a, b)
-		    }
-		  } while (++i)
-		};
-
-		SemVer.prototype.compareBuild = function (other) {
-		  if (!(other instanceof SemVer)) {
-		    other = new SemVer(other, this.options);
-		  }
-
-		  var i = 0;
-		  do {
-		    var a = this.build[i];
-		    var b = other.build[i];
-		    debug('prerelease compare', i, a, b);
-		    if (a === undefined && b === undefined) {
-		      return 0
-		    } else if (b === undefined) {
-		      return 1
-		    } else if (a === undefined) {
-		      return -1
-		    } else if (a === b) {
-		      continue
-		    } else {
-		      return compareIdentifiers(a, b)
-		    }
-		  } while (++i)
-		};
-
-		// preminor will bump the version up to the next minor release, and immediately
-		// down to pre-release. premajor and prepatch work the same way.
-		SemVer.prototype.inc = function (release, identifier) {
-		  switch (release) {
-		    case 'premajor':
-		      this.prerelease.length = 0;
-		      this.patch = 0;
-		      this.minor = 0;
-		      this.major++;
-		      this.inc('pre', identifier);
-		      break
-		    case 'preminor':
-		      this.prerelease.length = 0;
-		      this.patch = 0;
-		      this.minor++;
-		      this.inc('pre', identifier);
-		      break
-		    case 'prepatch':
-		      // If this is already a prerelease, it will bump to the next version
-		      // drop any prereleases that might already exist, since they are not
-		      // relevant at this point.
-		      this.prerelease.length = 0;
-		      this.inc('patch', identifier);
-		      this.inc('pre', identifier);
-		      break
-		    // If the input is a non-prerelease version, this acts the same as
-		    // prepatch.
-		    case 'prerelease':
-		      if (this.prerelease.length === 0) {
-		        this.inc('patch', identifier);
-		      }
-		      this.inc('pre', identifier);
-		      break
-
-		    case 'major':
-		      // If this is a pre-major version, bump up to the same major version.
-		      // Otherwise increment major.
-		      // 1.0.0-5 bumps to 1.0.0
-		      // 1.1.0 bumps to 2.0.0
-		      if (this.minor !== 0 ||
-		          this.patch !== 0 ||
-		          this.prerelease.length === 0) {
-		        this.major++;
-		      }
-		      this.minor = 0;
-		      this.patch = 0;
-		      this.prerelease = [];
-		      break
-		    case 'minor':
-		      // If this is a pre-minor version, bump up to the same minor version.
-		      // Otherwise increment minor.
-		      // 1.2.0-5 bumps to 1.2.0
-		      // 1.2.1 bumps to 1.3.0
-		      if (this.patch !== 0 || this.prerelease.length === 0) {
-		        this.minor++;
-		      }
-		      this.patch = 0;
-		      this.prerelease = [];
-		      break
-		    case 'patch':
-		      // If this is not a pre-release version, it will increment the patch.
-		      // If it is a pre-release it will bump up to the same patch version.
-		      // 1.2.0-5 patches to 1.2.0
-		      // 1.2.0 patches to 1.2.1
-		      if (this.prerelease.length === 0) {
-		        this.patch++;
-		      }
-		      this.prerelease = [];
-		      break
-		    // This probably shouldn't be used publicly.
-		    // 1.0.0 "pre" would become 1.0.0-0 which is the wrong direction.
-		    case 'pre':
-		      if (this.prerelease.length === 0) {
-		        this.prerelease = [0];
-		      } else {
-		        var i = this.prerelease.length;
-		        while (--i >= 0) {
-		          if (typeof this.prerelease[i] === 'number') {
-		            this.prerelease[i]++;
-		            i = -2;
-		          }
-		        }
-		        if (i === -1) {
-		          // didn't increment anything
-		          this.prerelease.push(0);
-		        }
-		      }
-		      if (identifier) {
-		        // 1.2.0-beta.1 bumps to 1.2.0-beta.2,
-		        // 1.2.0-beta.fooblz or 1.2.0-beta bumps to 1.2.0-beta.0
-		        if (this.prerelease[0] === identifier) {
-		          if (isNaN(this.prerelease[1])) {
-		            this.prerelease = [identifier, 0];
-		          }
-		        } else {
-		          this.prerelease = [identifier, 0];
-		        }
-		      }
-		      break
-
-		    default:
-		      throw new Error('invalid increment argument: ' + release)
-		  }
-		  this.format();
-		  this.raw = this.version;
-		  return this
-		};
-
-		exports.inc = inc;
-		function inc (version, release, loose, identifier) {
-		  if (typeof (loose) === 'string') {
-		    identifier = loose;
-		    loose = undefined;
-		  }
-
-		  try {
-		    return new SemVer(version, loose).inc(release, identifier).version
-		  } catch (er) {
-		    return null
-		  }
-		}
-
-		exports.diff = diff;
-		function diff (version1, version2) {
-		  if (eq(version1, version2)) {
-		    return null
-		  } else {
-		    var v1 = parse(version1);
-		    var v2 = parse(version2);
-		    var prefix = '';
-		    if (v1.prerelease.length || v2.prerelease.length) {
-		      prefix = 'pre';
-		      var defaultResult = 'prerelease';
-		    }
-		    for (var key in v1) {
-		      if (key === 'major' || key === 'minor' || key === 'patch') {
-		        if (v1[key] !== v2[key]) {
-		          return prefix + key
-		        }
-		      }
-		    }
-		    return defaultResult // may be undefined
-		  }
-		}
-
-		exports.compareIdentifiers = compareIdentifiers;
-
-		var numeric = /^[0-9]+$/;
-		function compareIdentifiers (a, b) {
-		  var anum = numeric.test(a);
-		  var bnum = numeric.test(b);
-
-		  if (anum && bnum) {
-		    a = +a;
-		    b = +b;
-		  }
-
-		  return a === b ? 0
-		    : (anum && !bnum) ? -1
-		    : (bnum && !anum) ? 1
-		    : a < b ? -1
-		    : 1
-		}
-
-		exports.rcompareIdentifiers = rcompareIdentifiers;
-		function rcompareIdentifiers (a, b) {
-		  return compareIdentifiers(b, a)
-		}
-
-		exports.major = major;
-		function major (a, loose) {
-		  return new SemVer(a, loose).major
-		}
-
-		exports.minor = minor;
-		function minor (a, loose) {
-		  return new SemVer(a, loose).minor
-		}
-
-		exports.patch = patch;
-		function patch (a, loose) {
-		  return new SemVer(a, loose).patch
-		}
-
-		exports.compare = compare;
-		function compare (a, b, loose) {
-		  return new SemVer(a, loose).compare(new SemVer(b, loose))
-		}
-
-		exports.compareLoose = compareLoose;
-		function compareLoose (a, b) {
-		  return compare(a, b, true)
-		}
-
-		exports.compareBuild = compareBuild;
-		function compareBuild (a, b, loose) {
-		  var versionA = new SemVer(a, loose);
-		  var versionB = new SemVer(b, loose);
-		  return versionA.compare(versionB) || versionA.compareBuild(versionB)
-		}
-
-		exports.rcompare = rcompare;
-		function rcompare (a, b, loose) {
-		  return compare(b, a, loose)
-		}
-
-		exports.sort = sort;
-		function sort (list, loose) {
-		  return list.sort(function (a, b) {
-		    return exports.compareBuild(a, b, loose)
-		  })
-		}
-
-		exports.rsort = rsort;
-		function rsort (list, loose) {
-		  return list.sort(function (a, b) {
-		    return exports.compareBuild(b, a, loose)
-		  })
-		}
-
-		exports.gt = gt;
-		function gt (a, b, loose) {
-		  return compare(a, b, loose) > 0
-		}
-
-		exports.lt = lt;
-		function lt (a, b, loose) {
-		  return compare(a, b, loose) < 0
-		}
-
-		exports.eq = eq;
-		function eq (a, b, loose) {
-		  return compare(a, b, loose) === 0
-		}
-
-		exports.neq = neq;
-		function neq (a, b, loose) {
-		  return compare(a, b, loose) !== 0
-		}
-
-		exports.gte = gte;
-		function gte (a, b, loose) {
-		  return compare(a, b, loose) >= 0
-		}
-
-		exports.lte = lte;
-		function lte (a, b, loose) {
-		  return compare(a, b, loose) <= 0
-		}
-
-		exports.cmp = cmp;
-		function cmp (a, op, b, loose) {
-		  switch (op) {
-		    case '===':
-		      if (typeof a === 'object')
-		        a = a.version;
-		      if (typeof b === 'object')
-		        b = b.version;
-		      return a === b
-
-		    case '!==':
-		      if (typeof a === 'object')
-		        a = a.version;
-		      if (typeof b === 'object')
-		        b = b.version;
-		      return a !== b
-
-		    case '':
-		    case '=':
-		    case '==':
-		      return eq(a, b, loose)
-
-		    case '!=':
-		      return neq(a, b, loose)
-
-		    case '>':
-		      return gt(a, b, loose)
-
-		    case '>=':
-		      return gte(a, b, loose)
-
-		    case '<':
-		      return lt(a, b, loose)
-
-		    case '<=':
-		      return lte(a, b, loose)
-
-		    default:
-		      throw new TypeError('Invalid operator: ' + op)
-		  }
-		}
-
-		exports.Comparator = Comparator;
-		function Comparator (comp, options) {
-		  if (!options || typeof options !== 'object') {
-		    options = {
-		      loose: !!options,
-		      includePrerelease: false
-		    };
-		  }
-
-		  if (comp instanceof Comparator) {
-		    if (comp.loose === !!options.loose) {
-		      return comp
-		    } else {
-		      comp = comp.value;
-		    }
-		  }
-
-		  if (!(this instanceof Comparator)) {
-		    return new Comparator(comp, options)
-		  }
-
-		  comp = comp.trim().split(/\s+/).join(' ');
-		  debug('comparator', comp, options);
-		  this.options = options;
-		  this.loose = !!options.loose;
-		  this.parse(comp);
-
-		  if (this.semver === ANY) {
-		    this.value = '';
-		  } else {
-		    this.value = this.operator + this.semver.version;
-		  }
-
-		  debug('comp', this);
-		}
-
-		var ANY = {};
-		Comparator.prototype.parse = function (comp) {
-		  var r = this.options.loose ? safeRe[t.COMPARATORLOOSE] : safeRe[t.COMPARATOR];
-		  var m = comp.match(r);
-
-		  if (!m) {
-		    throw new TypeError('Invalid comparator: ' + comp)
-		  }
-
-		  this.operator = m[1] !== undefined ? m[1] : '';
-		  if (this.operator === '=') {
-		    this.operator = '';
-		  }
-
-		  // if it literally is just '>' or '' then allow anything.
-		  if (!m[2]) {
-		    this.semver = ANY;
-		  } else {
-		    this.semver = new SemVer(m[2], this.options.loose);
-		  }
-		};
-
-		Comparator.prototype.toString = function () {
-		  return this.value
-		};
-
-		Comparator.prototype.test = function (version) {
-		  debug('Comparator.test', version, this.options.loose);
-
-		  if (this.semver === ANY || version === ANY) {
-		    return true
-		  }
-
-		  if (typeof version === 'string') {
-		    try {
-		      version = new SemVer(version, this.options);
-		    } catch (er) {
-		      return false
-		    }
-		  }
-
-		  return cmp(version, this.operator, this.semver, this.options)
-		};
-
-		Comparator.prototype.intersects = function (comp, options) {
-		  if (!(comp instanceof Comparator)) {
-		    throw new TypeError('a Comparator is required')
-		  }
-
-		  if (!options || typeof options !== 'object') {
-		    options = {
-		      loose: !!options,
-		      includePrerelease: false
-		    };
-		  }
-
-		  var rangeTmp;
-
-		  if (this.operator === '') {
-		    if (this.value === '') {
-		      return true
-		    }
-		    rangeTmp = new Range(comp.value, options);
-		    return satisfies(this.value, rangeTmp, options)
-		  } else if (comp.operator === '') {
-		    if (comp.value === '') {
-		      return true
-		    }
-		    rangeTmp = new Range(this.value, options);
-		    return satisfies(comp.semver, rangeTmp, options)
-		  }
-
-		  var sameDirectionIncreasing =
-		    (this.operator === '>=' || this.operator === '>') &&
-		    (comp.operator === '>=' || comp.operator === '>');
-		  var sameDirectionDecreasing =
-		    (this.operator === '<=' || this.operator === '<') &&
-		    (comp.operator === '<=' || comp.operator === '<');
-		  var sameSemVer = this.semver.version === comp.semver.version;
-		  var differentDirectionsInclusive =
-		    (this.operator === '>=' || this.operator === '<=') &&
-		    (comp.operator === '>=' || comp.operator === '<=');
-		  var oppositeDirectionsLessThan =
-		    cmp(this.semver, '<', comp.semver, options) &&
-		    ((this.operator === '>=' || this.operator === '>') &&
-		    (comp.operator === '<=' || comp.operator === '<'));
-		  var oppositeDirectionsGreaterThan =
-		    cmp(this.semver, '>', comp.semver, options) &&
-		    ((this.operator === '<=' || this.operator === '<') &&
-		    (comp.operator === '>=' || comp.operator === '>'));
-
-		  return sameDirectionIncreasing || sameDirectionDecreasing ||
-		    (sameSemVer && differentDirectionsInclusive) ||
-		    oppositeDirectionsLessThan || oppositeDirectionsGreaterThan
-		};
-
-		exports.Range = Range;
-		function Range (range, options) {
-		  if (!options || typeof options !== 'object') {
-		    options = {
-		      loose: !!options,
-		      includePrerelease: false
-		    };
-		  }
-
-		  if (range instanceof Range) {
-		    if (range.loose === !!options.loose &&
-		        range.includePrerelease === !!options.includePrerelease) {
-		      return range
-		    } else {
-		      return new Range(range.raw, options)
-		    }
-		  }
-
-		  if (range instanceof Comparator) {
-		    return new Range(range.value, options)
-		  }
-
-		  if (!(this instanceof Range)) {
-		    return new Range(range, options)
-		  }
-
-		  this.options = options;
-		  this.loose = !!options.loose;
-		  this.includePrerelease = !!options.includePrerelease;
-
-		  // First reduce all whitespace as much as possible so we do not have to rely
-		  // on potentially slow regexes like \s*. This is then stored and used for
-		  // future error messages as well.
-		  this.raw = range
-		    .trim()
-		    .split(/\s+/)
-		    .join(' ');
-
-		  // First, split based on boolean or ||
-		  this.set = this.raw.split('||').map(function (range) {
-		    return this.parseRange(range.trim())
-		  }, this).filter(function (c) {
-		    // throw out any that are not relevant for whatever reason
-		    return c.length
-		  });
-
-		  if (!this.set.length) {
-		    throw new TypeError('Invalid SemVer Range: ' + this.raw)
-		  }
-
-		  this.format();
-		}
-
-		Range.prototype.format = function () {
-		  this.range = this.set.map(function (comps) {
-		    return comps.join(' ').trim()
-		  }).join('||').trim();
-		  return this.range
-		};
-
-		Range.prototype.toString = function () {
-		  return this.range
-		};
-
-		Range.prototype.parseRange = function (range) {
-		  var loose = this.options.loose;
-		  // `1.2.3 - 1.2.4` => `>=1.2.3 <=1.2.4`
-		  var hr = loose ? safeRe[t.HYPHENRANGELOOSE] : safeRe[t.HYPHENRANGE];
-		  range = range.replace(hr, hyphenReplace);
-		  debug('hyphen replace', range);
-		  // `> 1.2.3 < 1.2.5` => `>1.2.3 <1.2.5`
-		  range = range.replace(safeRe[t.COMPARATORTRIM], comparatorTrimReplace);
-		  debug('comparator trim', range, safeRe[t.COMPARATORTRIM]);
-
-		  // `~ 1.2.3` => `~1.2.3`
-		  range = range.replace(safeRe[t.TILDETRIM], tildeTrimReplace);
-
-		  // `^ 1.2.3` => `^1.2.3`
-		  range = range.replace(safeRe[t.CARETTRIM], caretTrimReplace);
-
-		  // normalize spaces
-		  range = range.split(/\s+/).join(' ');
-
-		  // At this point, the range is completely trimmed and
-		  // ready to be split into comparators.
-
-		  var compRe = loose ? safeRe[t.COMPARATORLOOSE] : safeRe[t.COMPARATOR];
-		  var set = range.split(' ').map(function (comp) {
-		    return parseComparator(comp, this.options)
-		  }, this).join(' ').split(/\s+/);
-		  if (this.options.loose) {
-		    // in loose mode, throw out any that are not valid comparators
-		    set = set.filter(function (comp) {
-		      return !!comp.match(compRe)
-		    });
-		  }
-		  set = set.map(function (comp) {
-		    return new Comparator(comp, this.options)
-		  }, this);
-
-		  return set
-		};
-
-		Range.prototype.intersects = function (range, options) {
-		  if (!(range instanceof Range)) {
-		    throw new TypeError('a Range is required')
-		  }
-
-		  return this.set.some(function (thisComparators) {
-		    return (
-		      isSatisfiable(thisComparators, options) &&
-		      range.set.some(function (rangeComparators) {
-		        return (
-		          isSatisfiable(rangeComparators, options) &&
-		          thisComparators.every(function (thisComparator) {
-		            return rangeComparators.every(function (rangeComparator) {
-		              return thisComparator.intersects(rangeComparator, options)
-		            })
-		          })
-		        )
-		      })
-		    )
-		  })
-		};
-
-		// take a set of comparators and determine whether there
-		// exists a version which can satisfy it
-		function isSatisfiable (comparators, options) {
-		  var result = true;
-		  var remainingComparators = comparators.slice();
-		  var testComparator = remainingComparators.pop();
-
-		  while (result && remainingComparators.length) {
-		    result = remainingComparators.every(function (otherComparator) {
-		      return testComparator.intersects(otherComparator, options)
-		    });
-
-		    testComparator = remainingComparators.pop();
-		  }
-
-		  return result
-		}
-
-		// Mostly just for testing and legacy API reasons
-		exports.toComparators = toComparators;
-		function toComparators (range, options) {
-		  return new Range(range, options).set.map(function (comp) {
-		    return comp.map(function (c) {
-		      return c.value
-		    }).join(' ').trim().split(' ')
-		  })
-		}
-
-		// comprised of xranges, tildes, stars, and gtlt's at this point.
-		// already replaced the hyphen ranges
-		// turn into a set of JUST comparators.
-		function parseComparator (comp, options) {
-		  debug('comp', comp, options);
-		  comp = replaceCarets(comp, options);
-		  debug('caret', comp);
-		  comp = replaceTildes(comp, options);
-		  debug('tildes', comp);
-		  comp = replaceXRanges(comp, options);
-		  debug('xrange', comp);
-		  comp = replaceStars(comp, options);
-		  debug('stars', comp);
-		  return comp
-		}
-
-		function isX (id) {
-		  return !id || id.toLowerCase() === 'x' || id === '*'
-		}
-
-		// ~, ~> --> * (any, kinda silly)
-		// ~2, ~2.x, ~2.x.x, ~>2, ~>2.x ~>2.x.x --> >=2.0.0 <3.0.0
-		// ~2.0, ~2.0.x, ~>2.0, ~>2.0.x --> >=2.0.0 <2.1.0
-		// ~1.2, ~1.2.x, ~>1.2, ~>1.2.x --> >=1.2.0 <1.3.0
-		// ~1.2.3, ~>1.2.3 --> >=1.2.3 <1.3.0
-		// ~1.2.0, ~>1.2.0 --> >=1.2.0 <1.3.0
-		function replaceTildes (comp, options) {
-		  return comp.trim().split(/\s+/).map(function (comp) {
-		    return replaceTilde(comp, options)
-		  }).join(' ')
-		}
-
-		function replaceTilde (comp, options) {
-		  var r = options.loose ? safeRe[t.TILDELOOSE] : safeRe[t.TILDE];
-		  return comp.replace(r, function (_, M, m, p, pr) {
-		    debug('tilde', comp, _, M, m, p, pr);
-		    var ret;
-
-		    if (isX(M)) {
-		      ret = '';
-		    } else if (isX(m)) {
-		      ret = '>=' + M + '.0.0 <' + (+M + 1) + '.0.0';
-		    } else if (isX(p)) {
-		      // ~1.2 == >=1.2.0 <1.3.0
-		      ret = '>=' + M + '.' + m + '.0 <' + M + '.' + (+m + 1) + '.0';
-		    } else if (pr) {
-		      debug('replaceTilde pr', pr);
-		      ret = '>=' + M + '.' + m + '.' + p + '-' + pr +
-		            ' <' + M + '.' + (+m + 1) + '.0';
-		    } else {
-		      // ~1.2.3 == >=1.2.3 <1.3.0
-		      ret = '>=' + M + '.' + m + '.' + p +
-		            ' <' + M + '.' + (+m + 1) + '.0';
-		    }
-
-		    debug('tilde return', ret);
-		    return ret
-		  })
-		}
-
-		// ^ --> * (any, kinda silly)
-		// ^2, ^2.x, ^2.x.x --> >=2.0.0 <3.0.0
-		// ^2.0, ^2.0.x --> >=2.0.0 <3.0.0
-		// ^1.2, ^1.2.x --> >=1.2.0 <2.0.0
-		// ^1.2.3 --> >=1.2.3 <2.0.0
-		// ^1.2.0 --> >=1.2.0 <2.0.0
-		function replaceCarets (comp, options) {
-		  return comp.trim().split(/\s+/).map(function (comp) {
-		    return replaceCaret(comp, options)
-		  }).join(' ')
-		}
-
-		function replaceCaret (comp, options) {
-		  debug('caret', comp, options);
-		  var r = options.loose ? safeRe[t.CARETLOOSE] : safeRe[t.CARET];
-		  return comp.replace(r, function (_, M, m, p, pr) {
-		    debug('caret', comp, _, M, m, p, pr);
-		    var ret;
-
-		    if (isX(M)) {
-		      ret = '';
-		    } else if (isX(m)) {
-		      ret = '>=' + M + '.0.0 <' + (+M + 1) + '.0.0';
-		    } else if (isX(p)) {
-		      if (M === '0') {
-		        ret = '>=' + M + '.' + m + '.0 <' + M + '.' + (+m + 1) + '.0';
-		      } else {
-		        ret = '>=' + M + '.' + m + '.0 <' + (+M + 1) + '.0.0';
-		      }
-		    } else if (pr) {
-		      debug('replaceCaret pr', pr);
-		      if (M === '0') {
-		        if (m === '0') {
-		          ret = '>=' + M + '.' + m + '.' + p + '-' + pr +
-		                ' <' + M + '.' + m + '.' + (+p + 1);
-		        } else {
-		          ret = '>=' + M + '.' + m + '.' + p + '-' + pr +
-		                ' <' + M + '.' + (+m + 1) + '.0';
-		        }
-		      } else {
-		        ret = '>=' + M + '.' + m + '.' + p + '-' + pr +
-		              ' <' + (+M + 1) + '.0.0';
-		      }
-		    } else {
-		      debug('no pr');
-		      if (M === '0') {
-		        if (m === '0') {
-		          ret = '>=' + M + '.' + m + '.' + p +
-		                ' <' + M + '.' + m + '.' + (+p + 1);
-		        } else {
-		          ret = '>=' + M + '.' + m + '.' + p +
-		                ' <' + M + '.' + (+m + 1) + '.0';
-		        }
-		      } else {
-		        ret = '>=' + M + '.' + m + '.' + p +
-		              ' <' + (+M + 1) + '.0.0';
-		      }
-		    }
-
-		    debug('caret return', ret);
-		    return ret
-		  })
-		}
-
-		function replaceXRanges (comp, options) {
-		  debug('replaceXRanges', comp, options);
-		  return comp.split(/\s+/).map(function (comp) {
-		    return replaceXRange(comp, options)
-		  }).join(' ')
-		}
-
-		function replaceXRange (comp, options) {
-		  comp = comp.trim();
-		  var r = options.loose ? safeRe[t.XRANGELOOSE] : safeRe[t.XRANGE];
-		  return comp.replace(r, function (ret, gtlt, M, m, p, pr) {
-		    debug('xRange', comp, ret, gtlt, M, m, p, pr);
-		    var xM = isX(M);
-		    var xm = xM || isX(m);
-		    var xp = xm || isX(p);
-		    var anyX = xp;
-
-		    if (gtlt === '=' && anyX) {
-		      gtlt = '';
-		    }
-
-		    // if we're including prereleases in the match, then we need
-		    // to fix this to -0, the lowest possible prerelease value
-		    pr = options.includePrerelease ? '-0' : '';
-
-		    if (xM) {
-		      if (gtlt === '>' || gtlt === '<') {
-		        // nothing is allowed
-		        ret = '<0.0.0-0';
-		      } else {
-		        // nothing is forbidden
-		        ret = '*';
-		      }
-		    } else if (gtlt && anyX) {
-		      // we know patch is an x, because we have any x at all.
-		      // replace X with 0
-		      if (xm) {
-		        m = 0;
-		      }
-		      p = 0;
-
-		      if (gtlt === '>') {
-		        // >1 => >=2.0.0
-		        // >1.2 => >=1.3.0
-		        // >1.2.3 => >= 1.2.4
-		        gtlt = '>=';
-		        if (xm) {
-		          M = +M + 1;
-		          m = 0;
-		          p = 0;
-		        } else {
-		          m = +m + 1;
-		          p = 0;
-		        }
-		      } else if (gtlt === '<=') {
-		        // <=0.7.x is actually <0.8.0, since any 0.7.x should
-		        // pass.  Similarly, <=7.x is actually <8.0.0, etc.
-		        gtlt = '<';
-		        if (xm) {
-		          M = +M + 1;
-		        } else {
-		          m = +m + 1;
-		        }
-		      }
-
-		      ret = gtlt + M + '.' + m + '.' + p + pr;
-		    } else if (xm) {
-		      ret = '>=' + M + '.0.0' + pr + ' <' + (+M + 1) + '.0.0' + pr;
-		    } else if (xp) {
-		      ret = '>=' + M + '.' + m + '.0' + pr +
-		        ' <' + M + '.' + (+m + 1) + '.0' + pr;
-		    }
-
-		    debug('xRange return', ret);
-
-		    return ret
-		  })
-		}
-
-		// Because * is AND-ed with everything else in the comparator,
-		// and '' means "any version", just remove the *s entirely.
-		function replaceStars (comp, options) {
-		  debug('replaceStars', comp, options);
-		  // Looseness is ignored here.  star is always as loose as it gets!
-		  return comp.trim().replace(safeRe[t.STAR], '')
-		}
-
-		// This function is passed to string.replace(re[t.HYPHENRANGE])
-		// M, m, patch, prerelease, build
-		// 1.2 - 3.4.5 => >=1.2.0 <=3.4.5
-		// 1.2.3 - 3.4 => >=1.2.0 <3.5.0 Any 3.4.x will do
-		// 1.2 - 3.4 => >=1.2.0 <3.5.0
-		function hyphenReplace ($0,
-		  from, fM, fm, fp, fpr, fb,
-		  to, tM, tm, tp, tpr, tb) {
-		  if (isX(fM)) {
-		    from = '';
-		  } else if (isX(fm)) {
-		    from = '>=' + fM + '.0.0';
-		  } else if (isX(fp)) {
-		    from = '>=' + fM + '.' + fm + '.0';
-		  } else {
-		    from = '>=' + from;
-		  }
-
-		  if (isX(tM)) {
-		    to = '';
-		  } else if (isX(tm)) {
-		    to = '<' + (+tM + 1) + '.0.0';
-		  } else if (isX(tp)) {
-		    to = '<' + tM + '.' + (+tm + 1) + '.0';
-		  } else if (tpr) {
-		    to = '<=' + tM + '.' + tm + '.' + tp + '-' + tpr;
-		  } else {
-		    to = '<=' + to;
-		  }
-
-		  return (from + ' ' + to).trim()
-		}
-
-		// if ANY of the sets match ALL of its comparators, then pass
-		Range.prototype.test = function (version) {
-		  if (!version) {
-		    return false
-		  }
-
-		  if (typeof version === 'string') {
-		    try {
-		      version = new SemVer(version, this.options);
-		    } catch (er) {
-		      return false
-		    }
-		  }
-
-		  for (var i = 0; i < this.set.length; i++) {
-		    if (testSet(this.set[i], version, this.options)) {
-		      return true
-		    }
-		  }
-		  return false
-		};
-
-		function testSet (set, version, options) {
-		  for (var i = 0; i < set.length; i++) {
-		    if (!set[i].test(version)) {
-		      return false
-		    }
-		  }
-
-		  if (version.prerelease.length && !options.includePrerelease) {
-		    // Find the set of versions that are allowed to have prereleases
-		    // For example, ^1.2.3-pr.1 desugars to >=1.2.3-pr.1 <2.0.0
-		    // That should allow `1.2.3-pr.2` to pass.
-		    // However, `1.2.4-alpha.notready` should NOT be allowed,
-		    // even though it's within the range set by the comparators.
-		    for (i = 0; i < set.length; i++) {
-		      debug(set[i].semver);
-		      if (set[i].semver === ANY) {
-		        continue
-		      }
-
-		      if (set[i].semver.prerelease.length > 0) {
-		        var allowed = set[i].semver;
-		        if (allowed.major === version.major &&
-		            allowed.minor === version.minor &&
-		            allowed.patch === version.patch) {
-		          return true
-		        }
-		      }
-		    }
-
-		    // Version has a -pre, but it's not one of the ones we like.
-		    return false
-		  }
-
-		  return true
-		}
-
-		exports.satisfies = satisfies;
-		function satisfies (version, range, options) {
-		  try {
-		    range = new Range(range, options);
-		  } catch (er) {
-		    return false
-		  }
-		  return range.test(version)
-		}
-
-		exports.maxSatisfying = maxSatisfying;
-		function maxSatisfying (versions, range, options) {
-		  var max = null;
-		  var maxSV = null;
-		  try {
-		    var rangeObj = new Range(range, options);
-		  } catch (er) {
-		    return null
-		  }
-		  versions.forEach(function (v) {
-		    if (rangeObj.test(v)) {
-		      // satisfies(v, range, options)
-		      if (!max || maxSV.compare(v) === -1) {
-		        // compare(max, v, true)
-		        max = v;
-		        maxSV = new SemVer(max, options);
-		      }
-		    }
-		  });
-		  return max
-		}
-
-		exports.minSatisfying = minSatisfying;
-		function minSatisfying (versions, range, options) {
-		  var min = null;
-		  var minSV = null;
-		  try {
-		    var rangeObj = new Range(range, options);
-		  } catch (er) {
-		    return null
-		  }
-		  versions.forEach(function (v) {
-		    if (rangeObj.test(v)) {
-		      // satisfies(v, range, options)
-		      if (!min || minSV.compare(v) === 1) {
-		        // compare(min, v, true)
-		        min = v;
-		        minSV = new SemVer(min, options);
-		      }
-		    }
-		  });
-		  return min
-		}
-
-		exports.minVersion = minVersion;
-		function minVersion (range, loose) {
-		  range = new Range(range, loose);
-
-		  var minver = new SemVer('0.0.0');
-		  if (range.test(minver)) {
-		    return minver
-		  }
-
-		  minver = new SemVer('0.0.0-0');
-		  if (range.test(minver)) {
-		    return minver
-		  }
-
-		  minver = null;
-		  for (var i = 0; i < range.set.length; ++i) {
-		    var comparators = range.set[i];
-
-		    comparators.forEach(function (comparator) {
-		      // Clone to avoid manipulating the comparator's semver object.
-		      var compver = new SemVer(comparator.semver.version);
-		      switch (comparator.operator) {
-		        case '>':
-		          if (compver.prerelease.length === 0) {
-		            compver.patch++;
-		          } else {
-		            compver.prerelease.push(0);
-		          }
-		          compver.raw = compver.format();
-		          /* fallthrough */
-		        case '':
-		        case '>=':
-		          if (!minver || gt(minver, compver)) {
-		            minver = compver;
-		          }
-		          break
-		        case '<':
-		        case '<=':
-		          /* Ignore maximum versions */
-		          break
-		        /* istanbul ignore next */
-		        default:
-		          throw new Error('Unexpected operation: ' + comparator.operator)
-		      }
-		    });
-		  }
-
-		  if (minver && range.test(minver)) {
-		    return minver
-		  }
-
-		  return null
-		}
-
-		exports.validRange = validRange;
-		function validRange (range, options) {
-		  try {
-		    // Return '*' instead of '' so that truthiness works.
-		    // This will throw if it's invalid anyway
-		    return new Range(range, options).range || '*'
-		  } catch (er) {
-		    return null
-		  }
-		}
-
-		// Determine if version is less than all the versions possible in the range
-		exports.ltr = ltr;
-		function ltr (version, range, options) {
-		  return outside(version, range, '<', options)
-		}
-
-		// Determine if version is greater than all the versions possible in the range.
-		exports.gtr = gtr;
-		function gtr (version, range, options) {
-		  return outside(version, range, '>', options)
-		}
-
-		exports.outside = outside;
-		function outside (version, range, hilo, options) {
-		  version = new SemVer(version, options);
-		  range = new Range(range, options);
-
-		  var gtfn, ltefn, ltfn, comp, ecomp;
-		  switch (hilo) {
-		    case '>':
-		      gtfn = gt;
-		      ltefn = lte;
-		      ltfn = lt;
-		      comp = '>';
-		      ecomp = '>=';
-		      break
-		    case '<':
-		      gtfn = lt;
-		      ltefn = gte;
-		      ltfn = gt;
-		      comp = '<';
-		      ecomp = '<=';
-		      break
-		    default:
-		      throw new TypeError('Must provide a hilo val of "<" or ">"')
-		  }
-
-		  // If it satisifes the range it is not outside
-		  if (satisfies(version, range, options)) {
-		    return false
-		  }
-
-		  // From now on, variable terms are as if we're in "gtr" mode.
-		  // but note that everything is flipped for the "ltr" function.
-
-		  for (var i = 0; i < range.set.length; ++i) {
-		    var comparators = range.set[i];
-
-		    var high = null;
-		    var low = null;
-
-		    comparators.forEach(function (comparator) {
-		      if (comparator.semver === ANY) {
-		        comparator = new Comparator('>=0.0.0');
-		      }
-		      high = high || comparator;
-		      low = low || comparator;
-		      if (gtfn(comparator.semver, high.semver, options)) {
-		        high = comparator;
-		      } else if (ltfn(comparator.semver, low.semver, options)) {
-		        low = comparator;
-		      }
-		    });
-
-		    // If the edge version comparator has a operator then our version
-		    // isn't outside it
-		    if (high.operator === comp || high.operator === ecomp) {
-		      return false
-		    }
-
-		    // If the lowest version comparator has an operator and our version
-		    // is less than it then it isn't higher than the range
-		    if ((!low.operator || low.operator === comp) &&
-		        ltefn(version, low.semver)) {
-		      return false
-		    } else if (low.operator === ecomp && ltfn(version, low.semver)) {
-		      return false
-		    }
-		  }
-		  return true
-		}
-
-		exports.prerelease = prerelease;
-		function prerelease (version, options) {
-		  var parsed = parse(version, options);
-		  return (parsed && parsed.prerelease.length) ? parsed.prerelease : null
-		}
-
-		exports.intersects = intersects;
-		function intersects (r1, r2, options) {
-		  r1 = new Range(r1, options);
-		  r2 = new Range(r2, options);
-		  return r1.intersects(r2)
-		}
-
-		exports.coerce = coerce;
-		function coerce (version, options) {
-		  if (version instanceof SemVer) {
-		    return version
-		  }
-
-		  if (typeof version === 'number') {
-		    version = String(version);
-		  }
-
-		  if (typeof version !== 'string') {
-		    return null
-		  }
-
-		  options = options || {};
-
-		  var match = null;
-		  if (!options.rtl) {
-		    match = version.match(safeRe[t.COERCE]);
-		  } else {
-		    // Find the right-most coercible string that does not share
-		    // a terminus with a more left-ward coercible string.
-		    // Eg, '1.2.3.4' wants to coerce '2.3.4', not '3.4' or '4'
-		    //
-		    // Walk through the string checking with a /g regexp
-		    // Manually set the index so as to pick up overlapping matches.
-		    // Stop when we get a match that ends at the string end, since no
-		    // coercible string can be more right-ward without the same terminus.
-		    var next;
-		    while ((next = safeRe[t.COERCERTL].exec(version)) &&
-		      (!match || match.index + match[0].length !== version.length)
-		    ) {
-		      if (!match ||
-		          next.index + next[0].length !== match.index + match[0].length) {
-		        match = next;
-		      }
-		      safeRe[t.COERCERTL].lastIndex = next.index + next[1].length + next[2].length;
-		    }
-		    // leave it in a clean state
-		    safeRe[t.COERCERTL].lastIndex = -1;
-		  }
-
-		  if (match === null) {
-		    return null
-		  }
-
-		  return parse(match[2] +
-		    '.' + (match[3] || '0') +
-		    '.' + (match[4] || '0'), options)
-		} 
-	} (semver, semver.exports));
-	return semver.exports;
-}
-
 var manifest = manifest$1.exports;
 
 var hasRequiredManifest;
@@ -79118,7 +76231,7 @@ var hasRequiredManifest;
 function requireManifest () {
 	if (hasRequiredManifest) return manifest$1.exports;
 	hasRequiredManifest = 1;
-	(function (module, exports) {
+	(function (module, exports$1) {
 		var __createBinding = (manifest && manifest.__createBinding) || (Object.create ? (function(o, m, k, k2) {
 		    if (k2 === undefined) k2 = k;
 		    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -79147,8 +76260,8 @@ function requireManifest () {
 		        step((generator = generator.apply(thisArg, _arguments || [])).next());
 		    });
 		};
-		Object.defineProperty(exports, "__esModule", { value: true });
-		exports._readLinuxVersionFile = exports._getOsVersion = exports._findMatch = void 0;
+		Object.defineProperty(exports$1, "__esModule", { value: true });
+		exports$1._readLinuxVersionFile = exports$1._getOsVersion = exports$1._findMatch = void 0;
 		const semver = __importStar(requireSemver());
 		const core_1 = requireCore();
 		// needs to be require for core node modules to be mocked
@@ -79196,7 +76309,7 @@ function requireManifest () {
 		        return result;
 		    });
 		}
-		exports._findMatch = _findMatch;
+		exports$1._findMatch = _findMatch;
 		function _getOsVersion() {
 		    // TODO: add windows and other linux, arm variants
 		    // right now filtering on version is only an ubuntu and macos scenario for tools we build for hosted (python)
@@ -79231,7 +76344,7 @@ function requireManifest () {
 		    }
 		    return version;
 		}
-		exports._getOsVersion = _getOsVersion;
+		exports$1._getOsVersion = _getOsVersion;
 		function _readLinuxVersionFile() {
 		    const lsbReleaseFile = '/etc/lsb-release';
 		    const osReleaseFile = '/etc/os-release';
@@ -79244,7 +76357,7 @@ function requireManifest () {
 		    }
 		    return contents;
 		}
-		exports._readLinuxVersionFile = _readLinuxVersionFile;
+		exports$1._readLinuxVersionFile = _readLinuxVersionFile;
 		
 	} (manifest$1, manifest$1.exports));
 	return manifest$1.exports;
@@ -79323,8 +76436,8 @@ var hasRequiredHttpClient;
 function requireHttpClient () {
 	if (hasRequiredHttpClient) return httpClient;
 	hasRequiredHttpClient = 1;
-	(function (exports) {
-		Object.defineProperty(exports, "__esModule", { value: true });
+	(function (exports$1) {
+		Object.defineProperty(exports$1, "__esModule", { value: true });
 		const http = require$$2;
 		const https = require$$1$1;
 		const pm = requireProxy();
@@ -79358,16 +76471,16 @@ function requireHttpClient () {
 		    HttpCodes[HttpCodes["BadGateway"] = 502] = "BadGateway";
 		    HttpCodes[HttpCodes["ServiceUnavailable"] = 503] = "ServiceUnavailable";
 		    HttpCodes[HttpCodes["GatewayTimeout"] = 504] = "GatewayTimeout";
-		})(HttpCodes = exports.HttpCodes || (exports.HttpCodes = {}));
+		})(HttpCodes = exports$1.HttpCodes || (exports$1.HttpCodes = {}));
 		var Headers;
 		(function (Headers) {
 		    Headers["Accept"] = "accept";
 		    Headers["ContentType"] = "content-type";
-		})(Headers = exports.Headers || (exports.Headers = {}));
+		})(Headers = exports$1.Headers || (exports$1.Headers = {}));
 		var MediaTypes;
 		(function (MediaTypes) {
 		    MediaTypes["ApplicationJson"] = "application/json";
-		})(MediaTypes = exports.MediaTypes || (exports.MediaTypes = {}));
+		})(MediaTypes = exports$1.MediaTypes || (exports$1.MediaTypes = {}));
 		/**
 		 * Returns the proxy URL, depending upon the supplied url and proxy environment variables.
 		 * @param serverUrl  The server URL where the request will be sent. For example, https://api.github.com
@@ -79376,7 +76489,7 @@ function requireHttpClient () {
 		    let proxyUrl = pm.getProxyUrl(new URL(serverUrl));
 		    return proxyUrl ? proxyUrl.href : '';
 		}
-		exports.getProxyUrl = getProxyUrl;
+		exports$1.getProxyUrl = getProxyUrl;
 		const HttpRedirectCodes = [
 		    HttpCodes.MovedPermanently,
 		    HttpCodes.ResourceMoved,
@@ -79400,7 +76513,7 @@ function requireHttpClient () {
 		        Object.setPrototypeOf(this, HttpClientError.prototype);
 		    }
 		}
-		exports.HttpClientError = HttpClientError;
+		exports$1.HttpClientError = HttpClientError;
 		class HttpClientResponse {
 		    constructor(message) {
 		        this.message = message;
@@ -79417,12 +76530,12 @@ function requireHttpClient () {
 		        });
 		    }
 		}
-		exports.HttpClientResponse = HttpClientResponse;
+		exports$1.HttpClientResponse = HttpClientResponse;
 		function isHttps(requestUrl) {
 		    let parsedUrl = new URL(requestUrl);
 		    return parsedUrl.protocol === 'https:';
 		}
-		exports.isHttps = isHttps;
+		exports$1.isHttps = isHttps;
 		class HttpClient {
 		    constructor(userAgent, handlers, requestOptions) {
 		        this._ignoreSslError = false;
@@ -79859,7 +76972,7 @@ function requireHttpClient () {
 		        });
 		    }
 		}
-		exports.HttpClient = HttpClient; 
+		exports$1.HttpClient = HttpClient; 
 	} (httpClient));
 	return httpClient;
 }
@@ -81067,4 +78180,4 @@ function createGitHubActionsHandle() {
 }
 
 export { UnsupportedTargetError as U, createGitHubActionsHandle as c };
-//# sourceMappingURL=handle-gOhP40VJ.js.map
+//# sourceMappingURL=handle-Dy0r4LCQ.js.map
