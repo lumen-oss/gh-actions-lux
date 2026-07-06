@@ -231,6 +231,31 @@ To use `lx upload`, you need to provide an API key for luarocks.org.
 > [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) and
 > [release-please](https://github.com/googleapis/release-please-action).
 
+#### Setting up two-factor authentication (2FA) for uploads
+
+Over the past years there have been a plethora of attacks on popular package
+registries, especially npm. These attacks hijack API tokens to impersonate
+authors of popular packages and inject packages used by millions of people with
+malware. For this reason, we strongly encourage absolutely everyone to set up
+2FA for their luarocks account. Head over to
+[the luarocks.org 2FA settings](https://luarocks.org/settings/two-factor-auth)
+and scan the QR code with your favourite authenticator app for manual uploads.
+
+Copy the secret key shown under the QR code and
+[add it to your repository's secrets](https://github.com/lumen-oss/lumen-oss.github.io/commit/e0b30848ff4ca3a2a56d5d3b21974de20b6d1c0b),
+with the name, `LUAROCKS_2FA_SECRET`. Lux will use the secret to generate a TOTP
+code before uploading.
+
+![Enabling two-factor authentication](https://lux.lumen-labs.org/assets/images/luarocks-2fa-de15eb57fd01e714c1e5ba177c245707.png)
+
+After enabling 2FA, make sure to require it for uploads:
+
+- Check the "Require 2FA for API uploads" checkbox.
+- Enter your password and the verification code from your authenticator app.
+- Click "Update settings".
+
+![Enabling two-factor authentication](https://lux.lumen-labs.org/assets/images/luarocks-upload-2fa-8f8f11b7c2018757729fb95fcfabf118.png)
+
 #### With artifact signing enabled (recommended)
 
 First,
