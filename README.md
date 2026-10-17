@@ -70,7 +70,7 @@ jobs:
         job:
           - { os: ubuntu-24.04, target: x86_64-linux }
           - { os: ubuntu-24.04-arm, target: aarch64-linux }
-          - { os: macos-14, target: aarch64-darwin }
+          - { os: macos-15, target: aarch64-darwin }
           - { os: windows-2025, target: x86_63-windows-msvc }
     steps:
       - name: Checkout repository
@@ -112,7 +112,7 @@ jobs:
         job:
           - { os: ubuntu-24.04, target: x86_64-linux }
           - { os: ubuntu-24.04-arm, target: aarch64-linux }
-          - { os: macos-14, target: aarch64-darwin }
+          - { os: macos-15, target: aarch64-darwin }
           - { os: windows-2025, target: x86_63-windows-msvc }
         lua_version:
           - 5.1
@@ -163,7 +163,7 @@ jobs:
         job:
           - { os: ubuntu-24.04, target: x86_64-linux }
           - { os: ubuntu-24.04-arm, target: aarch64-linux }
-          - { os: macos-14, target: aarch64-darwin }
+          - { os: macos-15, target: aarch64-darwin }
           - { os: windows-2025, target: x86_63-windows-msvc }
         nvim-version:
           - stable
