@@ -1,5 +1,6 @@
 import type { Handle } from './ports.ts'
 import { join as pathJoin } from 'path'
+import { restoreCache } from './cache.js'
 import { createInstaller } from './installer.js'
 
 export async function run(handle: Handle): Promise<void> {
@@ -11,9 +12,9 @@ export async function run(handle: Handle): Promise<void> {
   try {
     env.debug(`Running on ${env.getTarget()}`)
 
-    await cache.restore()
-
     const lux_release = await lux_provider.getRelease()
+    await restoreCache(env, cache, lux_release.version)
+
     const installer_asset = lux_release.assetForTarget(env.getTarget())
     env.info(
       `Found installer release asset: ${JSON.stringify(installer_asset)}`

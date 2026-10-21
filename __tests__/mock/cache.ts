@@ -1,7 +1,20 @@
-import type { Cache } from '../../src/ports.js'
+import type { Cache, CacheSpec } from '../../src/ports.js'
 
 export class MockCache implements Cache {
-  async restore(): Promise<void> {}
+  public restored: CacheSpec[] = []
+  public saved: CacheSpec[] = []
+  public restore_result: string | undefined
 
-  async save(): Promise<void> {}
+  constructor(restore_result?: string) {
+    this.restore_result = restore_result
+  }
+
+  async restore(spec: CacheSpec): Promise<string | undefined> {
+    this.restored.push(spec)
+    return this.restore_result
+  }
+
+  async save(spec: CacheSpec): Promise<void> {
+    this.saved.push(spec)
+  }
 }

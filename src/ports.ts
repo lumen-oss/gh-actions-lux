@@ -31,7 +31,11 @@ export interface Env {
    * Get an action input by name.
    */
   getVersionInput(): string
+
   getTokenInput(): string | undefined
+
+  getState(name: string): string | undefined
+  saveState(name: string, value: string): void
 
   debug(message: string): void
   info(message: string): void
@@ -102,7 +106,16 @@ export interface Downloader {
   ): Promise<void>
 }
 
+export type CacheSpec = {
+  paths: string[]
+  key: string
+  restoreKeys: string[]
+}
+
 export interface Cache {
-  restore(): Promise<void>
-  save(): Promise<void>
+  /**
+   * @returns the key of the restored cache, or undefined on a miss.
+   */
+  restore(spec: CacheSpec): Promise<string | undefined>
+  save(spec: CacheSpec): Promise<void>
 }

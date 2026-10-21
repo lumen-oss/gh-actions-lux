@@ -34,6 +34,12 @@ class GitHubActionsEnv implements Env {
   getTokenInput(): string | undefined {
     return this.getInput('token')
   }
+  getState(name: string): string | undefined {
+    return core.getState(name) || undefined
+  }
+  saveState(name: string, value: string): void {
+    core.saveState(name, value)
+  }
   debug(message: string): void {
     core.debug(message)
   }
