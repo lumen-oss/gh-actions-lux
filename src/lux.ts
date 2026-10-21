@@ -112,8 +112,7 @@ export function mapGithubReleaseToLuxRelease(gh: GitHubRelease): LuxRelease {
 
   for (const expectedInstallerName of expectedInstallerNames) {
     const ghAsset = nameToAsset.get(expectedInstallerName) as
-      | Record<string, unknown>
-      | undefined
+      Record<string, unknown> | undefined
     if (!ghAsset) {
       continue
     }
