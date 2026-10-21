@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/lumen-oss/gh-actions-lux/compare/v1.0.1...v1.0.2) (2026-10-21)
+
+
+### Bug Fixes
+
+* **cache:** upgrade to @actions/cache v5 & fix coverage ([#15](https://github.com/lumen-oss/gh-actions-lux/issues/15)) ([0e6e7c1](https://github.com/lumen-oss/gh-actions-lux/commit/0e6e7c13de3f83363eb5900920755845d3ad28af))
+
 ## [1.0.1](https://github.com/lumen-oss/gh-actions-lux/compare/v1.0.0...v1.0.1) (2025-10-29)
 
 ### Bug Fixes
