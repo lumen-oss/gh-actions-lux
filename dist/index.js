@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { U as UnsupportedTargetError, c as createGitHubActionsHandle } from './handle-Dy0r4LCQ.js';
+import { U as UnsupportedTargetError, r as restoreCache, c as createGitHubActionsHandle } from './handle-CeK-3J1E.js';
 import 'os';
 import 'crypto';
 import 'fs';
@@ -10,23 +10,23 @@ import 'tls';
 import 'events';
 import 'assert';
 import 'util';
+import 'node:module';
+import 'string_decoder';
+import 'child_process';
+import 'timers';
 import 'stream';
+import 'url';
+import 'tty';
 import 'buffer';
 import 'querystring';
 import 'stream/web';
-import 'node:module';
 import 'worker_threads';
 import 'perf_hooks';
 import 'util/types';
 import 'async_hooks';
 import 'console';
-import 'url';
 import 'zlib';
-import 'string_decoder';
 import 'diagnostics_channel';
-import 'child_process';
-import 'timers';
-import 'tty';
 import 'fs/promises';
 
 function createInstaller(handle) {
@@ -173,8 +173,8 @@ async function run(handle) {
     const cache = handle.getCache();
     try {
         env.debug(`Running on ${env.getTarget()}`);
-        await cache.restore();
         const lux_release = await lux_provider.getRelease();
+        await restoreCache(env, cache, lux_release.version);
         const installer_asset = lux_release.assetForTarget(env.getTarget());
         env.info(`Found installer release asset: ${JSON.stringify(installer_asset)}`);
         env.info(`Downloading Lux ${lux_release.version} installer...`);

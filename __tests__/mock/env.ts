@@ -1,19 +1,23 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import type { Env, Target } from '../../src/ports.ts'
 
 export class MockEnv implements Env {
   private target: Target
   private env_vars = new Map<string, string>()
+  private states = new Map<string, string>()
   private inputs: Record<string, string | undefined>
   public debug_calls: string[] = []
   public info_calls: string[] = []
   public warning_calls: string[] = []
   public failed?: string
 
-  constructor(target: Target, inputs: Record<string, string | undefined> = {}) {
+  constructor(
+    target: Target,
+    inputs: Record<string, string | undefined> = {},
+    env_vars: Record<string, string> = {}
+  ) {
     this.target = target
     this.inputs = inputs
+    this.env_vars = new Map(Object.entries(env_vars))
   }
   private getInput(name: string): string | undefined {
     return this.inputs[name]
@@ -23,6 +27,12 @@ export class MockEnv implements Env {
   }
   getTokenInput(): string | undefined {
     return this.getInput('token')
+  }
+  getState(name: string): string | undefined {
+    return this.states.get(name)
+  }
+  saveState(name: string, value: string): void {
+    this.states.set(name, value)
   }
   debug(message: string): void {
     this.debug_calls.push(message)
@@ -50,7 +60,7 @@ export class MockEnv implements Env {
     this.env_vars.set(key, newValue)
   }
 
-  getEnvVar(_name: string): string | undefined {
-    return undefined
+  getEnvVar(name: string): string | undefined {
+    return this.env_vars.get(name)
   }
 }

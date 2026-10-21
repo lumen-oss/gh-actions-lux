@@ -12,8 +12,11 @@ import { Target } from '../src/ports.ts'
 import { MockCache } from './mock/cache.ts'
 import { collectConfig } from '../src/inputs.ts'
 
-async function testTarget(target: Target): Promise<void> {
-  const env = new MockEnv(target, { version: '2.0.0' })
+async function testTarget(
+  target: Target,
+  version = '2.0.0'
+): Promise<MockCache> {
+  const env = new MockEnv(target, { version })
   const config = collectConfig(env)
   const luxProvider = new MockLuxProvider(config)
   const fs = new MockFs()
@@ -24,6 +27,7 @@ async function testTarget(target: Target): Promise<void> {
   await expect(run(handle)).resolves.toBeUndefined()
   await expect(run_post(handle)).resolves.toBeUndefined()
   expect(env.failed).toBeUndefined()
+  return cache
 }
 
 // This test exists to enforce the universal architecture.
@@ -32,4 +36,12 @@ describe('executes without performing real IO', () => {
   test('aarch64-linux', async () => await testTarget('aarch64-linux'))
   test('aarch64-macos', async () => await testTarget('aarch64-macos'))
   test('x86_64-windows', async () => await testTarget('x86_64-windows'))
+})
+
+describe('cache versioning', () => {
+  test('uses the resolved release version', async () => {
+    const cache = await testTarget('x86_64-linux', 'latest')
+    expect(cache.restored[0].key).toBe('x86_64-linux-lux-1.0.0')
+    expect(cache.saved[0].key).toBe('x86_64-linux-lux-1.0.0')
+  })
 })

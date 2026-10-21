@@ -31,7 +31,7 @@ class GitHubActionsHandle implements Handle {
     this.filesytem = createDiskFileSystem()
     this.downloader = createDiskDownloader(this.filesytem)
     this.os = createRealOS()
-    this.cache = createActionsCache(this.config, this.env)
+    this.cache = createActionsCache(this.env)
   }
 
   getEnv(): Env {
