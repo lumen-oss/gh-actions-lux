@@ -48,7 +48,10 @@
           hooks = {
             nixfmt.enable = true;
             # eslint.enable = true;
-            prettier.enable = true;
+            prettier = {
+              enable = true;
+              excludes = [ "^CHANGELOG\\.md$" ];
+            };
           };
         };
       in
