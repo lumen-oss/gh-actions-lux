@@ -14,10 +14,7 @@ export interface Handle {
 }
 
 export type Target =
-  | 'x86_64-linux'
-  | 'aarch64-linux'
-  | 'aarch64-macos'
-  | 'x86_64-windows'
+  'x86_64-linux' | 'aarch64-linux' | 'aarch64-macos' | 'x86_64-windows'
 
 export class UnsupportedTargetError extends Error {
   constructor(message?: string) {
