@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: '0 0 * * 0' # runs weekly on Sunday at 00:00
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   lockfile:
     runs-on: ubuntu-latest
@@ -11,13 +15,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
       - name: Install nix
-        uses: cachix/install-nix-action@v31
-      - uses: cachix/cachix-action@v12
+        uses: cachix/install-nix-action@v30
         with:
-          name: lumen-labs
-          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
       - name: Update flake.lock
-        uses: DeterminateSystems/update-flake-lock@main
+        uses: DeterminateSystems/update-flake-lock@v29
         with:
           token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
           pr-title: 'chore: update flake.lock'
